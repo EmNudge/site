@@ -1,5 +1,7 @@
 <script>
   import IconHolder from '$lib/IconHolder/index.svelte';
+  import { onMount } from 'svelte';
+
   const icons = [
     ['/icons/email.svg', 'email', 'mailto:calvin@kipperman.co'],
     ['/icons/github.svg', 'GitHub', 'https://github.com/EmNudge'],
@@ -7,11 +9,17 @@
     ['/icons/twitter.svg', 'Twitter', 'http://twitter.com/emnudge'],
     ['/icons/devto.svg', 'Dev.to', 'https://dev.to/emnudge'],
   ];
+
+  // if javascript is enabled, use a dynamic solution
+  let year = 2021;
+  onMount(() => {
+    year = new Date().getFullYear();
+  });
 </script>
 
 <footer>
   <IconHolder {icons} />
-	<p>© Copyright 2019 - 2020 Calvin Kipperman</p>
+	<p>© Copyright 2019 - {year} Calvin Kipperman</p>
 </footer>
 
 <style>

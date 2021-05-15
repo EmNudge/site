@@ -39,6 +39,11 @@
     opacity: var(--opacity);
     transition: .2s;
   }
+  @media (prefers-color-scheme: light) {
+    a img {
+      opacity: calc(var(--opacity)*3/4);
+    }
+  } 
   a:hover img {
     opacity: 1;
   }
