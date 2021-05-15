@@ -1,22 +1,24 @@
 import type { RequestHandler } from '@sveltejs/kit';
 import type { Read } from '$lib/types';
-import { Client } from '@notionhq/client';
 
-const notion = new Client({
-  auth: process.env['NOTION_TOKEN'],
-});
-
+const url = `https://api.notion.com/v1/databases/${process.env['READS_DATABASE']}/query`;
 let reads: Read[] = [];
 
 export async function getReads() {
   if (reads.length) return reads;
 
-  const myPage = await notion.databases.query({
-    database_id: process.env['READS_DATABASE'],
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Authorization': `Bearer ${process.env['NOTION_TOKEN']}`,
+      'Content-Type': 'application/json',
+    },
   });
 
-  reads = myPage.results.map(getReadRowData);
-  reads.sort((a, b) => Number(new Date(b.readAt)) - Number(new Date(a.readAt)));
+  const { results } = await res.json();
+  reads = results
+    .map(getReadRowData)
+    .sort((a: any, b: any) => Number(new Date(b.readAt)) - Number(new Date(a.readAt)));
 
   return reads;
 }
@@ -41,13 +43,13 @@ function getReadRowData(readRow: { properties: any }) {
   if (!props.Title) return null;
 
   const title: string = props.Title.title[0].plain_text;
-  const author: string = props.Author.rich_text[0].plain_text;
-  const description: string = props.Description.rich_text[0].plain_text;
+  const author: string = props.Author.text[0].plain_text;
+  const description: string = props.Description.text[0].plain_text;
   const link: string = props.Link.url;
   const createdAt: string = props['Created At'] 
     ? getKindaLocaleDate(props['Created At'].date.start)
     : 'NA';
   const readAt: string = props['Read At'].date.start;
-
+  
   return { author, link, description, title, readAt, createdAt };
 }
