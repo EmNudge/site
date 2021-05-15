@@ -77,6 +77,11 @@ code {
   border-radius: 4px;
   padding: 4px;
 }
+@media (prefers-color-scheme: light) {
+  code {
+    background: #ddd;
+  }
+}
 pre code {
   background: none;
   padding: 0;

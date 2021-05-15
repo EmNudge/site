@@ -16,7 +16,7 @@
 
 <style>
   footer {
-    border-top: 1px solid #fff3;
+    border-top: 1px solid var(--light-bg);
     padding: 20px;
     margin: 40px auto;
     margin-top: 80px;

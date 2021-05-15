@@ -4,11 +4,13 @@
 
   --active: #61FFFF;
   --foreground: white;
+  --background: #1F2632;
+  --light-bg: #fff1;
 }
 
 body {
-  background: #1F2632;
-  color: white;
+  background: var(--background);
+  color: var(--foreground);
 }
 
 h1, h2, h3, h4, h5 {
@@ -27,10 +29,8 @@ a {
   :root {
     --active: #ff7b3a;
     --foreground: #222;
-  }
-  body {
-    background: #eee;
-    color: #222;
+    --background: #eee;
+    --light-bg: #0001;
   }
   img.dark-mode {
     filter: invert(1);

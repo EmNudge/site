@@ -40,7 +40,6 @@
         meta="{post.date} • {post.minuteLength} minute read" 
         title={post.title}
         description={post.summary}
-        prefetch
       />
     </post-container>  
   {/each}

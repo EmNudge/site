@@ -44,7 +44,6 @@
 			meta="{post.date} • {post.minuteLength} minute read" 
 			title={post.title}
 			description={post.summary}
-			prefetch
 		/>
 	{/each}
 </TitleSection>
@@ -88,7 +87,7 @@
 		transition: .25s;
 	}
 	.video h3 {
-		color: white;
+		color: var(--forground);
 		margin-top: 10px;
 		font-weight: 100;
 	}

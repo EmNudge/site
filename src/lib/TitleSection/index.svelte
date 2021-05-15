@@ -28,7 +28,7 @@
     display: block;
   }
   .more:hover {
-    background: #fff1;
+    background: var(--light-bg);
   }
   h1 {
 		margin: 20px 10px;
