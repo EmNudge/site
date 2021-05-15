@@ -1,0 +1,109 @@
+article * {
+  transition: .25s;
+}
+
+article h1 .anchor, 
+article h2 .anchor, 
+article h3 .anchor, 
+article h4 .anchor, 
+article h5 .anchor {
+  margin-left: -1em;
+  opacity: 0;
+  user-select: none;
+}
+article h1:hover .anchor, 
+article h2:hover .anchor, 
+article h3:hover .anchor, 
+article h4:hover .anchor, 
+article h5:hover .anchor {
+  opacity: 1;
+}
+
+article h1, article h2, article h3, article h4  {
+  margin-top: 2em;
+}
+
+.title-container {
+  margin: 40px 0;
+}
+.title-container h5 {
+  opacity: .5;
+  font-weight: 100;
+  margin-bottom: 5px;
+}
+.title-container p {
+  margin: 0;
+  padding-top: 10px;
+  opacity: .8;
+}
+
+article img {
+  width: 100%;
+  padding: 10px 20px;
+  box-sizing: border-box;
+}
+
+article * {
+  line-height: 1.75;
+}
+
+/* syntax highlighting */
+pre {
+  overflow-x: auto;
+}
+pre.language-js, pre.language-javascript {
+	background: #1E1E1E;
+	padding: 20px;
+	border-radius: 4px;
+	color: #4FC1F1;
+}
+pre.language-js .keyword, 
+pre.language-javascript .keyword { color: #d97ac9; }
+pre.language-js .number, 
+pre.language-javascript .number { color: #B5CE89; }
+pre.language-js .string, 
+pre.language-javascript .string { color: #CE723B; }
+pre.language-js .function, 
+pre.language-javascript .function { color: #DCDCAA; }
+pre.language-js .comment, 
+pre.language-javascript .comment { color: #6A9949; }
+pre.language-js .punctuation, 
+pre.language-javascript .punctuation { color: white; }
+pre.language-js .operator, pre.language-javascript .operator, 
+pre.language-js .literal, pre.language-javascript .literal { color: #569CD6; }
+
+code {
+  background: #1E1E1E;
+  border-radius: 4px;
+  padding: 4px;
+}
+pre code {
+  background: none;
+  padding: 0;
+}
+
+/* quotes */
+blockquote {
+  border-left: 6px solid white;
+  margin-left: -20px;
+  padding: 5px 20px;
+  padding-right: 0;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  opacity: .7;
+  font-size: 1.5em;
+
+  display: grid;
+  grid-gap: 10px;
+}
+blockquote pre {
+  font-size: .7em;
+}
+blockquote p { margin: 0; }
+blockquote cite {
+  font-size: .8em;
+  display: block;
+  padding-top: 15px;
+}
+blockquote cite:before {
+  content: '- ';
+}
