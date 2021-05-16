@@ -36,7 +36,7 @@ If we go by character by character, as computers usually do, we're able to tell 
 
 This way we can shave off 16-bits for most characters! The surrogate pair ranges are purposely empty anyway, so we're not kicking any characters out.
 
-![Unicode Block Infographic](https://dev-to-uploads.s3.amazonaws.com/i/ygcf2t5zhn7co07hp2x9.png)
+![Unicode Block Infographic](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/y4e44a1t4kjvrce87ile.png)
 
 While JavaScript uses UTF-16, HTML traditionally uses UTF-8. Only 8 bits? It looks like we barely got by with 16 bits! Are we going to reserve another few ranges? How? Out of 256 possible codepoints, which ranges do we reserve?! 
 
