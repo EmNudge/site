@@ -45,9 +45,18 @@
   {/each}
 </div>
 
+<p class="feed">Subscribe to <a href="/blog/rss.xml">my rss feed <img src="icons/rss-feed-icon.png" alt="rss icon" /></a></p>
+
 <style>
   h1 {
     margin: 80px 0;
     text-align: center;
+  }
+  .feed {
+    margin-top: 50px;
+    text-align: center;
+  }
+  .feed img {
+    height: 15px;
   }
 </style>
