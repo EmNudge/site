@@ -33,7 +33,7 @@
 		articleEl.classList.add('js-enabled');
 		articleEl.addEventListener('click', e => {
 			if (!(e.target instanceof HTMLImageElement)) return;
-			if (!(e.target.parentElement instanceof HTMLParagraphElement)) return;
+			if (!['P', 'FIGURE'].includes(e.target.parentElement.tagName)) return;
 			// if we clicked an image that is a direct descendant of a paragraph element
 			showLargeImage = true;
 			clickedImage = e.target.src;
@@ -68,7 +68,8 @@
 {/if}
 
 <style>
-	article:global(.js-enabled img:hover) {
+	article:global(.js-enabled p > img:hover), 
+	article:global(.js-enabled figure > img:hover) {
 		transform: scale(1.03);
 		cursor: pointer;
 	}
