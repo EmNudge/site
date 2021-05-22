@@ -114,5 +114,3 @@ For most purposes, particularly code in just about any programming language, UTF
 In regards to computational efficiency, the efficiency order would go in reverse - UTF-32, UTF-16, and then UTF-8. 
 
 Lossless compression formats such as `.zip` and `.72` would also likely make the size differences much thinner (or perhaps even reverse the current order). Specially tailored compression formats even more so. While these encoders work on character to character, other compression formats may be able to work on text blobs as a whole.
-
-Critique? Let me know in the comments!
