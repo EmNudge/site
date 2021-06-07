@@ -40,7 +40,7 @@ function getKindaLocaleDate(dateStr: string) {
 function getReadRowData(readRow: { properties: any }) {
   const { properties: props } = readRow;
   
-  if (!props.Title) return null;
+  if (!props.Title || !props.Title.title) return null;
 
   const title: string = props.Title.title[0].plain_text;
   const author: string = props.Author.text[0].plain_text;

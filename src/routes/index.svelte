@@ -86,8 +86,10 @@
 		width: 320px;
 		transition: .25s;
 	}
-	.video h3 {
+	.video a {
 		color: var(--forground);
+	}
+	.video h3 {
 		margin-top: 10px;
 		font-weight: 100;
 	}
