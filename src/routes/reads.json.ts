@@ -40,11 +40,12 @@ function getKindaLocaleDate(dateStr: string) {
 function getReadRowData(readRow: { properties: any }) {
   const { properties: props } = readRow;
   
-  if (!props.Title || !props.Title.title) return null;
+  const {Author, Title, Description} = props;
+  if (!(Title || Author || Description)) return null;
 
   const title: string = props.Title.title[0].plain_text;
-  const author: string = props.Author.text[0].plain_text;
-  const description: string = props.Description.text[0].plain_text;
+  const author: string = props.Author.rich_text[0].plain_text;
+  const description: string = props.Description.rich_text[0].plain_text;
   const link: string = props.Link.url;
   const createdAt: string = props['Created At'] 
     ? getKindaLocaleDate(props['Created At'].date.start)

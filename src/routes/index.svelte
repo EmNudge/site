@@ -79,15 +79,13 @@
 		margin: 0 auto;
 	}
 	.video {
+		color: var(--forground);
 		box-sizing: border-box;
 		display: block;
 		margin: 20px;
 		position: relative;
 		width: 320px;
 		transition: .25s;
-	}
-	.video a {
-		color: var(--forground);
 	}
 	.video h3 {
 		margin-top: 10px;
