@@ -45,7 +45,7 @@
   {/each}
 </div>
 
-<p class="feed">Subscribe to <a href="/blog/rss.xml">my rss feed <img src="icons/rss-feed-icon.png" alt="rss icon" /></a></p>
+<p class="feed">Subscribe to <a href="/blog/rss.xml" rel="external">my rss feed <img src="icons/rss-feed-icon.png" alt="rss icon" /></a></p>
 
 <style>
   h1 {
