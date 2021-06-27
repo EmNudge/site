@@ -128,9 +128,7 @@ There's more. There has to be.
 
 # Closures
 
-The more astute among you might have guessed it. A [closure](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) describes the situation where a function grabs variables that it didn't declare or receive through arguments. 
-
-The concept of closures is tied to "[Lexical Environment](https://javascript.info/closure)" and how `this` is calculated. Jeremy Liberman explains how `this` is calculated pretty nicely in his article [How does "this" work in JavaScript?](https://jeremyliberman.com/2019/04/01/how-does-this-work-in-javascript.html). 
+The more astute among you might have guessed it. A [closure](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) describes the situation where a function grabs variables that it didn't declare or receive through arguments.
 
 The concept can get complicated for many, so I'm going to try to skim over some of the more complicated and abstract bits. I will instead explain what we need to understand for our use case.
 
