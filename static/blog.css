@@ -1,5 +1,28 @@
+article {
+  color: #ddd;
+  font-size: 18px;
+  letter-spacing: .5px;
+}
+@media (prefers-color-scheme: light) {
+  article * {
+    color: #555;
+  }
+}
+
 article * {
   transition: .25s;
+}
+
+article p, article ol, article ul {
+  font-family: "Libre Baskerville", "Times New Roman", Times, serif;
+}
+
+article p {
+  line-height: 1.5;
+}
+
+article ol, article ul {
+  line-height: 1.75;
 }
 
 article h1 .anchor, 
@@ -43,10 +66,6 @@ article img {
   box-sizing: border-box;
 }
 
-article * {
-  line-height: 1.75;
-}
-
 article a {
   word-break: break-word;
 }
@@ -77,27 +96,31 @@ pre.language-js .operator, pre.language-javascript .operator,
 pre.language-js .literal, pre.language-javascript .literal { color: #569CD6; }
 
 code {
-  background: #1E1E1E;
+  background: #2f2f2f;
   border-radius: 4px;
-  padding: 4px;
+  padding: 2px 4px;
 }
 @media (prefers-color-scheme: light) {
   code {
-    background: #ddd;
+    background: #eee;
   }
 }
+/* this is a code-block, not inline */
 pre code {
   background: none;
   padding: 0;
+  color: #eee;
 }
 
-/* quotes */
+/* #region quotes */
 blockquote {
-  border-left: 6px solid white;
-  margin-left: -20px;
-  padding: 5px 20px;
-  padding-right: 0;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+  border-left: 6px solid var(--foreground);
+  background: var(--bg-contrast);
+  border-radius: 4px;
+
+  padding: 20px;
+  margin: 30px 0;
+
   opacity: .7;
   font-size: 1.5em;
 
@@ -116,4 +139,4 @@ blockquote cite {
 blockquote cite:before {
   content: '- ';
 }
-
+/* #endregion */
