@@ -39,6 +39,7 @@
         link={read.link} 
         meta="{read.author} • {read.createdAt}" 
         title={read.title}
+        hint={read.description}
       />
     </post-container>
   {/each}

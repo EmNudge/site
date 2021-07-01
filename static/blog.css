@@ -9,9 +9,9 @@ article {
   }
 }
 
-article * {
+/* article * {
   transition: .25s;
-}
+} */
 
 article p, article ol, article ul {
   font-family: "Libre Baskerville", "Times New Roman", Times, serif;
@@ -33,6 +33,7 @@ article h5 .anchor {
   margin-left: -1em;
   opacity: 0;
   user-select: none;
+  transition: .25s;
 }
 article h1:hover .anchor, 
 article h2:hover .anchor, 

@@ -5,9 +5,11 @@
   export let description: string | undefined = undefined;
 
 	export let index: number = 0;
+
+	export let hint = '';
 </script>
 
-<a href={link} class="post-stub" style="--index: {index}">
+<a href={link} class="post-stub" style="--index: {index}" title={hint}>
 	<h5>{meta}</h5>
 	<h2>{title}</h2>
 	{#if description}

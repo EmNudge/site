@@ -68,6 +68,10 @@
 {/if}
 
 <style>
+	article:global(.js-enabled p > img), 
+	article:global(.js-enabled figure > img) {
+		transition: .25s;
+	}
 	article:global(.js-enabled p > img:hover), 
 	article:global(.js-enabled figure > img:hover) {
 		transform: scale(1.03);
