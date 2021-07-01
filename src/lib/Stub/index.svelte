@@ -28,7 +28,7 @@
 	}
 	h5 {
 		opacity: .5;
-		font-weight: 100;
+		font-weight: 300;
 		margin-bottom: 5px;
 	}
 	p {

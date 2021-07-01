@@ -51,7 +51,7 @@ article h1, article h2, article h3, article h4  {
 }
 .title-container h5 {
   opacity: .5;
-  font-weight: 100;
+  font-weight: 300;
   margin-bottom: 5px;
 }
 .title-container p {

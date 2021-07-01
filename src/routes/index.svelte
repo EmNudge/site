@@ -89,7 +89,7 @@
 	}
 	.video h3 {
 		margin-top: 10px;
-		font-weight: 100;
+		font-weight: 300;
 	}
 	.video:hover {
 		transform: scale(1.05);
