@@ -50,10 +50,22 @@ a {
     opacity: 1;
   }
 }
+
+.staggered {
+  --max-depth: 20;
+  --max-delay: 500ms;
+}
 .staggered > * {
   animation: slide-in .5s forwards;
   display: block;
-  animation-delay: calc(var(--index) * 100ms);
+
+  /* number 0 to 1 based off of index/max_index */
+  --percentage: min(calc(var(--index) / var(--max-depth)), 1);
+  /* Quadratic easing curve. Still a number 0 to 1 */
+  --curve: calc(1 - (1 - var(--percentage)) * (1 - var(--percentage)));
+
+  /* make delay percentage * delay */
+  animation-delay: calc(var(--curve) * var(--max-delay));
   opacity: 0;
 }
 
