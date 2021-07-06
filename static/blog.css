@@ -4,14 +4,10 @@ article {
   letter-spacing: .5px;
 }
 @media (prefers-color-scheme: light) {
-  article * {
+  article {
     color: #555;
   }
 }
-
-/* article * {
-  transition: .25s;
-} */
 
 article p, article ol, article ul {
   font-family: "Libre Baskerville", "Times New Roman", Times, serif;
@@ -31,9 +27,11 @@ article h3 .anchor,
 article h4 .anchor, 
 article h5 .anchor {
   margin-left: -1em;
-  opacity: 0;
   user-select: none;
-  transition: .25s;
+  transform: skewX(-15deg);
+
+  opacity: 0;
+  transition: opacity .25s;
 }
 article h1:hover .anchor, 
 article h2:hover .anchor, 
@@ -46,6 +44,29 @@ article h5:hover .anchor {
 article h1, article h2, article h3, article h4  {
   margin-top: 2em;
 }
+
+/* #region skewed title backgrounds */
+article h1, article h2 {
+  padding: 10px;
+  padding-left: 40px;
+  margin-left: -35px;
+  position: relative;
+}
+
+article h1:before, article h2:before {
+  background: linear-gradient(45deg, var(--active), transparent 80%);
+  transform: skewX(-15deg);
+  opacity: .3;
+
+  content: '';
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/* #endregion */
 
 .title-container {
   margin: 40px 0;
@@ -71,7 +92,7 @@ article a {
   word-break: break-word;
 }
 
-/* syntax highlighting */
+/* #region syntax highlighting */
 pre {
   overflow-x: auto;
 }
@@ -93,6 +114,8 @@ pre.language-js .comment,
 pre.language-javascript .comment { color: #6A9949; }
 pre.language-js .punctuation, 
 pre.language-javascript .punctuation { color: white; }
+pre.language-js .parameter, 
+pre.language-javascript .parameter { color: white; }
 pre.language-js .operator, pre.language-javascript .operator, 
 pre.language-js .literal, pre.language-javascript .literal { color: #569CD6; }
 
@@ -113,9 +136,11 @@ pre code {
   color: #eee;
 }
 
+/* #endregion */
+
 /* #region quotes */
 blockquote {
-  border-left: 6px solid var(--foreground);
+  border-left: 6px solid var(--active);
   background: var(--bg-contrast);
   border-radius: 4px;
 
