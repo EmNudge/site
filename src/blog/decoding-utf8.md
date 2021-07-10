@@ -20,7 +20,17 @@ Every unicode encoding is tasked with a similar problem:
 
 The actual number is `1_111_998`. In binary this takes up 21 bits. That means it's possible to have a single character that **must** require us to use `21`  bits at a minimum to encode.
 
-![Unicode bits](https://dev-to-uploads.s3.amazonaws.com/i/ynl1asdzclxldylzelhy.png)
+```js runnable
+function showBits(char) {
+    const bits = char.codePointAt(0).toString(2);
+    console.log('%o requires %o bits: %s', char, bits.length, bits);
+}
+
+showBits('a'); // "a" requires 7 bits: 1100001
+showBits('→'); // "→" requires 14 bits: 10000110010010
+showBits('😀'); // "😀" requires 17 bits: 11111011000000000
+showBits('􌣠'); // "􌣠" requires 21 bits: 100001100100011100000
+```
 
 We stick to powers of 2 for binary encoding, so our first thought might be exactly what [UTF-32](https://en.wikipedia.org/wiki/UTF-32) is today. Let's use 32 bits!
 
