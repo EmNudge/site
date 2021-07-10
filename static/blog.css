@@ -138,6 +138,72 @@ pre code {
 
 /* #endregion */
 
+/* #region code-runner */
+pre[is=runnable-code] code {
+  white-space: pre;
+  overflow-x: auto;
+  display: block;
+}
+
+pre[is=runnable-code] {
+  background: #1E1E1E;
+  padding: 15px;
+  border-radius: 4px;
+  color: white;
+  display: block;
+  font-family: monospace;
+}
+pre[is=runnable-code] {
+  position: relative;
+}
+pre[is=runnable-code] button {
+  position: absolute;
+  right: 0; top: 0;
+  background: black;
+  color: white;
+  border: 1px solid #eee;
+  border-width: 0 0 1px 1px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+pre[is=runnable-code] button:active {
+  background: #333;
+  border-color: #aaa;
+}
+pre[is=runnable-code] output {
+  transition: .15s;
+  border-top: 1px solid transparent;
+  display: block;
+}
+pre[is=runnable-code] output.opened {
+  border-top: 1px solid #fff3;
+  padding-top: 20px;
+  margin-top: 20px;
+}
+@keyframes unsquish {
+  from { transform: scaleY(0); margin-top: -15px; }
+  to { transform: scaleY(1); margin-top: 0px; }
+}
+pre[is=runnable-code] output console-log {
+  display: block;
+  animation: unsquish .25s forwards;
+}
+
+pre[is=runnable-code] console-log:before {
+  content: attr(data-type) ": ";
+}
+pre[is=runnable-code] console-log[data-type=log]:before {
+  color: orange;
+}
+pre[is=runnable-code] console-log[data-type=error]:before {
+  color: red;
+}
+
+pre[is=runnable-code] output console-log .spacer {
+  padding: 0 5px;
+}
+/* #endregion */
+
 /* #region quotes */
 blockquote {
   border-left: 6px solid var(--active);

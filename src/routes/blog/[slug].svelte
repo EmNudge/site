@@ -23,6 +23,7 @@
   import type { BlogPost } from '$lib/types';
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
+	import { addRunnableCode } from './_code-runner/runner';
 
 	export let post: BlogPost;
 
@@ -38,6 +39,8 @@
 			showLargeImage = true;
 			clickedImage = e.target.src;
 		});
+
+		addRunnableCode();
 	});
 
 	function maybeCloseImage(e) {
