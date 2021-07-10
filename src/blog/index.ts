@@ -23,14 +23,14 @@ renderer.heading = (text: string, level: number) => {
   </h${level}>`;
 };
 renderer.code = (code: string, languageStr: string) => {
-  const language = languageStr.split(' ')[0];
-  const isRunnable = languageStr.includes('runnable');
+  const [language, isRunnable] = languageStr.split(/\s+/).map(str => str.trim());
+  const prop = isRunnable ? `is="runnable-code"` : '';
 
   const parser = prism.languages[language] || prism.languages.html;
   const highlighted = prism.highlight(code, parser, language);
 
   const codeTag = `<code class="language-${language}">${highlighted}</code>`;
-  return `<pre ${isRunnable ? `is="runnable-code"` : ''} class="language-${language}">${codeTag}</pre>`;
+  return `<pre ${prop} class="language-${language}">${codeTag}</pre>`;
 }
 
 // @ts-ignore

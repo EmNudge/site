@@ -37,7 +37,7 @@ We might have also made a typo, adding an extra `+`. We might have also forgotte
 
 So implicit coercion is bad? Well not really. We use it all the time. Especially with booleans. Here's an example.
 
-```js
+```js runnable
 const myArr = [1, 2, 3, 4, 5];
 if (myArr && myArr.length) {
   console.log("My arr is: " + myArr);
@@ -73,7 +73,7 @@ You can always test these by using their corresponding function. Want to know wh
 # Application
 Now that we touched all the basics, let's apply them to really nail it in. Try not to read on too quickly. Take a second to think about what this will log to the console.
 
-```js
+```js runnable
 const foo = "4a";
 const bar = Number(Boolean(Number(foo)));
 const baz = Number(String(Boolean(Number(foo))));
