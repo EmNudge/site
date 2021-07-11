@@ -28,7 +28,7 @@ It should be noted that it's not *literally* adding a semicolon. It just makes t
 
 The following code would function properly since ASI adds in the semicolons we needed.
 
-```js
+```js runnable
 let myVar = 3
 myVar++
 console.log(myVar) // > 4
@@ -64,7 +64,7 @@ Now that we have learned how it works, let's discuss cases where we *think* it w
 
 There are cases where ASI won't add semicolons because the subsequent token isn't illegal.
 
-```js
+```js runnable
 console.log(4) // > 4
 ['foo', 'bar'].forEach(el => console.log(el)) // > Uncaught TypeError: Cannot read property 'bar' of undefined
 ```

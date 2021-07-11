@@ -1,7 +1,10 @@
 const REGEX = () => /%([oOdisfc])|.\d+(f)/g;
 
 const stringify = (data: any) => {
-  if (typeof data === 'string') return data;
+  const type = typeof data;
+
+  if (type === 'bigint') return `${type}n`;
+  if (!['object', 'function'].includes(type)) return String(data);
 
   if (data[Symbol.toStringTag]) return data[Symbol.toStringTag];
 
@@ -24,13 +27,15 @@ const el = (name = 'span', content = '', props = {}) => {
 }
 
 const colorize = (data: any) => {
-  if (typeof data === 'number') {
-    return el('span', String(data), { style: 'color: #c586c0' });
-  }
-  if (typeof data === 'string') {
+  const type = typeof data;
+  if (type === 'string') {
     return el('span', `"${data}"`, { style: 'color: #ce9178' });
   } 
-  return el('span', stringify(data));
+  const text = stringify(data);
+  if (!['object', 'function'].includes(type)) {
+    return el('span', text, { style: 'color: #c586c0' });
+  }
+  return el('span', text);
 }
 
 export function logToHtml(...args: any[]) {
