@@ -6,7 +6,7 @@ tags: coding
 icon: unicode
 ---
 
-STEM subjects often refer to those with rigorous backing. I've seen people fight over whether some subjects really fit into the STEM label. Accounting might include math, but it's not really STEM. Linguistics is a social science, not a rigorous science, so it's not STEM either. Code is STEM since it fits under engineering. But then engineers are those with certifications and complex mathematics requirements, not general problem solvers and programmers.
+STEM subjects often refer to those with rigorous backing. I've seen people fight over whether some subjects really fit into the STEM label. Accounting might include math, but it's not really STEM. Linguistics is a social science, not a rigorous science, so it's not STEM either. Code is STEM since it fits under the technology label, but it's feels far less rigorous than any of the other categories.
 
 At the end of the day, a label is only as good as its application. If you're in the business of handing out scholarships to students in STEM fields, you might want to take a second and think about why. Maybe your reasoning allows you to branch out, or perhaps it forces you to constrain. Maybe you heard that STEM pays well. Many jobs in academia that fit into STEM do not. Maybe you want prestige. I'm sure there are jobs within business or general academia outside of STEM that carry a similar title to what you're looking for.
 
