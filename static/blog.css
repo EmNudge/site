@@ -1,6 +1,6 @@
 article {
   color: #ddd;
-  font-size: 18px;
+  font-size: 16px;
   letter-spacing: .5px;
 }
 @media (prefers-color-scheme: light) {
@@ -10,7 +10,7 @@ article {
 }
 
 article p, article ol, article ul {
-  font-family: "Libre Baskerville", "Times New Roman", Times, serif;
+  font-family: 'Merriweather', "Times New Roman", Times, serif;
 }
 
 article p {
