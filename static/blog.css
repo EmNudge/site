@@ -54,9 +54,8 @@ article h1, article h2 {
 }
 
 article h1:before, article h2:before {
-  background: linear-gradient(45deg, var(--active), transparent 80%);
+  background: linear-gradient(45deg, var(--light-active), transparent 80%);
   transform: skewX(-15deg);
-  opacity: .3;
 
   content: '';
   z-index: -1;
@@ -90,6 +89,23 @@ article img {
 
 article a {
   word-break: break-word;
+}
+
+article p {
+  position: relative;
+}
+article p:before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  z-index: -1;
+  transition: .25s;
+}
+article p.speaking:before {
+  background: #ff01;
 }
 
 /* #region syntax highlighting */

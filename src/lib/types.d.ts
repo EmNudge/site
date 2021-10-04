@@ -16,6 +16,7 @@ export interface BlogPostMeta {
   summary: string;
   date: string;
   minuteLength: number;
+  recording?: string;
 }
 
 export interface BlogPost extends BlogPostMeta {

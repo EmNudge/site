@@ -20,10 +20,11 @@
 </script>
 
 <script lang="ts">
-  import type { BlogPost } from '$lib/types';
+	import type { BlogPost } from '$lib/types';
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import { addRunnableCode } from './_code-runner/runner';
+	import SpeakAloud from '$lib/SpeakAloud/index.svelte';
 
 	export let post: BlogPost;
 
@@ -64,7 +65,11 @@
   <h5>{post.date} • {post.minuteLength} minute read</h5>
   <h1>{post.title}</h1>
   <p>{post.summary}</p>
+  {#if post.recording}
+	  <SpeakAloud recording={post.recording} />
+  {/if}
 </div>
+
 
 <article bind:this={articleEl}>
 	{@html post.html}

@@ -3,6 +3,7 @@
 		Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 
   --active: #61FFFF;
+  --light-active: #31616a;
   --foreground: white;
   --background: #1F2632;
   --bg-contrast: #222;
@@ -29,6 +30,7 @@ a {
 @media (prefers-color-scheme: light) {
   :root {
     --active: #ff7b3a;
+    --light-active: #ffdac8;
     --foreground: #222;
     --background: white;
     --light-bg: #0001;

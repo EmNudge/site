@@ -4,6 +4,7 @@ title: A Subject of Logical Deduction
 summary: Improving pedadogy by teaching the essence
 tags: coding
 icon: unicode
+recording: logical-deduction
 ---
 
 STEM subjects often refer to those with rigorous backing. I've seen people fight over whether some subjects really fit into the STEM label. Accounting might include math, but it's not really STEM. Linguistics is a social science, not a rigorous science, so it's not STEM either. Code is STEM since it fits under the technology label, but it feels far less rigorous than any of the other categories.
