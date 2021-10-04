@@ -5,11 +5,13 @@
         getParagraphIndex,
         setAudio,
         getParagraphHighlighter,
+        getParagraphPercentage,
     } from "./utils";
     import { mod } from "../../utils/mod";
 
     import Playback from "./Playback.svelte";
     import Volume from "./Volume.svelte";
+    import Container from "./Container.svelte";
 
     export let recording: string;
 
@@ -58,6 +60,8 @@
 
         const index = getParagraphIndex(audio.currentTime, timestamps);
         paragraphHighlighter.highlight(index);
+        paragraphPercentage = getParagraphPercentage(audio, index, timestamps);
+        paragraphIndex = index;
 
         requestAnimationFrame(updateParagraphs);
     }
@@ -72,6 +76,17 @@
     let paragraphIndex = 0;
     function handleSkip(e: Event & { detail: number }) {
         const offset = e.detail;
+
+        // if back, just go to beginning of paragraph unless too close to it
+        if (offset === -1) {
+            const beginning = timestamps[paragraphIndex]
+            const delta = audio.currentTime - beginning;
+            if (delta > 3) {
+                audio.currentTime = beginning;
+                return;
+            }
+        }
+
         paragraphIndex += offset;
 
         const index = mod(paragraphIndex, paragraphs.length);
@@ -93,6 +108,8 @@
         audio.currentTime = 0;
         paragraphHighlighter.clear();
     }
+
+    let paragraphPercentage = 0;
 </script>
 
 {#if audio}
@@ -109,25 +126,26 @@
             </button>
         {/if}
     </div>
+
+    <Container {showControls} {paragraphPercentage}>
+        <div class="side-controls">
+            <Volume {volume} on:adjust={handleVolumeAdjust} />
+            <select on:change={changePlaybackSpeed}>
+                <option>x.75</option>
+                <option selected>x1</option>
+                <option>x1.5</option>
+                <option>x2</option>
+            </select>
+        </div>
+    
+        <Playback
+            {isPlaying}
+            on:toggleplay={handleTogglePlay}
+            on:skip={handleSkip}
+        />
+    </Container>
 {/if}
 
-<div class="controls" class:hide={!showControls}>
-    <div class="side-controls">
-        <Volume {volume} on:adjust={handleVolumeAdjust} />
-        <select on:change={changePlaybackSpeed}>
-            <option>x.75</option>
-            <option selected>x1</option>
-            <option>x1.5</option>
-            <option>x2</option>
-        </select>
-    </div>
-
-    <Playback
-        {isPlaying}
-        on:toggleplay={handleTogglePlay}
-        on:skip={handleSkip}
-    />
-</div>
 
 <style>
     .button-container {
@@ -156,36 +174,9 @@
         }
     }
 
-    .controls {
-        display: grid;
-        justify-content: center;
-        align-items: center;
-        --height: 120px;
-
-        height: var(--height);
-        box-sizing: border-box;
-        padding: 20px;
-        padding-bottom: 10px;
-
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background: #0005;
-        backdrop-filter: blur(5px);
-        z-index: 1;
-
-        transition: 0.25s;
-    }
     .side-controls {
         display: grid;
         grid-template-columns: 1fr auto;
         grid-gap: 20px;
-    }
-    .controls.hide {
-        bottom: calc(-1 * var(--height));
-    }
-    .controls > :global(*) {
-        margin: 0 20px;
     }
 </style>

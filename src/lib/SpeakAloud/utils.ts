@@ -59,6 +59,11 @@ export const setAudio = (audio: HTMLAudioElement, isPlaying: boolean) => {
     else audio.pause();
 }
 
+export const getParagraphPercentage = (audio: HTMLAudioElement, timestampIndex: number, timestamps: number[]) => {
+    const curr = audio.currentTime - timestamps[timestampIndex];
+    const next = (timestamps[timestampIndex + 1] ?? audio.duration) - timestamps[timestampIndex];
+    return curr / next;
+}
 
 export const getParagraphHighlighter = (paragraphs: HTMLParagraphElement[]) => {
     let index = -1;
