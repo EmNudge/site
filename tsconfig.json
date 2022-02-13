@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "moduleResolution": "node",
-    "lib": ["ES2021"],
+    "lib": ["ES2021", "DOM.Iterable"],
     "target": "ES2021"
   }
 }

@@ -2,6 +2,7 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import PictureZoom from '../components/PictureZoom.svelte';
+import CodeRunner from '../components/CodeRunner/index.svelte';
 
 const { content } = Astro.props;
 ---
@@ -47,6 +48,7 @@ const { content } = Astro.props;
         <Footer />
 
 		<PictureZoom client:load />
+		<CodeRunner client:load />
     </body>
 </html>
 
