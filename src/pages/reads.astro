@@ -12,7 +12,7 @@ import { reads  } from '../data/reads';
         {reads.map((read, i) => 
             <post-container style={`--index: ${i}`}>
                 <Stub 
-                    link={read.link} 
+                    url={read.link} 
                     meta={`${read.author} • ${read.createdAt}`} 
                     title={read.title}
                     hint={read.description}
