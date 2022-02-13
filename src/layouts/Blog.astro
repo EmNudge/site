@@ -1,13 +1,16 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+
 import PictureZoom from '../components/PictureZoom.svelte';
 import CodeRunner from '../components/CodeRunner/index.svelte';
+import SpeakAloud from '../components/SpeakAloud/index.svelte';
 
 import { getMinuteLength } from '../data/blogs';
 
 const { content } = Astro.props;
-const minuteLength = getMinuteLength(content.astro.source);
+const { astro, date, title, summary, recording } = content;
+const minuteLength = getMinuteLength(astro.source);
 ---
 
 <html lang="en">
@@ -30,7 +33,7 @@ const minuteLength = getMinuteLength(content.astro.source);
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
 
-		<title>{content.title}</title>
+		<title>{title}</title>
 	</head>
 
 	<body>
@@ -38,9 +41,11 @@ const minuteLength = getMinuteLength(content.astro.source);
 
         <main>
             <div class="title-container">
-            <h5>{content.date} • {minuteLength} minute read</h5>
-            <h1>{content.title}</h1>
-            <p>{content.summary}</p>
+				<h5>{date} • {minuteLength} minute read</h5>
+				<h1>{title}</h1>
+				<p>{summary}</p>
+
+				{recording && <SpeakAloud recording={recording} client:load />}
             </div>
 
             <article>
