@@ -4,11 +4,7 @@
     let titleIndex = 0;
     function changeTitle() {
         titleIndex = (titleIndex + 1) % titles.length;
-        console.log({ titleIndex })
     }
-
-    import { onMount } from 'svelte';
-    onMount(() => console.log('hello!'))
 </script>
 
 <div class="special-container">

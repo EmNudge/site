@@ -2,7 +2,6 @@
     export let routes: [string, string][];
     export let path;
     import { onMount } from 'svelte';
-    onMount(() => console.log({ path }))
 </script>
 
 <nav>
