@@ -1,10 +1,16 @@
 import dotenv from "dotenv"
 import fs from "fs/promises"
 
-const env = dotenv.parse(await fs.readFile(".env"))
 const exposedKeys = ['YOUTUBE_API_KEY', 'YOUTUBE_CHANNEL_ID']
-const envDefinitions = Object.fromEntries(exposedKeys.map(key => [`process.env.${key}`, `"${env[key]}"`]))
-
+const envDefinitions = await fs.readFile(".env")
+    .then(file => {
+        const env = dotenv.parse(file);
+        const entries = exposedKeys.map(key => [`process.env.${key}`, `"${env[key]}"`])
+        return Object.fromEntries(entries);
+    }).catch(_err => {
+        const entries = exposedKeys.map(key => [`process.env.${key}`, process.env[key]])
+        return Object.fromEntries(entries);
+    })
 
 // @type-check enabled!
 // VSCode and other TypeScript-enabled text editors will provide auto-completion,
