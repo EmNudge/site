@@ -1,0 +1,67 @@
+---
+import Stub from '../../components/ArticleStub.astro';
+import MainLayout from '../../layouts/Main.astro';
+
+import { getSlugs } from '../../data/blogs';
+const posts = getSlugs(Astro.fetchContent('./*.md'));
+
+export async function getStaticPaths({ paginate, rss }) {
+  const allPosts = Astro.fetchContent('./*.md');
+  const sortedPosts = allPosts.sort((a, b) => +new Date(b.date) - +new Date(a.date));
+  
+  rss({
+    title: 'Calvin Kipperman\'s Blog',
+    
+    stylesheet: true,
+    description: 'Linguistics and Programming',
+    customData: `<language>en-us</language>`,
+    category: 'Web development/Linguistics',
+    
+    items: sortedPosts.map(item => {
+      const fullUrl = 'https://kipperman.co' + item.url;
+
+      return {
+        title: item.title,
+        description: item.description,
+        link: item.url,
+        pubDate: item.date,
+        customData: `<guid isPermaLink="true">${fullUrl}</guid>`,
+      }
+    }),
+  });
+  
+  return paginate(sortedPosts, { pageSize: 25 })
+}
+
+---
+<MainLayout title="Blog">
+    <h1>Blog</h1>
+
+    <div class="staggered">
+        {posts.map((post, i) => 
+            <post-container style={`--index: ${i}`}>
+                <Stub 
+                    url={post.url}
+                    meta={`${post.date} • ${post.minuteLength} minute read`} 
+                    title={post.title}
+                    description={post.summary}
+                />
+            </post-container>  
+        )}
+    </div>
+
+    <p class="feed">Subscribe to <a href="/rss.xml" rel="external">my rss feed <img src="icons/rss-feed-icon.png" alt="rss icon" /></a></p>
+</MainLayout>
+<style>
+  h1 {
+    margin: 80px 0;
+    text-align: center;
+  }
+  .feed {
+    margin-top: 50px;
+    text-align: center;
+  }
+  .feed img {
+    height: 15px;
+  }
+</style>

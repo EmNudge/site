@@ -1,6 +1,3 @@
-// Full Astro Configuration API Documentation:
-// https://docs.astro.build/reference/configuration-reference
-
 // @type-check enabled!
 // VSCode and other TypeScript-enabled text editors will provide auto-completion,
 // helpful tooltips, and warnings if your exported object is invalid.
@@ -8,6 +5,8 @@
 
 // @ts-check
 export default /** @type {import('astro').AstroUserConfig} */ ({
-	// Enable the Svelte renderer to support Svelte components.
-	renderers: ['@astrojs/renderer-svelte'],
+    renderers: ['@astrojs/renderer-svelte'],
+    buildOptions: {
+        site: 'https://kipperman.co',
+    }
 });
