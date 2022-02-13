@@ -6,8 +6,7 @@
         "dev": "astro dev",
         "start": "astro dev",
         "build": "astro build",
-        "preview": "astro preview",
-        "vercel-build": "vercel env pull && npm run build"
+        "preview": "astro preview"
     },
     "devDependencies": {
         "astro": "^0.22.20",
