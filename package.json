@@ -1,19 +1,20 @@
 {
-  "name": "@example/framework-svelte",
-  "version": "0.0.1",
-  "private": true,
-  "scripts": {
-    "dev": "astro dev",
-    "start": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview"
-  },
-  "devDependencies": {
-    "astro": "^0.22.20",
-    "postcss": "^8.4.6",
-    "postcss-load-config": "^3.1.3"
-  },
-  "dependencies": {
-    "dotenv": "^16.0.0"
-  }
+    "name": "@example/framework-svelte",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "dev": "astro dev",
+        "start": "astro dev",
+        "build": "astro build",
+        "preview": "astro preview",
+        "vercel-build": "vercel env pull && npm run build"
+    },
+    "devDependencies": {
+        "astro": "^0.22.20",
+        "postcss": "^8.4.6",
+        "postcss-load-config": "^3.1.3"
+    },
+    "dependencies": {
+        "dotenv": "^16.0.0"
+    }
 }
