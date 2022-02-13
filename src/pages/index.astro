@@ -5,11 +5,12 @@ import NameSection from '../components/NameSection.astro';
 import TitleSection from '../components/TitleSection.astro';
 import Stub from '../components/ArticleStub.astro';
 
-import { videos } from '../data/videos';
+import { getVideos } from '../data/videos';
 import { reads } from '../data/reads';
 import { getSlugs } from '../data/blogs';
 
 const posts = getSlugs(Astro.fetchContent('./blog/*.md'));
+const videos = await getVideos();
 ---
 
 <MainLayout title="Home">
@@ -30,7 +31,7 @@ const posts = getSlugs(Astro.fetchContent('./blog/*.md'));
 	<TitleSection title="Videos" link="https://www.youtube.com/emnudge" staggered>
 		<div class="videos">
 			{videos.map((video, i) => 
-				<a href="https://www.youtube.com/watch?v={video.id}" class="video" style={`--index: ${i}`}>
+				<a href={`https://www.youtube.com/watch?v=${video.id}`} class="video" style={`--index: ${i}`}>
 					<img alt="" src={video.img} />
 					<h3>{video.title}</h3>
 				</a>
