@@ -8,7 +8,7 @@ const envDefinitions = await fs.readFile(".env")
         const entries = exposedKeys.map(key => [`process.env.${key}`, `"${env[key]}"`])
         return Object.fromEntries(entries);
     }).catch(_err => {
-        const entries = exposedKeys.map(key => [`process.env.${key}`, process.env[key]])
+        const entries = exposedKeys.map(key => [`process.env.${key}`, `"${process.env[key]}"`])
         return Object.fromEntries(entries);
     })
 
