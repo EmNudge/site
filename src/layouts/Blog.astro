@@ -1,6 +1,7 @@
 ---
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import PictureZoom from '../components/PictureZoom.svelte';
 
 const { content } = Astro.props;
 ---
@@ -44,6 +45,8 @@ const { content } = Astro.props;
         </main>
 
         <Footer />
+
+		<PictureZoom client:load />
     </body>
 </html>
 
