@@ -7,18 +7,19 @@ import Stub from '../components/ArticleStub.astro';
 
 import { videos } from '../data/videos';
 import { reads } from '../data/reads';
+import { getSlugs } from '../data/blogs';
 
-const posts = Astro.fetchContent('./blog/*.md');
+const posts = getSlugs(Astro.fetchContent('./blog/*.md'));
 ---
 
 <MainLayout title="Home">
 	<NameSection />
 
 	<TitleSection title="Blog" link="/blog" staggered>
-		{posts.map((post, i) =>
+		{posts.slice(0, 5).map((post, i) =>
 			<Stub 
 				index={i}
-				link={post.url}
+				url={post.url}
 				meta={`${post.date} • ${post.minuteLength} minute read`} 
 				title={post.title}
 				description={post.summary}

@@ -2,7 +2,9 @@
 import Stub from '../../components/ArticleStub.astro';
 import MainLayout from '../../layouts/Main.astro';
 
-const posts = Astro.fetchContent('./*.md');
+import { getSlugs } from '../../data/blogs';
+const posts = getSlugs(Astro.fetchContent('./*.md'));
+
 ---
 <MainLayout title="Blog">
     <h1>Blog</h1>
@@ -11,7 +13,7 @@ const posts = Astro.fetchContent('./*.md');
     {posts.map((post, i) => 
         <post-container style={`--index: ${i}`}>
         <Stub 
-            link={post.url}
+            url={post.url}
             meta={`${post.date} • ${post.minuteLength} minute read`} 
             title={post.title}
             description={post.summary}

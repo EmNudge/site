@@ -1,6 +1,6 @@
 ---
 const {
-    link,
+    url,
     meta,
     title,
     description = undefined,
@@ -9,7 +9,7 @@ const {
 } = Astro.props;
 ---
 
-<a href={link} class="post-stub" style={`--index: ${index}`} title={hint}>
+<a href={url} class="post-stub" style={`--index: ${index}`} title={hint}>
     <h5>{meta}</h5>
     <h2>{title}</h2>
     {description && <p>{description}</p>}

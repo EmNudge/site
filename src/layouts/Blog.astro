@@ -4,7 +4,10 @@ import Footer from '../components/Footer.astro';
 import PictureZoom from '../components/PictureZoom.svelte';
 import CodeRunner from '../components/CodeRunner/index.svelte';
 
+import { getMinuteLength } from '../data/blogs';
+
 const { content } = Astro.props;
+const minuteLength = getMinuteLength(content.astro.source);
 ---
 
 <html lang="en">
@@ -35,7 +38,7 @@ const { content } = Astro.props;
 
         <main>
             <div class="title-container">
-            <h5>{content.date} • {content.minuteLength} minute read</h5>
+            <h5>{content.date} • {minuteLength} minute read</h5>
             <h1>{content.title}</h1>
             <p>{content.summary}</p>
             </div>
