@@ -1,0 +1,83 @@
+---
+import MainLayout from '../layouts/Main.astro'
+
+import NameSection from '../components/NameSection.astro';
+import TitleSection from '../components/TitleSection.astro';
+import Stub from '../components/ArticleStub.astro';
+
+import { videos } from '../data/videos';
+import { reads } from '../data/reads';
+
+const posts = Astro.fetchContent('./blog/*.md');
+---
+
+<MainLayout title="Home">
+	<NameSection />
+
+	<TitleSection title="Blog" link="/blog" staggered>
+		{posts.map((post, i) =>
+			<Stub 
+				index={i}
+				link={post.url}
+				meta={`${post.date} • ${post.minuteLength} minute read`} 
+				title={post.title}
+				description={post.summary}
+			/>
+		)}
+	</TitleSection>
+
+	<TitleSection title="Videos" link="https://www.youtube.com/emnudge" staggered>
+		<div class="videos">
+			{videos.map((video, i) => 
+				<a href="https://www.youtube.com/watch?v={video.id}" class="video" style={`--index: ${i}`}>
+					<img alt="" src={video.img} />
+					<h3>{video.title}</h3>
+				</a>
+			)}
+		</div>
+	</TitleSection>
+
+	<TitleSection title="What I'm Reading" link="/reads" staggered>
+		{reads.slice(0, 5).map((read, i) =>
+			<Stub 
+				index={i}
+				link={read.url} 
+				meta={`${read.author} • ${read.createdAt}`} 
+				title={read.title}
+			/>
+		)}
+	</TitleSection>
+</MainLayout>
+
+
+<style>
+	.videos {
+		display: flex;
+		justify-content: space-around;
+		flex-wrap: wrap;
+		margin: 0 auto;
+	}
+	.video {
+		color: var(--forground);
+		box-sizing: border-box;
+		display: block;
+		margin: 20px;
+		position: relative;
+		width: 320px;
+		transition: .25s;
+	}
+	.video h3 {
+		margin-top: 10px;
+		font-weight: 300;
+	}
+	.video:hover {
+		transform: scale(1.05);
+		opacity: .8;
+	}
+	.video img {
+		max-width: 320px;
+		max-height: 180px;
+		width: auto;
+		height: auto;
+	}
+</style>

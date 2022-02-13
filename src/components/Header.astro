@@ -1,0 +1,36 @@
+---
+import Nav from './Nav.svelte';
+
+const path = Astro.request.url.pathname;
+
+const routes = [
+    ["/", "Home"],
+    ["/blog", "Blog"],
+    ["/reads", "Reads"],
+];
+---
+
+<header>
+    <a href="/" class="logo">
+        <img src="/icons/logo.svg" alt="logo" class="dark-mode" />
+    </a>
+    <Nav {routes} {path} />
+</header>
+
+<style>
+    header {
+        padding: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+    }
+    img {
+        height: 40px;
+    }
+    .logo {
+        display: flex;
+        align-items: center;
+    }
+</style>

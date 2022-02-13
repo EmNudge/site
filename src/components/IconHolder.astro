@@ -1,0 +1,53 @@
+---
+const defaultIcons = [
+    ["/icons/email.svg", "email", "mailto:calvin@kipperman.co"],
+    ["/icons/github.svg", "GitHub", "https://github.com/EmNudge"],
+    ["/icons/youtube.svg", "YouTube", "http://youtube.com/EmNudge"],
+    ["/icons/twitter.svg", "Twitter", "http://twitter.com/emnudge"],
+    ["/icons/devto.svg", "Dev.to", "https://dev.to/emnudge"],
+];
+
+const { 
+    icons = defaultIcons, 
+    small = false, 
+    opacity = 0.8, 
+    staggered = false 
+} = Astro.props;
+---
+
+<div style={`--opacity: ${opacity}`} class={staggered ? 'staggered' : ''}>
+    {icons.map(([iconUrl, name, link], i) => 
+        <a href={link} style={`--index: ${i}`}>
+            <img class={`dark-mode ${small ? 'small' : ''}`} src={iconUrl} alt={name} />
+        </a>
+    )}
+</div>
+
+<style>
+    div {
+        display: flex;
+    }
+    a {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+    }
+    a img {
+        height: 20px;
+        padding: 10px;
+        opacity: var(--opacity);
+        transition: 0.2s;
+    }
+    @media (prefers-color-scheme: light) {
+        a img {
+            opacity: calc(var(--opacity) * 3 / 4);
+        }
+    }
+    a:hover img {
+        opacity: 1;
+    }
+    img.small {
+        height: 15px;
+        padding: 8px;
+    }
+</style>

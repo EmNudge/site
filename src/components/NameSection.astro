@@ -1,0 +1,45 @@
+---
+import IconHolder from "./IconHolder.astro";
+import NameTitle from "./NameTitle.svelte";
+
+const icons = [
+    ["/icons/github.svg", "GitHub", "https://github.com/EmNudge"],
+    ["/icons/youtube.svg", "YouTube", "http://youtube.com/EmNudge"],
+    ["/icons/twitter.svg", "Twitter", "http://twitter.com/emnudge"],
+];
+
+const titles = [
+    "Local Nobody",
+    "Software Engine Ear",
+    "Perfektonist",
+    "Public Nuisance",
+    "Disorderly Conductor",
+    "Voice Over Easy",
+];
+---
+
+<section>
+    <div class="name">
+        <IconHolder {icons} small opacity={0.5} staggered />
+        <h1>Calvin Kipperman</h1>
+        <NameTitle titles={titles} client:idle="svelte" />
+    </div>
+</section>
+
+<style>
+    section {
+        display: flex;
+        justify-content: center;
+        padding: 20px;
+        margin: 40px auto;
+    }
+    .name {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    h1 {
+        font-size: clamp(2.5em, 5vw, 4em);
+        font-weight: 200;
+    }
+</style>

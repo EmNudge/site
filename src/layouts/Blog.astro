@@ -1,0 +1,74 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const { content } = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<meta name="description" content="Personal website for Calvin Kipperman">
+		<meta name="author" content="Calvin 'EmNudge' Kipperman">
+		<meta name="keywords" content="Calvin Kipperman, Kipperman, EmNudge">
+		<meta name="color-scheme" content="dark light">
+
+		<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="RSS feed for my blog">
+		<link rel="icon" href="/icons/logo.svg" />
+		<link rel="stylesheet" href="/app.css">
+		<link rel="stylesheet" href="/blog.css">
+        
+        <!-- custom font import -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+
+		<title>{content.title}</title>
+	</head>
+
+	<body>
+        <Header />
+
+        <main>
+            <div class="title-container">
+            <h5>{content.date} • {content.minuteLength} minute read</h5>
+            <h1>{content.title}</h1>
+            <p>{content.summary}</p>
+            </div>
+
+            <article>
+                <slot />
+            </article>
+        </main>
+
+        <Footer />
+    </body>
+</html>
+
+<style>
+	article:global(.js-enabled p > img), 
+	article:global(.js-enabled figure > img) {
+		transition: .25s;
+	}
+	article:global(.js-enabled p > img:hover), 
+	article:global(.js-enabled figure > img:hover) {
+		transform: scale(1.03);
+		cursor: pointer;
+	}
+	.overlay-image {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: fixed;
+		top: 0; left: 0;
+		width: 100%;
+		height: 100%;
+		background: #000a;
+	}
+	.overlay-image img {
+		max-height: 80%;
+		max-width: 80%;
+	}
+</style>

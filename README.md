@@ -1,6 +1,9 @@
-# Sveltekit Personal Site
+# Astro + Svelte Example
 
-Remade my site (8th times the charm!) using Sveltekit.
-Development was pretty smooth and coincided with the release of Notion's public API.
+```
+npm init astro -- --template framework-svelte
+```
 
-I'm using YouTube's API to pull recent videos, Notion's API to pull recent reads, and running a markdown parser to generate articles.
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/framework-svelte)
+
+This example showcases Astro working with [Svelte](https://svelte.dev/).
