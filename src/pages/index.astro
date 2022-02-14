@@ -43,7 +43,7 @@ const videos = await getVideos();
 		{reads.slice(0, 5).map((read, i) =>
 			<Stub 
 				index={i}
-				url={read.url} 
+				url={read.link} 
 				meta={`${read.author} • ${read.createdAt}`} 
 				title={read.title}
 			/>
