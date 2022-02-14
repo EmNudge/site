@@ -25,23 +25,24 @@ article ul {
     line-height: 1.75;
 }
 
-article h1 .anchor,
-article h2 .anchor,
-article h3 .anchor,
-article h4 .anchor,
-article h5 .anchor {
+article h1 a,
+article h2 a,
+article h3 a,
+article h4 a,
+article h5 a {
     margin-left: -1em;
     user-select: none;
     transform: skewX(-15deg);
     opacity: 0;
+    margin-right: 8px;
     transition: opacity .25s;
 }
 
-article h1:hover .anchor,
-article h2:hover .anchor,
-article h3:hover .anchor,
-article h4:hover .anchor,
-article h5:hover .anchor {
+article h1:hover a,
+article h2:hover a,
+article h3:hover a,
+article h4:hover a,
+article h5:hover a {
     opacity: 1;
 }
 

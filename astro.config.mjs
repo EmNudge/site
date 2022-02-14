@@ -1,6 +1,8 @@
 import dotenv from "dotenv"
 import fs from "fs/promises"
 
+// replace process environment variables for local dev and production
+// Will error out on production
 const exposedKeys = ['YOUTUBE_API_KEY', 'YOUTUBE_CHANNEL_ID']
 const envDefinitions = await fs.readFile(".env")
     .then(file => {
@@ -17,6 +19,19 @@ const envDefinitions = await fs.readFile(".env")
 // helpful tooltips, and warnings if your exported object is invalid.
 // You can disable this by removing "@ts-check" and `@type` comments below.
 
+// add # links to headers in markdown
+const autoLinkMarkdown = [
+    'rehype-slug', ['rehype-autolink-headings', {
+        behavior: 'prepend',
+        content: {
+            type: 'element',
+            tagName: 'span',
+            properties: { className: 'header-link' },
+            children: [{ type: 'text', value: '#' }]
+        }
+    }]
+]
+
 // @ts-check
 export default /** @type {import('astro').AstroUserConfig} */ ({
     renderers: ['@astrojs/renderer-svelte'],
@@ -27,5 +42,15 @@ export default /** @type {import('astro').AstroUserConfig} */ ({
         define: {
             ...envDefinitions
         }
+    },
+    markdownOptions: {
+        render: [
+            '@astrojs/markdown-remark',
+            {
+                rehypePlugins: [
+                    ...autoLinkMarkdown,
+                ],
+            },
+        ],
     },
 });
