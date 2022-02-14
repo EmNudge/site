@@ -1,17 +1,28 @@
 // @ts-ignore
 import csvData from './reads.csv?raw';
 
-const PARSE_LINE = /("?)(.+?)\1(?:,|$)/gm;
-const getHeaders = (line: string) => {
-    const headers = [];
+const PARSE_LINE_REGEX = /(?:"((?:.|\n)+?)"|(.+?))(\r?\n|,|$)/g;
+function* parseCsvRow(text: string) {
+    for (const match of text.matchAll(PARSE_LINE_REGEX)) {
+        // must have either 1 or 2
+        const { 1: quoteMatch, 2: regMatch, 3: terminator } = match;
+        const item = regMatch ?? quoteMatch.replace(/""/g, '"');
+        const isLast = terminator !== ',';
 
-    const iter = line.toLowerCase().trim().matchAll(PARSE_LINE);
-    for (const match of iter) {
-        const header = match[2].replace(/\s+(.)/g, c => c[1].toUpperCase());
-        headers.push(header);
+        yield { item, isLast, match };
+    }
+}
+const parseCsvLine = (text: string): [string[], number] => {
+    const items = [];
+    for (const { item, isLast, match} of parseCsvRow(text)) {
+        items.push(item);
+        
+        if (!isLast) continue;
+        const finishIndex = match.index + match[0].length;
+        return [items, finishIndex];
     }
 
-    return headers;
+    return [items, text.length];
 }
 
 interface CsvRow {
@@ -23,18 +34,31 @@ interface CsvRow {
     link: string;
 }
 
-const csvParse = (csv: string): CsvRow[] => {
-    const lines = csv.split('\n');
-    const headers = getHeaders(lines[0]);
+const csvParse = (csv: string): any[] => {
+    const [ headersDirty, index ] = parseCsvLine(csv);
+    const headers = headersDirty.map(item => {
+        return item
+            .toLowerCase()
+            .trim()
+            .replace(/\s+(.)/g, m => m[1].toUpperCase())
+    });
 
-    return lines
-        .slice(1)
-        .map(line => {
-            const matches = [...line.matchAll(PARSE_LINE)].map(m => m[2]);
-            const entries = matches.map((match, i) => [headers[i], match]);
-            return Object.fromEntries(entries);
-        })
-        .sort((a, b) => +new Date(b.readAt) - +new Date(a.readAt));
+    const restOfCsvIter = parseCsvRow(csv.slice(index))
+
+    const lines: any[] = [];
+    const lineData = [];
+    for (const { item, isLast } of restOfCsvIter) {
+        lineData.push(item);
+        if (!isLast) continue;
+        
+        // reset linkData and add to lines
+        const entries = lineData.map((item, i) => [headers[i], item]);
+        lines.push(Object.fromEntries(entries));
+        lineData.length = 0;
+    }
+    lines.sort((a, b) => +new Date(b.readAt) - +new Date(a.readAt));
+
+    return lines;
 }
 
-export const reads: CsvRow[] = csvParse(csvData);
+export const reads: CsvRow[] = csvParse(csvData) as CsvRow[];

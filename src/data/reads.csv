@@ -35,8 +35,7 @@ RSS Tutorial,Mark Nottingham,RSS vs Atom and how it's constructed,"September 1, 
 HTTPWTF,Tim Perry,Overview of some interesting HTTP decisions,"March 4, 2021","March 30, 2021",https://httptoolkit.tech/blog/http-wtf/
 How do Spotify Codes work?,Peter Boone,Linking through unique images,"November 13, 2020","March 29, 2021",https://boonepeter.github.io/posts/2020-11-10-spotify-codes/
 Steam's Login Method is Kinda Interesting,Maximilian,Visual links to images and hash adventures,"January 7, 2021","March 28, 2021",https://owlspace.xyz/cybersec/steam-login/
-A History of HTML Parsing at Cloudflare: Part 1,"Andrew Galloni &
-Ingvar Stepanyan",Building a streaming parser,"November 28, 2019","March 28, 2021",https://blog.cloudflare.com/html-parsing-1/
+A History of HTML Parsing at Cloudflare: Part 1,"Andrew Galloni & Ingvar Stepanyan",Building a streaming parser,"November 28, 2019","March 28, 2021",https://blog.cloudflare.com/html-parsing-1/
 An Intuition For Lisp Syntax,Stepan Parunashvili,"What it says on the tin, but using JavaScript","October 25, 2020","March 26, 2021",https://stopa.io/post/265
 Working with strings in Rust,Amos,The dangers of handling strings in C,"February 19, 2020","March 26, 2021",https://fasterthanli.me/articles/working-with-strings-in-rust
 Emoji under the hood,Nikita Prokopov,Clear and fun explanation of Emoji grapheme clusters,"March 26, 2021","March 26, 2021",https://tonsky.me/blog/emoji/
