@@ -1,0 +1,60 @@
+---
+import MainLayout from '../../layouts/Main.astro'
+import Stub from '../../components/ArticleStub.astro';
+
+import { reads } from '../../data/reads';
+
+export async function getStaticPaths({ paginate, rss }) {
+  rss({
+    title: 'Recent Reads',
+    
+    stylesheet: true,
+    description: 'Articles you might find interesting',
+    customData: `<language>en-us</language>`,
+    category: 'Programming',
+    
+    items: reads.map(({ title, description, link, createdAt }) => ({
+        title,
+        description,
+        link,
+        pubDate: createdAt,
+        customData: `<guid isPermaLink="true">${link}</guid>`,
+    })),
+    dest: 'reads.xml',
+  });
+
+  return paginate(reads, { pageSize: 25 });
+}
+---
+
+<MainLayout title="What I'm Reading">
+    <h1>What I'm Reading</h1>
+
+    <div class="staggered">
+        {reads.map((read, i) => 
+            <post-container style={`--index: ${i}`}>
+                <Stub 
+                    url={read.link} 
+                    meta={`${read.author} • ${read.createdAt}`} 
+                    title={read.title}
+                    hint={read.description}
+                />
+            </post-container>
+        )}
+    </div>
+    <p class="feed">Subscribe to <a href="/reads.xml" rel="external">my reads feed <img src="icons/rss-feed-icon.png" alt="rss icon" /></a></p>
+</MainLayout>
+
+<style>
+    h1 {
+        margin: 80px 0;
+        text-align: center;
+    }
+    .feed {
+        margin-top: 50px;
+        text-align: center;
+    }
+    .feed img {
+        height: 15px;
+    }
+</style>

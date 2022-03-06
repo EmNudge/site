@@ -28,6 +28,7 @@ export async function getStaticPaths({ paginate, rss }) {
         customData: `<guid isPermaLink="true">${fullUrl}</guid>`,
       }
     }),
+    dest: 'blog.xml',
   });
   
   return paginate(sortedPosts, { pageSize: 25 })
@@ -50,7 +51,7 @@ export async function getStaticPaths({ paginate, rss }) {
         )}
     </div>
 
-    <p class="feed">Subscribe to <a href="/rss.xml" rel="external">my rss feed <img src="icons/rss-feed-icon.png" alt="rss icon" /></a></p>
+    <p class="feed">Subscribe to <a href="/blog.xml" rel="external">my rss feed <img src="icons/rss-feed-icon.png" alt="rss icon" /></a></p>
 </MainLayout>
 <style>
   h1 {

@@ -1,13 +1,15 @@
 ﻿Title,Author,Description,Created At,Read At,Link
+Pure AST based linting sucks,Riccardo D'Ambrosio,Efficient low memory linting,"September 18, 2020","February 27, 2022",https://rdambrosio016.github.io/rust/2020/09/18/pure-ast-based-linting-sucks.html
+Dyslexie font does not benefit reading in children with or without dyslexia,Sanne M. Kuster et al,Wow,"December 4, 2017","February 16, 2022",https://link.springer.com/article/10.1007%2Fs11881-017-0154-6
 Everything Must Be Paid for Twice,David Cain,Time as a currency,"January 20, 2022","February 12, 2022",https://www.raptitude.com/2022/01/everything-must-be-paid-for-twice/
-Colocation,Kent C Dodds,"Location as documentation ","June 17, 2019","February 10, 2022",https://kentcdodds.com/blog/colocation
+Colocation,Kent C Dodds,"Location as documentation","June 17, 2019","February 10, 2022",https://kentcdodds.com/blog/colocation
 iOS Engine Choice In Depth,Alex Russell,It's really in depth,"August 31, 2021","February 8, 2022",https://infrequently.org/2021/08/webkit-ios-deep-dive/#diversity-perversity
 In defense of complicated programming languages,Jakob Nybo Nissen,Why type complexity simplifies programming,"January 23, 2022","January 25, 2022",https://viralinstruction.com/posts/defense/
 The Dunning-Kruger Effect Is Probably Not Real,Jonathan Jarry M.Sc.,Disspelling a psychological effect,"December 17, 2020","January 24, 2022",https://www.mcgill.ca/oss/article/critical-thinking/dunning-kruger-effect-probably-not-real
 My first impressions of web3,Moxie Marlinspike,Understanding what it all is,"January 7, 2022","January 8, 2022",https://moxie.org/2022/01/07/web3-first-impressions.html?utm_source=pocket_mylist
 Understanding why our build got 15x slower with Webpack 5,Eoin Hennessy,Looking into V8 for optimizations,"December 4, 2021","December 4, 2021",https://engineering.tines.com/blog/understanding-why-our-build-got-15x-slower-with-webpack
 Waveforms,Joshua Comeau,Combining signals,"February 1, 2018","November 22, 2021",https://pudding.cool/2018/02/waveforms/
-The Copenhagen Interpretation of Ethics,Jai Dhyani,"Helping without critique ","June 24, 2015","November 7, 2021",https://blog.jaibot.com/the-copenhagen-interpretation-of-ethics
+The Copenhagen Interpretation of Ethics,Jai Dhyani,"Helping without critique","June 24, 2015","November 7, 2021",https://blog.jaibot.com/the-copenhagen-interpretation-of-ethics
 Why Lisp?,Ron Garret,Why Lisp is the best serialization format,"May 7, 2015","November 4, 2021",http://blog.rongarret.info/2015/05/why-lisp.html?utm_source=pocket_mylist
 Was Google Earth Stolen? (no),Avi Bar-Zeev,The history of globe rendering,"October 12, 2021","November 4, 2021",https://avibarzeev.medium.com/was-google-earth-stolen-7d1b821e589b
 Bash functions are better than I thought,Gary Verhaegen,Bash subshell syntax,"October 31, 2021","November 3, 2021",https://cuddly-octo-palm-tree.com/posts/2021-10-31-better-bash-functions/?utm_source=pocket_mylist
@@ -52,9 +54,9 @@ UTF-8 Everywhere,Pavel Radzivilovsky et al,The case for UTF-8 for everything,"Ap
 Building a Reactive Library from Scratch,Ryan Carniato,Overview of reactivity in frontend frameworks,"February 18, 2021","February 19, 2021",https://dev.to/ryansolid/building-a-reactive-library-from-scratch-1i0p
 Programming with Unicode,Victor Stinner,Good overview of unicode encodings,"December 28, 2010","January 16, 2021",https://unicodebook.readthedocs.io/
 Introducing Crank.js,Brian Kim,Interesting take on framework design,"April 15, 2020","January 16, 2021",https://crank.js.org/blog/introducing-crank
-2016 - The Year of Streams,Jake Archibald,Explaining streams,"January 25, 2016","December 13, 2020"," https://jakearchibald.com/2016/streams-ftw/"
-"Creating a Snake Clone in Rust, with Bevy",Marcus Buffett,Great introduction to Bevy,"October 15, 2020","December 11, 2020"," https://mbuffett.com/posts/bevy-snake-tutorial/"
-Writing Rust the Elixir way,Bernard Kolobara,"Looking at WASM and rust to create a VM for concurrency ","November 28, 2020","December 5, 2020",https://dev.to/bkolobara/writing-rust-the-elixir-way-2lm8
+2016 - The Year of Streams,Jake Archibald,Explaining streams,"January 25, 2016","December 13, 2020","https://jakearchibald.com/2016/streams-ftw/"
+"Creating a Snake Clone in Rust, with Bevy",Marcus Buffett,Great introduction to Bevy,"October 15, 2020","December 11, 2020","https://mbuffett.com/posts/bevy-snake-tutorial/"
+Writing Rust the Elixir way,Bernard Kolobara,"Looking at WASM and rust to create a VM for concurrency","November 28, 2020","December 5, 2020",https://dev.to/bkolobara/writing-rust-the-elixir-way-2lm8
 "Parse, don't validate",Alexis King,Cool look at how to solve problems of optional values via state,"November 5, 2019","November 26, 2020",https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/
 Explorable Programming with Rust and WebAssembly,Nikita Baksalyar,Embedding wasm in the web for demos,"October 13, 2020","October 14, 2020",https://lowlvl.org/blog/explorable-programming
 Gatsby vs. Next.js,Jared Palmer,The frustrations with Gatsby's GraphQL,"November 22, 2019","October 13, 2020",https://jaredpalmer.com/gatsby-vs-nextjs
@@ -81,7 +83,7 @@ JITs are un-ergonomic,Abe Winter,Why JITs make things difficult,"March 27, 2020"
 Compile Svelte in your head (Part 1),Tan Li Hau,The compiler behind this website,"March 2, 2020","March 12, 2020",https://lihautan.com/compile-svelte-in-your-head-part-1/
 Pocket Guide to Writing SVG,Joni Trythall,Learn SVGs in the best way possible,,"March 8, 2020",https://svgpocketguide.com/book/
 YAML: probably not so great after all,Martin Tournoij,The case against everything but TOML,"September 15, 2016","March 3, 2020",https://www.arp242.net/yaml-config.html
-Making Sandspiel,Max Bittker,Wonderful wasm and physics simulations,"April 30, 2019","February 27, 2020"," https://maxbittker.com/making-sandspiel"
+Making Sandspiel,Max Bittker,Wonderful wasm and physics simulations,"April 30, 2019","February 27, 2020","https://maxbittker.com/making-sandspiel"
 JSON Parser with JavaScript,Tan Li Hau,Parsing in non-linear grammars in JavaScript!,"December 11, 2019","February 19, 2020",https://lihautan.com/json-parser-with-javascript/
 Learning Parser Combinators With Rust,Bodil Stokke,Condensed and fantastic tutorial.,"April 17, 2019","January 25, 2020",https://bodil.lol/parser-combinators/
 "Switching between JavaScript, C++, and Rust",Alain Galvan,"A look into the similarities and differences between JavaScript, C++, and Rust.","April 18, 2017","January 17, 2020",https://alain.xyz/blog/switching-between-js-cpp-rust
