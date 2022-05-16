@@ -2,13 +2,13 @@
 import Stub from '../../components/ArticleStub.astro';
 import MainLayout from '../../layouts/Main.astro';
 
-import { getSlugs } from '../../data/blogs';
-const posts = getSlugs(Astro.fetchContent('./*.md'));
+import { BlogPostFile, getSlugs } from '../../data/blogs';
+const posts = await getSlugs(await Astro.glob('./*.md') as BlogPostFile[]);
 
 export async function getStaticPaths({ paginate, rss }) {
-  const allPosts = Astro.fetchContent('./*.md');
-  const sortedPosts = allPosts.sort((a, b) => +new Date(b.date) - +new Date(a.date));
-  
+  const allPosts = await Astro.glob('./*.md') as BlogPostFile[];
+  const sortedPosts = allPosts.sort((a, b) => +new Date(b.frontmatter.date) - +new Date(a.frontmatter.date));
+
   rss({
     title: 'Calvin Kipperman\'s Blog',
     
@@ -21,10 +21,10 @@ export async function getStaticPaths({ paginate, rss }) {
       const fullUrl = 'https://kipperman.co' + item.url;
 
       return {
-        title: item.title,
-        description: item.description,
+        title: item.frontmatter.title,
+        description: item.frontmatter.description,
         link: item.url,
-        pubDate: item.date,
+        pubDate: item.frontmatter.date,
         customData: `<guid isPermaLink="true">${fullUrl}</guid>`,
       }
     }),

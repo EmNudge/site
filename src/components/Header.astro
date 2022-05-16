@@ -1,7 +1,7 @@
 ---
 import Nav from './Nav.svelte';
 
-const path = Astro.request.url.pathname.match(/^(.+?)(?:\/|$)/)[1];
+const path = new URL(Astro.request.url).pathname.match(/^(.+?)(?:\/|$)/)[1];
 
 const routes = [
     ["/", "Home"],

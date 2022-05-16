@@ -1,12 +1,12 @@
-const key = process.env.YOUTUBE_API_KEY
-const channel = process.env.YOUTUBE_CHANNEL_ID;
+// @ts-ignore
+const { YOUTUBE_API_KEY, YOUTUBE_CHANNEL_ID } = import.meta.env
 const MAX_RESULTS = 4;
 
 const BASE_URL = 'https://www.googleapis.com/youtube/v3/search';
 function getYoutubeUrl() {
     const params = {
-        key: key,
-        channelId: channel,
+        key: YOUTUBE_API_KEY,
+        channelId: YOUTUBE_CHANNEL_ID,
         part: 'snippet,id',
         order: 'date',
         maxResults: MAX_RESULTS

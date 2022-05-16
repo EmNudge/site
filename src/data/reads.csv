@@ -1,6 +1,13 @@
 ﻿Title,Author,Description,Created At,Read At,Link
+Cameras and Lenses,Bartosz Ciechanowski,"picture crystals, how do they work?","December 7, 2020","May 15, 2022",https://ciechanow.ski/cameras-and-lenses
+On Removing Let and Let Mut,Evan Ovadia,Signalling mutation,"April 17, 2022","May 12, 2022",https://verdagon.dev/blog/on-removing-let-let-mut
+Xilem: an architecture for UI in Rust,Raph Levien,Rust UI is hard,"May 7, 2022","May 10, 2022",https://raphlinus.github.io/rust/gui/2022/05/07/ui-architecture.html
+Undefined Behavior deserves a better reputation,Ralf Jung,purposefully vague,"November 18, 2021","May 10, 2022",https://www.ralfj.de/blog/2021/11/18/ub-good-idea.html
+Agile and the Long Crisis of Software,Miriam Posner,History of Agile and its modern day impact,"April 7, 2022","May 10, 2022",https://logicmag.io/clouds/agile-and-the-long-crisis-of-software
+My most useful RegExp trick,Surma,The second greatest regex trick,"May 2, 2018","April 20, 2022",https://surma.dev/things/regexp-quote/index.html
 Pure AST based linting sucks,Riccardo D'Ambrosio,Efficient low memory linting,"September 18, 2020","February 27, 2022",https://rdambrosio016.github.io/rust/2020/09/18/pure-ast-based-linting-sucks.html
 Dyslexie font does not benefit reading in children with or without dyslexia,Sanne M. Kuster et al,Wow,"December 4, 2017","February 16, 2022",https://link.springer.com/article/10.1007%2Fs11881-017-0154-6
+Age of Questions,Anton Podviaznikov,You need to know,"July 12, 2021","February 15, 2022",https://podviaznikov.com/writings/age_of_questions/?utm_source=pocket_mylist
 Everything Must Be Paid for Twice,David Cain,Time as a currency,"January 20, 2022","February 12, 2022",https://www.raptitude.com/2022/01/everything-must-be-paid-for-twice/
 Colocation,Kent C Dodds,"Location as documentation","June 17, 2019","February 10, 2022",https://kentcdodds.com/blog/colocation
 iOS Engine Choice In Depth,Alex Russell,It's really in depth,"August 31, 2021","February 8, 2022",https://infrequently.org/2021/08/webkit-ios-deep-dive/#diversity-perversity
@@ -13,6 +20,7 @@ The Copenhagen Interpretation of Ethics,Jai Dhyani,"Helping without critique","J
 Why Lisp?,Ron Garret,Why Lisp is the best serialization format,"May 7, 2015","November 4, 2021",http://blog.rongarret.info/2015/05/why-lisp.html?utm_source=pocket_mylist
 Was Google Earth Stolen? (no),Avi Bar-Zeev,The history of globe rendering,"October 12, 2021","November 4, 2021",https://avibarzeev.medium.com/was-google-earth-stolen-7d1b821e589b
 Bash functions are better than I thought,Gary Verhaegen,Bash subshell syntax,"October 31, 2021","November 3, 2021",https://cuddly-octo-palm-tree.com/posts/2021-10-31-better-bash-functions/?utm_source=pocket_mylist
+Willingness to look stupid,Dan Luu,Getting over aesthetics,"October 21, 2021","October 22, 2021",https://danluu.com/look-stupid/
 Understanding How Facebook Disappeared from the Internet,Cloudflare,"DNS, BGP, and Facebook","October 4, 2021","October 4, 2021",https://blog.cloudflare.com/october-2021-facebook-outage/
 How To Deal With Dirty Side Effects In Your Pure Functional Javascript,James Sinclair,a brilliant monad introduction,"August 7, 2018","October 1, 2021",https://jrsinclair.com/articles/2018/how-to-deal-with-dirty-side-effects-in-your-pure-functional-javascript/
 An Introduction to JQ,Adam Gordon Bell,What is says on the tin,"August 24, 2021","September 13, 2021",https://earthly.dev/blog/jq-select/
