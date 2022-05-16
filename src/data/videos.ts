@@ -1,12 +1,16 @@
+// We double up the env keys because Vercel uses its own env keys
 // @ts-ignore
-const { YOUTUBE_API_KEY, YOUTUBE_CHANNEL_ID } = import.meta.env
+const API_KEY = import.meta.env.YOUTUBE_API_KEY ?? process.env.YOUTUBE_API_KEY
+// @ts-ignore
+const CHANNEL_ID = import.meta.env.YOUTUBE_CHANNEL_ID ?? process.env.YOUTUBE_CHANNEL_ID
+
 const MAX_RESULTS = 4;
 
 const BASE_URL = 'https://www.googleapis.com/youtube/v3/search';
 function getYoutubeUrl() {
     const params = {
-        key: YOUTUBE_API_KEY,
-        channelId: YOUTUBE_CHANNEL_ID,
+        key: API_KEY,
+        channelId: CHANNEL_ID,
         part: 'snippet,id',
         order: 'date',
         maxResults: MAX_RESULTS
