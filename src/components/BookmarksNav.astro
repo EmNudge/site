@@ -1,0 +1,44 @@
+---
+const currentPath = new URL(Astro.request.url).pathname.match(/^(.+?)(?:\/|$)/)[1];
+
+const routes = [
+    ['/reads', 'Articles'],
+    ['/videos', 'Videos'],
+]
+---
+
+<nav>
+    <ul>
+        {routes.map(([path, title]) => (
+            <li key={path}>
+                <a
+                    href={path}
+                    aria-current={path == currentPath ? "page" : undefined}
+                >{title}</a>
+            </li>
+        ))}
+    </ul>
+</nav>
+
+<style>
+    nav {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 40px;
+    }
+    ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        gap: 40px;
+    }
+    li {
+        font-size: 1.5em;
+    }
+    a {
+        color: var(--foreground);
+    }
+    a[aria-current] {
+        color: var(--active);
+    }
+</style>

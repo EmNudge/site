@@ -6,7 +6,7 @@ import TitleSection from '../components/TitleSection.astro';
 import Stub from '../components/ArticleStub.astro';
 
 import { getVideos } from '../data/videos';
-import { reads } from '../data/reads';
+import { reads } from '../data/bookmarks';
 import { BlogPostFile, getSlugs } from '../data/blogs';
 
 const posts = await getSlugs(await Astro.glob('./blog/*.md') as BlogPostFile[]);
