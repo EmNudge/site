@@ -1,4 +1,8 @@
 ﻿Title,Author,Description,Created At,Read At,Link
+Node Modules at War Why CommonJS and ES Modules Can't Get Along,Dan Fabulich,ESM and CJS interop,"August 5, 2020","July 20, 2022",https://redfin.engineering/node-modules-at-war-why-commonjs-and-es-modules-cant-get-along-9617135eeca1
+Think Like (a) Git - Rebase From The Ground Up,Sam Livingston-Gray,Why do you need to push -f? Rebase is just cherry pick!,"October 26, 2011","June 28, 2022",https://think-like-a-git.net/sections/rebase-from-the-ground-up.html
+Color in UI Design: A (Practical) Framework,Erik D. Kennedy,It's just lightness and saturation,"January 10, 2017","June 25, 2022",https://learnui.design/blog/color-in-ui-design-a-practical-framework.html
+High Performance Browser Networking,Ilya Grigorik,The best damn book on it,"January 1, 2013","June 20, 2022",https://hpbn.co/
 Cameras and Lenses,Bartosz Ciechanowski,"picture crystals, how do they work?","December 7, 2020","May 15, 2022",https://ciechanow.ski/cameras-and-lenses
 On Removing Let and Let Mut,Evan Ovadia,Signalling mutation,"April 17, 2022","May 12, 2022",https://verdagon.dev/blog/on-removing-let-let-mut
 Xilem: an architecture for UI in Rust,Raph Levien,Rust UI is hard,"May 7, 2022","May 10, 2022",https://raphlinus.github.io/rust/gui/2022/05/07/ui-architecture.html
@@ -26,6 +30,7 @@ How To Deal With Dirty Side Effects In Your Pure Functional Javascript,James Sin
 An Introduction to JQ,Adam Gordon Bell,What is says on the tin,"August 24, 2021","September 13, 2021",https://earthly.dev/blog/jq-select/
 Creating a Zoom UI,Steve Ruiz,Zooming math,"August 5, 2021","August 19, 2021",https://www.steveruiz.me/posts/zoom-ui
 A future for SQL on the web,James Long,Getting faster than your underlying API,"August 12, 2021","August 12, 2021",https://jlongster.com/future-sql-web
+HTTP/3 From A To Z,Robin Marx,The best series on HTTP/3,"August 9, 2021","August 6, 2021",https://www.smashingmagazine.com/2021/08/http3-core-concepts-part1/
 "Safari isn't protecting the web, it's killing it",Tim Perry,"The case againt Safari's ""safety""","July 28, 2021","July 31, 2021",https://httptoolkit.tech/blog/safari-is-killing-the-web/
 A (Mostly) Complete Guide to React Rendering Behavior,Mark Erikson,what it says on the tin,"May 17, 2020","July 23, 2021",https://blog.isquaredsoftware.com/2020/05/blogged-answers-a-mostly-complete-guide-to-react-rendering-behavior/
 The State of Web Workers in 2021,Surma,A look at JavaScript threading,"June 30, 2021","July 17, 2021",https://www.smashingmagazine.com/2021/06/web-workers-2021/
@@ -91,7 +96,7 @@ JITs are un-ergonomic,Abe Winter,Why JITs make things difficult,"March 27, 2020"
 Compile Svelte in your head (Part 1),Tan Li Hau,The compiler behind this website,"March 2, 2020","March 12, 2020",https://lihautan.com/compile-svelte-in-your-head-part-1/
 Pocket Guide to Writing SVG,Joni Trythall,Learn SVGs in the best way possible,,"March 8, 2020",https://svgpocketguide.com/book/
 YAML: probably not so great after all,Martin Tournoij,The case against everything but TOML,"September 15, 2016","March 3, 2020",https://www.arp242.net/yaml-config.html
-Making Sandspiel,Max Bittker,Wonderful wasm and physics simulations,"April 30, 2019","February 27, 2020","https://maxbittker.com/making-sandspiel"
+Making Sandspiel,Max Bittker,Wonderful wasm and physics simulations,"April 30, 2019","February 27, 2020",https://maxbittker.com/making-sandspiel
 JSON Parser with JavaScript,Tan Li Hau,Parsing in non-linear grammars in JavaScript!,"December 11, 2019","February 19, 2020",https://lihautan.com/json-parser-with-javascript/
 Learning Parser Combinators With Rust,Bodil Stokke,Condensed and fantastic tutorial.,"April 17, 2019","January 25, 2020",https://bodil.lol/parser-combinators/
 "Switching between JavaScript, C++, and Rust",Alain Galvan,"A look into the similarities and differences between JavaScript, C++, and Rust.","April 18, 2017","January 17, 2020",https://alain.xyz/blog/switching-between-js-cpp-rust
