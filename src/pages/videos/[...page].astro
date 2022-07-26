@@ -3,28 +3,28 @@ import MainLayout from '../../layouts/Main.astro'
 import Stub from '../../components/ArticleStub.astro';
 import BookmarksNav from '../../components/BookmarksNav.astro';
 
-import { reads } from '../../data/bookmarks';
+import { videos } from '../../data/bookmarks';
 
 export async function getStaticPaths({ paginate, rss }) {
   rss({
-    title: 'Recent Reads',
+    title: 'Bookmarked Videos',
     
     stylesheet: true,
-    description: 'Articles you might find interesting',
+    description: 'Videos you might find interesting',
     customData: `<language>en-us</language>`,
     category: 'Programming & Misc',
-    
-    items: reads.map(({ title, description, link, createdAt }) => ({
+
+    items: videos.map(({ title, description, link, uploadedAt }) => ({
         title,
         description,
         link,
-        pubDate: createdAt,
+        pubDate: uploadedAt,
         customData: `<guid isPermaLink="true">${link}</guid>`,
     })),
-    dest: 'reads.xml',
+    dest: 'videos.xml',
   });
 
-  return paginate(reads, { pageSize: 25 });
+  return paginate(videos, { pageSize: 25 });
 }
 ---
 
@@ -32,18 +32,18 @@ export async function getStaticPaths({ paginate, rss }) {
     <BookmarksNav />
 
     <div class="staggered">
-        {reads.map((read, i) => 
+        {videos.map((video, i) => 
             <post-container style={`--index: ${i}`}>
                 <Stub 
-                    url={read.link} 
-                    meta={`${read.author} • ${read.createdAt}`} 
-                    title={read.title}
-                    hint={read.description}
+                    url={video.link} 
+                    meta={`${video.speaker} • ${video.uploadedAt}`} 
+                    title={video.title}
+                    hint={video.description}
                 />
             </post-container>
         )}
     </div>
-    <p class="feed">Subscribe to <a href="/reads.xml" rel="external">my reads feed <img src="icons/rss-feed-icon.png" alt="rss icon" /></a></p>
+    <p class="feed">Subscribe to <a href="/videos.xml" rel="external">my videos feed <img src="icons/rss-feed-icon.png" alt="rss icon" /></a></p>
 </MainLayout>
 
 <style>
