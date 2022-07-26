@@ -1,7 +1,6 @@
 <script lang="ts">
     export let routes: [string, string][];
     export let path;
-    import { onMount } from 'svelte';
 </script>
 
 <nav>
@@ -19,13 +18,13 @@
     nav {
         display: flex;
     }
-    nav a {
+    a {
         text-decoration: none;
         color: var(--foreground);
         font-size: 1.2em;
         padding: 15px;
     }
-    nav a.active {
+    a.active {
         color: var(--active);
     }
 </style>
