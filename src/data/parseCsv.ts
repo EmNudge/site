@@ -1,5 +1,3 @@
-// @ts-ignore
-import csvData from './reads.csv?raw';
 
 const PARSE_LINE_REGEX = /(?:"((?:.|\n)+?)"|(.+?))(\r?\n|,|$)/g;
 function* parseCsvRow(text: string) {
@@ -25,16 +23,7 @@ const parseCsvLine = (text: string): [string[], number] => {
     return [items, text.length];
 }
 
-interface CsvRow {
-    title: string;
-    author: string;
-    description: string;
-    createdAt: string;
-    readAt: string;
-    link: string;
-}
-
-const csvParse = (csv: string): any[] => {
+export const csvParse = <T = Record<string, string>>(csv: string): T[] => {
     const [ headersDirty, index ] = parseCsvLine(csv);
     const headers = headersDirty.map(item => {
         return item
@@ -45,8 +34,8 @@ const csvParse = (csv: string): any[] => {
 
     const restOfCsvIter = parseCsvRow(csv.slice(index))
 
-    const lines: any[] = [];
-    const lineData = [];
+    const lines: T[] = [];
+    const lineData: string[] = [];
     for (const { item, isLast } of restOfCsvIter) {
         lineData.push(item);
         if (!isLast) continue;
@@ -56,9 +45,6 @@ const csvParse = (csv: string): any[] => {
         lines.push(Object.fromEntries(entries));
         lineData.length = 0;
     }
-    lines.sort((a, b) => +new Date(b.readAt) - +new Date(a.readAt));
 
     return lines;
 }
-
-export const reads: CsvRow[] = csvParse(csvData) as CsvRow[];
