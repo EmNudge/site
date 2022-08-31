@@ -3,6 +3,7 @@ date: Aug 30, 2022
 title: It’s What You Have, Not What You Are
 summary: Reframing labels and fixing society
 tags: general
+recording: what-you-have
 layout: ../../layouts/Blog.astro
 ---
 
@@ -16,13 +17,13 @@ I’ve never been quite fond of the word “smart”. It feels as ill-defined an
 
 Why is it that those who appear to be above average in intelligence more often come from affluent backgrounds? Is it just that all the smart people have hoarded all the money? I can think of quite a few wealthy people of below average intelligence, so I don’t think the relationship holds true both ways. Instead, it’s more likely that those with higher perceived intelligence were also given more access to resources at a younger age.
 
-There are also seem to be some more general attributes seen among the perspicacious. Passion and appreciation for knowledge, perhaps. A curiosity about the world. Habitually getting sucked into a learning frenzy. Maybe all of them.
+There also seems to be some more general attributes seen among the perspicacious. Passion and appreciation for knowledge, perhaps. A curiosity about the world. Habitually getting sucked into a learning frenzy. Maybe all of them.
 
-In fact, I’d wager the majority of people who demonstrate above average intelligence are not genetic freaks. Rather, their environment is more conducive to produce the kind of person who would seek out knowledge in the first place. You might have heard of this debate as nurture vs nature. I tend to place my worldview more on the nurture side of things.
+In fact, I’d wager the majority of people who demonstrate above average intelligence are not genetic freaks. Rather, their environment is more conducive to produce the kind of person who would seek out knowledge in the first place. You might have heard of this debate as nurture vs nature. I tend to place my worldview on the nurture side of things.
 
 As I’ve defined it, the word “smart” doesn’t seem very harmful. It just needs to be slightly redefined as a component of your environment instead of your genetics. Smart people, in whatever way they managed to get these attributes, have better tools for tackling what appear to be novel problems. You may want a “smart” worker so that the work to be done is done better, in whatever way “better” means. One would think the word smart still has value.
 
-My issue is mainly with its colloquial use. This struck a chord with me rather recently. Although I believe software engineering is a more approachable field than it’s thought to be, I’ve found out recently that my perceived skill with my own work has driven some people away from pursuing the field. I’ve been perceived not as skilled, but as talented - naturally gifted. That I am smart by nature and would be unapproachable in aptitude by someone less naturally intelligent. As I’m not “the best”, my field as a whole would likely be unapproachable for anyone not already up to par. 
+My issue is mainly with its colloquial use. This struck a chord with me rather recently. Although I believe software engineering is a more approachable field than it’s generally thought to be, I’ve found out recently that my perceived skill with my own work has driven some people away from pursuing the field. I’ve been perceived not as skilled, but as talented - naturally gifted. That I am smart by nature and would be unapproachable in aptitude by someone less naturally intelligent. As I’m not “the best”, my field as a whole would likely be unapproachable for anyone not already up to par. 
 
 In reality, my current skill is built upon a foundation of experience. Thinking of learning as velocity and knowledge as position, the graph of knowledge accruement is not linear. It is more cubed than anything. There’s a slow start, then a sharp climb, followed by years of PhD research before vowing to never learn another thing again. 
 
@@ -32,7 +33,7 @@ If your rate of knowledge gain remains constant from the start of your journey, 
 
 I’m not going to cloud my predispositions with fancy wordplay. I think astrology is nonsense. None of its output is a reflection on the input. Your birth month does not determine personality traits. As much of a determinist I appear to be, this is not a game I will have any involvement in. The astronomical bodies care very little about what are effectively micro-organisms hundreds of millions of miles away. 
 
-The same disdain I have for astrology falls partly on personality tests. I am not only including the buzzfeed quizzes and Facebook posts involving your pet's name and half your credit card. I mean to include Myers Briggs and the 16 personalities. Supposed scientific tests with rigorous backing. 
+The same disdain I have for astrology falls partly on personality tests. I am not only including the Buzzfeed quizzes and Facebook posts involving your pet's name and half your credit card. I mean to include Myers Briggs and the 16 personalities. Supposed scientific tests with rigorous backing. 
 
 I've taken such tests multiple times within the past 6 years and only rarely (if ever) gotten the same result twice. As these tests haven't changed significantly in that time, these results are due to differing inputs to the questionnaire. My opinions have changed over time.
 

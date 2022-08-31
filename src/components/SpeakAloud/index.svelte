@@ -27,7 +27,7 @@
         const data = await getDataForRecording(recording);
         audio = data.audio;
         timestamps = data.timestamps;
-        paragraphs = Array.from(document.querySelectorAll("article p"));
+		paragraphs = Array.from(document.querySelectorAll("article > p"));
         paragraphHighlighter = getParagraphHighlighter(paragraphs);
         audio.addEventListener("ended", () => {
             paragraphHighlighter.clear();
