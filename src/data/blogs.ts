@@ -20,8 +20,8 @@ export function getMinuteLength(text: string) {
 
 export const getSlugs = async (postFiles: BlogPostFile[]): Promise<Post[]> => {
     const postPromises = postFiles.map(async post => {
-        const oldFrontMatter = (await post.default()).frontmatter
-        const minuteLength = getMinuteLength(oldFrontMatter.astro.source)
+		const postData = (await post.default())
+        const minuteLength = getMinuteLength(postData.props.rawContent())
 
         return { ...post.frontmatter, minuteLength, url: post.url }
     })

@@ -28,8 +28,8 @@ const videos = await getVideos();
 		)}
 	</TitleSection>
 
-	<TitleSection title="Videos" link="https://www.youtube.com/emnudge" staggered>
-		<div class="videos">
+	<TitleSection title="Videos" link="https://www.youtube.com/emnudge">
+		<div class="videos staggered">
 			{videos.map((video, i) => 
 				<a href={`https://www.youtube.com/watch?v=${video.id}`} class="video" style={`--index: ${i}`}>
 					<img alt="" src={video.img} />

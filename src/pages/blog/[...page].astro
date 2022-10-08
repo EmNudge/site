@@ -5,32 +5,10 @@ import MainLayout from '../../layouts/Main.astro';
 import { BlogPostFile, getSlugs } from '../../data/blogs';
 const posts = await getSlugs(await Astro.glob('./*.md') as BlogPostFile[]);
 
-export async function getStaticPaths({ paginate, rss }) {
+export async function getStaticPaths({ paginate }) {
   const allPosts = await Astro.glob('./*.md') as BlogPostFile[];
   const sortedPosts = allPosts.sort((a, b) => +new Date(b.frontmatter.date) - +new Date(a.frontmatter.date));
 
-  rss({
-    title: 'Calvin Kipperman\'s Blog',
-    
-    stylesheet: true,
-    description: 'Linguistics and Programming',
-    customData: `<language>en-us</language>`,
-    category: 'Web development/Linguistics',
-    
-    items: sortedPosts.map(item => {
-      const fullUrl = 'https://kipperman.co' + item.url;
-
-      return {
-        title: item.frontmatter.title,
-        description: item.frontmatter.description,
-        link: item.url,
-        pubDate: item.frontmatter.date,
-        customData: `<guid isPermaLink="true">${fullUrl}</guid>`,
-      }
-    }),
-    dest: 'blog.xml',
-  });
-  
   return paginate(sortedPosts, { pageSize: 25 })
 }
 

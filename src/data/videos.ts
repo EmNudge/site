@@ -1,8 +1,4 @@
-// We double up the env keys because Vercel uses its own env keys
-// @ts-ignore
-const API_KEY = import.meta.env.YOUTUBE_API_KEY ?? process.env.YOUTUBE_API_KEY
-// @ts-ignore
-const CHANNEL_ID = import.meta.env.YOUTUBE_CHANNEL_ID ?? process.env.YOUTUBE_CHANNEL_ID
+import { API_KEY, CHANNEL_ID } from './env';
 
 const MAX_RESULTS = 4;
 

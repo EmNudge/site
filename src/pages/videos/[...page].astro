@@ -5,27 +5,7 @@ import BookmarksNav from '../../components/BookmarksNav.astro';
 
 import { videos } from '../../data/bookmarks';
 
-export async function getStaticPaths({ paginate, rss }) {
-  rss({
-    title: 'Bookmarked Videos',
-    
-    stylesheet: true,
-    description: 'Videos you might find interesting',
-    customData: `<language>en-us</language>`,
-    category: 'Programming & Misc',
-
-    items: videos.map(({ title, description, link, uploadedAt }) => ({
-        title,
-        description,
-        link,
-        pubDate: uploadedAt,
-        customData: `<guid isPermaLink="true">${link}</guid>`,
-    })),
-    dest: 'videos.xml',
-  });
-
-  return paginate(videos, { pageSize: 25 });
-}
+export const getStaticPaths = async ({ paginate, rss }) => paginate(videos, { pageSize: 25 });
 ---
 
 <MainLayout title="Bookmarks">
