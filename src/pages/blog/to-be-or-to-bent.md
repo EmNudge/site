@@ -1,5 +1,5 @@
 ---
-date: Jul 22, 2019
+pubDate: Jul 22, 2019
 title: To Be Or To Ben't - The Nonsense of Words
 summary: A wannabe linguist's take on words
 tags: general

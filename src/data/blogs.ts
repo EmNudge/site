@@ -2,7 +2,7 @@ import type { MarkdownInstance } from "astro";
 
 
 interface Post {
-    date: string;
+    pubDate: string;
     title: string;
     summary: string;
     url: string;
@@ -11,7 +11,7 @@ interface Post {
 
 export type BlogPostFile = MarkdownInstance<Record<string, any> & Omit<Post, 'minuteLength' | 'url'>>
 
-const sortDate = (a: Post, b: Post) => Number(new Date(b.date)) - Number(new Date(a.date));
+const sortDate = (a: Post, b: Post) => Number(new Date(b.pubDate)) - Number(new Date(a.pubDate));
 
 export function getMinuteLength(text: string) {
     const words = text.split(/\s+/);

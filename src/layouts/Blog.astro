@@ -9,8 +9,8 @@ import SpeakAloud from '../components/SpeakAloud/index.svelte';
 import { getMinuteLength } from '../data/blogs';
 
 const { content } = Astro.props;
-const { astro, date, title, summary, recording } = content;
-const minuteLength = getMinuteLength(astro.source);
+const { pubDate, title, summary, recording } = content;
+const minuteLength = getMinuteLength(Astro.props.rawContent());
 ---
 
 <html lang="en">
@@ -41,7 +41,7 @@ const minuteLength = getMinuteLength(astro.source);
 
         <main>
             <div class="title-container">
-				<h5>{date} • {minuteLength} minute read</h5>
+				<h5>{pubDate} • {minuteLength} minute read</h5>
 				<h1>{title}</h1>
 				<p>{summary}</p>
 

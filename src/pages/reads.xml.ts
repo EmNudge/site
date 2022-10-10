@@ -8,13 +8,12 @@ export const get = () =>
 
     description: "Articles you might find interesting",
     customData: `<language>en-us</language>`,
-    category: "Programming & Misc",
     site,
 
     items: reads.map(({ title, description, link, createdAt }) => ({
       title,
       description,
       link,
-      pubDate: createdAt,
+      pubDate: new Date(createdAt),
     })),
   });

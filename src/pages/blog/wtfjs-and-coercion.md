@@ -1,5 +1,5 @@
 ---
-date: Jul 27, 2019
+pubDate: Jul 27, 2019
 title: "[] == ![] - WTFJS And Coercion"
 summary: Explaining the frustration of JavaScript
 tags: javascript, coding

@@ -7,7 +7,7 @@ const posts = await getSlugs(await Astro.glob('./*.md') as BlogPostFile[]);
 
 export async function getStaticPaths({ paginate }) {
   const allPosts = await Astro.glob('./*.md') as BlogPostFile[];
-  const sortedPosts = allPosts.sort((a, b) => +new Date(b.frontmatter.date) - +new Date(a.frontmatter.date));
+  const sortedPosts = allPosts.sort((a, b) => +new Date(b.frontmatter.pubDate) - +new Date(a.frontmatter.pubDate));
 
   return paginate(sortedPosts, { pageSize: 25 })
 }
@@ -21,7 +21,7 @@ export async function getStaticPaths({ paginate }) {
             <post-container style={`--index: ${i}`}>
                 <Stub 
                     url={post.url}
-                    meta={`${post.date} • ${post.minuteLength} minute read`} 
+                    meta={`${post.pubDate} • ${post.minuteLength} minute read`} 
                     title={post.title}
                     description={post.summary}
                 />

@@ -1,5 +1,5 @@
 ---
-date: Aug 30, 2022
+pubDate: Aug 30, 2022
 title: It’s What You Have, Not What You Are
 summary: Reframing labels and fixing society
 tags: general

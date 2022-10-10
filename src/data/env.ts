@@ -1,7 +1,7 @@
 // We double up the env keys because Vercel uses its own env keys
 
 // @ts-ignore
-export const SITE = import.meta.env.SITE ?? process.env.SITE
+export const SITE = import.meta.env.MY_SITE ?? process.env.MY_SITE
 // @ts-ignore
 export const API_KEY = import.meta.env.YOUTUBE_API_KEY ?? process.env.YOUTUBE_API_KEY
 // @ts-ignore

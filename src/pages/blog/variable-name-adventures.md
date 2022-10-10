@@ -1,5 +1,5 @@
 ---
-date: Mar 16, 2020
+pubDate: Mar 16, 2020
 title: Adventures in Horrible No Good Very Bad Variable Names
 summary: Messing around with variable names and pranks!
 tags: javascript, coding

@@ -1,5 +1,5 @@
 ---
-date: Jan 2, 2020
+pubDate: Jan 2, 2020
 title: Destructive Responses
 summary: Answering questions gracefully.
 tags: general

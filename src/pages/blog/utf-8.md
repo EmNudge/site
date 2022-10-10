@@ -1,5 +1,5 @@
 ---
-date: Sep 9, 2020
+pubDate: Sep 9, 2020
 title: Decoding UTF-8
 summary: Jumping into unicode and binary 
 tags: coding

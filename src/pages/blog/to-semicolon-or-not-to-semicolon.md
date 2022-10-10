@@ -1,5 +1,5 @@
 ---
-date: Aug 15, 2019
+pubDate: Aug 15, 2019
 title: To Semicolon, Or Not To Semicolon;
 summary: Wait, do we need them or not?
 tags: javascript, coding

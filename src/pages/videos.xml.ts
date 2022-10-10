@@ -2,20 +2,20 @@ import rss from "@astrojs/rss";
 import { videos } from "../data/bookmarks";
 import { SITE as site } from '../data/env';
 
+console.log({ site, area: 'videos' })
 export const get = () =>
   rss({
     title: "Bookmarked Videos",
 
     description: "Videos you might find interesting",
     customData: `<language>en-us</language>`,
-    category: "Programming & Misc",
     site,
 
     items: videos.map(({ title, description, link, uploadedAt }) => ({
       title,
       description,
       link,
-      pubDate: uploadedAt,
+      pubDate: new Date(uploadedAt),
       customData: `<guid isPermaLink="true">${link}</guid>`,
     })),
   });

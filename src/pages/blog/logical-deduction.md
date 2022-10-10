@@ -1,5 +1,5 @@
 ---
-date: Oct 2, 2021
+pubDate: Oct 2, 2021
 title: A Subject of Logical Deduction
 summary: Improving pedadogy by teaching the essence
 tags: coding
