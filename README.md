@@ -2,14 +2,14 @@
 
 Website has gone from
 ```
- ┌────────────────────────────────────────────────┐
- │                                                │
- │ Gatsby -> Next -> Svelte -> SvelteKit -> Astro │
- │                                                │
-                                              ▲
-                                              │
-                                              │
-                  You Are Here!  ─────────────┘
+ ┌───────────────────────────────────────────────────────────┐
+ │                                                           │
+ │ Vanilla -> Gatsby -> Next -> Svelte -> SvelteKit -> Astro │
+ │                                                           │
+                                                          ▲
+                                                          │
+                                                          │
+                  You Are Here!  ─────────────────────────┘
 ```
 
 Welcome!
