@@ -7,4 +7,4 @@
     });
 </script>
 
-<p>© Copyright 2019 - {year} Calvin Kipperman</p>
+<p>© Copyright 2019 - {year} EmNudge</p>
