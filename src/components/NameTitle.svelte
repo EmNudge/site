@@ -9,7 +9,7 @@
 
 <div class="special-container">
     {#key titleIndex}
-        <h2 on:click={changeTitle}>{titles[titleIndex]}</h2>
+        <h2 on:click={changeTitle} on:keydown={changeTitle}>{titles[titleIndex]}</h2>
     {/key}
 </div>
 
@@ -28,7 +28,7 @@
     h2 {
         opacity: 0.8;
         width: 100%;
-        cursor: grab;
+        cursor: pointer;
         user-select: none;
         width: max-content;
         animation: pop-in 250ms;

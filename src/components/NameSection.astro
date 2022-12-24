@@ -9,19 +9,18 @@ const icons = [
 ];
 
 const titles = [
-    "Local Nobody",
-    "Software Engine Ear",
-    "Perfektonist",
-    "Public Nuisance",
-    "Disorderly Conductor",
-    "Voice Over Easy",
+    "A blog for ants",
+    "I'm a <b>Perfectonist< /b>",
+    "Welcome to my backyard",
+    "Huh? Voice Acting?",
+    "A walking xkcd reference",
 ];
 ---
 
 <section>
     <div class="name">
         <IconHolder {icons} small opacity={0.5} staggered />
-        <h1>EmNudge</h1>
+        <h1>👋 Hey there!</h1>
         <NameTitle titles={titles} client:idle />
     </div>
 </section>
@@ -39,8 +38,7 @@ const titles = [
         align-items: flex-end;
     }
     h1 {
-        font-size: clamp(2.5em, 5vw, 4em);
+        font-size: clamp(3em, 8vw, 6em);
         font-weight: 200;
-        min-width: 500px;
     }
 </style>
