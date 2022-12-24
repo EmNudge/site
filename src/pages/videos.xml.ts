@@ -2,7 +2,6 @@ import rss from "@astrojs/rss";
 import { videos } from "../data/bookmarks";
 import { SITE as site } from '../data/env';
 
-console.log({ site, area: 'videos' })
 export const get = () =>
   rss({
     title: "Bookmarked Videos",

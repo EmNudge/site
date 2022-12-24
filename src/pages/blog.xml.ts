@@ -1,7 +1,6 @@
 import rss from "@astrojs/rss";
 import { SITE as site } from '../data/env';
 
-console.log({ site })
 export const get = () =>
   rss({
     title: "EmNudge's Blog",
