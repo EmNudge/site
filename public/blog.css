@@ -130,10 +130,6 @@ article p.speaking:before {
 
 pre {
     overflow-x: auto;
-}
-
-pre.language-js,
-pre.language-javascript {
     background: #1E1E1E;
     padding: 20px;
     border-radius: 4px;

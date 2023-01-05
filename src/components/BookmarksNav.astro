@@ -10,7 +10,7 @@ const routes = [
 <nav>
     <ul>
         {routes.map(([path, title]) => (
-            <li key={path}>
+            <li>
                 <a
                     href={path}
                     aria-current={path == currentPath ? "page" : undefined}

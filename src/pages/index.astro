@@ -72,9 +72,11 @@ const videos = await getVideos();
 		margin-top: 10px;
 		font-weight: 300;
 	}
-	.video:hover {
+	.video > * {
+		transition: .25s;
+	}
+	.video:hover > * {
 		transform: scale(1.05);
-		opacity: .8;
 	}
 	.video img {
 		max-width: 320px;

@@ -10,12 +10,12 @@
     },
     "dependencies": {
         "@astrojs/rss": "^1.0.2",
-        "@astrojs/svelte": "^1.0.0",
-        "astro": "^1.1.5",
+        "@astrojs/svelte": "^1.0.2",
+        "astro": "^1.9.0",
         "dotenv": "^16.0.0",
         "rehype-autolink-headings": "^6.1.1",
         "rehype-slug": "^5.0.1",
-        "svelte": "^3.50.0",
+        "svelte": "^3.55.0",
         "typescript": "^4.8.4",
         "vite": "^3.1.0"
     }

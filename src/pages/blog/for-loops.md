@@ -19,7 +19,7 @@ Well then let's provide a snippet.
 # The Problem
 You may have seen this question as a part of interview prep or cool tricky JS code snippets. 
 
-<runnable-code />
+<runnable-code></runnable-code>
 
 ```js
 for (var i = 0; i < 10; i++) {
@@ -43,7 +43,7 @@ Let's first go over `var` vs `let`.
 
 I call `var` variables *semi* hoisted because, unlike [function declarations](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function), only their declaration is hoisted. This means that the following 2 snippets are identical:
 
-<runnable-code />
+<runnable-code></runnable-code>
 
 ```js
 var myVal = 233;
@@ -60,7 +60,7 @@ function showNumPlusOne(num) {
 ```
 and 
 
-<runnable-code />
+<runnable-code></runnable-code>
 
 ```js
 var myVal, i, newVal;
@@ -86,7 +86,7 @@ What this means, is that we can access variables declared with `var` before we d
 
 To illustrate, here is `let` vs `var` block-scoping:
 
-<runnable-code />
+<runnable-code></runnable-code>
 
 ```js
 {
@@ -103,7 +103,7 @@ console.log(i); // > 10
 ```
 vs 
 
-<runnable-code />
+<runnable-code></runnable-code>
 
 ```js
 {
@@ -125,7 +125,7 @@ We get an error when trying to access the variables when declared with `let`, bu
 
 This is the point where many explanations online stop. `let` is different than `var` and since `var` isn't block scoped; it jumps out of the for loop. If we were to use `let`, we'd be fine, but `var` makes `i` equal to what it last was (10) and that gets outputted each time.
 
-<runnable-code />
+<runnable-code></runnable-code>
 
 ```js
 // i's declaration gets hoisted
@@ -148,7 +148,7 @@ The more astute among you might have guessed it. A [closure](https://developer.m
 
 The concept can get complicated for many, so I'm going to try to skim over some of the more complicated and abstract bits. I will instead explain what we need to understand for our use case.
 
-<runnable-code />
+<runnable-code></runnable-code>
 
 ```js
 let myVar = 4;
@@ -170,7 +170,7 @@ The important thing to note about closures is that they don't just grab the valu
 
 This can make for some very interesting code. Have a look at this snippet:
 
-<runnable-code />
+<runnable-code></runnable-code>
 
 ```js
 let getVar;
@@ -194,7 +194,7 @@ It's still grabbing the actual variable and not just its value, but it's using a
 
 So now some of the better explanations will include the concept of closures. Let's explain our example with both `var` and closures now.
 
-<runnable-code />
+<runnable-code></runnable-code>
 
 ```js
 var i;
@@ -210,7 +210,7 @@ So since our `var` is outside of the scope and our closure is referencing the li
 
 Let's illustrate this with another snippet
 
-<runnable-code />
+<runnable-code></runnable-code>
 
 ```js
 var i = 0;
@@ -246,7 +246,7 @@ To answer this, we need to try and simulate a for loop.
 
 Our first instinct would probably be to use a `while` loop. Let's do that.
 
-<runnable-code />
+<runnable-code></runnable-code>
 
 ```js
 let i = 0;
@@ -258,7 +258,7 @@ while (i < 10) {
 
 This would work like a for loop, but not in this specific context. We're still going to get `10` 10 times even though we're using `let`. Let's put it in a block to stop that.
 
-<runnable-code />
+<runnable-code></runnable-code>
 
 ```js
 {
@@ -273,7 +273,7 @@ This would work like a for loop, but not in this specific context. We're still g
 So now we can't access it ourselves, but the function is still referencing a common variable `i`, so we get the same buggy result as we would with `var`.
 There must be something else here. Let's try creating a variable local to the most inner scope. 
 
-<runnable-code />
+<runnable-code></runnable-code>
 
 ```js
 {

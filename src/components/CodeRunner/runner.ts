@@ -59,14 +59,22 @@ const onExecute = (element: HTMLPreElement) => {
   workerMap.set(element, { terminatorId, worker });
 }
 
+const getNextCodeBlock = (el: Element) => {
+  if (el.nextElementSibling instanceof HTMLPreElement) {
+    return el.nextElementSibling;
+  }
+  if (el.parentElement instanceof HTMLParagraphElement) {
+    return getNextCodeBlock(el.parentElement);
+  }
+  console.log(el, el.nextElementSibling)
+  throw new Error('Runnable Code must preceed pre tag');
+}
+
 export function addRunnableCode() {
   const runnables = document.querySelectorAll('runnable-code');
 
   for (const el of runnables) {
-    const preTag = el.nextElementSibling;
-    if (!(preTag instanceof HTMLPreElement)) {
-      throw new Error('Runnable Code must preceed pre tag');
-    }
+    const preTag = getNextCodeBlock(el);
 
     if (preTag.classList.contains('runnable-code')) continue;
     preTag.classList.add('runnable-code');

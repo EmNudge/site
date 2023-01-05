@@ -9,7 +9,7 @@ const { title, link, staggered = false } = Astro.props;
         <slot />
     </div>
 
-    {link && <a href={link} class="more">More</a>}
+    {link && <a href={link} title={`more ${title}`} class="more">More</a>}
 </section>
 
 <style>
