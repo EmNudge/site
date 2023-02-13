@@ -4,6 +4,7 @@ article {
     line-height: 1.8;
     letter-spacing: .5px;
     font-family: 'Merriweather', "Times New Roman", Times, serif;
+    margin-bottom: 2rem;
 }
 
 @media (prefers-color-scheme: light) {
@@ -343,6 +344,7 @@ blockquote {
     opacity: .7;
     display: grid;
     grid-gap: 10px;
+    text-align: center;
 }
 
 @media screen and (max-width: 1000px) {
@@ -372,3 +374,7 @@ blockquote cite:before {
 
 
 /* #endregion */
+
+article > ol > li, article > ul > li {
+    margin-bottom: 1.5rem;
+}
