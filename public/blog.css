@@ -1,13 +1,19 @@
 article {
     color: #ddd;
-    font-size: 16px;
+    font-size: 1.3rem;
+    line-height: 1.8;
     letter-spacing: .5px;
+    font-family: 'Merriweather', "Times New Roman", Times, serif;
 }
 
 @media (prefers-color-scheme: light) {
     article {
         color: #555;
     }
+}
+
+article a {
+    text-decoration: underline;
 }
 
 article p,
@@ -17,7 +23,8 @@ article ul {
 }
 
 article p {
-    line-height: 1.5;
+    line-height: 2;
+    margin-bottom: 1.8rem;
 }
 
 article ol,
@@ -50,7 +57,8 @@ article h1,
 article h2,
 article h3,
 article h4 {
-    margin-top: 2em;
+    margin-top: 2rem;
+    font-weight: 800;
 }
 
 
@@ -66,8 +74,9 @@ article h2 {
 
 article h1:before,
 article h2:before {
-    background: linear-gradient(45deg, var(--light-active), transparent 80%);
+    /* background: linear-gradient(45deg, var(--light-active), transparent 80%); */
     transform: skewX(-15deg);
+    font-weight: bold;
     content: '';
     z-index: -1;
     width: 100%;
@@ -97,7 +106,9 @@ article h2:before {
 }
 
 article img {
-    width: 100%;
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
     padding: 10px 20px;
     box-sizing: border-box;
 }
@@ -110,7 +121,7 @@ article p {
     position: relative;
 }
 
-article p:before {
+article.with-audio p:before {
     content: '';
     position: absolute;
     top: -10px;
@@ -121,19 +132,50 @@ article p:before {
     transition: .25s;
 }
 
-article p.speaking:before {
+article.with-audio p.speaking:before {
     background: #ff01;
 }
 
+article details {
+    color: white;
+    background: #1b1435;
+    border-radius: 4px;
+    border: 1px solid #7e5eff;
+    overflow: hidden;
+}
+article details[open] {
+    padding-bottom: 1rem;
+}
+article details[open] summary {
+    margin-bottom: 1rem;
+}
+article details summary {
+    background: #291d56;
+    padding: 1rem;
+    font-size: 1rem;
+}
+article details > *:not(summary) {
+    padding-left: 2rem;
+    padding-right: 1rem;
+    font-size: 1rem;
+}
 
 /* #region syntax highlighting */
 
 pre {
     overflow-x: auto;
-    background: #1E1E1E;
+    background: #232636;
+    margin: 3rem -6rem;
+    border: 1px solid #3d3d3d;
     padding: 20px;
     border-radius: 4px;
     color: #4FC1F1;
+}
+
+@media screen and (max-width: 1000px) {
+    pre {
+        margin: 3rem 0;
+    }
 }
 
 pre.language-js .keyword,
@@ -182,6 +224,7 @@ code {
     background: #2f2f2f;
     border-radius: 4px;
     padding: 2px 4px;
+    color: var(--foreground)
 }
 
 @media (prefers-color-scheme: light) {
@@ -212,7 +255,7 @@ pre.runnable-code code {
 }
 
 pre.runnable-code {
-    background: #1E1E1E;
+    background: #232636;
     padding: 15px;
     border-radius: 4px;
     color: white;
@@ -292,15 +335,21 @@ pre.runnable-code output console-log .spacer {
 /* #region quotes */
 
 blockquote {
-    border-left: 6px solid var(--active);
+    border: 1px solid #3d3d3d;
     background: var(--bg-contrast);
     border-radius: 4px;
-    padding: 20px;
-    margin: 30px 0;
+    padding: 1rem 4rem;
+    margin: 30px -6rem;
     opacity: .7;
-    font-size: 1.5em;
     display: grid;
     grid-gap: 10px;
+}
+
+@media screen and (max-width: 1000px) {
+    blockquote {
+        margin: 30px 0;
+        padding: 1rem 2rem;
+    }
 }
 
 blockquote pre {

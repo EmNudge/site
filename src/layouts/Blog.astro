@@ -31,7 +31,7 @@ const minuteLength = getMinuteLength(Astro.props.rawContent());
         <!-- custom font import -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Merriweather&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,900;1,300&display=swap" rel="stylesheet">
 
 		<title>{title}</title>
 	</head>
@@ -48,7 +48,7 @@ const minuteLength = getMinuteLength(Astro.props.rawContent());
 				{recording && <SpeakAloud recording={recording} client:load />}
             </div>
 
-            <article>
+            <article class={recording ? 'with-audio' : undefined}>
                 <slot />
             </article>
         </main>
@@ -83,5 +83,12 @@ const minuteLength = getMinuteLength(Astro.props.rawContent());
 	.overlay-image img {
 		max-height: 80%;
 		max-width: 80%;
+	}
+	.title-container h1 {
+		font-size: 3rem;
+	}
+	.title-container p {
+		font-size: 1.35rem;
+		margin-top: 0.5rem;
 	}
 </style>

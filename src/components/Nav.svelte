@@ -6,7 +6,7 @@
 <nav>
     {#each routes as [route, name]}
         <a
-            sveltekit:prefetch
+            rel="prefetch"
             aria-current={path == route ? "page" : undefined}
             href={route}
             class:active={path == route}>{name}</a
