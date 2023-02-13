@@ -166,17 +166,11 @@ article details > *:not(summary) {
 pre {
     overflow-x: auto;
     background: #232636;
-    margin: 3rem -6rem;
+    margin: 3rem -1rem;
     border: 1px solid #3d3d3d;
     padding: 20px;
     border-radius: 4px;
     color: #4FC1F1;
-}
-
-@media screen and (max-width: 1000px) {
-    pre {
-        margin: 3rem 0;
-    }
 }
 
 pre.language-js .keyword,
@@ -340,18 +334,11 @@ blockquote {
     background: var(--bg-contrast);
     border-radius: 4px;
     padding: 1rem 4rem;
-    margin: 30px -6rem;
+    margin: 30px -1rem;
     opacity: .7;
     display: grid;
     grid-gap: 10px;
     text-align: center;
-}
-
-@media screen and (max-width: 1000px) {
-    blockquote {
-        margin: 30px 0;
-        padding: 1rem 2rem;
-    }
 }
 
 blockquote pre {
