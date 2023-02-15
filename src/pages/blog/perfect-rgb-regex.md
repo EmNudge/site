@@ -15,7 +15,7 @@ Let’s take a look at a small journey and hopefully learn a little regex on the
 
 ## The Quandary
 
-So I find a regex issue posted on a public discord. The task seems simple. 
+So I find a regex issue posted on a public Discord server. The task seems simple. 
 
 > "Use regex to validate a CSS `rgb()` string"
 
@@ -398,6 +398,8 @@ console.log(isValid); // true
 Yup. We just need `var(--d,` somewhere in the string. We don't even need to close the parentheses!
 
 Because of this weird behavior, I've chosen not to add this to the regex, but it wouldn't be very difficult. We'd just need an alternation checking for the presence of `var\(\s*--\S\s*(?:,|\))`.
+
+I've chosen to not match for CSS functions like `calc()` and `max()` for now since they're slightly less useful without CSS Variable here and it'd be some *hefty* work to add those in.
 
 And **now** we're done!
 

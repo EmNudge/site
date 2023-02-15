@@ -138,7 +138,6 @@ article.with-audio p.speaking:before {
 }
 
 article details {
-    color: white;
     background: #1b1435;
     border-radius: 4px;
     border: 1px solid #7e5eff;
@@ -159,6 +158,15 @@ article details > *:not(summary) {
     padding-left: 2rem;
     padding-right: 1rem;
     font-size: 1rem;
+}
+
+@media (prefers-color-scheme: light) {
+    article details {
+        background: #f7f5ff;
+    }
+    article details summary {
+        background: #e4ddff;
+    }
 }
 
 /* #region syntax highlighting */
