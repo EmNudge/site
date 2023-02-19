@@ -9,8 +9,6 @@ blockquote {
     margin-bottom: 3rem;
     margin-left: 5rem;
     margin-right: 3.5rem;
-    display: grid;
-    grid-gap: 10px;
     opacity: .9;
 }
 
@@ -27,14 +25,14 @@ blockquote pre {
     font-size: .7em;
 }
 
-blockquote p {
+article blockquote p {
     margin: 0;
+    margin-bottom: 1rem;
 }
 
 blockquote cite {
-    font-size: .8em;
+    font-size: 1rem;
     display: block;
-    padding-top: 15px;
 }
 
 blockquote cite:before {

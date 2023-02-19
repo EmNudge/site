@@ -2,11 +2,12 @@
 import Stub from '../../components/ArticleStub.astro';
 import MainLayout from '../../layouts/Main.astro';
 
-import { BlogPostFile, getSlugs } from '../../data/blogs';
-const posts = await getSlugs(await Astro.glob('./*.md') as BlogPostFile[]);
+import { getSlugs } from '../../data/blogs';
+import type { MdOrMdxFile } from '../../data/blogs'
+const posts = await getSlugs(await Astro.glob('./*.md*') as MdOrMdxFile[]);
 
 export async function getStaticPaths({ paginate }) {
-  const allPosts = await Astro.glob('./*.md') as BlogPostFile[];
+  const allPosts = await Astro.glob('./*.md*') as MdOrMdxFile[];
   const sortedPosts = allPosts.sort((a, b) => +new Date(b.frontmatter.pubDate) - +new Date(a.frontmatter.pubDate));
 
   return paginate(sortedPosts, { pageSize: 25 })

@@ -1,13 +1,17 @@
 import { defineConfig } from "astro/config"
 import svelte from "@astrojs/svelte"
+import mdx from "@astrojs/mdx";
+import rehypeSlug from 'rehype-slug';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 export default defineConfig({
     integrations: [
         svelte(),
+        mdx(),
     ],
     markdown: {
         rehypePlugins: [
-            'rehype-slug', ['rehype-autolink-headings', {
+            rehypeSlug, [rehypeAutolinkHeadings, {
                 behavior: 'prepend',
                 content: {
                     type: 'element',

@@ -5,6 +5,8 @@ summary: Learning regex without sobriety
 tags: coding
 layout: ../../layouts/Blog.astro
 ---
+import Details from '../../components/article/Details.astro';
+
 I’m a big fan of regex. I don’t know why. Perhaps it makes me feel powerful. Perhaps I enjoy horrors beyond my comprehension. It’s good fun to write code that looks foreign the second it leaves your fingers.
 
 Regex always feels like a fun puzzle. The syntax looks alien, but you could learn it all in an hour. There are a couple of [neat](http://www.rexegg.com/regex-best-trick.html) [tricks](https://surma.dev/things/regexp-quote/index.html), but most cases aren’t tricky enough to warrant them. When I get asked a regex question, I get excited. 
@@ -18,6 +20,8 @@ Let’s take a look at a small journey and hopefully learn a little regex on the
 So I find a regex issue posted on a public Discord server. The task seems simple. 
 
 > "Use regex to validate a CSS `rgb()` string"
+>
+> <cite>Discord User</cite>
 
 A worthy challenge! Let’s see how fast I can crank this one out!
 
@@ -25,16 +29,13 @@ A worthy challenge! Let’s see how fast I can crank this one out!
 rgb\(\d+, \d+, \d+\)
 ```
 
-<details>
-    <summary>Confused already? Check out this explanation!</summary>
-
+<Details title="Confused already? Check out this explanation!">
 Regex will match character by character. The regex “rgb” matches the string “rgb”. 
 
 Parentheses have special meaning in regex. They’re used to group things and they can do cool stuff. We don’t want cool stuff. We just want the literal parentheses. So we escape them with `\`. 
 
 That `\d+`? That means 1 or more digits. `\d` meaning digit and `+` meaning 1 or more. So this matches “rgb(`[]`, `[]`, `[]`)” where we replace the `[]` with some numbers.
-
-</details>
+</Details>
 
 Woohoo! And off we go to the locker room for a much deserved rest. The battle was brutal, but we made it through. And they said you couldn’t smart good when inebriated. 
 
@@ -50,9 +51,7 @@ Ah. Okay, so the `a` in `rgba()` is kind of redundant. We can add alpha values t
 rgb\(\d+, \d+, \d+\(, \d+)?)
 ```
 
-<details>
-    <summary>Keeping it with the explanations, here we go!</summary>
-
+<Details title="Keeping it with the explanations, here we go!">
 See those new parentheses there? We didn’t escape them. That means they’re special. Well, it means we’re grouping something and the parentheses themselves actually don’t do much presently. 
 
 The question mark is the real cool part. Like how `+` means “1 more more”, `?` means “1 or 0”. They call these symbols “quantifiers”. 
@@ -60,8 +59,7 @@ The question mark is the real cool part. Like how `+` means “1 more more”, `
 So this just means “that last part is optional”. 
 
 Now we allow for “`rgb(255, 255, 255, .5)`”
-
-</details>    
+</Details>    
 
 Hmmm… I’m now realizing there are a bunch of other issues with this. 
 
@@ -107,9 +105,7 @@ Let’s start off without the negative symbol.
 \d+|\d*\.\d+
 ```
 
-<details>
-    <summary>Time to learn some more!</summary>
-
+<Details title="Time to learn some more!">
 2 new symbols here! `*` is the little sibling of `+`. It means “0 or more”. Meaning optional, but as many as you’d like.
 
 Similar to `||`, the `|` here just means “or”. It’s called the “alternation operator”. It means either one of these can match and it’ll be fine. This operator has a “weak binding” or “low precedence” or “end of the PEMDAS status”. It means the entire thing to the left and right is included. 
@@ -119,8 +115,7 @@ That `\.` is us escaping a character like how we escaped the parentheses. This i
 So this means “either a bunch of digits OR `0+` digits followed by a decimal and `1+` digits”.
 
 This feels like a weird way to write this, but it’s slightly smaller than the alternative which is `\d+|\.\d+|\d+\.\d+`.
-
-</details>
+</Details>
 
 ```jsx
 const numRe = /-?(?:\d+|\d*\.\d+)/.source;
@@ -130,16 +125,13 @@ Now let’s set it to a variable where we wrap it in parentheses to enclose the 
 
 We’re using a [regex literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#creating_a_regular_expression) and `.source` so that we don’t have to escape the `\` stuff, which would make our regex look even more messy.
 
-<details>
-    <summary>Uhh… Looks like we added something weird there…</summary>
-    
+<Details title="Uhh… Looks like we added something weird there…"> 
 Okay, so remember when I said the parentheses just captured things and didn’t do that much else? I lied. I’m a liar. Chronically, pathologically, I’m sorry. It’s also a capturing group.
 
 Parentheses, unless we add some special sauce, do **********extra********** work. They save data for later. It captures things into a group. A capturing group.
 
 To avoid doing that, we can add `?:` to the start of a group. Actually, the `?` when placed as the first character in parentheses signals a special kind of group. Other special types are `(?=)`, `(?!)`, `(?<>)`, `(?<=)`, and `(?<!)`. Those symbols mean different things which we won’t get into (…yet)
-
-</details>
+</Details>
 
 ## Building The Regex
 
@@ -164,16 +156,13 @@ const createRe = (...args) =>
 const finalRegex = createRe`rgb\( ${numRe} , ${numRe} , ${numRe} (?:, ${numRe})? \)`;
 ```
 
-<details>
-    <summary>Do I even have to ask anymore?</summary>
-    
+<Details title="Do I even have to ask anymore?">
 New symbol! `\s` is just like `\d` but instead of matching digits it matches “whitespace”!
 
 Practically our whitespace is only ever going to be a space, but it could be a tab or a newline! There are also some other whitespace characters you don’t see very often which we are now matching.
 
 Our `.replace` function will replace every instance of “1 or more” spaces with `\s*` (we had to escape the `\`). This means we can make our regex a bit less ugly and just replace it after.;
-
-</details>
+</Details>
 
 This “simpler” code outputs a regex that looks like
 
@@ -201,14 +190,11 @@ const spaceRgbRe = String.raw`${numRe}\s+${numRe}\s+${numRe} (?:/ ${numRe})?`;
 const finalRegex = createRe`rgb\( (?:${commaRgbRe}|${spaceRgbRe}) \)`;
 ```
 
-<details>
-    <summary> Wait why are we adding back in `\s+` again?</summary>
-    
+<Details title="Wait why are we adding back in `\s+` again?">
 While our `createRe` function now converts all spaces to `\s*`, we specifically want `\s+` (1 or more, not 0) if we’re separating by spaces.
 
 We’re also adding back in our `(?:)` group to enclose the alternation operator to just the contents of the parentheses.
-
-</details>
+</Details>
 
 A bit of a refactor, but now our regex works for our previous test cases. What did we have left?
 
@@ -318,15 +304,13 @@ There’s no clean way for us to avoid this in regex. We must therefore reach fo
 (?!\d+(?:\.|\s*-?)\d+\.\d+)
 ```
 
-<details>
-    <summary>Woah! A new one!</summary>
-    
+<Details title="Woah! A new one!">
 Remember earlier where we mentioned these new special groups? This is one of those.
 
 `(?!)` is a negative lookahead which forbids continuing the match if it is followed by what is inside the group. We also have a “positive lookahead `(?=)`”, and a negative and positive lookbehind (`(?!<)` and `(?=<)` respectively).
 
 We are forbidding this entire regex continuing if it can conceivably be read as being 2 numbers as opposed to 3.
-</details>
+</Details>
 
 Making our whole regex look like
 
@@ -421,6 +405,6 @@ So what did we learn here?
 1. Regex can feel kind of rewarding!
     - If you get into a very specific regex niche, you might be creating a regex that has never been made before!
 
-<br>
+<br />
 
 While this was fun, I might not be attempting something like this in the near future 😅.

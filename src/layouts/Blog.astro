@@ -5,13 +5,14 @@ import Footer from '../components/Footer.astro';
 import PictureZoom from '../components/PictureZoom.svelte';
 import SpeakAloud from '../components/SpeakAloud/index.svelte';
 
-import { getMinuteLength } from '../data/blogs';
+import { getMinuteLengthFromFile } from '../data/blogs';
 
 import './blog/index.css';
 
-const { content } = Astro.props;
+const { content, file } = Astro.props;
 const { pubDate, title, summary, recording } = content;
-const minuteLength = getMinuteLength(Astro.props.rawContent());
+
+const minuteLength = getMinuteLengthFromFile(file);
 ---
 
 <html lang="en">

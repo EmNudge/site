@@ -1,5 +1,4 @@
 ---
-import Copyright from "./Copyright.svelte";
 import IconHolder from "./IconHolder.astro";
 
 const icons = [
@@ -11,14 +10,15 @@ const icons = [
 ];
 ---
 
+<footer>
+    <IconHolder icons={icons} />
+    <p>© Copyright 2019 - <span class="year">{new Date().getFullYear()}</span> EmNudge</p>
+</footer>
+
 <script type="text/javascript">
     document.querySelector('.year').textContent = new Date().getFullYear();
 </script>
 
-<footer>
-    <IconHolder icons={icons} />
-    <p>© Copyright 2019 -<span class="year">{new Date().getFullYear()}</span> EmNudge</p>
-</footer>
 
 <style>
     footer {

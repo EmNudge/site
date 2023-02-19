@@ -1,0 +1,79 @@
+---
+const { title, open, isToc, isStatic } = Astro.props;
+---
+
+{
+    isStatic ? (
+        <div class="admonition">
+            <slot />
+        </div>
+    ) : (
+        <details {open} class:list={[{ toc: isToc }]}>
+            <summary>{title}</summary>
+            <slot />
+        </details>
+    )
+}
+
+<style>
+    details,
+    .admonition {
+        background: #1b1435;
+        border-radius: 4px;
+        border: 1px solid #7e5eff;
+        overflow: hidden;
+    }
+    .admonition {
+        padding: 1rem 2rem;
+    }
+    details[open] {
+        padding-bottom: 1rem;
+    }
+    details[open] summary {
+        margin-bottom: 1rem;
+    }
+    details summary {
+        background: #291d56;
+        padding: 1rem;
+        font-size: 1rem;
+    }
+    details > *:not(summary) {
+        padding-left: 2rem;
+        padding-right: 1rem;
+        font-size: 1rem;
+    }
+
+    @media (prefers-color-scheme: light) {
+        .admonition {
+            background: #ebe5ff;
+        }
+        details {
+            background: #f7f5ff;
+        }
+        details summary {
+            background: #e4ddff;
+        }
+    }
+
+    details.toc {
+        --col: 120deg;
+        background: hsl(var(--col) 25% 12%);
+        border: 1px solid hsl(var(--col) 50% 50%);
+    }
+    details.toc summary {
+        background: hsl(var(--col) 21% 20%);
+    }
+    details.toc ul {
+        list-style: none;
+        font-size: 1.2rem;
+    }
+
+    @media (prefers-color-scheme: light) {
+        details.toc {
+            background: #ebffeb;
+        }
+        details.toc summary {
+            background: #bfeabf;
+        }
+    }
+</style>
