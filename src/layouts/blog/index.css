@@ -1,0 +1,79 @@
+@import url('./headings.css');
+@import url('./details.css');
+@import url('./code.css');
+@import url('./code-runner.css');
+@import url('./quote.css');
+
+.title-container {
+    margin: 40px 0;
+}
+
+.title-container h5 {
+    opacity: .5;
+    font-weight: 300;
+    margin-bottom: 5px;
+}
+
+.title-container p {
+    margin: 0;
+    padding-top: 10px;
+    opacity: .8;
+}
+
+article {
+    color: #ddd;
+    font-size: 1.3rem;
+    line-height: 1.8;
+    letter-spacing: .5px;
+    font-family: 'Merriweather', "Times New Roman", Times, serif;
+    margin-bottom: 2rem;
+}
+
+@media (prefers-color-scheme: light) {
+    article {
+        color: #555;
+    }
+}
+
+article a {
+    text-decoration: underline;
+    word-break: break-word;
+}
+
+article p {
+    line-height: 2;
+    margin-bottom: 1.8rem;
+    position: relative;
+}
+
+article ol,
+article ul {
+    line-height: 1.75;
+}
+
+article img {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+
+article.with-audio p:before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    z-index: -1;
+    transition: .25s;
+}
+
+article.with-audio p.speaking:before {
+    background: #ff01;
+}
+
+article > ol > li, article > ul > li {
+    margin-bottom: 1.5rem;
+}

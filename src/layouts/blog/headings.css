@@ -1,0 +1,45 @@
+@media screen and (min-width: 800px) {
+    article h1,
+    article h2 {
+        position: sticky;
+        top: 0;
+        background: var(--background);
+        margin: 0 -2rem;
+        padding: 0 2rem;
+        padding-top: 1rem;
+        z-index: 2;
+    }
+}
+
+article h1 a,
+article h2 a,
+article h3 a,
+article h4 a,
+article h5 a {
+    margin-left: -1em;
+    user-select: none;
+    transform: skewX(-15deg);
+    opacity: 0;
+    margin-right: 8px;
+    transition: opacity .25s;
+}
+
+article h1:hover a,
+article h2:hover a,
+article h3:hover a,
+article h4:hover a,
+article h5:hover a {
+    opacity: 1;
+}
+
+article h1,
+article h2,
+article h3,
+article h4 {
+    margin-top: 2rem;
+    font-weight: 800;
+}
+
+article h2 {
+    font-size: 1.5rem;
+}

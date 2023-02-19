@@ -1,0 +1,71 @@
+
+pre {
+    overflow-x: auto;
+    background: #232636;
+    margin: 3rem -1rem;
+    border: 1px solid #3d3d3d;
+    padding: 20px;
+    border-radius: 4px;
+    color: #4FC1F1;
+}
+
+pre code {
+    background: none;
+    padding: 0;
+    color: #eee;
+}
+
+pre.language-js .keyword,
+pre.language-javascript .keyword {
+    color: #d97ac9;
+}
+
+pre.language-js .number,
+pre.language-javascript .number {
+    color: #B5CE89;
+}
+
+pre.language-js .string,
+pre.language-javascript .string {
+    color: #CE723B;
+}
+
+pre.language-js .function,
+pre.language-javascript .function {
+    color: #DCDCAA;
+}
+
+pre.language-js .comment,
+pre.language-javascript .comment {
+    color: #6A9949;
+}
+
+pre.language-js .punctuation,
+pre.language-javascript .punctuation {
+    color: white;
+}
+
+pre.language-js .parameter,
+pre.language-javascript .parameter {
+    color: white;
+}
+
+pre.language-js .operator,
+pre.language-javascript .operator,
+pre.language-js .literal,
+pre.language-javascript .literal {
+    color: #569CD6;
+}
+
+code {
+    background: #2f2f2f;
+    border-radius: 4px;
+    padding: 2px 4px;
+    color: var(--foreground)
+}
+
+@media (prefers-color-scheme: light) {
+    code {
+        background: #eee;
+    }
+}

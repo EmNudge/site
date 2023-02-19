@@ -1,0 +1,59 @@
+article details, article .admonition {
+    background: #1b1435;
+    border-radius: 4px;
+    border: 1px solid #7e5eff;
+    overflow: hidden;
+}
+article .admonition {
+    padding: 1rem 2rem;
+}
+article details[open] {
+    padding-bottom: 1rem;
+}
+article details[open] summary {
+    margin-bottom: 1rem;
+}
+article details summary {
+    background: #291d56;
+    padding: 1rem;
+    font-size: 1rem;
+}
+article details > *:not(summary) {
+    padding-left: 2rem;
+    padding-right: 1rem;
+    font-size: 1rem;
+}
+
+@media (prefers-color-scheme: light) {
+    article .admonition {
+        background: #ebe5ff;
+    }
+    article details {
+        background: #f7f5ff;
+    }
+    article details summary {
+        background: #e4ddff;
+    }
+}
+
+article details.toc {
+    --col: 120deg;
+    background: hsl(var(--col) 25% 12%);
+    border: 1px solid hsl(var(--col) 50% 50%);
+}
+article details.toc summary {
+    background: hsl(var(--col) 21% 20%);
+}
+article details.toc ul {
+    list-style: none;
+    font-size: 1.2rem;
+}
+
+@media (prefers-color-scheme: light) {
+    article details.toc {
+        background: #ebffeb;
+    }
+    article details.toc summary {
+        background: #bfeabf;
+    }
+}

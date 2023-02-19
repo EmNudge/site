@@ -27,6 +27,7 @@
         class="overlay-image"
         transition:fade={{ duration: 100 }}
         on:click={maybeCloseImage}
+        on:keypress={maybeCloseImage}
     >
         <img src={clickedImage} alt="large version of thing you clicked" />
     </div>
@@ -43,6 +44,7 @@
         width: 100%;
         height: 100%;
         background: #000a;
+        z-index: 99;
     }
     .overlay-image img {
         max-height: 80%;

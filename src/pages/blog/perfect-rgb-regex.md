@@ -2,7 +2,7 @@
 pubDate: Feb 12, 2023
 title: Writing The Perfect RGB Regex And Failing
 summary: Learning regex without sobriety
-tags: regex, coding
+tags: coding
 layout: ../../layouts/Blog.astro
 ---
 I’m a big fan of regex. I don’t know why. Perhaps it makes me feel powerful. Perhaps I enjoy horrors beyond my comprehension. It’s good fun to write code that looks foreign the second it leaves your fingers.

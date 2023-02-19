@@ -1,0 +1,57 @@
+
+blockquote {
+    position: relative;
+    border: 1px solid #41818d;
+    background: #193337;
+    border-radius: 4px;
+    padding: 1rem 2rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    margin-left: 5rem;
+    margin-right: 3.5rem;
+    display: grid;
+    grid-gap: 10px;
+    opacity: .9;
+}
+
+blockquote:before {
+    content: '🗣️';
+    position: absolute;
+    top: 0;
+    left: -4rem;
+    font-size: 3rem;
+    opacity: .5;
+}
+
+blockquote pre {
+    font-size: .7em;
+}
+
+blockquote p {
+    margin: 0;
+}
+
+blockquote cite {
+    font-size: .8em;
+    display: block;
+    padding-top: 15px;
+}
+
+blockquote cite:before {
+    content: '— ';
+}
+
+@media screen and (max-width: 600px) {
+    blockquote {
+        margin: 0;
+    }
+    blockquote:before {
+        content: none;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    blockquote {
+        background: #e8f8fa;
+    }
+}

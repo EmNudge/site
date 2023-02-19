@@ -3,10 +3,11 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
 import PictureZoom from '../components/PictureZoom.svelte';
-import CodeRunner from '../components/CodeRunner/index.svelte';
 import SpeakAloud from '../components/SpeakAloud/index.svelte';
 
 import { getMinuteLength } from '../data/blogs';
+
+import './blog/index.css';
 
 const { content } = Astro.props;
 const { pubDate, title, summary, recording } = content;
@@ -18,7 +19,7 @@ const minuteLength = getMinuteLength(Astro.props.rawContent());
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 
-		<meta name="description" content="Personal website for EmNudge">
+		<meta name="description" content={summary}>
 		<meta name="author" content="EmNudge">
 		<meta name="keywords" content="EmNudge">
 		<meta name="color-scheme" content="dark light">
@@ -26,7 +27,6 @@ const minuteLength = getMinuteLength(Astro.props.rawContent());
 		<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="RSS feed for my blog">
 		<link rel="icon" href="/icons/logo_color.png" />
 		<link rel="stylesheet" href="/app.css">
-		<link rel="stylesheet" href="/blog.css">
         
         <!-- custom font import -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
