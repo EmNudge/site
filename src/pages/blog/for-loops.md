@@ -7,9 +7,11 @@ icon: technologies/languages/javascript
 layout: ../../layouts/Blog.astro
 ---
 
-> How does a for loop work?
+It seems like a basic question at first.
 
-It seems like a basic question at first. It's an iterator. It iterates. Simple as that. 
+**"How does a for loop work?"**
+
+It's an iterator. It iterates. Simple as that. 
 What if we confined the question to specifically talking about the `for([initialization]; [condition]; [final-expression])` for loop? How does it **really** work? 
 
 "What do you mean?" you might say. "You initialize a variable, state a condition which evaluates to a boolean, and provide a statement to perform after every iteration. It's simple" you say. 

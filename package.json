@@ -12,6 +12,7 @@
         "@astrojs/mdx": "^0.17.0",
         "@astrojs/rss": "^2.1.1",
         "@astrojs/svelte": "^2.0.2",
+        "@jsdevtools/rehype-toc": "^3.0.2",
         "astro": "^2.0.14",
         "dotenv": "^16.0.0",
         "rehype-autolink-headings": "^6.1.1",

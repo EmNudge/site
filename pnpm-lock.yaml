@@ -4,6 +4,7 @@ specifiers:
   '@astrojs/mdx': ^0.17.0
   '@astrojs/rss': ^2.1.1
   '@astrojs/svelte': ^2.0.2
+  '@jsdevtools/rehype-toc': ^3.0.2
   astro: ^2.0.14
   dotenv: ^16.0.0
   rehype-autolink-headings: ^6.1.1
@@ -16,6 +17,7 @@ dependencies:
   '@astrojs/mdx': 0.17.0_astro@2.0.14
   '@astrojs/rss': 2.1.1
   '@astrojs/svelte': 2.0.2_g7zvzc67nleoacxaqhgk7cxfma
+  '@jsdevtools/rehype-toc': 3.0.2
   astro: 2.0.14
   dotenv: 16.0.2
   rehype-autolink-headings: 6.1.1
@@ -642,6 +644,11 @@ packages:
     dependencies:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.14
+    dev: false
+
+  /@jsdevtools/rehype-toc/3.0.2:
+    resolution: {integrity: sha512-n5JEf16Wr4mdkRMZ8wMP/wN9/sHmTjRPbouXjJH371mZ2LEGDl72t8tEsMRNFerQN/QJtivOxqK1frdGa4QK5Q==}
+    engines: {node: '>=10'}
     dev: false
 
   /@ljharb/has-package-exports-patterns/0.0.2:

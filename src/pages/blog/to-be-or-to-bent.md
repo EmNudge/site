@@ -7,6 +7,7 @@ layout: ../../layouts/Blog.astro
 ---
 
 > To be or to ben't? That is the question. Whether 'tis nobler in the mind to suffer The slings and arrows of outrageous fortune, Or to take arms against a sea of troubles, And, by opposing, end them?
+>
 > <cite>Shakespeare</cite>
 
 The more perspicacious of you might have noticed I took the liberty of slightly altering the first sentence of this famous quote from Shakespeare's Hamlet.
@@ -76,6 +77,7 @@ There is, however, some truth in the fight for "proper" grammar. The one way a s
 > Everything I ever murdered  
 > Time to separate the sheep from goats (yeah)  
 > And I got no faith in your writers, I don't believe in ghosts
+>
 > <cite>Eminem on Fall (Kamikaze Album)</cite>
 
 Wordplay, a staple of hiphop and jokes in general, comes many times from the "bugs" of language. A language bug, as I like to call it, is a time when a language allows for multiple interpretations of the same phrase. People like to abuse these bugs for wordplay, where the multiple interpretations can lead to humorous outcomes.
