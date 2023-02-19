@@ -17,6 +17,7 @@
     padding: 0 1rem;
     z-index: 4;
     position: relative;
+    transition: .15s;
 }
 
 [data-rehype-pretty-code-fragment].runnable [data-rehype-pretty-code-title] button:hover {
@@ -82,4 +83,17 @@
 
 [data-rehype-pretty-code-fragment].runnable output console-log .spacer {
     padding: 0 5px;
+}
+
+@media (prefers-color-scheme: light) {
+    [data-rehype-pretty-code-fragment].runnable [data-rehype-pretty-code-title] button {
+        background: white;
+    }
+    [data-rehype-pretty-code-fragment].runnable [data-rehype-pretty-code-title] button:hover {
+        background: #ccc;
+    }
+
+    [data-rehype-pretty-code-fragment].runnable output console-log {
+        color: white;
+    }
 }

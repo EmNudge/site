@@ -45,12 +45,15 @@ code {
     border: 1px solid #3d3d3d;
     border-radius: 2px;
     border-bottom: none;
-    /* z-index: -1; */
     transform: translate(0, 1px);
 }
 
 @media (prefers-color-scheme: light) {
     code {
         background: #eee;
+    }
+    [data-rehype-pretty-code-title] {
+        background: #eee;
+        border: 1px solid #bdbdbd;
     }
 }
