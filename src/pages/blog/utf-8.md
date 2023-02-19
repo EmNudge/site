@@ -21,9 +21,7 @@ Every unicode encoding is tasked with a similar problem:
 
 The actual number is `1_111_998`. In binary this takes up 21 bits. That means it's possible to have a single character that **must** require us to use `21`  bits at a minimum to encode.
 
-<runnable-code></runnable-code>
-
-```js "wow bro" {2: 3}
+```js title="reading codepoints as bits (runnable)"
 function showBits(char) {
     const bits = char.codePointAt(0).toString(2);
     console.log('%o requires %o bits: %s', char, bits.length, bits);

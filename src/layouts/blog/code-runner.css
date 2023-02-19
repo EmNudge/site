@@ -1,79 +1,85 @@
-pre.runnable-code code {
-    white-space: pre;
-    overflow-x: auto;
-    display: block;
+[data-rehype-pretty-code-fragment].runnable [data-rehype-pretty-code-title] {
+    display: flex;
+    align-items: stretch;
+    gap: 0.5rem;
+    padding-right: 0;
+    z-index: 0;
 }
 
-pre.runnable-code {
-    background: #232636;
-    padding: 15px;
-    border-radius: 4px;
-    color: white;
-    display: block;
-    font-family: monospace;
+[data-rehype-pretty-code-fragment].runnable [data-rehype-pretty-code-title] span {
+    padding-right: 2rem;
 }
 
-pre.runnable-code {
+[data-rehype-pretty-code-fragment].runnable [data-rehype-pretty-code-title] button {
+    cursor: pointer;
+    background: #2d3a49;
+    border: none;
+    padding: 0 1rem;
+    z-index: 4;
     position: relative;
 }
 
-pre.runnable-code button {
-    position: absolute;
-    right: 0;
-    top: 0;
-    background: black;
-    color: white;
-    border: 1px solid #eee;
-    border-width: 0 0 1px 1px;
-    padding: 5px 10px;
-    cursor: pointer;
+[data-rehype-pretty-code-fragment].runnable [data-rehype-pretty-code-title] button:hover {
+    background: #3d5065;
 }
 
-pre.runnable-code button:active {
-    background: #333;
-    border-color: #aaa;
+@media screen and (max-width: 600px) {
+    [data-rehype-pretty-code-fragment].runnable [data-rehype-pretty-code-title] button {
+        display: none;
+    }
 }
 
-pre.runnable-code output {
+[data-rehype-pretty-code-fragment].runnable output {
     transition: .15s;
-    border-top: 1px solid transparent;
-    display: block;
+    display: grid;
+    gap: .1rem;
+    font-family: monospace;
+
+    background: #0f1017;
+    border: 1px solid #3d3d3d;
+    overflow: hidden;
 }
 
-pre.runnable-code output.opened {
-    border-top: 1px solid #fff3;
-    padding-top: 20px;
-    margin-top: 20px;
-}
-
-@keyframes unsquish {
+@keyframes console-slide-in {
     from {
-        transform: scaleY(0);
-        margin-top: -15px;
+        opacity: .2;
+        transform: translateX(-2rem) scaleX(1.2);
     }
+
     to {
-        transform: scaleY(1);
-        margin-top: 0px;
+        opacity: 1;
+        transform: translateX(1) scaleX(1);
     }
 }
 
-pre.runnable-code output console-log {
+[data-rehype-pretty-code-fragment].runnable output console-log {
     display: block;
-    animation: unsquish .25s forwards;
+    padding: .1rem 1rem;
+
+    animation: console-slide-in .25s forwards;
+    display: block;
+    --percentage: min(calc(var(--index) / var(--max-depth, 20)), 1);
+    --curve: calc(1 - (1 - var(--percentage)) * (1 - var(--percentage)));
+    animation-delay: calc(var(--curve) * var(--max-delay, 400ms));
+    opacity: 0;
 }
 
-pre.runnable-code console-log:before {
-    content: attr(data-type) ": ";
+[data-rehype-pretty-code-fragment].runnable output console-log:hover {
+    filter: brightness(2);
 }
 
-pre.runnable-code console-log[data-type=log]:before {
-    color: orange;
+[data-rehype-pretty-code-fragment].runnable console-log[data-type=log] {
+    background: #60606022;
 }
 
-pre.runnable-code console-log[data-type=error]:before {
-    color: red;
+[data-rehype-pretty-code-fragment].runnable console-log[data-type=info] {
+    background: orange;
 }
 
-pre.runnable-code output console-log .spacer {
+[data-rehype-pretty-code-fragment].runnable console-log[data-type=error] {
+    background: #ff38003b;
+}
+
+[data-rehype-pretty-code-fragment].runnable output console-log .spacer {
     padding: 0 5px;
 }

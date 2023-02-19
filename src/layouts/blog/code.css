@@ -1,12 +1,19 @@
+div[data-rehype-pretty-code-fragment] {
+    margin: 3rem -1rem; 
+}
 
 pre {
     overflow-x: auto;
-    background: #232636;
+    background: #0f1016;
     margin: 3rem -1rem;
     border: 1px solid #3d3d3d;
     padding: 20px;
     border-radius: 4px;
     color: #4FC1F1;
+}
+
+div[data-rehype-pretty-code-fragment] pre {
+    margin: 0;
 }
 
 pre code {
@@ -15,53 +22,31 @@ pre code {
     color: #eee;
 }
 
-pre.language-js .keyword,
-pre.language-javascript .keyword {
-    color: #d97ac9;
-}
-
-pre.language-js .number,
-pre.language-javascript .number {
-    color: #B5CE89;
-}
-
-pre.language-js .string,
-pre.language-javascript .string {
-    color: #CE723B;
-}
-
-pre.language-js .function,
-pre.language-javascript .function {
-    color: #DCDCAA;
-}
-
-pre.language-js .comment,
-pre.language-javascript .comment {
-    color: #6A9949;
-}
-
-pre.language-js .punctuation,
-pre.language-javascript .punctuation {
-    color: white;
-}
-
-pre.language-js .parameter,
-pre.language-javascript .parameter {
-    color: white;
-}
-
-pre.language-js .operator,
-pre.language-javascript .operator,
-pre.language-js .literal,
-pre.language-javascript .literal {
-    color: #569CD6;
-}
-
 code {
-    background: #2f2f2f;
     border-radius: 4px;
     padding: 2px 4px;
     color: var(--foreground)
+}
+
+[data-rehype-pretty-code-fragment] {
+    position: relative;
+}
+
+[data-rehype-pretty-code-title] {
+    font-size: .8rem;
+    overflow: hidden;
+
+    padding: 0 2rem;
+    padding-bottom: 0.1rem;
+
+    background: #1a1c25;
+    position: absolute;
+    top: -1.6rem;
+    border: 1px solid #3d3d3d;
+    border-radius: 2px;
+    border-bottom: none;
+    /* z-index: -1; */
+    transform: translate(0, 1px);
 }
 
 @media (prefers-color-scheme: light) {

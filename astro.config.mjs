@@ -5,6 +5,8 @@ import mdx from "@astrojs/mdx";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeToc from "@jsdevtools/rehype-toc";
+import rehypePrettyCode from "rehype-pretty-code";
+
 
 export default defineConfig({
     integrations: [
@@ -12,6 +14,7 @@ export default defineConfig({
         mdx(),
     ],
     markdown: {
+        syntaxHighlight: false,
         rehypePlugins: [
             rehypeSlug,
             [rehypeToc, {
@@ -25,6 +28,9 @@ export default defineConfig({
                     node.children.unshift(summary);
                     return node;
                 },
+            }],
+            [rehypePrettyCode, {
+                theme: 'one-dark-pro',
             }],
             [rehypeAutolinkHeadings, {
                 behavior: "prepend",

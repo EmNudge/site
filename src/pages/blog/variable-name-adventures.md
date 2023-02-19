@@ -135,7 +135,7 @@ What information from our knowledge of valid variable names can we use for our p
 
 Well firstly, [Zalgo text](https://zalgo.org/) is fine. Zalgo text is the result of combining a bunch of diacritics to extend text outside of its vertical container. It tends to look like ṱ̶͇̭̖̩̯͚̋͛͗̋h̶̳̳̫͕̄͆̈̍̓̀̉ͅi̷̥̩̼̒̏s̷̰̣̽̇̀͆̀͠ and it's both valid unicode and a valid identifier. 
 
-```javascript runnable
+```javascript title="zalgo (runnable)"
 const ṱ̶͇̭̖̩̯͚̋͛͗̋h̶̳̳̫͕̄͆̈̍̓̀̉ͅi̷̥̩̼̒̏s̷̰̣̽̇̀͆̀͠ = 32;
 
 console.log(ṱ̶͇̭̖̩̯͚̋͛͗̋h̶̳̳̫͕̄͆̈̍̓̀̉ͅi̷̥̩̼̒̏s̷̰̣̽̇̀͆̀͠); // > 32
@@ -145,14 +145,14 @@ Since diacritics are valid in variable names, there's nothing really stopping us
 
 We previously discussed invisible characters. What if we could create invisible variable names? Are these valid?
 
-```javascript runnable
+```javascript title="invisible variable (runnable)"
 const 󠀀= 42;
 // Uncaught SyntaxError: Invalid or unexpected token
 ```
 
 It doesn't seem so. And in case you were wondering, there is indeed a character there between `const` and `=`. If there wasn't, we would get a separate error.
 
-```javascript runnable
+```javascript title="just a space (runnable)"
 const = 42;
 // Uncaught SyntaxError: Unexpected token '='
 ```
@@ -172,7 +172,7 @@ function isValidVariableName(str) {
 
 [-"eval is evil"](http://linterrors.com/js/eval-is-evil) but we can make an exception for personal testing. Note that I'm specifically not using `let` since passing a space to `isValidVariableName` will return a false-positive if `let` were used. After all, the following is valid:
 
-```javascript runnable
+```javascript title="let as a variable (runnable)"
 let = 42;
 console.log(let + 8); // 50
 ```
@@ -245,7 +245,7 @@ The code takes a while to run, but we (at least on my machine) get an array of 3
 
 Yup. 3 spaces of varying widths. The canvas must have calculated these to be of zero width. Using these spaces, we can make some funky valid code.
 
-```javascript runnable
+```javascript title="allowed invisible variables (runnable)"
 const ﾠ= 42;
 const ㅤ= 58;
 console.log(ﾠ+ㅤ); // 100
