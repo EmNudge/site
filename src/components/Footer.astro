@@ -11,9 +11,13 @@ const icons = [
 ];
 ---
 
+<script type="text/javascript">
+    document.querySelector('.year').textContent = new Date().getFullYear();
+</script>
+
 <footer>
     <IconHolder icons={icons} />
-    <Copyright />
+    <p>© Copyright 2019 -<span class="year">{new Date().getFullYear()}</span> EmNudge</p>
 </footer>
 
 <style>
