@@ -1,5 +1,5 @@
 import type { MarkdownInstance } from "astro";
-
+import { readFile } from 'node:fs/promises';
 
 interface Post {
     draft?: true;
@@ -25,8 +25,9 @@ export async function getMinuteLengthFromFile(file: MdOrMdxFile | string) {
     }
 
     const filePath = typeof file === 'string' ? file : file.file;
-    const fileObj = await import(/* @vite-ignore */ `${filePath}?raw`);
-    return getMinuteLength(fileObj.default);
+
+    const fileText = await readFile(filePath, { encoding: 'utf8' })
+    return getMinuteLength(fileText);
 }
 
 export const getSlugs = async (postFiles: MdOrMdxFile[]): Promise<Post[]> => {
