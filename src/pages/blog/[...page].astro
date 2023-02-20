@@ -9,7 +9,6 @@ const posts = await getSlugs(await Astro.glob('./*.md*') as MdOrMdxFile[]);
 export async function getStaticPaths({ paginate }) {
   const allPosts = await Astro.glob('./*.md*') as MdOrMdxFile[];
   const sortedPosts = allPosts.sort((a, b) => +new Date(b.frontmatter.pubDate) - +new Date(a.frontmatter.pubDate));
-
   return paginate(sortedPosts, { pageSize: 25 })
 }
 

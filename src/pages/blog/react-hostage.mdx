@@ -1,0 +1,565 @@
+---
+pubDate: Feb 20, 2023
+title: React Is Holding Me Hostage
+summary: A love & hate relationship
+tags: javascript, coding
+layout: ../../layouts/Blog.astro
+draft: true
+---
+import Details from '../../components/article/Details.astro';
+import Image from '../../components/article/Image.astro';
+
+# Prologue
+
+It feels like this article would have been sacrilege only a few years ago. Under protection of this new found trendiness in React displeasure, I’d like to finally say my piece. 
+
+I don’t much care for React. And frankly I’d say the same is true for most. Even if you have yet to actualize your resentment.
+
+Well, I’ve been using React for quite long enough to say I’d prefer the company of another. I mean I’m practically a “React Developer” for Pete’s sake. My last company, this company, probably my next company. I can’t seem to avoid it. You’d think I’d stop caring so much after a while, but it just takes one look at the alternative to wonder why you ever stayed.
+
+I’ll tell ya. React is not all it’s cracked up to be.
+
+I mean, it **was**. Obviously. When React came on the scene, it all looked so elegant. Component code with a focus on [Locality of Behavior](https://htmx.org/essays/locality-of-behaviour/). Your DOM was inlined - sat right next to its events handlers. Your code looked modular. It was neat. 
+
+```js title="Class Component" 
+class MyComponent extends React.Component {
+  constructor() {
+    super();
+    this.setState({ num: 0 });
+  }
+
+  handleClick = () => 
+    this.setState({ num: this.state.num + 1});
+
+  render() {
+    return (
+      <button onClick={this.handleClick}>
+        Clicked {this.state.num} times!
+      </button>
+    )
+  }
+}
+```
+
+
+Tutorials were born, books were written, gurus were created. React had erected an empire faster than I’d seen done before. The developer experience was unparalleled, but better than that: it was obvious. The first to try a taste were the conference-goers, the thinkfluencers, the nerdiest of us. The library spread, how could it not? It was syntactically simple.
+
+So we all bought in.
+
+And then we were gifted hooks! Huzzah! To be honest, they were a bit foreign at first. But the clarity! The newfound elegance! Quicker to type, faster to iterate, easier to read. React was the correct choice.
+
+```jsx title="function Component" 
+const MyComponent = () => {
+  const [num, setNum] = useState(0);
+  const handleClick = () => setNum(num + 1);
+
+  return (
+    <button onClick={handleClick}>
+      Clicked {num} times!
+    </button>
+  )
+}
+```
+
+But then years pass and you start to notice the wealth of alternatives. Every month a new name. We scoff at these new fangled weekend projects! They’ll never catch on! React is battle-tested! React has molded itself perfectly into the hole we’d found previously! There is no room left for a new kind of spackle.
+
+And then people start speaking too positively. Too consistently. It feels like everybody is happy with their new things and less happy with the old thing. But those are just passing fads! Nothing like how React stood the test of time from its launch in 2015… and iteration in 2019… and constant evolution.
+
+You know, React doesn’t feel so stable anymore. I mean, maybe it’s the best choice, but who really knows? I thought we were done iterating, but I just keep getting swept along with some new change. Maybe there’s a better way I just haven’t seen yet! It can’t possibly hurt to look.
+
+And yet it does.
+
+# React & Hooks
+
+> Hooks created a lot of problems that simply do not exist in idiomatic JS; Difficult to optimize; Too heavily invested in runtime semantics which makes it difficult to evolve in a direction that make more use of compilers.
+> 
+> <cite>Evan You ([tweet](https://twitter.com/youyuxi/status/1621873050995261440))</cite>
+
+"Hooks" isn’t React, but honestly it might as well be. “React Hooks” is distinct from React itself - you can still use class components after all. However, it has taken over the React landscape to the point where Hooks seem inherent to React development. When I refer to React's model of things in this article I'm referring to “React Hooks”.
+
+I recently read someone's astonishment at how smoothly the React ecosystem's transition to Hooks was - how everyone was unilaterally in agreement on its benefit. This is not the past I remember. I remember quite a bit of a contention. Particularly on the orange site, but not exclusive to it.
+
+> I think I understand now where a lot of ideological resistance to React Hooks comes from.
+> 
+> (thread)
+>
+> <cite>Dan Abramov ([tweet](https://twitter.com/dan_abramov/status/1093694465917751298))</cite>
+
+I'm not necessarily siding with the anti-Hook crowd, but I do think a lot of their concerns were warranted. React Hooks existed within an environment controlled by class components. To allow this transition, React had to be fully compatible with class code. And it was!
+
+This compatibility combined with the composability and readability improvements ushered the industry as a whole to adopt Hooks quicker than one would predict.
+
+I do geniunely think Hooks brought both these improvements. While it's not universally agreed upon, I'm in the firm "composability over inheritance" camp and I think sharing behavior via functions is a drastic improvement over class inheritance. As for readability, the length of your code might not be directly correlated with legibility (see [Regex](/blog/perfect-rgb-regex), [code golfing](https://www.dwitter.net/)), React Hooks improve "[Locality of Behavior](https://htmx.org/essays/locality-of-behaviour/)".
+
+Your eyes do less scanning in smaller components. Event listeners, state transformations, and rendered output can have your eyes jumping up and down. React Hooks improve on this. I find function components both quicker and easier to read.
+
+# Readability v.s. Complexity
+
+But readability does not itself go hand-in-hand with complexity. Hooks lowered complexity via localizing behavior, but increased it via the abstractions it had to make.
+
+I think about this out-of-context quote from Amos a lot.
+> Or rather, it’s a half-truth that conveniently covers up the fact that, when you make something simple, you move complexity elsewhere.
+> 
+> <cite>Amos ([Simple is a Lie](https://fasterthanli.me/articles/i-want-off-mr-golangs-wild-ride#simple-is-a-lie))</cite>
+
+When we abstract over complex systems, we don't eliminate complexity, we move it. In our case the complex system is not [Front-End Development](https://twitter.com/wycats/status/930463710941872128), but React. 
+
+Hooks moves our mental model around to think about state transformations and synchronization instead of life-cycles. Or, it at least **attempts** to.
+
+```
+componentDidMount → useEffect(func, [])
+componentWillUnmount → useEffect(() => func, [])
+componentDidUpdate → useEffect(func, [props])
+```
+
+There were some sacrifices to performance brought out by this movement - its bandages visible as the Hooks [`useMemo`](https://beta.reactjs.org/reference/react/useMemo) and [`useCallback`](https://beta.reactjs.org/reference/react/useCallback). I don't mean to imply that memoization did not predate Hooks in React. It did ([`React.memo()`](https://beta.reactjs.org/reference/react/memo)). I'm saying we now have to memoize state initialization and transformations due to the improvements we've made in localizing behavior.
+
+There's a common community conversation on memoization in React. Much more so than other frameworks. Value caching is important in all frameworks, but Hooks force a lot of that decision making onto the component author, not the core library.
+
+We'll get more to that later. But before we continue, I'd like to take a moment to **discuss our mental model**. 
+
+There's the model you'll often read about in React's docs or YouTube videos and there's what is **really** happening. Or at least there exists a mental model more true to the actual behavior and one I think important to go over.
+
+# A Better Mental Model
+
+It's rare to see a conversation around React itself without seeing the term "VDOM" sprinkled about. [Dan Abramov doesn't seem to be a fan of this](https://twitter.com/dan_abramov/status/1066328666341294080). I agree with him here. The React VDOM should **not** be our focus. 
+
+*React is not its VDOM*. The VDOM is a *consequence* of React, not the cause of it. Although when discussing the immediate differences, it's something easy to point to.
+
+We should instead be focusing on how React components are meant to be "pure". 
+
+This term seems immediately misplaced when we remember that components have state. State seems directly contrary to the idea of a pure function - something that produces the same output for a given set of inputs no matter the amount of times or ways in which it is called.
+
+```js title="Pure functions"
+// pure function
+const getPlusOne = (num) => num + 1;
+
+// non-pure function
+const getDateNow = () => Date.now();
+```
+
+The trick is understanding that state in React is not stored on the component. 
+
+**<ins>State is yet another input.</ins>** 
+
+In the land of React, calls to `useState` are another way of receiving inputs. State lives on the React VDOM/state-tree. Components are called in a very ordered manner and `useState` will pop inputs off of a provided stack. 
+
+```jsx title="state & props = inputs"
+const Component = ({ color }) => {
+  const [num1] = useState(0); // receive next state argument
+  const [num2] = useState(0); // receive next state argument
+  const [num3] = useState(0); // receive next state argument
+
+  return <div>{num1} + {num2}</div>
+}
+```
+
+Both `state` and `props` are kinds of inputs. Calls to `setState` are signals to React's internals, not direct mutations. 
+
+These signals will in turn update its component *state-stack* and rerun a component. This component will then produce a certain output given this new input.
+
+<Image src="https://react-hostage.emnudge.dev/assets/state-tree-cf7b2df6.png" alt="state tree" />
+
+React components might as well be a black-box to React.
+
+Its internal behavior is not viewable. We can think of components <ins>themselves</ins> being reactive objects instead of individual pieces of state.
+
+That's commonly what people mean when they describe React's reactivity model as not being "fine grained".
+
+For this reason, React needs a way to not re-write the entire DOM on each update. It therefore runs through a diffing process on the new update to decide what DOM node needs updating. 
+
+Maybe none. Maybe all. We can't know without checking.
+
+<Image src="https://react-hostage.emnudge.dev/assets/component-signaling-92f6817c.png" lt="component signaling" />
+
+This is React. This relationship between the renderer and the reconciler. This "pure component" behavior. This lack of a direct connection between state and DOM updates.
+
+In React, components are real, the DOM is not.
+
+Perhaps this is why React makes such a good choice for [non-web renderers](https://reactnative.dev/). We can use React to describe UI and updates, but swap out the process by which these new updates are applied to our UI.
+
+As a web developer, this is not a great enough upside.
+
+# Finding Footguns
+
+The quickest obstacle you'll run into as someone new to React will be something like this.
+
+```jsx title="infinite loop"
+function MyComponent() {
+  const [num, setNumber] = useState(42);
+
+  // infinite loop
+  setNumber(n => n + 1);
+
+  return <div>{num}</div>
+}
+```
+
+Trying to make state updates at the top level of a component will result in an infinite loop. <ins>State updates rerun components</ins>. This doesn't mean a DOM update, but it does mean another state update which *will trigger another rerun which triggers a state update which triggers a rerun* and so on.
+
+You'll probably find that bug pretty quickly. Infinite loops like this aren't too difficult to spot. 
+
+Things get more complicated when you start using [React Context](https://beta.reactjs.org/learn/passing-data-deeply-with-context) and start signalling updates in a parent component. The render cascades. Maybe one component fetches some data, some component remounts, and you run your state update again, delayed by a few seconds.
+
+This pattern is common enough to be deserving of its own article, but this isn't an article on how to fix your React problems; it's a rant.
+
+# Components As Reactive Objects
+
+Let's continue the discussion on components existing as the reactive objects, not state. There are some consequences of this pattern.
+
+```jsx title="mock form component"
+const MyForm = () => {
+  const [text1, setText1] = useState('');
+  const [text2, setText2] = useState('');
+  const [text3, setText3] = useState('');
+
+  return <form>
+    <input type="text" value={text1} onInput={e => setText1(e.currentTarget.value)} />
+    <input type="text" value={text2} onInput={e => setText2(e.currentTarget.value)} />
+    <input type="text" value={text3} onInput={e => setText3(e.currentTarget.value)} />
+  </form>;
+}
+```
+
+I've oversimplified this component for the purposes of not causing you immense pain, but anyone who has worked with forms in React knows that they are often a lot more complex.
+
+I regularly see form components with 300+ lines.
+
+Involved is state transformations, validations, and error views. A lot of it is inherent to forms, not just React. React tends to complicate things, however.
+
+Remember, components are reactive, not state. When working with **controlled inputs**, we are causing a "re-render" on <ins>every key-press</ins> in our inputs. This means we're potentially running state computation code regardless of any of that state being touched.
+
+<div class="admonition"> But the VDOM fixes all that!</div>
+
+This seems to be a prevalant anti-anti-VDOM fallacy. The VDOM prevents extraneous **DOM updates**, not state computations. 
+
+Your component is a function that is quite literally being rerun each time we need to check for updates. While the DOM itself might not be touched, code is running that does not need to run.
+
+Imagine the following component.
+
+```jsx title="custom input wrapper"
+const MyInput = ({ label, value, onInput, isError, errorText }) => {
+  const labelText = label ? toTitleCase(label) : 'Text Input';
+
+  return <>
+    <label>
+      <span>{labelText}</span>
+      <input value={value} onInput={onInput} />
+    </label>
+    {isError && <div className="error">{errorText}</div>}
+  <>;
+}
+```
+
+A more realistic example, I think. We've decided to fix label inputs provided to us by transforming them into "Title Case".
+
+For now, it's fine. I've decided not to memoize anything because the computation seems simple enough.
+
+But what if things changed?
+
+What if `toTitleCase` grew in complexity? Perhaps, over time, we slowly added on features to create the ultimate Title Caser™️!
+
+```jsx title="form with new custom input"
+const MyForm = () => {
+  const [text1, setText1] = useState('');
+  const [text2, setText2] = useState('');
+  const [text3, setText3] = useState('');
+
+  return <form>
+    <MyInput value={text1} onInput={e => setText1(e.currentTarget.value)} />
+    <MyInput value={text2} onInput={e => setText2(e.currentTarget.value)} />
+    <MyInput value={text3} onInput={e => setText3(e.currentTarget.value)} />
+  </form>;
+}
+```
+
+On every key stroke we have now rerun `toTitleCase` in every component. Our use of `useState` has made our entire form component reactive to changes in any of its states!
+
+Oh no! 
+
+Or.... I mean is that a problem? Browsers are pretty fast. Hardware is pretty fast. Maybe it's not an issue.
+
+Well, it isn't until it is.
+
+Incrementally adding computations in different places won't cause much harm. But keep doing it and eventually you've created a sluggish experience. Now you must face the problem that there is no single source of performance pains - it's everywhere. Fixing this requires a lot more work than you'd like to expend.
+
+<div class="admonition">
+
+Aren't you forgetting about `useMemo`?
+</div >
+
+Ah, yes. That...
+
+# Memoization
+
+I sure wish there was a confident consesus on this. For every pro memoization article there's another against it.
+
+You see, memoization has a performance cost. 
+
+> Dan Abramov [has repeatedly pointed out that memoization does still incur the cost of comparing props](https://twitter.com/dan_abramov/status/1095661142477811717), and that there are many cases where the memoization check can never prevent re-renders because the component always receives new props. As an example, [see this Twitter thread from Dan](https://twitter.com/dan_abramov/status/1083897065263034368):
+> 
+> <cite>Mark Erikson ([A (Mostly) Complete Guide to React Rendering Behavior](https://blog.isquaredsoftware.com/2020/05/blogged-answers-a-mostly-complete-guide-to-react-rendering-behavior/#memoize-everything))</cite>
+
+That comment was in reference to `React.memo()`, which is a slightly different form of memoization in React.
+
+```jsx
+const MyInputMemoized = React.memo(MyInput);
+```
+
+Memoizing entire components stops the cascade of a render from needing to check its children. This feels like a sensible default, but the React team seems to think the performance cost of comparing props outweighs the average performance costs of letting a massive render cascade take place.
+
+I figure that's probably wrong. [Mark seems to agree](https://blog.isquaredsoftware.com/2020/05/blogged-answers-a-mostly-complete-guide-to-react-rendering-behavior/#memoize-everything:~:text=I%27ve%20had%20some%20public%20discussion%20with%20Dan%20about%20this%20on%20Twitter.%20I%20personally%20think%20it%27s%20likely%20that%20using%20React.memo()%20on%20a%20widespread%20basis%20would%20likely%20be%20a%20net%20gain%20in%20overall%20app%20rendering%20perf).
+
+It also makes the type look ever so uglier. Most codebases I've looked at tend to avoid `React.memo()` until absolutely certain it will create a significant improvement in performance.
+
+Another argument against memoization is that it is easy for a `React.memo()` to be ineffective when the parent code isn't written correctly.
+
+```jsx title="mock React.memo() example"
+// Memoifying to prevent re-renders
+const Child = React.memo(({ user }) => <div>{user.name}</div>);
+
+function Parent2() {
+  const user = { name: 'John' };
+  // re-renders anyway
+  return <Child user={user} />;
+}
+```
+
+We're comparing props in the fastest way possible - shallow equality. This appears like a new prop on each re-render. Since re-renders are common, we need to be aware of this.
+
+Components being the reactive "primitives" here, we can fix some memoization issues by [moving state through components](https://overreacted.io/before-you-memo/).
+
+I don't particuarly enjoy this kind of discussion when I'm trying to create a product.
+
+<div class="admonition">
+
+Yeah I said `useMemo()`, not `React.memo()`
+</div>
+
+Fair enough. Let's talk a bit about that.
+
+We fall into the same performance considerations with `useMemo()`. We have a cost of comparing "dependencies" now, instead of props.
+
+```js title="mock memoization example"
+const value = useMemo(() => {
+  const items = dataList
+    .map(item => [item, placeMap.get(item)])
+    .filter(([item, place]) => itemSet.has(place));
+
+  return pickItem(items, randomizer);
+}, [dataList, placeMap, itemSet, pickItem, randomizer]);
+```
+
+Don't spend too much time reading that. It's just nonsense for demonstration purposes.
+
+But did you notice something weird? There are 2 discrete state transformations. One is a list operation and the other calls some function on the resulting data.
+
+We've accidentally memoized **too much**! What happens if `randomizer` changes? We rerun the whole function! We should have written this:
+
+```js title="memoizing properly"
+const items = useMemo(() => {
+  return dataList
+    .map(item => [item, placeMap.get(item)])
+    .filter(([item, place]) => itemSet.has(place))
+}, [dataList, placeMap, itemSet]);
+
+const value = useMemo(() => {
+  return pickItem(items, randomizer)
+}, [items, pickItem, randomizer]);
+```
+
+Now our values are more specific. Changes to `randomizer` will not rerun our `.map` and `.filter`, only the `pickItem` call.
+
+<ins>The day is saved!</ins> ...I think? 
+
+I tend to automatically memoize data when I see a list operation. Is that the qualifier? I don't know. I just do it.
+
+The most notable issue with this memoization is that it's **ugly**. I don't know that I'd call it a "code smell" (as I've read before), but it definitely might make code harder to read.
+
+Memoization <ins>might</ins> help <ins>sometimes</ins>, but only if we're careful in both the component's usage and composition.
+
+It's not really that memoization never solves problems, but that it can feel frustrating to think about when and where to memoize. The *ergonomics* are poor.
+
+# On Pedagogy
+
+And that's what I'd love to focus on. I've made a hobby out of researching programming pedagogy over the years. I've been focusing quite a lot on the question of
+
+<div class="admonition">"How do you most effectively communicate programming concepts?"</div>
+
+I don't think I have an answer just yet, but I know how you do the opposite.
+
+React has traditionally been taught as this simple component system where state is connected to UI and updates over time.
+
+I've had the pleasure of teaching quite a few people React. People relatively new to frameworks, to React, or to coding in general. React isn't easy. And it's made even more difficult by the obfuscation in teaching materials.
+
+These concepts, these mental models we've been going over - they might seem trivial to you if you've been working with React for long enough. It isn't for most people. 
+
+It is not obvious that your component re-renders on state updates. 
+
+How would that even work? There's no name to go along with each state usage. How does it remember?
+
+Yes, sure, the state is kept on a stack on the VDOM in some sense and that's why the ordering is important and states are also inputs to a component and state mutations are signaling to a tree which calls the function again to diff the output, but did you **know that**? 
+
+Did you find that out over time? Maybe you read an article, watched a video. Or maybe you're significantly smarter than me. I don't imagine I set a high bar.
+
+React, when compared to its contemporary alternatives, presents the complexity of state updates as an active <ins>obstacle</ins> in development.
+
+And these materials, required for ease of development, are taught mostly as [supplementary](https://overreacted.io/a-complete-guide-to-useeffect/) or [advanced](https://blog.isquaredsoftware.com/2020/05/blogged-answers-a-mostly-complete-guide-to-react-rendering-behavior/) [topics](https://www.youtube.com/watch?v=KJP1E-Y-xyo).
+
+I imagine the new [React docs](https://beta.reactjs.org/) will attempt to put a change to that. I sure hope it does. I also hope people realize how many beginners prefer to get their information from videos as opposed to long tutorials.
+
+# Fixing React
+But I want to revisit that forms discussion.
+
+The pain has been felt long enough for there to be some change in form best practices. Uncontrolled inputs are all the rage these days.
+
+Component updates come from state updates. Controlled inputs force a state update on each form interaction. If we just let the form do whatever, we only need to update on submission and validation steps.
+
+This pattern has been popularized with form libraries like [Formik](https://formik.org/) and [react-hook-form](https://react-hook-form.com/). We can transform
+
+```jsx title="form with vanilla React"
+const [firstName, setFirstName] = useState('');
+
+const onSubmit = data => console.log(data);
+
+return <form onSubmit={handleSubmit(onSubmit)}>
+  <Input 
+    name="firstName" 
+    value={firstName} 
+    onInput={e => setFirstName(e.currentTarget.value)} 
+  />
+</form>
+```
+into
+```jsx title="form with react-hook-form"
+const { control, handleSubmit } = useForm({
+  defaultValues: { firstName: '' }
+});
+
+const onSubmit = data => console.log(data);
+
+return <form onSubmit={handleSubmit(onSubmit)}>
+  <Controller
+    name="firstName"
+    control={control}
+    render={({ field }) => <Input {...field} />}
+  />
+</form>
+```
+
+Yes, we've added some complexity, but we helped with state updates affecting more of the component than we'd like.
+
+This brings up an interesting point however. When we look at the React ecosystem, we'll find a whole lot of libraries that exist for the express purpose of fixing React's shortcomings.
+
+When you see a library advertised as a 100x speed and ergonomics improvement, what they're doing is **avoiding** React.
+
+> When I build libraries for React, ironically, I don't really use hooks like useState, useReducer, etc. 
+> 
+> One of the best perks (and footguns) of managing your state *outside* of react is that you get to have full control over when a component should rerender.
+>
+> <cite>Tanner Linsley ([tweet](https://twitter.com/tannerlinsley/status/1504854824952610818))</cite>
+
+Which, for the record, I am not against. It's just abstractly funny to watch the ecosystem of a UI renderer work so tirelessly to keep using it while avoiding every part of it.
+
+And on the state discussion - we've got a couple of friends joining us! We've got [react-redux](https://react-redux.js.org/), [@xstate/react](https://xstate.js.org/docs/recipes/react.html), [Zustand](https://github.com/pmndrs/zustand), [Jotai](https://jotai.org/), [Recoil](https://recoiljs.org/), and more!
+
+The state discussion in general tends to get depressing because they're usually papering over some form of *React Context*. We must abide by React's rules to trigger UI updates, so there is some form of cascading render effect for all the aforementioned libraries.
+
+React components cannot share state directly. Since state lives on the tree and we only have indirect access to this tree, we must climb the tree up and down instead of jumping from branch to branch. When we do this sort of climb, we can touch things we weren't meant to.
+
+```jsx title="Jotai example"
+const countAtom = atom(0);
+const doubleCountAtom = atom(get => get(countAtom) * 2);
+
+const MyComponent = () => {
+  const [count, setCount] = useAtom(countAtom);
+  const doubleCount = useAtomValue(doubleCountAtom);
+
+  return <button onClick={() => setCount(count + 1)}>
+    {count} x 2 = {doubleCountAtom}
+  </button>;
+}
+```
+
+We've *cleverly* set up some derived state using [Jotai](https://jotai.org/docs/core/use-atom), but plugging it into React means we're back to component-based reactivity.
+
+You can add "fine-grained" reactive systems into React without fixing much.
+
+It needs to be integrated on the framework level.
+
+# Fine-Grained Reactivity
+
+What would framework-integrated fine-grained reactivity look like? Probably something like [Solid.js](https://www.solidjs.com/)
+
+```jsx title="solid.js example"
+function Counter() {
+  const [count, setCount] = createSignal(0);
+
+  setInterval(() => setCount(count() + 1), 1000);
+
+  return <div>Count: {count()}</div>;
+}
+```
+
+Solid is fun to bring up in React discussions because its API looks rather similar to React. The major exception being we don't need to wrap code like this in a `useEffect`. 
+
+In React, this kind of code would result in a nasty bug where we create a new call to `setInterval` every second. 
+
+For frameworks that don't have component-based reactivity, the distinction between components kind of fades away. They are useful for setup and UI generation. The state is all that truly matters during the lifetime of your application.
+
+Frameworks like [Preact](https://preactjs.com/guide/v10/signals/), [Vue](https://twitter.com/youyuxi/status/1604727772240191488), [Angular](https://dev.to/this-is-angular/i-changed-my-mind-angular-needs-a-reactive-primitive-n2g), [Marko](https://dev.to/ryansolid/marko-compiling-fine-grained-reactivity-4lk4), [Solid](https://www.solidjs.com/), and [Svelte](https://svelte.dev/) have all adopted some form of fine-grained reactivity. They're called signals, stores, or observables. The semantic differences might be important, but I'm going to refer to the concept as a <ins>*signal*</ins>.
+
+```js title="reactive data stores (signals)"
+const [headerEl, divEl, spanEl] = getEls();
+
+const nameSignal = signal('John');
+
+nameSignal.subscribe(name => headerEl.textContent = `Name: ${name}`);
+nameSignal.subscribe(name => divEl.textContent = name);
+nameSignal.subscribe(name => spanEl.textContent = `"${name}"`);
+
+// somewhere in our application
+nameSignal.set('Jane')
+```
+
+In this example, we have signals - pieces of state that are aware of their "subscribers". When we change this state's value, the signal will "inform" its subscribers of an update via the function passed in.
+
+We don't need to consult some supreme state tree to diff UI outputs before performing updates. We can directly connect state to UI changes.
+
+Signals can inform other signals as well. Our computed state machines can still exist, just with extraordinarily better ergonomics.
+
+In the same sense of [Rustaceans](https://rustaceans.org/) arguing against any new language without memory safety, I'd oppose any new framework without signals.
+
+We're finding similar fights in the WASM wars. [Yew](https://yew.rs/) launched and still remains as the most prominent Rust frontend framework, but it relies on a React-like approach. It only [barely beats React in performance](https://krausest.github.io/js-framework-benchmark/current.html) while signal-based Rust frameworks like [Leptos](https://github.com/leptos-rs/leptos) and [Sycamore](https://sycamore-rs.netlify.app/) cruise past Angular and Svelte.
+
+# Conclusions On Issues
+
+Despite the last paragraph, I don't think just looking at framework benchmarks is enough. 
+
+React suffers from poor ergonomics.
+
+It is far easier to mess up in React than it is in Svelte. Sure, hyper-optimized React is only marginally worse than every other framework, but I don't write hyper-optimized code. So in practice, the React code I look at tends to have a dozen or so performance issues per file, ignored for the sake of sanity.
+
+React was great when it launched! But there are better options now; almost objectively so.
+
+So why are we still using React?
+
+1. It's battle tested
+    - Large companies have proven it can be productively used.
+    - It's easier to make a decision when you see successful produts using a specific technology.
+2. Evolved ecosystem
+    - Technically true, but half the ecosystem exists either as React wrappers for vanilla libraries or as React bandage packages.
+    - A different reactivity model means it's often easier to plug in 3rd party libraries outside of React.
+3. Bigger workforce
+    - Hard to disagree with this one. If you want a job, your best bet is React. If you want to hire, your best bet is React.
+    - While I think it is often <ins>easier</ins> to teach other frameworks, this only makes sense if you have the kind of time and bandwidth to train your engineers.
+4. It’s evolving
+    - It’s hard to change when the "fix" is right around the corner.
+    - Evolutions exist mostly in the "Fullstack" space, but every new product is presented as the solution to all of React's ills.
+5. It's hard to leave
+    - Migration costs are not worth the perceived benefit.
+    - Its reactivity model is unique enough that migrating to another framework takes a lot of time for what isn't immediately obvious as an improvement.
+
+And so my current job is React. My next job will be React. The one after might as well.
+
+[*tant pis*](https://en.wiktionary.org/wiki/tant_pis)

@@ -2,6 +2,7 @@ import type { MarkdownInstance } from "astro";
 
 
 interface Post {
+    draft?: true;
     pubDate: string;
     title: string;
     summary: string;
@@ -29,11 +30,13 @@ export async function getMinuteLengthFromFile(file: MdOrMdxFile | string) {
 }
 
 export const getSlugs = async (postFiles: MdOrMdxFile[]): Promise<Post[]> => {
-    const postPromises = postFiles.map(async post => ({ 
-        ...post.frontmatter,
-        minuteLength: await getMinuteLengthFromFile(post),
-        url: post.url
-    }));
+    const postPromises = postFiles
+        .filter(post => !post.frontmatter.draft)
+        .map(async post => ({ 
+            ...post.frontmatter,
+            minuteLength: await getMinuteLengthFromFile(post),
+            url: post.url
+        }));
 
     const posts = await Promise.all(postPromises)
     posts.sort(sortDate)
