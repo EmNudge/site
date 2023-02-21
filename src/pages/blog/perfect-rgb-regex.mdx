@@ -137,23 +137,26 @@ To avoid doing that, we can add `?:` to the start of a group. Actually, the `?` 
 
 And with that we have a number to save for later. Let’s build a test regex using our new number as an example.
 
-```jsx
+```js title="Using String.raw (runnable)"
+const numRe = /-?(?:\d+|\d*\.\d+)/.source;
+
 const rgbRe = String.raw`rgb\(${numRe}, ${numRe}, ${numRe}(?:, ${numRe})?\)`;
 
-const finalRegex = new RegExp(rgbRe);
+console.log(new RegExp(rgbRe).toString());
 ```
 
 `String.raw` with [tagged template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates) is another way to avoid escaping slashes. 
 
 Let’s also fix the “variable spaces issue” with a custom function and replace `String.raw` entirely.
 
-```jsx
+```js title="replacing with \s* (runnable)"
 const numRe = /-?(?:\d+|\d*\.\d+)/.source;
 
 const createRe = (...args) => 
 	new RegExp(String.raw(...args).replace(/\s+/g, '\\s*'));
 
 const finalRegex = createRe`rgb\( ${numRe} , ${numRe} , ${numRe} (?:, ${numRe})? \)`;
+console.log(finalRegex.toString());
 ```
 
 <Details title="Do I even have to ask anymore?">
@@ -178,7 +181,7 @@ Commas are well and good, but we did mention the `rgb(num num num / alpha)` synt
 
 It might feel cool to get all clever immediately, but it’s probably better to build this up from a naive solution.
 
-```jsx
+```js title="spaces or commas (runnable)"
 const numRe = /-?(?:\d+|\d*\.\d+)/.source;
 
 const createRe = (...args) => 
@@ -188,6 +191,7 @@ const commaRgbRe = String.raw`${numRe} , ${numRe} , ${numRe} (?:, ${numRe})?`;
 const spaceRgbRe = String.raw`${numRe}\s+${numRe}\s+${numRe} (?:/ ${numRe})?`;
 
 const finalRegex = createRe`rgb\( (?:${commaRgbRe}|${spaceRgbRe}) \)`;
+console.log(finalRegex.toString());
 ```
 
 <Details title="Wait why are we adding back in `\s+` again?">
@@ -221,7 +225,7 @@ rgb(100% 100 100%)
 
 If one of the 3 numbers is a percentage, the others must be as well. The alpha value can be either one, regardless of the other 3. Let’s do another refactor.
 
-```jsx
+```js title="fix alphas (runnable)"
 const numRe = /-?(?:\d+|\d*\.\d+)/.source;
 
 const createRe = (...args) => 
@@ -237,6 +241,7 @@ const spaceRgbRe = String.raw`
 `;
 
 const finalRegex = createRe`rgb\( (?:${commaRgbRe}|${spaceRgbRe}) \)`;
+console.log(finalRegex.toString());
 ```
 
 The main change is just grouping our percentages together so there’s no mixing with those plain numbers. I also snuck in a fix for a different problem. The regex `rgb(123)` isn’t valid, but `rgb(1%2%3%)` is perfectly fine. We only need spaces when things aren’t distinguishable. 
@@ -314,7 +319,7 @@ We are forbidding this entire regex continuing if it can conceivably be read as 
 
 Making our whole regex look like
 
-```jsx
+```js title="final output (runnable)"
 const numRe = /-?(?:\d+|\d*\.\d+)/.source;
 
 const createRe = (...args) => 
@@ -339,6 +344,7 @@ const finalRegex = createRe`rgb\(
 	(?!\d+(?:\.|\s*-?)\d+\.\d+)
 	(?:${commaRgbRe}|${spaceRgbRe})
 \)`;
+console.log(finalRegex.toString());
 ```
 
 Which has the output of… 385 characters
@@ -372,7 +378,7 @@ blockquote {
 
 CSS variables are weird in that they don't need to contain valid anything. We can stick strings in there. Maybe we want to have a CSS Variable used in some "content" property! So the CSS Spec lets anything in there and so anything can come out.
 
-It's hard to validate whether something like `rgb(var(--my-color))` is valid without parsing, so it seems that the presence of something that even **looks** like a CSS variable renders the entire property as "valid". We know this because `CSS.supports` tells us so.
+It's hard to validate whether something like `rgb(var(--my-color))` is valid without parsing, so it seems that the presence of something that even **looks** like a CSS variable renders the entire property as "valid". We know this because [`CSS.supports` ](https://developer.mozilla.org/en-US/docs/Web/API/CSS/supports#examples) tells us so.
 
 ```js
 const isValid = CSS.supports('color', 'fds 232 var(--d, sjh 12 e1e23j dwe 3dhsc');

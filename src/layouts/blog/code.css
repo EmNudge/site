@@ -16,17 +16,22 @@ div[data-rehype-pretty-code-fragment] pre {
     margin: 0;
 }
 
+code {
+    border-radius: 4px;
+    padding: 2px 4px;
+    color: var(--foreground);
+    background: #fff2;
+}
+
 pre code {
     background: none;
     padding: 0;
     color: #eee;
-}
-
-code {
     border-radius: 4px;
     padding: 2px 4px;
-    color: var(--foreground)
+    color: var(--foreground);
 }
+
 
 [data-rehype-pretty-code-fragment] {
     position: relative;
