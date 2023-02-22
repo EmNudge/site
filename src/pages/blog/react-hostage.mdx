@@ -88,13 +88,13 @@ I'm not necessarily siding with the anti-Hook crowd, but I do think a lot of the
 
 This compatibility combined with the composability and readability improvements ushered the industry as a whole to adopt Hooks quicker than one would predict.
 
-I do geniunely think Hooks brought both these improvements. While it's not universally agreed upon, I'm in the firm "composability over inheritance" camp and I think sharing behavior via functions is a drastic improvement over class inheritance. As for readability, the length of your code might not be directly correlated with legibility (see [Regex](/blog/perfect-rgb-regex), [code golfing](https://www.dwitter.net/)), React Hooks improve "[Locality of Behavior](https://htmx.org/essays/locality-of-behaviour/)".
+I do geniunely think Hooks brought both these improvements. While it's not universally agreed upon, I'm in the firm "composability over inheritance" camp and I think sharing behavior via functions is a drastic improvement over class inheritance. As for readability, while the length of your code might not be directly correlated with legibility (see [Regex](/blog/perfect-rgb-regex), [code golfing](https://www.dwitter.net/)), React Hooks improve "[Locality of Behavior](https://htmx.org/essays/locality-of-behaviour/)".
 
-Your eyes do less scanning in smaller components. Event listeners, state transformations, and rendered output can have your eyes jumping up and down. React Hooks improve on this. I find function components both quicker and easier to read.
+Your eyes do less scanning in smaller components. Event listeners, state transformations, and rendered output can have your eyes jumping up and down. React Hooks improve on this. I find function components both quicker to write and easier to read.
 
 # Readability v.s. Complexity
 
-But readability does not itself go hand-in-hand with complexity. Hooks lowered complexity via localizing behavior, but increased it via the abstractions it had to make.
+But readability (at least in the immediate sense) does not itself go hand-in-hand with complexity. Hooks lowered complexity via localizing behavior, but increased it via the abstractions it had to make.
 
 I think about this out-of-context quote from Amos a lot.
 > Or rather, it’s a half-truth that conveniently covers up the fact that, when you make something simple, you move complexity elsewhere.
@@ -377,7 +377,9 @@ The most notable issue with this memoization is that it's **ugly**. I don't know
 
 Memoization <ins>might</ins> help <ins>sometimes</ins>, but only if we're careful in both the component's usage and composition.
 
-It's not really that memoization never solves problems, but that it can feel frustrating to think about when and where to memoize. The *ergonomics* are poor.
+Caching is not a field of complexity exclusive to React, but we're forced to deal with it manually far more often than we'd otherwise need to.
+
+Memoization solves problems, but that it can feel frustrating to think about when and where to memoize. The *ergonomics* are poor.
 
 # On Pedagogy
 
@@ -527,6 +529,19 @@ We don't need to consult some supreme state tree to diff UI outputs before perfo
 
 Signals can inform other signals as well. Our computed state machines can still exist, just with extraordinarily better ergonomics.
 
+You could [build your own framework in an hour](https://youtu.be/4FU7vRQUOTY?t=1511) using reactive primitives as a base and have code considerably better than it would otherwise be using another reactivity model.
+
+```js title="reactive mini-framework"
+const num1 = signal(0), num2 = signal(0);
+const total = computed(() => num1.value + num2.value);
+
+const inputEl1 = create('input').bind('value', num1);
+const inputEl2 = create('input').bind('value', num2);
+const outputEl = create('input').bind('textContent', total);
+
+get('body').append(inputEl1, ' + ', inputEl2, ' = ', outputEl);
+```
+
 In the same sense of [Rustaceans](https://rustaceans.org/) arguing against any new language without memory safety, I'd oppose any new framework without signals.
 
 We're finding similar fights in the WASM wars. [Yew](https://yew.rs/) launched and still remains as the most prominent Rust frontend framework, but it relies on a React-like approach. It only [barely beats React in performance](https://krausest.github.io/js-framework-benchmark/current.html) while signal-based Rust frameworks like [Leptos](https://github.com/leptos-rs/leptos) and [Sycamore](https://sycamore-rs.netlify.app/) cruise past Angular and Svelte.
@@ -539,7 +554,7 @@ React suffers from poor ergonomics.
 
 It is far easier to mess up in React than it is in Svelte. Sure, hyper-optimized React is only marginally worse than every other framework, but I don't write hyper-optimized code. So in practice, the React code I look at tends to have a dozen or so performance issues per file, ignored for the sake of sanity.
 
-React was great when it launched! But there are better options now; almost objectively so.
+React was great when it launched! But there are better options now; almost objectively so. While improvements are made over time, I don't see React changing so fundamentally how it works so as to become *tolerable* again.
 
 So why are we still using React?
 
