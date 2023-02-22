@@ -7,9 +7,9 @@ import Stub from '../components/ArticleStub.astro';
 
 import { getVideos } from '../data/videos';
 import { reads } from '../data/bookmarks';
-import { BlogPostFile, getSlugs } from '../data/blogs';
+import { MdOrMdxFile, getSlugs } from '../data/blogs';
 
-const posts = await getSlugs(await Astro.glob('./blog/*.md') as BlogPostFile[]);
+const posts = await getSlugs(await Astro.glob('./blog/*.md*') as MdOrMdxFile[]);
 const videos = await getVideos();
 ---
 
