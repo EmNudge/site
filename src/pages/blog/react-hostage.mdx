@@ -7,6 +7,7 @@ layout: ../../layouts/Blog.astro
 ---
 import Details from '../../components/article/Details.astro';
 import Image from '../../components/article/Image.astro';
+import Tweet from '../../components/article/Tweet/index.astro';
 
 # Prologue
 
@@ -70,19 +71,27 @@ And yet it does.
 
 # React & Hooks
 
-> Hooks created a lot of problems that simply do not exist in idiomatic JS; Difficult to optimize; Too heavily invested in runtime semantics which makes it difficult to evolve in a direction that make more use of compilers.
-> 
-> <cite>Evan You ([tweet](https://twitter.com/youyuxi/status/1621873050995261440))</cite>
+<Tweet
+  nickname="Evan You"
+  handle="youyuxi"
+  profile="https://pbs.twimg.com/profile_images/1630207820359700480/a3pHtm6T_400x400.jpg"
+  date="Feb 4, 2023"
+  content="Hooks created a lot of problems that simply do not exist in idiomatic JS; Difficult to optimize; Too heavily invested in runtime semantics which makes it difficult to evolve in a direction that make more use of compilers."
+  link="https://twitter.com/youyuxi/status/1621873050995261440"
+/>
 
 "Hooks" isn’t React, but honestly it might as well be. “React Hooks” is distinct from React itself - you can still use class components after all. However, it has taken over the React landscape to the point where Hooks seem inherent to React development. When I refer to React's model of things in this article I'm referring to “React Hooks”.
 
 I recently read someone's astonishment at how smoothly the React ecosystem's transition to Hooks was - how everyone was unilaterally in agreement on its benefit. This is not the past I remember. I remember quite a bit of a contention. Particularly on the orange site, but not exclusive to it.
 
-> I think I understand now where a lot of ideological resistance to React Hooks comes from.
-> 
-> (thread)
->
-> <cite>Dan Abramov ([tweet](https://twitter.com/dan_abramov/status/1093694465917751298))</cite>
+<Tweet
+  nickname="дэн"
+  handle="dan_abramov"
+  profile="https://pbs.twimg.com/profile_images/1545194945161707520/rqkwPViA_400x400.jpg"
+  date="Feb 7, 2019"
+  content="I think I understand now where a lot of ideological resistance to React Hooks comes from.\n\n(Thread)"
+  link="https://twitter.com/dan_abramov/status/1093694465917751298"
+/>
 
 I'm not necessarily siding with the anti-Hook crowd, but I do think a lot of their concerns were warranted. React Hooks existed within an environment controlled by class components. To allow this transition, React had to be fully compatible with class code. And it was!
 
@@ -454,11 +463,14 @@ This brings up an interesting point however. When we look at the React ecosystem
 
 When you see a library advertised as a 100x speed and ergonomics improvement, what they're doing is **avoiding** React.
 
-> When I build libraries for React, ironically, I don't really use hooks like useState, useReducer, etc. 
-> 
-> One of the best perks (and footguns) of managing your state *outside* of react is that you get to have full control over when a component should rerender.
->
-> <cite>Tanner Linsley ([tweet](https://twitter.com/tannerlinsley/status/1504854824952610818))</cite>
+<Tweet
+  nickname="Tanner Linsley"
+  handle="tannerlinsley"
+  profile="https://pbs.twimg.com/profile_images/1164219021283094530/ACRln2kL_400x400.jpg"
+  date="Mar 18, 2022"
+  content="When I build libraries for React, ironically, I don't really use hooks like useState, useReducer, etc. \n\nOne of the best perks (and footguns) of managing your state *outside* of react is that you get to have full control over when a component should rerender."
+  link="https://twitter.com/tannerlinsley/status/1504854824952610818"
+/>
 
 Which, for the record, I am not against. It's just abstractly funny to watch the ecosystem of a UI renderer work so tirelessly to keep using it while avoiding every part of it.
 

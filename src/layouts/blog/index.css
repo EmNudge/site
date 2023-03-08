@@ -77,3 +77,7 @@ article.with-audio p.speaking:before {
 article > ol > li, article > ul > li {
     margin-bottom: 1.5rem;
 }
+
+article strong {
+    color: salmon;
+}

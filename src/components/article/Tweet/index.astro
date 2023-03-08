@@ -1,0 +1,174 @@
+---
+import { profile as profilePic, toolbar } from "./icons.js";
+
+// broken:
+// /ɜ́mnʌdʒ/·
+const {
+    nickname = "UNKNOWN",
+    handle = "UNKNOWN",
+    date = "Dec 25, 2018",
+    profile = profilePic,
+    stats = {
+        comments: 0,
+        retweets: 0,
+        favorites: 0,
+    },
+    content = "",
+    link = "#",
+} = Astro.props;
+
+const tweetHtml = content.replaceAll("\\n", "<br>");
+
+const authorLink = 'https://twitter.com/' + handle;
+---
+
+<div class="tweet">
+    <div class="content">
+        <div class="header">
+            <div class="profile">
+                <a
+                    href={authorLink}
+                    class="profile-pic"
+                    style={`background-image: url(${profile})`} />
+            </div>
+            <div class="meta">
+                <a href={authorLink} class="nickname">{nickname}</a>
+                <a href={authorLink} class="handle">@{handle}</a>
+            </div>
+        </div>
+
+        <a class="text" href={link} set:html={tweetHtml} />
+
+        <div class="date">{date}</div>
+
+        <div class="icons">
+            <span>
+                <svg viewBox="0 0 24 24" set:html={toolbar.commentSVG} />
+                <span>{stats.comments || ""}</span>
+            </span>
+            <span>
+                <svg viewBox="0 0 24 24" set:html={toolbar.retweetSVG} />
+                <span>{stats.retweets || ""}</span>
+            </span>
+            <span>
+                <svg viewBox="0 0 24 24" set:html={toolbar.favoriteSVG} />
+                <span>{stats.favorites || ""}</span>
+            </span>
+            <svg viewBox="0 0 24 24" set:html={toolbar.infoSVG} />
+        </div>
+    </div>
+</div>
+
+<style>
+    .tweet {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+            Roboto, Ubuntu, "Helvetica Neue", sans-serif;
+        --black-col: rgb(20, 23, 26);
+        --faded-col: rgb(101, 119, 134);
+        color: var(--black-text);
+        background: white;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-gap: 10px;
+        max-width: 600px;
+        margin: 1rem auto;
+        transition: 0.25s;
+        padding: 1rem 2rem;
+        border: 1px solid #f0f0f0;
+        border-radius: 0.5rem;
+    }
+    .tweet:hover {
+        background: #f5f8fa;
+    }
+    .tweet :global(svg) {
+        fill: var(--faded-col);
+    }
+
+    .profile-pic {
+        display: block;
+        height: 4rem;
+        width: 4rem;
+        background-size: cover;
+        border-radius: 50%;
+        transition: 0.15s;
+    }
+    .profile-pic:hover {
+        filter: brightness(0.85);
+    }
+
+    .content {
+        display: grid;
+        grid-template-rows: auto auto auto;
+        grid-gap: 1rem;
+    }
+
+    .header {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-gap: 1rem;
+    }
+    .meta {
+        display: grid;
+    }
+    .meta .nickname {
+        font-weight: bold;
+        opacity: 1;
+        color: inherit;
+        text-decoration: none;
+    }
+    .meta .nickname:hover {
+        text-decoration: underline;
+    }
+    .meta .handle {
+        color: var(--faded-col);
+        margin-top: -0.5rem;
+        text-decoration: none;
+    }
+    .name:hover .nickname,
+    .date:hover {
+        text-decoration: underline;
+    }
+    .arrow :global(svg) {
+        height: 1em;
+    }
+
+    .icons {
+        margin-top: 5px;
+        display: flex;
+        flex-shrink: 0;
+        align-items: center;
+        justify-content: space-around;
+    }
+    .icons :global(svg) {
+        width: 1.25em;
+    }
+    .icons > span {
+        color: var(--faded-col);
+        min-width: 40px;
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-gap: 10px;
+        align-items: center;
+    }
+
+    .text {
+        line-height: 1.3125;
+        text-decoration: none;
+        color: inherit;
+    }
+
+    .date {
+        opacity: 0.5;
+        font-size: 1rem;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        .tweet {
+            background: none;
+            border: 1px solid #f0f0f045;
+        }
+        .tweet:hover {
+            background: #00000050;
+        }
+    }
+</style>
