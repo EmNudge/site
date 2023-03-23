@@ -7,7 +7,9 @@ import Stub from '../components/ArticleStub.astro';
 
 import { getVideos } from '../data/videos';
 import { reads } from '../data/bookmarks';
+import { projects } from '../data/projects';
 import { MdOrMdxFile, getSlugs } from '../data/blogs';
+import ProjectStub from '../components/ProjectStub.astro';
 
 const posts = await getSlugs(await Astro.glob('./blog/*.md*') as MdOrMdxFile[]);
 const videos = await getVideos();
@@ -49,6 +51,12 @@ const videos = await getVideos();
 			/>
 		)}
 	</TitleSection>
+
+	<TitleSection title="Notable Projects" staggered>
+		<ul class="projects">
+			{projects.map((props) => <ProjectStub {...props} />)}
+		</ul>
+	</TitleSection>
 </MainLayout>
 
 
@@ -83,5 +91,12 @@ const videos = await getVideos();
 		max-height: 180px;
 		width: auto;
 		height: auto;
+	}
+
+	.projects {
+		list-style: none;
+		display: grid;
+		gap: 1rem;
+		padding: 0 1rem;
 	}
 </style>
