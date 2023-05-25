@@ -3,6 +3,7 @@ import { readFile } from 'node:fs/promises';
 
 interface Post {
     draft?: true;
+    tags: string;
     pubDate: string;
     title: string;
     summary: string;

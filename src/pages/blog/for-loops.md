@@ -2,7 +2,7 @@
 pubDate: Aug 8, 2020
 title: How Do For Loops REALLY Work
 summary: I mean REALLY. Think about it.
-tags: javascript, coding
+tags: coding
 icon: technologies/languages/javascript
 layout: ../../layouts/Blog.astro
 ---

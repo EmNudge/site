@@ -2,7 +2,7 @@
 pubDate: Aug 15, 2019
 title: To Semicolon, Or Not To Semicolon;
 summary: Wait, do we need them or not?
-tags: javascript, coding
+tags: coding
 icon: technologies/languages/javascript
 layout: ../../layouts/Blog.astro
 ---

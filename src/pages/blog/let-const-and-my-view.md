@@ -2,7 +2,7 @@
 pubDate: Dec 26, 2019
 title: let, const, And My View
 summary: JavaScript and its own share of drama
-tags: javascript, coding
+tags: coding
 icon: technologies/languages/javascript
 layout: ../../layouts/Blog.astro
 ---

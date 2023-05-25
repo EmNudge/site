@@ -2,7 +2,7 @@
 pubDate: Mar 16, 2020
 title: Adventures in Horrible No Good Very Bad Variable Names
 summary: Messing around with variable names and pranks!
-tags: javascript, coding
+tags: coding
 icon: technologies/languages/javascript
 layout: ../../layouts/Blog.astro
 ---

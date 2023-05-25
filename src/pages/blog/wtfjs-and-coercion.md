@@ -2,7 +2,7 @@
 pubDate: Jul 27, 2019
 title: "[] == ![] - WTFJS And Coercion"
 summary: Explaining the frustration of JavaScript
-tags: javascript, coding
+tags: coding
 icon: technologies/languages/javascript
 layout: ../../layouts/Blog.astro
 ---
