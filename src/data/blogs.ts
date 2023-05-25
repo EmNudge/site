@@ -8,7 +8,8 @@ interface Post {
     title: string;
     summary: string;
     url: string;
-    minuteLength: number
+    minuteLength: number;
+    discussions?: { site: string; url: string }[]
 }
 
 type BlogPostFile = MarkdownInstance<Record<string, any> & Omit<Post, 'minuteLength' | 'url'>>;

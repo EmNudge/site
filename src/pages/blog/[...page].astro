@@ -32,6 +32,7 @@ export async function getStaticPaths({ paginate }) {
                     meta={`${post.pubDate} • ${post.minuteLength} minute read`} 
                     title={post.title}
                     description={post.summary}
+                    discussions={post.discussions}
                 />
             </post-container>  
         )}

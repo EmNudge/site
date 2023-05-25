@@ -5,6 +5,8 @@ summary: JavaScript and its own share of drama
 tags: coding
 icon: technologies/languages/javascript
 layout: ../../layouts/Blog.astro
+discussions: 
+    - { site: devto, url: https://dev.to/emnudge/let-const-and-my-view-3aa }
 ---
 
 "Well this isn't going to be a controversial post" he said, wrongly.

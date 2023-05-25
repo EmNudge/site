@@ -5,6 +5,8 @@ summary: Messing around with variable names and pranks!
 tags: coding
 icon: technologies/languages/javascript
 layout: ../../layouts/Blog.astro
+discussions:
+    - { site: devto, url: https://dev.to/emnudge/adventures-in-horrible-no-good-very-bad-variable-names-20ii }
 ---
 
 

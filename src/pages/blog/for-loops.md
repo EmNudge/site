@@ -5,6 +5,8 @@ summary: I mean REALLY. Think about it.
 tags: coding
 icon: technologies/languages/javascript
 layout: ../../layouts/Blog.astro
+discussions:
+    - { site: devto, url: https://dev.to/emnudge/how-for-loops-really-work-4lhj }
 ---
 
 It seems like a basic question at first.

@@ -5,6 +5,8 @@ summary: Explaining the frustration of JavaScript
 tags: coding
 icon: technologies/languages/javascript
 layout: ../../layouts/Blog.astro
+discussions:
+    - { site: devto, url: https://dev.to/emnudge/wtfjs-and-coercion-454e }
 ---
 
 

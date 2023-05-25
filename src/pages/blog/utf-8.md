@@ -5,6 +5,8 @@ summary: Jumping into unicode and binary
 tags: coding
 icon: unicode
 layout: ../../layouts/Blog.astro
+discussions:
+    - { site: devto, url: https://dev.to/emnudge/decoding-utf-8-3947 }
 ---
 
 I'm a JavaScript guy, so this is a bit of a weird article. I recently went through a month's worth of research into unicode for an [article](https://dev.to/emnudge/adventures-in-horrible-no-good-very-bad-variable-names-20ii) and then subsequent [video](https://www.youtube.com/watch?v=vHkM6RwA7Wk) on variable names. JavaScript uses UTF-16 and I put some more specific info into the [extra video](https://www.youtube.com/watch?v=ZQRAMHiVEzs), rather than the main video.
