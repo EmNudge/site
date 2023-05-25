@@ -90,7 +90,7 @@ export async function getStaticPaths({ paginate }) {
     transition: .25s;
     opacity: 1;
   }
-  .tags .pill {
+  .pill {
     border-radius: 1rem;
     padding: 0.5rem 1rem;
     border: none;
@@ -98,13 +98,23 @@ export async function getStaticPaths({ paginate }) {
     font-size: 1rem;
 
     background: none;
-    border: 1px solid white;
-    opacity: .5;
+    border: 1px solid #fff4;
+    opacity: 0.5;
+    transition: .15s;
   }
   .pill.active {
     opacity: 1;
     background-color: #f4f4f433;
-    border-color: #ffffff40;
+    border-color: transparent;
+  }
+  @media (prefers-color-scheme: light) {
+    .pill {
+      border: 1px solid #0004;
+    }
+    .pill.active {
+      background-color: #83838333;
+      border-color: transparent;
+    }
   }
   .feed {
     margin-top: 50px;
