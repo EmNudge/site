@@ -21,6 +21,10 @@ blockquote:before {
     opacity: .5;
 }
 
+blockquote > p:last-child {
+    margin-bottom: 0;
+} 
+
 blockquote pre {
     font-size: .7em;
 }

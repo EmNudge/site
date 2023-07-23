@@ -22,7 +22,7 @@
 
 article {
     color: #ddd;
-    font-size: 1.3rem;
+    font-size: 1rem;
     line-height: 1.8;
     letter-spacing: .5px;
     font-family: 'Merriweather', "Times New Roman", Times, serif;
@@ -41,7 +41,7 @@ article a {
 }
 
 article p {
-    line-height: 2;
+    line-height: 2.2;
     margin-bottom: 1.8rem;
     position: relative;
 }
