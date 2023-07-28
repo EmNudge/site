@@ -3,7 +3,7 @@ import Nav from './Nav.svelte';
 
 const path = new URL(Astro.request.url).pathname.match(/^(.+?)(?:\/|$)/)[1];
 
-const routes = [
+const routes: [string, string][] = [
     ["/", "Home"],
     ["/blog", "Blog"],
     ["/reads", "Bookmarks"],
@@ -12,7 +12,7 @@ const routes = [
 
 <header>
     <a href="/" class="logo">
-        <img src="/icons/logo.png" alt="logo" class="dark-mode" />
+        <img src="/icons/logo_neon.png" alt="logo" class="dark-mode" />
     </a>
     <Nav {routes} {path} />
 </header>
@@ -28,6 +28,11 @@ const routes = [
     }
     img {
         height: 40px;
+        filter: grayscale(.6);
+        transition: 150ms;
+    }
+    img:hover {
+        filter: grayscale(0);
     }
     .logo {
         display: flex;
