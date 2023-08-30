@@ -18,7 +18,7 @@ interface Article {
 export const reads = csvParse<Article>(articleData)
     .sort((a, b) => +new Date(b.readAt) - +new Date(a.readAt));;
 
-    interface Book {
+interface Book {
     title: string;
     author: string;
     description: string;
