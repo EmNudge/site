@@ -20,13 +20,14 @@ const videos = await getVideos();
 
 	<TitleSection title="Blog" link="/blog" staggered>
 		{posts.slice(0, 5).map((post, i) =>
-			<Stub 
-				index={i}
-				url={post.url}
-				meta={`${post.pubDate} • ${post.minuteLength} minute read`} 
-				title={post.title}
-				description={post.summary}
-			/>
+			<post-container style={`--index: ${i}`}>
+				<Stub 
+					url={post.url}
+					meta={`${post.pubDate} • ${post.minuteLength} minute read`} 
+					title={post.title}
+					description={post.summary}
+				/>
+			</post-container>
 		)}
 	</TitleSection>
 
@@ -43,12 +44,13 @@ const videos = await getVideos();
 
 	<TitleSection title="What I'm Reading" link="/reads" staggered>
 		{reads.slice(0, 5).map((read, i) =>
-			<Stub 
-				index={i}
-				url={read.link} 
-				meta={`${read.author} • ${read.createdAt}`} 
-				title={read.title}
-			/>
+			<post-container style={`--index: ${i}`}>
+				<Stub 
+					url={read.link} 
+					meta={`${read.author} • ${read.createdAt}`} 
+					title={read.title}
+				/>
+			</post-container>
 		)}
 	</TitleSection>
 

@@ -1,119 +1,119 @@
-﻿Title,Author,Description,Created At,Read At,Link
-Memory Allocation,Sam Who,Learn all about memory allocators,"April 13, 2023","May 28, 20223",https://samwho.dev/memory-allocation/
-Is It My Fault You Can't Handle The Truth?, Tim Ottinger, "September 23, 2019", "April 10, 2023", http://agileotter.blogspot.com/2019/09/is-it-my-fault-you-cant-handle-truth.html?m=1
-The Grug Brained Developer,Carson G.,"Think like Grug, make happy","Jun 21, 2022","Jan 4, 2023",https://grugbrain.dev/
-"Making the world's fastest website, and other mistakes",Taylor Hunt,A race to the bottom (of latency),"Mar 15, 2022","Jan 1, 2023",https://dev.to/tigt/making-the-worlds-fastest-website-and-other-mistakes-56na
-Node Modules at War Why CommonJS and ES Modules Can't Get Along,Dan Fabulich,ESM and CJS interop,"August 5, 2020","July 20, 2022",https://redfin.engineering/node-modules-at-war-why-commonjs-and-es-modules-cant-get-along-9617135eeca1
-Think Like (a) Git - Rebase From The Ground Up,Sam Livingston-Gray,Why do you need to push -f? Rebase is just cherry pick!,"October 26, 2011","June 28, 2022",https://think-like-a-git.net/sections/rebase-from-the-ground-up.html
-Color in UI Design: A (Practical) Framework,Erik D. Kennedy,It's just lightness and saturation,"January 10, 2017","June 25, 2022",https://learnui.design/blog/color-in-ui-design-a-practical-framework.html
-High Performance Browser Networking,Ilya Grigorik,The best damn book on it,"January 1, 2013","June 20, 2022",https://hpbn.co/
-Cameras and Lenses,Bartosz Ciechanowski,"picture crystals, how do they work?","December 7, 2020","May 15, 2022",https://ciechanow.ski/cameras-and-lenses
-On Removing Let and Let Mut,Evan Ovadia,Signalling mutation,"April 17, 2022","May 12, 2022",https://verdagon.dev/blog/on-removing-let-let-mut
-Xilem: an architecture for UI in Rust,Raph Levien,Rust UI is hard,"May 7, 2022","May 10, 2022",https://raphlinus.github.io/rust/gui/2022/05/07/ui-architecture.html
-Undefined Behavior deserves a better reputation,Ralf Jung,purposefully vague,"November 18, 2021","May 10, 2022",https://www.ralfj.de/blog/2021/11/18/ub-good-idea.html
-Agile and the Long Crisis of Software,Miriam Posner,History of Agile and its modern day impact,"April 7, 2022","May 10, 2022",https://logicmag.io/clouds/agile-and-the-long-crisis-of-software
-My most useful RegExp trick,Surma,The second greatest regex trick,"May 2, 2018","April 20, 2022",https://surma.dev/things/regexp-quote/index.html
-Pure AST based linting sucks,Riccardo D'Ambrosio,Efficient low memory linting,"September 18, 2020","February 27, 2022",https://rdambrosio016.github.io/rust/2020/09/18/pure-ast-based-linting-sucks.html
-Dyslexie font does not benefit reading in children with or without dyslexia,Sanne M. Kuster et al,Wow,"December 4, 2017","February 16, 2022",https://link.springer.com/article/10.1007%2Fs11881-017-0154-6
-Age of Questions,Anton Podviaznikov,You need to know,"July 12, 2021","February 15, 2022",https://podviaznikov.com/writings/age_of_questions/?utm_source=pocket_mylist
-Everything Must Be Paid for Twice,David Cain,Time as a currency,"January 20, 2022","February 12, 2022",https://www.raptitude.com/2022/01/everything-must-be-paid-for-twice/
-Colocation,Kent C Dodds,"Location as documentation","June 17, 2019","February 10, 2022",https://kentcdodds.com/blog/colocation
-iOS Engine Choice In Depth,Alex Russell,It's really in depth,"August 31, 2021","February 8, 2022",https://infrequently.org/2021/08/webkit-ios-deep-dive/#diversity-perversity
-In defense of complicated programming languages,Jakob Nybo Nissen,Why type complexity simplifies programming,"January 23, 2022","January 25, 2022",https://viralinstruction.com/posts/defense/
-The Dunning-Kruger Effect Is Probably Not Real,Jonathan Jarry M.Sc.,Disspelling a psychological effect,"December 17, 2020","January 24, 2022",https://www.mcgill.ca/oss/article/critical-thinking/dunning-kruger-effect-probably-not-real
-My first impressions of web3,Moxie Marlinspike,Understanding what it all is,"January 7, 2022","January 8, 2022",https://moxie.org/2022/01/07/web3-first-impressions.html?utm_source=pocket_mylist
-Understanding why our build got 15x slower with Webpack 5,Eoin Hennessy,Looking into V8 for optimizations,"December 4, 2021","December 4, 2021",https://engineering.tines.com/blog/understanding-why-our-build-got-15x-slower-with-webpack
-Waveforms,Joshua Comeau,Combining signals,"February 1, 2018","November 22, 2021",https://pudding.cool/2018/02/waveforms/
-The Copenhagen Interpretation of Ethics,Jai Dhyani,"Helping without critique","June 24, 2015","November 7, 2021",https://blog.jaibot.com/the-copenhagen-interpretation-of-ethics
-Why Lisp?,Ron Garret,Why Lisp is the best serialization format,"May 7, 2015","November 4, 2021",http://blog.rongarret.info/2015/05/why-lisp.html?utm_source=pocket_mylist
-Was Google Earth Stolen? (no),Avi Bar-Zeev,The history of globe rendering,"October 12, 2021","November 4, 2021",https://avibarzeev.medium.com/was-google-earth-stolen-7d1b821e589b
-Bash functions are better than I thought,Gary Verhaegen,Bash subshell syntax,"October 31, 2021","November 3, 2021",https://cuddly-octo-palm-tree.com/posts/2021-10-31-better-bash-functions/?utm_source=pocket_mylist
-Willingness to look stupid,Dan Luu,Getting over aesthetics,"October 21, 2021","October 22, 2021",https://danluu.com/look-stupid/
-Understanding How Facebook Disappeared from the Internet,Cloudflare,"DNS, BGP, and Facebook","October 4, 2021","October 4, 2021",https://blog.cloudflare.com/october-2021-facebook-outage/
-How To Deal With Dirty Side Effects In Your Pure Functional Javascript,James Sinclair,a brilliant monad introduction,"August 7, 2018","October 1, 2021",https://jrsinclair.com/articles/2018/how-to-deal-with-dirty-side-effects-in-your-pure-functional-javascript/
-An Introduction to JQ,Adam Gordon Bell,What is says on the tin,"August 24, 2021","September 13, 2021",https://earthly.dev/blog/jq-select/
-Creating a Zoom UI,Steve Ruiz,Zooming math,"August 5, 2021","August 19, 2021",https://www.steveruiz.me/posts/zoom-ui
-A future for SQL on the web,James Long,Getting faster than your underlying API,"August 12, 2021","August 12, 2021",https://jlongster.com/future-sql-web
-HTTP/3 From A To Z,Robin Marx,The best series on HTTP/3,"August 9, 2021","August 6, 2021",https://www.smashingmagazine.com/2021/08/http3-core-concepts-part1/
-"Safari isn't protecting the web, it's killing it",Tim Perry,"The case againt Safari's ""safety""","July 28, 2021","July 31, 2021",https://httptoolkit.tech/blog/safari-is-killing-the-web/
-A (Mostly) Complete Guide to React Rendering Behavior,Mark Erikson,what it says on the tin,"May 17, 2020","July 23, 2021",https://blog.isquaredsoftware.com/2020/05/blogged-answers-a-mostly-complete-guide-to-react-rendering-behavior/
-The State of Web Workers in 2021,Surma,A look at JavaScript threading,"June 30, 2021","July 17, 2021",https://www.smashingmagazine.com/2021/06/web-workers-2021/
-The Greatest Regex Trick Ever,Rex,Exclusion by inclusion,"June 3, 2014","July 5, 2021",http://www.rexegg.com/regex-best-trick.html
-export default thing is different to export { thing as default },Jake Archibald,exporting by reference,"July 3, 2021","July 5, 2021",https://jakearchibald.com/2021/export-default-thing-vs-thing-as-default/
-Random Number Generation,Adam Hyland,Exploring Randomness,"April 17, 2013","July 1, 2021",https://bocoup.com/blog/random-numbers
-Javascript and the next decade of data programming,Ben Schmidt,Moving away from Python and R for data science,"March 8, 2021","June 22, 2021",http://benschmidt.org/post/2020-01-15/2020-01-15-webgpu/
-Finding the Bottom Turtle,David Anderson,On trusting bootstrapping,"June 20, 2021","June 22, 2021",https://blog.dave.tf/post/finding-bottom-turtle/
-A day in the life of a professional software engineer,Graham King,A difficult Big O day,"December 21, 2020","June 21, 2021",https://www.darkcoding.net/software/a-day-in-the-life-of-a-professional-software-engineer/
-"ripgrep is faster than {grep, ag, git grep, ucg, pt, sift}",Andrew Gallant,A fascinating look into regex optimizations,"September 23, 2016","June 20, 2021",https://blog.burntsushi.net/ripgrep/
-Bear plus snowflake equals polar bear,Andy Salerno,A look at Unicode's combined emojis,"June 13, 2021","June 20, 2021",https://andysalerno.com/posts/weird-emojis/
-How To Write a Programming Book,Charles Scalfani,Teaching technical concepts through text,"June 17, 2021","June 20, 2021",https://cscalfani.medium.com/how-to-write-a-programming-book-76ab4f8a7071
-Let's Build A Regex Engine,Alex Grebenyuk,"Lexers, Parsers, Grammars, Glory","August 20, 2019","June 5, 2021",https://kean.blog/post/lets-build-regex
-Leaky Abstractions,Eric Lawrence,When windows messed up ZIP,"June 2, 2021","June 3, 2021",https://textslashplain.com/2021/06/02/leaky-abstractions/
-RSS Tutorial,Mark Nottingham,RSS vs Atom and how it's constructed,"September 1, 2005","May 20, 2021",https://www.mnot.net/rss/tutorial/
-"Deep dive in CORS: History, how it works, and best practices",Ilija Eftimov,What it says on the tin,"April 12, 2021","April 16, 2021",https://ieftimov.com/post/deep-dive-cors-history-how-it-works-best-practices/
-HTTPWTF,Tim Perry,Overview of some interesting HTTP decisions,"March 4, 2021","March 30, 2021",https://httptoolkit.tech/blog/http-wtf/
-How do Spotify Codes work?,Peter Boone,Linking through unique images,"November 13, 2020","March 29, 2021",https://boonepeter.github.io/posts/2020-11-10-spotify-codes/
-Steam's Login Method is Kinda Interesting,Maximilian,Visual links to images and hash adventures,"January 7, 2021","March 28, 2021",https://owlspace.xyz/cybersec/steam-login/
-A History of HTML Parsing at Cloudflare: Part 1,"Andrew Galloni & Ingvar Stepanyan",Building a streaming parser,"November 28, 2019","March 28, 2021",https://blog.cloudflare.com/html-parsing-1/
-An Intuition For Lisp Syntax,Stepan Parunashvili,"What it says on the tin, but using JavaScript","October 25, 2020","March 26, 2021",https://stopa.io/post/265
-Working with strings in Rust,Amos,The dangers of handling strings in C,"February 19, 2020","March 26, 2021",https://fasterthanli.me/articles/working-with-strings-in-rust
-Emoji under the hood,Nikita Prokopov,Clear and fun explanation of Emoji grapheme clusters,"March 26, 2021","March 26, 2021",https://tonsky.me/blog/emoji/
-How the Web Audio API is used for browser fingerprinting,Savannah Copland,Fingerprinting without cookies,"March 22, 2021","March 23, 2021",https://dev.to/savannahjs/how-the-web-audio-api-is-used-for-browser-fingerprinting-4oim
-"How React isn't reactive, and why you shouldn't care",Ryan Carniato,What does reactivity matter practically?,"March 18, 2021","March 19, 2021",https://dev.to/this-is-learning/how-react-isn-t-reactive-and-why-you-shouldn-t-care-152m
-Do Not Use '>' in Your Command Prompt,Tanel Põder,A lesson in shell blunders,"March 16, 2021","March 19, 2021",https://tanelpoder.com/posts/how-to-stay-safe-in-shell/
-Rust vs C Speed,Kornelski,Speed testing systems languages,"March 13, 2021","March 13, 2021",https://kornel.ski/rust-c-speed
-FLIP your animations,Paul Lewis,An approach for better animations,"February 11, 2015","March 10, 2021",https://aerotwist.com/blog/flip-your-animations/
-JavaScript: What is the meaning of this?,Jake Archibald,"Explanation of JavaScript's ""this"" in different contexts","March 8, 2021","March 8, 2021",https://web.dev/javascript-this/
-Why I Don't Like Tailwind CSS,Aleksandr Hovhannisyan,Counter points on a beloved CSS framework,"January 31, 2021","March 5, 2021",https://www.aleksandrhovhannisyan.com/blog/why-i-dont-like-tailwind-css/#but-first-why-does-tailwind-css-exist
-Character Assassination: Fun and Games with Unicode,TrustedSec,Unicode and security analysis,"November 14, 2017","March 2, 2021",https://www.trustedsec.com/blog/character-assassination-fun-games-unicode/
-On Javascript Performance,Billy Whizz,How JavaScript became a speed leader,"October 25, 2020","February 21, 2021",https://just.billywhizz.io/blog/on-javascript-performance-01/
-UTF-8 Everywhere,Pavel Radzivilovsky et al,The case for UTF-8 for everything,"April 29, 2021","February 20, 2021",http://utf8everywhere.org/
-Building a Reactive Library from Scratch,Ryan Carniato,Overview of reactivity in frontend frameworks,"February 18, 2021","February 19, 2021",https://dev.to/ryansolid/building-a-reactive-library-from-scratch-1i0p
-Programming with Unicode,Victor Stinner,Good overview of unicode encodings,"December 28, 2010","January 16, 2021",https://unicodebook.readthedocs.io/
-Introducing Crank.js,Brian Kim,Interesting take on framework design,"April 15, 2020","January 16, 2021",https://crank.js.org/blog/introducing-crank
-2016 - The Year of Streams,Jake Archibald,Explaining streams,"January 25, 2016","December 13, 2020","https://jakearchibald.com/2016/streams-ftw/"
-"Creating a Snake Clone in Rust, with Bevy",Marcus Buffett,Great introduction to Bevy,"October 15, 2020","December 11, 2020","https://mbuffett.com/posts/bevy-snake-tutorial/"
-Writing Rust the Elixir way,Bernard Kolobara,"Looking at WASM and rust to create a VM for concurrency","November 28, 2020","December 5, 2020",https://dev.to/bkolobara/writing-rust-the-elixir-way-2lm8
-"Parse, don't validate",Alexis King,Cool look at how to solve problems of optional values via state,"November 5, 2019","November 26, 2020",https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/
-Explorable Programming with Rust and WebAssembly,Nikita Baksalyar,Embedding wasm in the web for demos,"October 13, 2020","October 14, 2020",https://lowlvl.org/blog/explorable-programming
-Gatsby vs. Next.js,Jared Palmer,The frustrations with Gatsby's GraphQL,"November 22, 2019","October 13, 2020",https://jaredpalmer.com/gatsby-vs-nextjs
-Towards Principled Reactive UI,Raph Levien,A look into the complex world of GUI library design,"September 24, 2020","September 25, 2020",https://raphlinus.github.io/rust/druid/2020/09/25/principled-reactive-ui.html
-How I manage my LaTeX lecture notes,Gilles Castel,Fascinating look at using Vim for more than coding.,"September 14, 2019","September 13, 2020",https://castel.dev/post/lecture-notes-1/
-Clear explanation of Rust's module system,Sheshbabu Chinnakonda,The best guide on rust modules I've ever seen,"July 18, 2020","July 18, 2020",http://www.sheshbabu.com/posts/rust-module-system/
-What every JavaScript developer should know about Unicode,Dmitri Pavlutin,Unicode advice for the web. Amazing guide!,"May 18, 2020","July 10, 2020",https://dmitripavlutin.com/what-every-javascript-developer-should-know-about-unicode/
-On a technicality,Eevee,Fascinating take on building a community,"July 21, 2016","July 7, 2020",https://eev.ee/blog/2016/07/22/on-a-technicality/
-Yet Another Doom Clone (In 13kb of JavaScript),Nicholas Carlini,Incredible project in such little code,"September 12, 2019","July 4, 2020",https://nicholas.carlini.com/writing/2019/javascript-doom-clone-13k.html
-How Not to Store Passwords,Paul Boyd,Storing passwords badly,"November 21, 2019","June 30, 2020",https://pboyd.io/posts/how-not-to-store-passwords/
-A Constructive Look At TempleOS,Richard Mitton,A deeper look at a joked about operating system,"June 7, 2015","June 25, 2020",http://www.codersnotes.com/notes/a-constructive-look-at-templeos/
-"Generic ""Hooks""",Michael Rawlings,More on reactive programming!,"November 3, 2018","June 1, 2020",https://medium.com/@mlrawlings/generic-hooks-f5cf27acf205
-Bundling in Deno,Kitson Kelly,Implementing bundling in a new JS environment,"December 9, 2019","April 27, 2020",https://www.kitsonkelly.com/posts/bundling-in-deno/
-JavaScript Engines Hidden Classes (and Why You Should Keep Them in Mind),Victor Felder,More about hidden V8 classes,"December 21, 2016","April 26, 2020",https://draft.li/blog/2016/12/22/javascript-engines-hidden-classes/
-Hidden classes in JavaScript and Inline Caching,Alex Navasardyan,The secrets of V8 unwrapped,"March 11, 2014","April 26, 2020",https://gist.github.com/twokul/9501770
-Becoming fully reactive: an in-depth explanation of MobX,Michel Weststrate,Understanding MobX,"December 27, 2015","April 12, 2020",https://levelup.gitconnected.com/finding-fine-grained-reactive-programming-89741994ddee
-Finding Fine-Grained Reactive Programming,Ryan Carniato,Reactive programming in frontend frameworks,"June 30, 2019","April 9, 2020",https://levelup.gitconnected.com/finding-fine-grained-reactive-programming-89741994ddee
-Preact: Into the void 0,Jason Miller,Preact's list of optimizations,"May 15, 2017","April 6, 2020",https://www.youtube.com/watch?v=LY6y3HbDVmg
-"LCH colors in CSS: what, why, and how?",Lea Verou,A new color type has been added to CSS,"April 3, 2020","April 3, 2020",https://lea.verou.me/2020/04/lch-colors-in-css-what-why-and-how/
-"CSS Utility Classes and ""Separation of Concerns""",Adam Wathan,The philosophy behind TailWind CSS,"August 7, 2017","March 30, 2020",https://adamwathan.me/css-utility-classes-and-separation-of-concerns/
-"Should you learn C to ""learn how the computer works""?",Steve Klabnik,Tackling the idea that C teaches you how the computer works.,"October 1, 2018","March 30, 2020",https://steveklabnik.com/writing/should-you-learn-c-to-learn-how-the-computer-works
-JITs are un-ergonomic,Abe Winter,Why JITs make things difficult,"March 27, 2020","March 28, 2020",https://abe-winter.github.io/2020/03/28/jitu-brutus.html
-10 Most(ly dead) Influential Programming Languages,Hillel Wayne,"Influential, not the revolutionary","March 24, 2020","March 25, 2020",https://www.hillelwayne.com/post/influential-dead-languages/
-Compile Svelte in your head (Part 1),Tan Li Hau,The compiler behind this website,"March 2, 2020","March 12, 2020",https://lihautan.com/compile-svelte-in-your-head-part-1/
-Pocket Guide to Writing SVG,Joni Trythall,Learn SVGs in the best way possible,,"March 8, 2020",https://svgpocketguide.com/book/
-YAML: probably not so great after all,Martin Tournoij,The case against everything but TOML,"September 15, 2016","March 3, 2020",https://www.arp242.net/yaml-config.html
-Making Sandspiel,Max Bittker,Wonderful wasm and physics simulations,"April 30, 2019","February 27, 2020",https://maxbittker.com/making-sandspiel
-JSON Parser with JavaScript,Tan Li Hau,Parsing in non-linear grammars in JavaScript!,"December 11, 2019","February 19, 2020",https://lihautan.com/json-parser-with-javascript/
-Learning Parser Combinators With Rust,Bodil Stokke,Condensed and fantastic tutorial.,"April 17, 2019","January 25, 2020",https://bodil.lol/parser-combinators/
-"Switching between JavaScript, C++, and Rust",Alain Galvan,"A look into the similarities and differences between JavaScript, C++, and Rust.","April 18, 2017","January 17, 2020",https://alain.xyz/blog/switching-between-js-cpp-rust
-Testing for -0 in JavaScript,Allen Wirfs-Brock,"Finding negative zeros. Useless, but interesting.","February 15, 2011","January 14, 2020",http://www.wirfs-brock.com/allen/posts/128
-The End of Indie Web Browsers: You Can (Not) Compete,Samuel Maddock,A look into the oximoronic anti-competitive open areas of software.,"January 7, 2020","January 7, 2020",https://blog.samuelmaddock.com/posts/the-end-of-indie-web-browsers/
-Making really tiny WebAssembly graphics demos,Cliff L. Biffle,Miniature wasm demos with Rust.,"June 6, 2019","January 6, 2020",http://cliffle.com/blog/bare-metal-wasm/
-Learn Rust the Dangerous Way,Cliff L. Biffle,Converting optimized C to clean Rust. Amazing intro to very low level optimizations.,"December 1, 2019","January 5, 2020",http://cliffle.com/p/dangerust/
-Prefer Rust to C/C++ for new code.,Cliff L. Biffle,"Don't need to rewrite C/C++, but new projects should be rust-only.","February 6, 2019","January 4, 2020",http://cliffle.com/blog/prefer-rust/
-"Deno, first approach",Lilian Saget-Lethias,Deno explained as best one can.,"December 29, 2019","December 31, 2019",https://dev.to/lsagetlethias/deno-first-approach-4d0
-WebAssembly cut Figma's load time by 3x,Evan Wallace,A practical application of wasm for modern day web applications.,"June 7, 2017","December 17, 2019",https://www.figma.com/blog/webassembly-cut-figmas-load-time-by-3x/
-From zero to main(): Bare metal Rust,James Munns,An interesting look in Rust's application as a language for extremely low level hardware.,"December 16, 2019","December 16, 2019",https://interrupt.memfault.com/blog/zero-to-main-rust-1
-Golang for JavaScript developers - Part 1,Deepu K Sasidharan,A nice introduction to golang. I am a firm believer that a great way to introduce new programming languages is to compare it to old ones. This worked very well for me.,"December 3, 2019","December 3, 2019",https://dev.to/deepu105/golang-for-javascript-developers-part-1-38je
-Creative Coding in Rust with Nannou,Ben Lovy,"Great introduction to Nanou. I loved p5.js and creative coding with canvas, so this  was a really great read for me.","November 15, 2019","November 20, 2019",https://dev.to/deciduously/creative-coding-in-rust-with-nannou-1lbl
-Metaprogramming in ES6: Symbols and why they're awesome,Keith Cirkel,A fantastic read on symbols & well-known symbols. I trashed an article I was writing when I found this one.,"June 17, 2015","November 17, 2019",https://www.keithcirkel.co.uk/metaprogramming-in-es6-symbols/
-WebAssembly and the Future of the Web,Athan Reines,"This isn't actually an article, but it's one of the best explanations of wasm I've ever seen.","March 26, 2018","October 6, 2019",https://www.youtube.com/watch?v=JWCr9vcpl3w
-Adventures in Microbenchmarking,Tom Dale,Tom Dale makes a good case to either not micro-benchmark or be VERY careful when trying.,"July 14, 2017","March 14, 2019",https://tomdale.net/2017/07/adventures-in-microbenchmarking/
+﻿Title,Author,Description,Created At,Read At,Link,Tags
+Memory Allocation,Sam Who,Learn all about memory allocators,"April 13, 2023","May 28, 20223",https://samwho.dev/memory-allocation/,code
+Is It My Fault You Can't Handle The Truth?,Tim Ottinger,"Yeah, probably","September 23, 2019","April 10, 2023",http://agileotter.blogspot.com/2019/09/is-it-my-fault-you-cant-handle-truth.html?m=1,life
+The Grug Brained Developer,Carson G.,"Think like Grug, make happy","Jun 21, 2022","Jan 4, 2023",https://grugbrain.dev/,code
+"Making the world's fastest website, and other mistakes",Taylor Hunt,A race to the bottom (of latency),"Mar 15, 2022","Jan 1, 2023",https://dev.to/tigt/making-the-worlds-fastest-website-and-other-mistakes-56na,code
+Node Modules at War Why CommonJS and ES Modules Can't Get Along,Dan Fabulich,ESM and CJS interop,"August 5, 2020","July 20, 2022",https://redfin.engineering/node-modules-at-war-why-commonjs-and-es-modules-cant-get-along-9617135eeca1,code
+Think Like (a) Git - Rebase From The Ground Up,Sam Livingston-Gray,Why do you need to push -f? Rebase is just cherry pick!,"October 26, 2011","June 28, 2022",https://think-like-a-git.net/sections/rebase-from-the-ground-up.html,code
+Color in UI Design: A (Practical) Framework,Erik D. Kennedy,It's just lightness and saturation,"January 10, 2017","June 25, 2022",https://learnui.design/blog/color-in-ui-design-a-practical-framework.html,code
+High Performance Browser Networking,Ilya Grigorik,The best damn book on it,"January 1, 2013","June 20, 2022",https://hpbn.co/,code
+Cameras and Lenses,Bartosz Ciechanowski,"picture crystals, how do they work?","December 7, 2020","May 15, 2022",https://ciechanow.ski/cameras-and-lenses,code
+On Removing Let and Let Mut,Evan Ovadia,Signalling mutation,"April 17, 2022","May 12, 2022",https://verdagon.dev/blog/on-removing-let-let-mut,code
+Xilem: an architecture for UI in Rust,Raph Levien,Rust UI is hard,"May 7, 2022","May 10, 2022",https://raphlinus.github.io/rust/gui/2022/05/07/ui-architecture.html,code
+Undefined Behavior deserves a better reputation,Ralf Jung,purposefully vague,"November 18, 2021","May 10, 2022",https://www.ralfj.de/blog/2021/11/18/ub-good-idea.html,code
+Agile and the Long Crisis of Software,Miriam Posner,History of Agile and its modern day impact,"April 7, 2022","May 10, 2022",https://logicmag.io/clouds/agile-and-the-long-crisis-of-software,code
+My most useful RegExp trick,Surma,The second greatest regex trick,"May 2, 2018","April 20, 2022",https://surma.dev/things/regexp-quote/index.html,code
+Pure AST based linting sucks,Riccardo D'Ambrosio,Efficient low memory linting,"September 18, 2020","February 27, 2022",https://rdambrosio016.github.io/rust/2020/09/18/pure-ast-based-linting-sucks.html,code
+Dyslexie font does not benefit reading in children with or without dyslexia,Sanne M. Kuster et al,Wow,"December 4, 2017","February 16, 2022",https://link.springer.com/article/10.1007%2Fs11881-017-0154-6,life
+Age of Questions,Anton Podviaznikov,You need to know,"July 12, 2021","February 15, 2022",https://podviaznikov.com/writings/age_of_questions/?utm_source=pocket_mylist,life
+Everything Must Be Paid for Twice,David Cain,Time as a currency,"January 20, 2022","February 12, 2022",https://www.raptitude.com/2022/01/everything-must-be-paid-for-twice/,life
+Colocation,Kent C Dodds,Location as documentation,"June 17, 2019","February 10, 2022",https://kentcdodds.com/blog/colocation,code
+iOS Engine Choice In Depth,Alex Russell,It's really in depth,"August 31, 2021","February 8, 2022",https://infrequently.org/2021/08/webkit-ios-deep-dive/#diversity-perversity,code
+In defense of complicated programming languages,Jakob Nybo Nissen,Why type complexity simplifies programming,"January 23, 2022","January 25, 2022",https://viralinstruction.com/posts/defense/,code
+The Dunning-Kruger Effect Is Probably Not Real,Jonathan Jarry M.Sc.,Disspelling a psychological effect,"December 17, 2020","January 24, 2022",https://www.mcgill.ca/oss/article/critical-thinking/dunning-kruger-effect-probably-not-real,life
+My first impressions of web3,Moxie Marlinspike,Understanding what it all is,"January 7, 2022","January 8, 2022",https://moxie.org/2022/01/07/web3-first-impressions.html?utm_source=pocket_mylist,code
+Understanding why our build got 15x slower with Webpack 5,Eoin Hennessy,Looking into V8 for optimizations,"December 4, 2021","December 4, 2021",https://engineering.tines.com/blog/understanding-why-our-build-got-15x-slower-with-webpack,code
+Waveforms,Joshua Comeau,Combining signals,"February 1, 2018","November 22, 2021",https://pudding.cool/2018/02/waveforms/,code
+The Copenhagen Interpretation of Ethics,Jai Dhyani,Helping without critique,"June 24, 2015","November 7, 2021",https://blog.jaibot.com/the-copenhagen-interpretation-of-ethics,code
+Why Lisp?,Ron Garret,Why Lisp is the best serialization format,"May 7, 2015","November 4, 2021",http://blog.rongarret.info/2015/05/why-lisp.html?utm_source=pocket_mylist,code
+Was Google Earth Stolen? (no),Avi Bar-Zeev,The history of globe rendering,"October 12, 2021","November 4, 2021",https://avibarzeev.medium.com/was-google-earth-stolen-7d1b821e589b,code
+Bash functions are better than I thought,Gary Verhaegen,Bash subshell syntax,"October 31, 2021","November 3, 2021",https://cuddly-octo-palm-tree.com/posts/2021-10-31-better-bash-functions/?utm_source=pocket_mylist,code
+Willingness to look stupid,Dan Luu,Getting over aesthetics,"October 21, 2021","October 22, 2021",https://danluu.com/look-stupid/,life
+Understanding How Facebook Disappeared from the Internet,Cloudflare,"DNS, BGP, and Facebook","October 4, 2021","October 4, 2021",https://blog.cloudflare.com/october-2021-facebook-outage/,code
+How To Deal With Dirty Side Effects In Your Pure Functional Javascript,James Sinclair,a brilliant monad introduction,"August 7, 2018","October 1, 2021",https://jrsinclair.com/articles/2018/how-to-deal-with-dirty-side-effects-in-your-pure-functional-javascript/,code
+An Introduction to JQ,Adam Gordon Bell,What is says on the tin,"August 24, 2021","September 13, 2021",https://earthly.dev/blog/jq-select/,code
+Creating a Zoom UI,Steve Ruiz,Zooming math,"August 5, 2021","August 19, 2021",https://www.steveruiz.me/posts/zoom-ui,code
+A future for SQL on the web,James Long,Getting faster than your underlying API,"August 12, 2021","August 12, 2021",https://jlongster.com/future-sql-web,code
+HTTP/3 From A To Z,Robin Marx,The best series on HTTP/3,"August 9, 2021","August 6, 2021",https://www.smashingmagazine.com/2021/08/http3-core-concepts-part1/,code
+"Safari isn't protecting the web, it's killing it",Tim Perry,The case againt Safari's "safety","July 28, 2021","July 31, 2021",https://httptoolkit.tech/blog/safari-is-killing-the-web/,code
+A (Mostly) Complete Guide to React Rendering Behavior,Mark Erikson,what it says on the tin,"May 17, 2020","July 23, 2021",https://blog.isquaredsoftware.com/2020/05/blogged-answers-a-mostly-complete-guide-to-react-rendering-behavior/,code
+The State of Web Workers in 2021,Surma,A look at JavaScript threading,"June 30, 2021","July 17, 2021",https://www.smashingmagazine.com/2021/06/web-workers-2021/,code
+The Greatest Regex Trick Ever,Rex,Exclusion by inclusion,"June 3, 2014","July 5, 2021",http://www.rexegg.com/regex-best-trick.html,code
+export default thing is different to export { thing as default },Jake Archibald,exporting by reference,"July 3, 2021","July 5, 2021",https://jakearchibald.com/2021/export-default-thing-vs-thing-as-default/,code
+Random Number Generation,Adam Hyland,Exploring Randomness,"April 17, 2013","July 1, 2021",https://bocoup.com/blog/random-numbers,code
+Javascript and the next decade of data programming,Ben Schmidt,Moving away from Python and R for data science,"March 8, 2021","June 22, 2021",http://benschmidt.org/post/2020-01-15/2020-01-15-webgpu/,code
+Finding the Bottom Turtle,David Anderson,On trusting bootstrapping,"June 20, 2021","June 22, 2021",https://blog.dave.tf/post/finding-bottom-turtle/,code
+A day in the life of a professional software engineer,Graham King,A difficult Big O day,"December 21, 2020","June 21, 2021",https://www.darkcoding.net/software/a-day-in-the-life-of-a-professional-software-engineer/,code
+"ripgrep is faster than {grep, ag, git grep, ucg, pt, sift}",Andrew Gallant,A fascinating look into regex optimizations,"September 23, 2016","June 20, 2021",https://blog.burntsushi.net/ripgrep/,code
+Bear plus snowflake equals polar bear,Andy Salerno,A look at Unicode's combined emojis,"June 13, 2021","June 20, 2021",https://andysalerno.com/posts/weird-emojis/,code
+How To Write a Programming Book,Charles Scalfani,Teaching technical concepts through text,"June 17, 2021","June 20, 2021",https://cscalfani.medium.com/how-to-write-a-programming-book-76ab4f8a7071,code
+Let's Build A Regex Engine,Alex Grebenyuk,"Lexers, Parsers, Grammars, Glory","August 20, 2019","June 5, 2021",https://kean.blog/post/lets-build-regex,code
+Leaky Abstractions,Eric Lawrence,When windows messed up ZIP,"June 2, 2021","June 3, 2021",https://textslashplain.com/2021/06/02/leaky-abstractions/,code
+RSS Tutorial,Mark Nottingham,RSS vs Atom and how it's constructed,"September 1, 2005","May 20, 2021",https://www.mnot.net/rss/tutorial/,code
+"Deep dive in CORS: History, how it works, and best practices",Ilija Eftimov,What it says on the tin,"April 12, 2021","April 16, 2021",https://ieftimov.com/post/deep-dive-cors-history-how-it-works-best-practices/,code
+HTTPWTF,Tim Perry,Overview of some interesting HTTP decisions,"March 4, 2021","March 30, 2021",https://httptoolkit.tech/blog/http-wtf/,code
+How do Spotify Codes work?,Peter Boone,Linking through unique images,"November 13, 2020","March 29, 2021",https://boonepeter.github.io/posts/2020-11-10-spotify-codes/,code
+Steam's Login Method is Kinda Interesting,Maximilian,Visual links to images and hash adventures,"January 7, 2021","March 28, 2021",https://owlspace.xyz/cybersec/steam-login/,code
+A History of HTML Parsing at Cloudflare: Part 1,Andrew Galloni & Ingvar Stepanyan,Building a streaming parser,"November 28, 2019","March 28, 2021",https://blog.cloudflare.com/html-parsing-1/,code
+An Intuition For Lisp Syntax,Stepan Parunashvili,"What it says on the tin, but using JavaScript","October 25, 2020","March 26, 2021",https://stopa.io/post/265,code
+Working with strings in Rust,Amos,The dangers of handling strings in C,"February 19, 2020","March 26, 2021",https://fasterthanli.me/articles/working-with-strings-in-rust,code
+Emoji under the hood,Nikita Prokopov,Clear and fun explanation of Emoji grapheme clusters,"March 26, 2021","March 26, 2021",https://tonsky.me/blog/emoji/,code
+How the Web Audio API is used for browser fingerprinting,Savannah Copland,Fingerprinting without cookies,"March 22, 2021","March 23, 2021",https://dev.to/savannahjs/how-the-web-audio-api-is-used-for-browser-fingerprinting-4oim,code
+"How React isn't reactive, and why you shouldn't care",Ryan Carniato,What does reactivity matter practically?,"March 18, 2021","March 19, 2021",https://dev.to/this-is-learning/how-react-isn-t-reactive-and-why-you-shouldn-t-care-152m,code
+Do Not Use '>' in Your Command Prompt,Tanel Põder,A lesson in shell blunders,"March 16, 2021","March 19, 2021",https://tanelpoder.com/posts/how-to-stay-safe-in-shell/,code
+Rust vs C Speed,Kornelski,Speed testing systems languages,"March 13, 2021","March 13, 2021",https://kornel.ski/rust-c-speed,code
+FLIP your animations,Paul Lewis,An approach for better animations,"February 11, 2015","March 10, 2021",https://aerotwist.com/blog/flip-your-animations/,code
+JavaScript: What is the meaning of this?,Jake Archibald,Explanation of JavaScript's "this" in different contexts,"March 8, 2021","March 8, 2021",https://web.dev/javascript-this/,code
+Why I Don't Like Tailwind CSS,Aleksandr Hovhannisyan,Counter points on a beloved CSS framework,"January 31, 2021","March 5, 2021",https://www.aleksandrhovhannisyan.com/blog/why-i-dont-like-tailwind-css/#but-first-why-does-tailwind-css-exist,code
+Character Assassination: Fun and Games with Unicode,TrustedSec,Unicode and security analysis,"November 14, 2017","March 2, 2021",https://www.trustedsec.com/blog/character-assassination-fun-games-unicode/,code
+On Javascript Performance,Billy Whizz,How JavaScript became a speed leader,"October 25, 2020","February 21, 2021",https://just.billywhizz.io/blog/on-javascript-performance-01/,code
+UTF-8 Everywhere,Pavel Radzivilovsky et al,The case for UTF-8 for everything,"April 29, 2021","February 20, 2021",http://utf8everywhere.org/,code
+Building a Reactive Library from Scratch,Ryan Carniato,Overview of reactivity in frontend frameworks,"February 18, 2021","February 19, 2021",https://dev.to/ryansolid/building-a-reactive-library-from-scratch-1i0p,code
+Programming with Unicode,Victor Stinner,Good overview of unicode encodings,"December 28, 2010","January 16, 2021",https://unicodebook.readthedocs.io/,code
+Introducing Crank.js,Brian Kim,Interesting take on framework design,"April 15, 2020","January 16, 2021",https://crank.js.org/blog/introducing-crank,code
+2016 - The Year of Streams,Jake Archibald,Explaining streams,"January 25, 2016","December 13, 2020",https://jakearchibald.com/2016/streams-ftw/,code
+"Creating a Snake Clone in Rust, with Bevy",Marcus Buffett,Great introduction to Bevy,"October 15, 2020","December 11, 2020",https://mbuffett.com/posts/bevy-snake-tutorial/,code
+Writing Rust the Elixir way,Bernard Kolobara,Looking at WASM and rust to create a VM for concurrency,"November 28, 2020","December 5, 2020",https://dev.to/bkolobara/writing-rust-the-elixir-way-2lm8,code
+"Parse, don't validate",Alexis King,Cool look at how to solve problems of optional values via state,"November 5, 2019","November 26, 2020",https://lexi-lambda.github.io/blog/2019/11/05/parse-don-t-validate/,code
+Explorable Programming with Rust and WebAssembly,Nikita Baksalyar,Embedding wasm in the web for demos,"October 13, 2020","October 14, 2020",https://lowlvl.org/blog/explorable-programming,code
+Gatsby vs. Next.js,Jared Palmer,The frustrations with Gatsby's GraphQL,"November 22, 2019","October 13, 2020",https://jaredpalmer.com/gatsby-vs-nextjs,code
+Towards Principled Reactive UI,Raph Levien,A look into the complex world of GUI library design,"September 24, 2020","September 25, 2020",https://raphlinus.github.io/rust/druid/2020/09/25/principled-reactive-ui.html,code
+How I manage my LaTeX lecture notes,Gilles Castel,Fascinating look at using Vim for more than coding.,"September 14, 2019","September 13, 2020",https://castel.dev/post/lecture-notes-1/,code
+Clear explanation of Rust's module system,Sheshbabu Chinnakonda,The best guide on rust modules I've ever seen,"July 18, 2020","July 18, 2020",http://www.sheshbabu.com/posts/rust-module-system/,code
+What every JavaScript developer should know about Unicode,Dmitri Pavlutin,Unicode advice for the web. Amazing guide!,"May 18, 2020","July 10, 2020",https://dmitripavlutin.com/what-every-javascript-developer-should-know-about-unicode/,code
+On a technicality,Eevee,Fascinating take on building a community,"July 21, 2016","July 7, 2020",https://eev.ee/blog/2016/07/22/on-a-technicality/,code
+Yet Another Doom Clone (In 13kb of JavaScript),Nicholas Carlini,Incredible project in such little code,"September 12, 2019","July 4, 2020",https://nicholas.carlini.com/writing/2019/javascript-doom-clone-13k.html,code
+How Not to Store Passwords,Paul Boyd,Storing passwords badly,"November 21, 2019","June 30, 2020",https://pboyd.io/posts/how-not-to-store-passwords/,code
+A Constructive Look At TempleOS,Richard Mitton,A deeper look at a joked about operating system,"June 7, 2015","June 25, 2020",http://www.codersnotes.com/notes/a-constructive-look-at-templeos/,code
+Generic "Hooks",Michael Rawlings,More on reactive programming!,"November 3, 2018","June 1, 2020",https://medium.com/@mlrawlings/generic-hooks-f5cf27acf205,code
+Bundling in Deno,Kitson Kelly,Implementing bundling in a new JS environment,"December 9, 2019","April 27, 2020",https://www.kitsonkelly.com/posts/bundling-in-deno/,code
+JavaScript Engines Hidden Classes (and Why You Should Keep Them in Mind),Victor Felder,More about hidden V8 classes,"December 21, 2016","April 26, 2020",https://draft.li/blog/2016/12/22/javascript-engines-hidden-classes/,code
+Hidden classes in JavaScript and Inline Caching,Alex Navasardyan,The secrets of V8 unwrapped,"March 11, 2014","April 26, 2020",https://gist.github.com/twokul/9501770,code
+Becoming fully reactive: an in-depth explanation of MobX,Michel Weststrate,Understanding MobX,"December 27, 2015","April 12, 2020",https://levelup.gitconnected.com/finding-fine-grained-reactive-programming-89741994ddee,code
+Finding Fine-Grained Reactive Programming,Ryan Carniato,Reactive programming in frontend frameworks,"June 30, 2019","April 9, 2020",https://levelup.gitconnected.com/finding-fine-grained-reactive-programming-89741994ddee,code
+Preact: Into the void 0,Jason Miller,Preact's list of optimizations,"May 15, 2017","April 6, 2020",https://www.youtube.com/watch?v=LY6y3HbDVmg,code
+"LCH colors in CSS: what, why, and how?",Lea Verou,A new color type has been added to CSS,"April 3, 2020","April 3, 2020",https://lea.verou.me/2020/04/lch-colors-in-css-what-why-and-how/,code
+CSS Utility Classes and "Separation of Concerns",Adam Wathan,The philosophy behind TailWind CSS,"August 7, 2017","March 30, 2020",https://adamwathan.me/css-utility-classes-and-separation-of-concerns/,code
+Should you learn C to "learn how the computer works"?,Steve Klabnik,Tackling the idea that C teaches you how the computer works.,"October 1, 2018","March 30, 2020",https://steveklabnik.com/writing/should-you-learn-c-to-learn-how-the-computer-works,code
+JITs are un-ergonomic,Abe Winter,Why JITs make things difficult,"March 27, 2020","March 28, 2020",https://abe-winter.github.io/2020/03/28/jitu-brutus.html,code
+10 Most(ly dead) Influential Programming Languages,Hillel Wayne,"Influential, not the revolutionary","March 24, 2020","March 25, 2020",https://www.hillelwayne.com/post/influential-dead-languages/,code
+Compile Svelte in your head (Part 1),Tan Li Hau,The compiler behind this website,"March 2, 2020","March 12, 2020",https://lihautan.com/compile-svelte-in-your-head-part-1/,code
+Pocket Guide to Writing SVG,Joni Trythall,Learn SVGs in the best way possible,"January 5, 2015","March 8, 2020",https://svgpocketguide.com/book/,code
+YAML: probably not so great after all,Martin Tournoij,The case against everything but TOML,"September 15, 2016","March 3, 2020",https://www.arp242.net/yaml-config.html,code
+Making Sandspiel,Max Bittker,Wonderful wasm and physics simulations,"April 30, 2019","February 27, 2020",https://maxbittker.com/making-sandspiel,code
+JSON Parser with JavaScript,Tan Li Hau,Parsing in non-linear grammars in JavaScript!,"December 11, 2019","February 19, 2020",https://lihautan.com/json-parser-with-javascript/,code
+Learning Parser Combinators With Rust,Bodil Stokke,Condensed and fantastic tutorial.,"April 17, 2019","January 25, 2020",https://bodil.lol/parser-combinators/,code
+"Switching between JavaScript, C++, and Rust",Alain Galvan,"A look into the similarities and differences between JavaScript, C++, and Rust.","April 18, 2017","January 17, 2020",https://alain.xyz/blog/switching-between-js-cpp-rust,code
+Testing for -0 in JavaScript,Allen Wirfs-Brock,"Finding negative zeros. Useless, but interesting.","February 15, 2011","January 14, 2020",http://www.wirfs-brock.com/allen/posts/128,code
+The End of Indie Web Browsers: You Can (Not) Compete,Samuel Maddock,A look into the oximoronic anti-competitive open areas of software.,"January 7, 2020","January 7, 2020",https://blog.samuelmaddock.com/posts/the-end-of-indie-web-browsers/,code
+Making really tiny WebAssembly graphics demos,Cliff L. Biffle,Miniature wasm demos with Rust.,"June 6, 2019","January 6, 2020",http://cliffle.com/blog/bare-metal-wasm/,code
+Learn Rust the Dangerous Way,Cliff L. Biffle,Converting optimized C to clean Rust. Amazing intro to very low level optimizations.,"December 1, 2019","January 5, 2020",http://cliffle.com/p/dangerust/,code
+Prefer Rust to C/C++ for new code.,Cliff L. Biffle,"Don't need to rewrite C/C++, but new projects should be rust-only.","February 6, 2019","January 4, 2020",http://cliffle.com/blog/prefer-rust/,code
+"Deno, first approach",Lilian Saget-Lethias,Deno explained as best one can.,"December 29, 2019","December 31, 2019",https://dev.to/lsagetlethias/deno-first-approach-4d0,code
+WebAssembly cut Figma's load time by 3x,Evan Wallace,A practical application of wasm for modern day web applications.,"June 7, 2017","December 17, 2019",https://www.figma.com/blog/webassembly-cut-figmas-load-time-by-3x/,code
+From zero to main(): Bare metal Rust,James Munns,An interesting look in Rust's application as a language for extremely low level hardware.,"December 16, 2019","December 16, 2019",https://interrupt.memfault.com/blog/zero-to-main-rust-1,code
+Golang for JavaScript developers - Part 1,Deepu K Sasidharan,A nice introduction to golang. I am a firm believer that a great way to introduce new programming languages is to compare it to old ones. This worked very well for me.,"December 3, 2019","December 3, 2019",https://dev.to/deepu105/golang-for-javascript-developers-part-1-38je,code
+Creative Coding in Rust with Nannou,Ben Lovy,"Great introduction to Nanou. I loved p5.js and creative coding with canvas, so this  was a really great read for me.","November 15, 2019","November 20, 2019",https://dev.to/deciduously/creative-coding-in-rust-with-nannou-1lbl,code
+Metaprogramming in ES6: Symbols and why they're awesome,Keith Cirkel,A fantastic read on symbols & well-known symbols. I trashed an article I was writing when I found this one.,"June 17, 2015","November 17, 2019",https://www.keithcirkel.co.uk/metaprogramming-in-es6-symbols/,code
+WebAssembly and the Future of the Web,Athan Reines,"This isn't actually an article, but it's one of the best explanations of wasm I've ever seen.","March 26, 2018","October 6, 2019",https://www.youtube.com/watch?v=JWCr9vcpl3w,code
+Adventures in Microbenchmarking,Tom Dale,Tom Dale makes a good case to either not micro-benchmark or be VERY careful when trying.,"July 14, 2017","March 14, 2019",https://tomdale.net/2017/07/adventures-in-microbenchmarking/,code

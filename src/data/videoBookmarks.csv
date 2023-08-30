@@ -1,12 +1,12 @@
-Title,Speaker,Description,Uploaded At,Watched At,Link
-The Thermian Argument,Dan Olson,The case for different fiction,"September 17, 2015","July 25, 2022",https://www.youtube.com/watch?v=AxV8gAGmbtk
-Why JWTs Are Bad for Authentication,Randall Degges,JWTs are stateless in the worse way,"January 6, 2018","March 20, 2022",https://www.youtube.com/watch?v=GdJ0wFi1Jyo
-Line Goes Up - The Problem With NFTs,Dan Olson,A comprehensive overview of Web3,"January 21, 2022","January 21, 2022",https://www.youtube.com/watch?v=YQ_xWvX1n9g
-How the Discrete Fourier Transform works,QuantitativeBytes,Trigonometry on signals,"April 27, 2020","November 15, 2021",https://www.youtube.com/watch?v=ITnPS8HGqLo
-Human Behavioral Biology - Language,Robert Sapolsky,Is language just words?,"February 1, 2011","June 15, 2021",https://www.youtube.com/watch?v=SIOQgY1tqrU
-Preact: Into the void 0,Jason Miller,Preact's list of optimizations,"May 15, 2017","April 6, 2020",https://www.youtube.com/watch?v=LY6y3HbDVmg
-WebAssembly and the Future of the Web,Athan Reines,"One of the best explanations of wasm I've ever seen.","March 26, 2018","October 6, 2019",https://www.youtube.com/watch?v=JWCr9vcpl3w
-Math's pedagogical curse,Grant Sanderson,Understanding Math Pedagogy,"May 31, 2023","April 12, 2023",https://www.youtube.com/watch?v=UOuxo6SA8Uc
-An introduction to Shader Art Coding,kishimisu,learn GLSL in 20 minutes,"May 20, 2023","June 15, 2023",https://www.youtube.com/watch?v=f4s1h2YETNY
-Why it never feels like everything is alright,Adam Ragusea,The secret to happiness,"July 17, 2023","July 24, 2023",https://www.youtube.com/watch?v=3z9KG-ae08I
-The coming war on general computation,Cory Doctorow,Copyright law and software,"Dec 28, 2011","July 24, 2023",https://www.youtube.com/watch?v=HUEvRyemKSg
+Title,Speaker,Description,Uploaded At,Watched At,Link,Tags
+The Thermian Argument,Dan Olson,The case for different fiction,"September 17, 2015","July 25, 2022",https://www.youtube.com/watch?v=AxV8gAGmbtk,life
+Why JWTs Are Bad for Authentication,Randall Degges,JWTs are stateless in the worse way,"January 6, 2018","March 20, 2022",https://www.youtube.com/watch?v=GdJ0wFi1Jyo,code
+Line Goes Up - The Problem With NFTs,Dan Olson,A comprehensive overview of Web3,"January 21, 2022","January 21, 2022",https://www.youtube.com/watch?v=YQ_xWvX1n9g,code
+How the Discrete Fourier Transform works,QuantitativeBytes,Trigonometry on signals,"April 27, 2020","November 15, 2021",https://www.youtube.com/watch?v=ITnPS8HGqLo,code
+Human Behavioral Biology - Language,Robert Sapolsky,Is language just words?,"February 1, 2011","June 15, 2021",https://www.youtube.com/watch?v=SIOQgY1tqrU,life
+Preact: Into the void 0,Jason Miller,Preact's list of optimizations,"May 15, 2017","April 6, 2020",https://www.youtube.com/watch?v=LY6y3HbDVmg,code
+WebAssembly and the Future of the Web,Athan Reines,"One of the best explanations of wasm I've ever seen.","March 26, 2018","October 6, 2019",https://www.youtube.com/watch?v=JWCr9vcpl3w,code
+Math's pedagogical curse,Grant Sanderson,Understanding Math Pedagogy,"May 31, 2023","April 12, 2023",https://www.youtube.com/watch?v=UOuxo6SA8Uc,life
+An introduction to Shader Art Coding,kishimisu,learn GLSL in 20 minutes,"May 20, 2023","June 15, 2023",https://www.youtube.com/watch?v=f4s1h2YETNY,code
+Why it never feels like everything is alright,Adam Ragusea,The secret to happiness,"July 17, 2023","July 24, 2023",https://www.youtube.com/watch?v=3z9KG-ae08I,life
+The coming war on general computation,Cory Doctorow,Copyright law and software,"Dec 28, 2011","July 24, 2023",https://www.youtube.com/watch?v=HUEvRyemKSg,life

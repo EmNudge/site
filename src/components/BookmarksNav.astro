@@ -2,7 +2,8 @@
 const currentPath = new URL(Astro.request.url).pathname.match(/^(.+?)(?:\/|$)/)[1];
 
 const routes = [
-    ['/reads', 'Articles'],
+    ['/articles', 'Articles'],
+    ['/books', 'Books'],
     ['/videos', 'Videos'],
 ]
 ---

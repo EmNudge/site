@@ -1,9 +1,12 @@
 ---
-import MainLayout from '../../layouts/Main.astro'
-import Stub from '../../components/ArticleStub.astro';
-import BookmarksNav from '../../components/BookmarksNav.astro';
+import MainLayout from '../layouts/Main.astro'
+import Stub from '../components/ArticleStub.astro';
+import BookmarksNav from '../components/BookmarksNav.astro';
 
-import { reads } from '../../data/bookmarks';
+import { reads } from '../data/bookmarks';
+import Tags from '../components/Tags.astro';
+
+const tags = [...new Set(reads.map(read => read.tags.split(',')).flat())];
 
 export const getStaticPaths = async ({ paginate }) => paginate(reads, { pageSize: 25 });
 ---
@@ -11,14 +14,15 @@ export const getStaticPaths = async ({ paginate }) => paginate(reads, { pageSize
 <MainLayout title="Bookmarks">
     <BookmarksNav />
 
+    <Tags tags={tags} itemSelector='post-container' />
+
     <div class="staggered">
         {reads.map((read, i) => 
-            <post-container style={`--index: ${i}`}>
+            <post-container style={`--index: ${i}`} data-tags={read.tags}>
                 <Stub 
                     url={read.link} 
                     meta={`${read.author} • ${read.createdAt}`} 
                     title={read.title}
-                    hint={read.description}
                 />
             </post-container>
         )}

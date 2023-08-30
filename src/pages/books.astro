@@ -1,0 +1,45 @@
+---
+import MainLayout from '../layouts/Main.astro'
+import Stub from '../components/ArticleStub.astro';
+import BookmarksNav from '../components/BookmarksNav.astro';
+
+import { books } from '../data/bookmarks';
+import Tags from '../components/Tags.astro';
+
+const tags = [...new Set(books.map(read => read.tags.split(',')).flat())];
+
+export const getStaticPaths = async ({ paginate }) => paginate(books, { pageSize: 25 });
+---
+
+<MainLayout title="Bookmarks">
+    <BookmarksNav />
+
+    <Tags tags={tags} itemSelector='post-container' />
+
+    <div class="staggered">
+        {books.map((book, i) => 
+            <post-container style={`--index: ${i}`} data-tags={book.tags}>
+                <Stub 
+                    url={book.link} 
+                    meta={book.author}
+                    title={book.title}
+                />
+            </post-container>
+        )}
+    </div>
+    <p class="feed">Subscribe to <a href="/books.xml" rel="external">my books feed <img src="icons/rss-feed-icon.png" alt="rss icon" /></a></p>
+</MainLayout>
+
+<style>
+    h1 {
+        margin: 80px 0;
+        text-align: center;
+    }
+    .feed {
+        margin-top: 50px;
+        text-align: center;
+    }
+    .feed img {
+        height: 15px;
+    }
+</style>

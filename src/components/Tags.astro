@@ -1,0 +1,100 @@
+---
+interface Props {
+  tags: string[];
+  /** Element selector with a data-tags="tag1, tag2" attribute */
+  itemSelector: string;
+}
+
+const { itemSelector } = Astro.props;
+const tags = [...Astro.props.tags].sort();
+---
+
+<div class="tags">
+  {tags.map((tag) => <button class="pill">{tag}</button>)}
+</div>
+
+<script define:vars={{ tags, itemSelector }}>
+const tagsContainer = document.querySelector(".tags");
+tagsContainer.classList.add("enabled");
+
+/** @type {HTMLButtonElement | null} */
+let activeButton = null;
+
+tagsContainer.addEventListener("click", (e) => {
+  if (!(e.target instanceof HTMLButtonElement)) return;
+
+  const button = e.target;
+
+  if (activeButton && activeButton !== button) {
+    activeButton.classList.remove("active");
+  }
+
+  button.classList.toggle("active");
+
+  activeButton = button.classList.contains('active') ? button : null;
+  const activeTag = activeButton?.textContent;
+
+  const posts = document.querySelectorAll(itemSelector);
+  for (const postStub of posts) {
+    const showPost = activeTag 
+      ? postStub.dataset.tags.split(/\s*,\s*/).includes(activeTag) 
+      : true;
+
+    if (showPost) {
+      postStub.classList.remove("hide-tagged-item");
+    } else {
+      postStub.classList.add("hide-tagged-item");
+    }
+  }
+});
+</script>
+
+<style is:global>
+  .hide-tagged-item {
+    display: none;
+  }
+</style>
+
+<style>
+  .tags {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-top: -2rem;
+    margin-bottom: 1rem;
+
+    opacity: 0;
+  }
+  .tags.enabled {
+    transition: 0.25s;
+    opacity: 1;
+  }
+
+  .pill {
+    border-radius: 1rem;
+    padding: 0.5rem 1rem;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+
+    background: none;
+    border: 1px solid #fff4;
+    opacity: 0.5;
+    transition: 0.15s;
+  }
+  .pill.active {
+    opacity: 1;
+    background-color: #f4f4f433;
+    border-color: transparent;
+  }
+
+  @media (prefers-color-scheme: light) {
+    .pill {
+      border: 1px solid #0004;
+    }
+    .pill.active {
+      background-color: #83838333;
+      border-color: transparent;
+    }
+  }
+</style>

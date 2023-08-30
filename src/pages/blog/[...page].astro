@@ -4,6 +4,7 @@ import MainLayout from '../../layouts/Main.astro';
 
 import { getSlugs } from '../../data/blogs';
 import type { MdOrMdxFile } from '../../data/blogs'
+import Tags from '../../components/Tags.astro';
 
 const posts = await Astro.glob('./*.md*') as MdOrMdxFile[];
 const postSlugs = await getSlugs(posts);
@@ -20,9 +21,7 @@ export async function getStaticPaths({ paginate }) {
 <MainLayout title="Blog">
     <h1>Blog</h1>
 
-    <div class="tags">
-      {tags.map(tag => <button class="pill">{tag}</button>)}
-    </div>
+    <Tags tags={tags} itemSelector='post-container' />
 
     <div class="staggered">
         {postSlugs.map((post, i) => 
@@ -38,38 +37,6 @@ export async function getStaticPaths({ paginate }) {
         )}
     </div>
 
-    <script define:vars={{ tags }}>
-      const tagsContainer = document.querySelector('.tags');
-      tagsContainer.classList.add('enabled');
-
-      tagsContainer.addEventListener('click', e => {
-        if (!(e.target instanceof HTMLButtonElement)) return;
-        
-        const button = e.target;
-        button.classList.toggle('active');
-
-        const activeTags = (() => {
-          const activeTexts = [...document.querySelectorAll('.pill')]
-            .filter(button => button.classList.contains('active'))
-            .map(button => button.textContent);
-
-          return new Set(activeTexts.length ? activeTexts : tags);
-        })();
-
-        const posts = document.querySelectorAll('post-container');
-        for (const postStub of posts) {
-          const postTags = postStub.dataset.tags.trim().split(/\s*,\s*/);
-          const showPost = postTags.every(tag => activeTags.has(tag));
-
-          if (showPost) {
-            postStub.classList.remove('hide');
-          } else {
-            postStub.classList.add('hide');
-          }
-        }
-      });
-    </script>
-
     <p class="feed">Subscribe to <a href="/blog.xml" rel="external">my rss feed <img src="icons/rss-feed-icon.png" alt="rss icon" /></a></p>
 </MainLayout>
 <style>
@@ -77,53 +44,11 @@ export async function getStaticPaths({ paginate }) {
     margin: 80px 0;
     text-align: center;
   }
-  .tags {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    margin-top: -2rem;
-    margin-bottom: 1rem;
-
-    opacity: 0;
-  }
-  .tags.enabled {
-    transition: .25s;
-    opacity: 1;
-  }
-  .pill {
-    border-radius: 1rem;
-    padding: 0.5rem 1rem;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-
-    background: none;
-    border: 1px solid #fff4;
-    opacity: 0.5;
-    transition: .15s;
-  }
-  .pill.active {
-    opacity: 1;
-    background-color: #f4f4f433;
-    border-color: transparent;
-  }
-  @media (prefers-color-scheme: light) {
-    .pill {
-      border: 1px solid #0004;
-    }
-    .pill.active {
-      background-color: #83838333;
-      border-color: transparent;
-    }
-  }
   .feed {
     margin-top: 50px;
     text-align: center;
   }
   .feed img {
     height: 15px;
-  }
-  post-container.hide {
-    display: none;
   }
 </style>
