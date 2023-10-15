@@ -60,19 +60,25 @@ const videos = await getVideos();
 
 <style>
 	.videos {
-		display: flex;
-		justify-content: space-around;
-		flex-wrap: wrap;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
 		margin: 0 auto;
+	}
+	@media screen and (max-width: 450px) {
+		.videos {
+			grid-template-columns: 1fr;
+		}
 	}
 	.video {
 		color: var(--forground);
 		box-sizing: border-box;
 		display: block;
-		margin: 20px;
 		position: relative;
 		width: 320px;
 		transition: .25s;
+		width: 100%;
+		padding: 24px;
+		box-sizing: border-box;
 	}
 	.video h3 {
 		margin-top: 10px;
@@ -81,14 +87,16 @@ const videos = await getVideos();
 	.video > * {
 		transition: .25s;
 	}
-	.video:hover > * {
-		transform: scale(1.05);
+	.video:hover {
+		background: #0002;
+	}
+	@media (prefers-color-scheme: dark) {
+		.video:hover {
+			background: #fff1;
+		}
 	}
 	.video img {
-		max-width: 320px;
-		max-height: 180px;
-		width: auto;
-		height: auto;
+		width: 100%;
 	}
 
 	.projects {
