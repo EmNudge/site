@@ -3,13 +3,14 @@ import MainLayout from '../layouts/Main.astro'
 
 import NameSection from '../components/NameSection.astro';
 import TitleSection from '../components/TitleSection.astro';
-import Stub from '../components/ArticleStub.astro';
+import Stub from '../components/Stub.astro';
 
 import { getVideos } from '../data/videos';
 import { reads } from '../data/bookmarks';
 import { projects } from '../data/projects';
 import { MdOrMdxFile, getSlugs } from '../data/blogs';
 import ProjectStub from '../components/ProjectStub.astro';
+import BlogStub from '../components/article/BlogStub.astro';
 
 const posts = await getSlugs(await Astro.glob('./blog/*.md*') as MdOrMdxFile[]);
 const videos = await getVideos();
@@ -21,13 +22,7 @@ const videos = await getVideos();
 	<TitleSection title="Blog" link="/blog" staggered>
 		{posts.slice(0, 5).map((post, i) =>
 			<post-container style={`--index: ${i}`}>
-				<Stub 
-					icon={`/article-icons/${post.url.match(/blog\/(.+)/)[1]}.webp`}
-					url={post.url}
-					meta={`${post.pubDate} • ${post.minuteLength} minute read`} 
-					title={post.title}
-					description={post.summary}
-				/>
+				<BlogStub {...post} />
 			</post-container>
 		)}
 	</TitleSection>

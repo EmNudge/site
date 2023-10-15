@@ -1,7 +1,7 @@
 import type { MarkdownInstance } from "astro";
 import { readFile } from 'node:fs/promises';
 
-interface Post {
+export interface Post {
     draft?: true;
     tags: string;
     pubDate: string;
@@ -9,6 +9,7 @@ interface Post {
     summary: string;
     url: string;
     minuteLength: number;
+    recording?: string;
     discussions?: { site: string; url: string }[]
 }
 

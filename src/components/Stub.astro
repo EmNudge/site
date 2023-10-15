@@ -5,7 +5,7 @@ interface Props {
     title: string;
     description?: string;
     discussions?: { site: string; url: string }[];
-    icon?: string;
+    withDivider?: boolean;
 }
 
 const {
@@ -14,50 +14,36 @@ const {
     title,
     description,
     discussions,
-    icon,
+    withDivider = true,
 } = Astro.props;
 ---
 
-<div class={"post-stub" + (icon ? " with-icon" : "")}>
-    {icon && <img class="article-icon" src={icon} alt={title} />}
-    <div>
-        <h5>
-            <div class="meta">{meta}</div>
-            {discussions && <div class="discussions">
-                <div class="divider"></div>
-                {discussions.map(disc => <a href={disc.url}>
-                    <img src={`/icons/${disc.site}.png`} alt={disc.site} />
-                </a>)}
-            </div>}
-        </h5>
-        <a href={url}>
-            <h2>{title}</h2>
-            {description && <p>{description}</p>}
-        </a>
-    </div>
+<div class={"post-stub" + (withDivider? " with-divider" : "")}>
+    <h5>
+        <div class="meta">{meta}</div>
+        {discussions && <div class="discussions">
+            <div class="divider"></div>
+            {discussions.map(disc => <a href={disc.url}>
+                <img src={`/icons/${disc.site}.png`} alt={disc.site} />
+            </a>)}
+        </div>}
+    </h5>
+    <a href={url}>
+        <h2>{title}</h2>
+        {description && <p>{description}</p>}
+    </a>
 </div>
 
 <style>
-    img.article-icon {
-        height: 96px;
-        filter: sepia(80%);
-        background: #efeaca;
-        padding: 3px 3px 12px;
-        transform: rotate(3deg);
-    }
     .post-stub {
-        padding: 20px;
         display: block;
         color: var(--foreground);
+    }
+    .post-stub.with-divider {
+        padding: 20px;
         border-bottom: 1px solid var(--light-bg);
     }
-    .post-stub.with-icon {
-        display: grid;
-        grid-template-columns: 100px 1fr;
-        align-items: center;
-        gap: 28px;
-    }
-    .post-stub:hover {
+    .post-stub.with-divider:hover {
         background: var(--light-bg);
     }
     a {

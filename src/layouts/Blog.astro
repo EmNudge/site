@@ -38,27 +38,27 @@ const minuteLength = getMinuteLengthFromFile(file);
 	</head>
 
 	<body>
-        <Header />
+		<Header />
 
-        <main>
-            <div class="title-container">
+		<main>
+			<div class="title-container">
 				<h5>{pubDate} • {minuteLength} minute read</h5>
 				<h1>{title}</h1>
 				<p>{summary}</p>
 
 				{recording && <SpeakAloud recording={recording} client:load />}
-            </div>
+			</div>
 
-            <article class={recording ? 'with-audio' : undefined}>
-                <slot />
-            </article>
-        </main>
+			<article class={recording ? 'with-audio' : undefined}>
+				<slot />
+			</article>
+		</main>
 
-        <Footer />
+		<Footer />
 
 		<PictureZoom client:load />
 		<script src="../components/CodeRunner/index.ts"></script>
-    </body>
+	</body>
 </html>
 
 <style>

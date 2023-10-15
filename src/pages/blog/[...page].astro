@@ -1,10 +1,10 @@
 ---
-import Stub from '../../components/ArticleStub.astro';
 import MainLayout from '../../layouts/Main.astro';
 
 import { getSlugs } from '../../data/blogs';
 import type { MdOrMdxFile } from '../../data/blogs'
 import Tags from '../../components/Tags.astro';
+import BlogStub from '../../components/article/BlogStub.astro';
 
 const posts = await Astro.glob('./*.md*') as MdOrMdxFile[];
 const postSlugs = await getSlugs(posts);
@@ -26,14 +26,7 @@ export async function getStaticPaths({ paginate }) {
     <div class="staggered">
         {postSlugs.map((post, i) => 
             <post-container style={`--index: ${i}`} data-tags={post.tags}>
-                <Stub
-                    icon={`/article-icons/${post.url.match(/blog\/(.+)/)[1]}.webp`}
-                    url={post.url}
-                    meta={`${post.pubDate} • ${post.minuteLength} minute read`} 
-                    title={post.title}
-                    description={post.summary}
-                    discussions={post.discussions}
-                />
+                <BlogStub {...post} />
             </post-container>  
         )}
     </div>

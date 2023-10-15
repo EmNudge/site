@@ -1,0 +1,78 @@
+---
+import type { Post } from '../../data/blogs';
+import Stub from '../Stub.astro';
+
+type Props = Post;
+
+const {
+    url,
+    title,
+    pubDate,
+    minuteLength,
+    discussions,
+    summary,
+    tags,
+    recording,
+} = Astro.props;
+
+const isCode = tags.includes('coding');
+const hasRecording = Boolean(recording);
+---
+
+<div class="article-stub-container">
+    <div class="img-container">
+        <img src={`/article-icons/${url.match(/blog\/(.+)/)[1]}.webp`} alt={title}>
+        <div class="tags-container">
+            {isCode && <span class="tag">&lt;/&gt;</span>}
+            {hasRecording && <span class="tag">🔉</span>}
+        </div>
+    </div>
+    <Stub
+        withDivider={false}
+        url={url}
+        meta={`${pubDate} • ${minuteLength} minute read`} 
+        title={title}
+        description={summary}
+        discussions={discussions}
+    />
+</div>
+
+<style>
+.article-stub-container {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    align-items: center;
+    gap: 28px;
+    border-bottom: 1px solid var(--light-bg);
+    padding: 20px;
+}
+.article-stub-container:hover {
+    background: var(--light-bg);
+}
+.img-container {
+    position: relative;
+}
+img {
+    height: 96px;
+    filter: sepia(80%);
+    background: #efeaca;
+    padding: 3px 3px 14px;
+    transform: rotate(3deg);
+    z-index: -1;
+}
+.tags-container {
+    position: absolute;
+    bottom: 10px;
+    z-index: 10;
+    color: black;
+}
+.tag {
+    padding: 0 5px;
+    border: 2px solid #000a;
+    border-radius: 25%;
+    background-color: white;
+    box-shadow: 2px 3px 3px black;
+    font-weight: bold;
+    user-select: none;
+}
+</style>
