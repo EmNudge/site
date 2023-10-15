@@ -26,7 +26,8 @@ export async function getStaticPaths({ paginate }) {
     <div class="staggered">
         {postSlugs.map((post, i) => 
             <post-container style={`--index: ${i}`} data-tags={post.tags}>
-                <Stub 
+                <Stub
+                    icon={`/article-icons/${post.url.match(/blog\/(.+)/)[1]}.webp`}
                     url={post.url}
                     meta={`${post.pubDate} • ${post.minuteLength} minute read`} 
                     title={post.title}

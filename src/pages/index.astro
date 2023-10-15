@@ -22,6 +22,7 @@ const videos = await getVideos();
 		{posts.slice(0, 5).map((post, i) =>
 			<post-container style={`--index: ${i}`}>
 				<Stub 
+					icon={`/article-icons/${post.url.match(/blog\/(.+)/)[1]}.webp`}
 					url={post.url}
 					meta={`${post.pubDate} • ${post.minuteLength} minute read`} 
 					title={post.title}
