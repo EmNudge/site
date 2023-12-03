@@ -32,14 +32,13 @@ const { conversation } = Astro.props;
 
 <style>
   .email {
-    background: black;
     border-radius: 0.5rem;
     display: grid;
     gap: 0.5rem;
     overflow: hidden;
   }
   .message {
-    background: #333;
+    background: #202020;
     padding: 1rem;
   }
   .message-header {
@@ -62,5 +61,11 @@ const { conversation } = Astro.props;
   .emails-list {
     display: grid;
     opacity: 0.5;
+  }
+  @media (prefers-color-scheme: light) {
+    .message {
+      background: #dedede;
+      color: black;
+    }
   }
 </style>
