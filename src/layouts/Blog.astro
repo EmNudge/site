@@ -5,7 +5,7 @@ import Footer from '../components/Footer.astro';
 import PictureZoom from '../components/PictureZoom.svelte';
 import SpeakAloud from '../components/SpeakAloud/index.svelte';
 
-import { getMinuteLengthFromFile } from '../data/blogs';
+import { getMinuteLengthFromFile, getSlugs } from '../data/blogs';
 
 import './blog/index.css';
 
@@ -13,6 +13,9 @@ const { content, file } = Astro.props;
 const { pubDate, title, summary, recording } = content;
 
 const minuteLength = getMinuteLengthFromFile(file);
+
+const slugs = await Astro.glob("../pages/blog/*.md*").then(getSlugs);
+const postItems = slugs.map(({ title, url }) => [title, url] as const);
 ---
 
 <html lang="en">
@@ -58,6 +61,59 @@ const minuteLength = getMinuteLengthFromFile(file);
 
 		<PictureZoom client:load />
 		<script src="../components/CodeRunner/index.ts"></script>
+
+		
+    <ninja-keys></ninja-keys>
+
+    <script type="module" define:vars={{ postItems }}>
+      import "/libraries/ninja-keys.min.js";
+
+      const ninjaKeys = document.querySelector("ninja-keys");
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        ninjaKeys.classList.add("dark");
+      }
+
+      const blogPosts = postItems.map(([title, url]) => ({
+        id: url.slice(6),
+        title,
+        parent: "Post",
+        handler: () => {
+          window.location.pathname = url;
+        },
+      }));
+
+      const nav = [
+        ["Home", "/"],
+        ["Blog", "/blog"],
+        ["Article Bookmarks", "articles"],
+        ["Book Bookmarks", "books"],
+        ["Video Bookmarks", "videos"],
+      ].map(([title, path]) => ({
+        id: title,
+        title,
+        parent: "Page",
+        handler: () => {
+          window.location.pathname = path;
+        },
+      }));
+
+      console.log(blogPosts, nav);
+
+      ninjaKeys.data = [
+        {
+          id: "Page",
+          title: "Nagivate To",
+          children: nav.map((item) => item.id),
+        },
+        ...nav,
+        {
+          id: "Post",
+          title: "Open Blog Post",
+          children: blogPosts.map((item) => item.id),
+        },
+        ...blogPosts,
+      ];
+    </script>
 	</body>
 </html>
 
