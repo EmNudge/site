@@ -40,53 +40,8 @@ const postItems = slugs.map(({ title, url }) => [title, url] as const);
     <ninja-keys></ninja-keys>
 
     <script type="module" define:vars={{ postItems }}>
-      import "/libraries/ninja-keys.min.js";
-
-      const ninjaKeys = document.querySelector("ninja-keys");
-      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-        ninjaKeys.classList.add("dark");
-      }
-
-      const blogPosts = postItems.map(([title, url]) => ({
-        id: url.slice(6),
-        title,
-        parent: "Post",
-        handler: () => {
-          window.location.pathname = url;
-        },
-      }));
-
-      const nav = [
-        ["Home", "/"],
-        ["Blog", "/blog"],
-        ["Article Bookmarks", "articles"],
-        ["Book Bookmarks", "books"],
-        ["Video Bookmarks", "videos"],
-      ].map(([title, path]) => ({
-        id: title,
-        title,
-        parent: "Page",
-        handler: () => {
-          window.location.pathname = path;
-        },
-      }));
-
-      console.log(blogPosts, nav);
-
-      ninjaKeys.data = [
-        {
-          id: "Page",
-          title: "Nagivate To",
-          children: nav.map((item) => item.id),
-        },
-        ...nav,
-        {
-          id: "Post",
-          title: "Open Blog Post",
-          children: blogPosts.map((item) => item.id),
-        },
-        ...blogPosts,
-      ];
+			import { addCommandPaletteConditionally } from '/libraries/command-palette.js';
+			addCommandPaletteConditionally(postItems);
     </script>
   </body>
 </html>

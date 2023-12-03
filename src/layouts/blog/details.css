@@ -50,12 +50,12 @@ details > p:last-child {
 }
 
 details.toc {
-    background: #141414;
-    border: 1px solid #5a5a5a;
+    background: transparent;
+    border: 1px solid #5a5a5a66;
     margin-bottom: 2rem;
 }
 details.toc summary {
-    background: #212121;
+    background: #2020206b;
 }
 details.toc ul, details.toc ol {
     /* list-style: none; */
@@ -65,10 +65,11 @@ details.toc ul, details.toc ol {
 
 @media (prefers-color-scheme: light) {
     details.toc {
-        background: #ebffeb;
+        background: white;
+        border: 1px solid #5a5a5a2b;
     }
     details.toc summary {
-        background: #bfeabf;
+        background: #f4f0f0;
     }
 }
 
