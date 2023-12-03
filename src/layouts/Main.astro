@@ -1,31 +1,92 @@
 ---
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import { getSlugs } from "../data/blogs";
 
 const { title } = Astro.props;
+
+const slugs = await Astro.glob("../pages/blog/*.md*").then(getSlugs);
+const postItems = slugs.map(({ title, url }) => [title, url] as const);
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-		<meta name="description" content="Personal website for EmNudge">
-		<meta name="author" content="EmNudge">
-		<meta name="keywords" content="EmNudge">
-		<meta name="color-scheme" content="dark light">
+    <meta name="description" content="Personal website for EmNudge" />
+    <meta name="author" content="EmNudge" />
+    <meta name="keywords" content="EmNudge" />
+    <meta name="color-scheme" content="dark light" />
 
-		<link rel="alternate" type="application/rss+xml" href="/blog.xml" title="RSS feed for emnudge.dev">
-		<link rel="icon" href="/icons/icon_neon.webp" />
-		<link rel="stylesheet" href="/app.css">
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      href="/blog.xml"
+      title="RSS feed for emnudge.dev"
+    />
+    <link rel="icon" href="/icons/icon_neon.webp" />
+    <link rel="stylesheet" href="/app.css" />
 
-		<title>{title}</title>
-	</head>
-	<body>
-        <Header />
-        <main>
-		    <slot />
-        </main>
-        <Footer />
-	</body>
+    <title>{title}</title>
+  </head>
+  <body>
+    <Header />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+
+    <ninja-keys></ninja-keys>
+
+    <script type="module" define:vars={{ postItems }}>
+      import "/libraries/ninja-keys.min.js";
+
+      const ninjaKeys = document.querySelector("ninja-keys");
+      if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        ninjaKeys.classList.add("dark");
+      }
+
+      const blogPosts = postItems.map(([title, url]) => ({
+        id: url.slice(6),
+        title,
+        parent: "Post",
+        handler: () => {
+          window.location.pathname = url;
+        },
+      }));
+
+      const nav = [
+        ["Home", "/"],
+        ["Blog", "/blog"],
+        ["Article Bookmarks", "articles"],
+        ["Book Bookmarks", "books"],
+        ["Video Bookmarks", "videos"],
+      ].map(([title, path]) => ({
+        id: title,
+        title,
+        parent: "Page",
+        handler: () => {
+          window.location.pathname = path;
+        },
+      }));
+
+      console.log(blogPosts, nav);
+
+      ninjaKeys.data = [
+        {
+          id: "Page",
+          title: "Nagivate To",
+          children: nav.map((item) => item.id),
+        },
+        ...nav,
+        {
+          id: "Post",
+          title: "Open Blog Post",
+          children: blogPosts.map((item) => item.id),
+        },
+        ...blogPosts,
+      ];
+    </script>
+  </body>
 </html>
