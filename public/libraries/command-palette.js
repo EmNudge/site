@@ -11,10 +11,13 @@ export function addCommandPaletteConditionally(postItems) {
   if (commandPaletteCreated) return;
 
   if (window.innerWidth < 800) {
-    window.addEventListener('resize', () => {
-      if (window.innerWidth < 800) return;
-      createCommandPalette(postItems);
+    window.addEventListener('resize', function listener() {
+      if (window.innerWidth > 800) {
+        createCommandPalette(postItems);
+        window.removeEventListener('resize', listener);
+      }
     });
+
     return;
   }
 
