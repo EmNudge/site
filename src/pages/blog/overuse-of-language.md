@@ -121,7 +121,10 @@ I've taken up Photography recently and it has done wonders for how I see the wor
 
 
 <figure>
-  <img src="/article/banana.jpg" alt="banana stand near a concert">
+  <picture>
+    <source srcset="/article/banana_small.avif" type="image/avif" />
+    <img src="/article/banana.webp" alt="banana stand near a concert">
+  </picture>
   <figcaption>Pickleball event in Seattle</figcaption>
 </figure>
 

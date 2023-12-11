@@ -9,7 +9,7 @@
         articleEl.classList.add("js-enabled");
         articleEl.addEventListener("click", (e) => {
             if (!(e.target instanceof HTMLImageElement)) return;
-            if (!["P", "FIGURE"].includes(e.target.parentElement.tagName))
+            if (!["P", "FIGURE", "PICTURE"].includes(e.target.parentElement.tagName))
                 return;
             // if we clicked an image that is a direct descendant of a paragraph element
             clickedImage = e.target.src;

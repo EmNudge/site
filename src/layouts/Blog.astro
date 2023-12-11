@@ -74,11 +74,11 @@ const postItems = slugs.map(({ title, url }) => [title, url] as const);
 
 <style>
 	article:global(.js-enabled p > img), 
-	article:global(.js-enabled figure > img) {
+	article:global(.js-enabled figure  img) {
 		transition: .25s;
 	}
 	article:global(.js-enabled p > img:hover), 
-	article:global(.js-enabled figure > img:hover) {
+	article:global(.js-enabled figure  img:hover) {
 		transform: scale(1.03);
 		cursor: pointer;
 	}
