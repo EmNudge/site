@@ -67,6 +67,15 @@ async function createCommandPalette(postItems) {
 
   ninjaKeys.data = [
     {
+      id: 'Theme',
+      title: "Toggle Theme",
+      handler: () => {
+        document.documentElement.classList.toggle('light');
+        const isLightClass = document.documentElement.classList.contains('light');
+        localStorage.setItem('theme', isLightClass ? 'light' : 'dark');
+      }
+    },
+    {
       id: "Page",
       title: "Navigate To",
       children: nav.map((item) => item.id),
