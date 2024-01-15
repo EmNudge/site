@@ -83,24 +83,11 @@ tagsContainer.addEventListener("click", (e) => {
     transition: 0.15s;
   }
   .pill:hover {
-    border: 1px solid #fff;
+    border: 1px solid var(--foreground);
   }
   .pill.active {
     opacity: 1;
-    background-color: #f4f4f433;
+    background-color: var(--bg-contrast);
     border-color: transparent;
-  }
-  .pill.active:hover {
-    /* border: 1px solid #fff; */
-  }
-
-  @media (prefers-color-scheme: light) {
-    .pill {
-      border: 1px solid #0004;
-    }
-    .pill.active {
-      background-color: #83838333;
-      border-color: transparent;
-    }
   }
 </style>

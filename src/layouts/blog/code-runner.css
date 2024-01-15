@@ -12,7 +12,7 @@
 
 [data-rehype-pretty-code-fragment].runnable [data-rehype-pretty-code-title] button {
     cursor: pointer;
-    background: #2d3a49;
+    background: var(--background);
     border: none;
     padding: 0 1rem;
     z-index: 4;
@@ -21,7 +21,7 @@
 }
 
 [data-rehype-pretty-code-fragment].runnable [data-rehype-pretty-code-title] button:hover {
-    background: #3d5065;
+    background: var(--bg-light-transparent);
 }
 
 @media screen and (max-width: 600px) {
@@ -63,6 +63,7 @@
     --curve: calc(1 - (1 - var(--percentage)) * (1 - var(--percentage)));
     animation-delay: calc(var(--curve) * var(--max-delay, 400ms));
     opacity: 0;
+    color: white;
 }
 
 [data-rehype-pretty-code-fragment].runnable output console-log:hover {
@@ -83,17 +84,4 @@
 
 [data-rehype-pretty-code-fragment].runnable output console-log .spacer {
     padding: 0 5px;
-}
-
-@media (prefers-color-scheme: light) {
-    [data-rehype-pretty-code-fragment].runnable [data-rehype-pretty-code-title] button {
-        background: white;
-    }
-    [data-rehype-pretty-code-fragment].runnable [data-rehype-pretty-code-title] button:hover {
-        background: #ccc;
-    }
-
-    [data-rehype-pretty-code-fragment].runnable output console-log {
-        color: white;
-    }
 }

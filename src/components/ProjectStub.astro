@@ -54,16 +54,11 @@ const { url, github, name, description } = Astro.props;
 
 <style>
     .project {
-        background: #25262952;
+        border: 1px solid var(--light-bg);
+        background: var(--bg-light-transparent);
         border-radius: 20px;
         padding: 1.5rem 2rem;
         transition: 0.15s;
-    }
-    @media (prefers-color-scheme: light) {
-        .project {
-            border: 1px solid #ededed;
-            background: white;
-        }
     }
     h2 {
         display: flex;

@@ -1,13 +1,12 @@
 :root {
     font-family: Arial, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    /* --active: #61FFFF; */
     --active: #75a2ff;
     --light-active: #31616a;
     --foreground: white;
     --background: #131619;
-    /* --background: #1F2632; */
     --bg-contrast: #222;
     --light-bg: #fff1;
+    --bg-light-transparent: #2225;
 }
 
 body {
@@ -52,12 +51,12 @@ a {
         --background: white;
         --light-bg: #0001;
         --bg-contrast: #0001;
+        --bg-light-transparent: #eee5;
     }
     img.dark-mode {
         filter: invert(1);
     }
 }
-
 
 /* css for staggered class. Easier than a svelte component */
 
