@@ -154,12 +154,6 @@
         height: 12px;
         opacity: 0.7;
     }
-    @media (prefers-color-scheme: light) {
-        button img {
-            height: 12px;
-            filter: invert(1);
-        }
-    }
     .side-controls {
         display: grid;
         grid-template-columns: 1fr auto;

@@ -2,7 +2,7 @@
 
 details,
 .admonition {
-    background: #1b1435;
+    background: var(--light-bg);
     border-radius: 4px;
     border: 1px solid #7e5eff;
     overflow: hidden;
@@ -17,7 +17,7 @@ details[open] summary {
     margin-bottom: 1rem;
 }
 details summary {
-    background: #291d56;
+    background: var(--bg-light-transparent);
     padding: 1rem;
     font-size: 1rem;
 }
@@ -37,40 +37,17 @@ details > p:last-child {
     margin-bottom: 0.25rem;
 }
 
-@media (prefers-color-scheme: light) {
-    .admonition {
-        background: #ebe5ff;
-    }
-    details {
-        background: #f7f5ff;
-    }
-    details summary {
-        background: #e4ddff;
-    }
-}
-
 details.toc {
-    background: transparent;
-    border: 1px solid #5a5a5a66;
+    background: var(--background);
+    border: 1px solid var(--light-bg);
     margin-bottom: 2rem;
 }
 details.toc summary {
-    background: #2020206b;
+    background: var(--bg-light-transparent);
 }
 details.toc ul, details.toc ol {
-    /* list-style: none; */
     font-size: 0.8rem;
     margin-left: 0.5rem;
-}
-
-@media (prefers-color-scheme: light) {
-    details.toc {
-        background: white;
-        border: 1px solid #5a5a5a2b;
-    }
-    details.toc summary {
-        background: #f4f0f0;
-    }
 }
 
 .admonition.center {

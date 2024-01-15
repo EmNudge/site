@@ -2,7 +2,7 @@
 blockquote {
     position: relative;
     border: 1px solid #41818d;
-    background: #193337;
+    background: var(--bg-green);
     border-radius: 4px;
     padding: 1rem 2rem;
     margin-top: 1rem;
@@ -49,11 +49,5 @@ blockquote cite:before {
     }
     blockquote:before {
         content: none;
-    }
-}
-
-@media (prefers-color-scheme: light) {
-    blockquote {
-        background: #e8f8fa;
     }
 }

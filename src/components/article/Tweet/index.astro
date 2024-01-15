@@ -66,7 +66,7 @@ const authorLink = 'https://twitter.com/' + handle;
         --black-col: rgb(20, 23, 26);
         --faded-col: rgb(101, 119, 134);
         color: var(--black-text);
-        background: white;
+        background: none;
         display: grid;
         grid-template-columns: auto 1fr;
         grid-gap: 10px;
@@ -74,11 +74,11 @@ const authorLink = 'https://twitter.com/' + handle;
         margin: 1rem auto;
         transition: 0.25s;
         padding: 1rem 2rem;
-        border: 1px solid #f0f0f0;
+        border: 1px solid var(--bg-contrast);
         border-radius: 0.5rem;
     }
     .tweet:hover {
-        background: #f5f8fa;
+        background: var(--bg-light-transparent);
     }
     .tweet :global(svg) {
         fill: var(--faded-col);
@@ -160,15 +160,5 @@ const authorLink = 'https://twitter.com/' + handle;
     .date {
         opacity: 0.5;
         font-size: 1rem;
-    }
-
-    @media (prefers-color-scheme: dark) {
-        .tweet {
-            background: none;
-            border: 1px solid #f0f0f045;
-        }
-        .tweet:hover {
-            background: #00000050;
-        }
     }
 </style>

@@ -28,6 +28,12 @@ const postItems = slugs.map(({ title, url }) => [title, url] as const);
 		<meta name="keywords" content="EmNudge">
 		<meta name="color-scheme" content="dark light">
 
+		<script>
+			if (localStorage.getItem('theme') === 'light') {
+				document.documentElement.classList.add('light');
+			}
+		</script>
+		
 		<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="RSS feed for my blog">
 		<link rel="icon" href="/icons/icon_neon.webp" />
 		<link rel="stylesheet" href="/app.css">

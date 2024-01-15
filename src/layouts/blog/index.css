@@ -21,18 +21,12 @@
 }
 
 article {
-    color: #ddd;
+    color: var(--light-foreground);
     font-size: 1rem;
     line-height: 1.8;
     letter-spacing: .5px;
     font-family: 'Merriweather', "Times New Roman", Times, serif;
     margin-bottom: 2rem;
-}
-
-@media (prefers-color-scheme: light) {
-    article {
-        color: #555;
-    }
 }
 
 article a {

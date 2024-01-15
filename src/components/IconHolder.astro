@@ -10,12 +10,15 @@ const defaultIcons = [
 const { 
     icons = defaultIcons, 
     small = false, 
-    opacity = 0.8, 
+    translucent = false,
     staggered = false 
 } = Astro.props;
+
+const classes = [staggered && 'staggered', translucent && 'translucent']
+    .filter(Boolean).join(' ');
 ---
 
-<div style={`--opacity: ${opacity}`} class={staggered ? 'staggered' : ''}>
+<div class={classes}>
     {icons.map(([iconUrl, name, link], i) => 
         <a href={link} style={`--index: ${i}`}>
             <img class={`dark-mode ${small ? 'small' : ''}`} src={iconUrl} alt={name} />
@@ -35,13 +38,11 @@ const {
     a img {
         height: 20px;
         padding: 10px;
-        opacity: var(--opacity);
+        opacity: .8;
         transition: 0.2s;
     }
-    @media (prefers-color-scheme: light) {
-        a img {
-            opacity: calc(var(--opacity) * 3 / 4);
-        }
+    .translucent a img {
+        opacity: .5;
     }
     a:hover img {
         opacity: 1;
