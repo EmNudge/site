@@ -9,6 +9,7 @@
     --bg-contrast: #222;
     --light-bg: #fff1;
     --bg-light-transparent: #2225;
+    --box-shadow-light-only: none;
 }
 
 body {
@@ -17,10 +18,26 @@ body {
 }
 
 @media (prefers-color-scheme: light) {
+    :root {
+        --active: #ff7b3a;
+        --light-active: #ffdac8;
+        --foreground: #222;
+        --light-foreground: #555;
+        --background: white;
+        --light-bg: #0001;
+        --bg-green: #e8f8fa;
+        --bg-contrast: #0001;
+        --bg-light-transparent: #eee5;
+        --box-shadow-light-only: 2px 2px 3px #00000038;
+    }
     body {
         background: linear-gradient(to bottom right, white, #f8f9fb);
     }
+    img.dark-mode {
+        filter: invert(1);
+    }
 }
+
 
 main {
     max-width: 800px;
@@ -43,23 +60,6 @@ h2 {
 a {
     text-decoration: none;
     color: var(--active);
-}
-
-@media (prefers-color-scheme: light) {
-     :root {
-        --active: #ff7b3a;
-        --light-active: #ffdac8;
-        --foreground: #222;
-        --light-foreground: #555;
-        --background: white;
-        --light-bg: #0001;
-        --bg-green: #e8f8fa;
-        --bg-contrast: #0001;
-        --bg-light-transparent: #eee5;
-    }
-    img.dark-mode {
-        filter: invert(1);
-    }
 }
 
 /* css for staggered class. Easier than a svelte component */

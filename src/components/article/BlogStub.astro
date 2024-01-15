@@ -50,7 +50,7 @@ const hasRecording = Boolean(recording);
 .article-stub-container:hover {
     background: var(--light-bg);
     border-radius: 9px;
-    border: 1px solid #ffffff29;
+    border: 1px solid var(--light-bg);
 }
 .img-container {
     position: relative;
@@ -62,12 +62,6 @@ img {
     padding: 3px 3px 14px;
     transform: rotate(3deg);
     z-index: -1;
-}
-@media (prefers-color-scheme: light) {
-    img {
-        border: 1px solid #0000002b;
-        box-shadow: 2px 2px 3px #00000038;
-    }
 }
 .tags-container {
     position: absolute;
