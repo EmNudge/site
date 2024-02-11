@@ -61,27 +61,27 @@ const videos = await getVideos();
     }
   </TitleSection>
 
-  <TitleSection title="Check These Out" staggered>
-		<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-			<ProjectStub
-				icon="💬"
-				name="Unicode Lookup"
-				description="Look up unicode characters in-browser and client-side"
-				url="https://unicode.emnudge.dev"
-			/>
-			<ProjectStub
-				icon="❤️"
-				name="My Favorite Things"
-				description="A list of my favorite things because why not. (No affiliate links)"
-				url="https://favorite.emnudge.dev"
-			/>
-			<ProjectStub
-				icon="🗒️"
-				name="What I Believe"
-				description="A list of my beliefs and/or free advice."
-				url="https://beliefs.emnudge.dev"
-			/>
-		</div>
+  <TitleSection title="Check These Out">
+    <div class="projects-grid staggered">
+      <ProjectStub
+        icon="💬"
+        name="Unicode Lookup"
+        description="Look up unicode characters in-browser and client-side"
+        url="https://unicode.emnudge.dev"
+      />
+      <ProjectStub
+        icon="❤️"
+        name="My Favorite Things"
+        description="A list of my favorite things because why not. (No affiliate links)"
+        url="https://favorite.emnudge.dev"
+      />
+      <ProjectStub
+        icon="🗒️"
+        name="What I Believe"
+        description="A list of my beliefs and/or free advice."
+        url="https://beliefs.emnudge.dev"
+      />
+    </div>
   </TitleSection>
 </MainLayout>
 
@@ -121,10 +121,14 @@ const videos = await getVideos();
     width: 100%;
   }
 
-  .projects {
-    list-style: none;
+  .projects-grid {
     display: grid;
+    grid-template-columns: 1fr 1fr;
     gap: 1rem;
-    padding: 0 1rem;
+  }
+  @media screen and (max-width: 700px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
