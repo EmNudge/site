@@ -2,7 +2,7 @@
 import type { Post } from '../../data/blogs';
 import Stub from '../Stub.astro';
 
-type Props = Post;
+type Props = Post & { disableImage?: boolean };
 
 const {
     url,
@@ -13,20 +13,21 @@ const {
     summary,
     tags,
     recording,
+    disableImage = false,
 } = Astro.props;
 
 const isCode = tags.includes('coding');
 const hasRecording = Boolean(recording);
 ---
 
-<div class="article-stub-container">
-    <div class="img-container">
-        <img src={`/article-icons/${url.match(/blog\/(.+)/)[1]}.webp`} alt={title}>
+<div class:list={["article-stub-container", { 'disable-image': disableImage }]}>
+    {!disableImage && <div class="img-container">
+        <img src={`/article-icons/${url.match(/blog\/(.+)/)[1]}.webp`} alt={title} />
         <div class="tags-container">
             {isCode && <span class="tag">&lt;/&gt;</span>}
             {hasRecording && <span class="tag">🔉</span>}
         </div>
-    </div>
+    </div>}
     <Stub
         withDivider={false}
         url={url}
@@ -46,6 +47,9 @@ const hasRecording = Boolean(recording);
     border: 1px solid transparent;
     border-bottom: 1px solid var(--light-bg);
     padding: 20px;
+}
+.article-stub-container.disable-image {
+    grid-template-columns: 1fr;
 }
 .article-stub-container:hover {
     background: var(--light-bg);
