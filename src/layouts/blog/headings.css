@@ -34,6 +34,23 @@ article h4 {
     transform: scale(1.2) skewX(-10deg) translate(27px, -7px);
 }
 
+@media screen and (max-width: 900px) {
+    article h1,
+    article h2,
+    article h3,
+    article h4 {
+        padding: 0;
+        transform: none;
+    }
+    article h1 a,
+    article h2 a,
+    article h3 a,
+    article h4 a,
+    article h5 a { 
+        display: none;
+    }
+}
+
 article h2 {
     font-size: 1.5rem;
     width: 75%;

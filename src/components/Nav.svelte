@@ -9,6 +9,7 @@
             rel="prefetch"
             aria-current={path == route ? "page" : undefined}
             href={route}
+            class:home-route={route == "/"}
             class:active={path == route}>{name}</a
         >
     {/each}
@@ -26,5 +27,10 @@
     }
     a.active {
         color: var(--active);
+    }
+    @media screen and (max-width: 500px) {
+        .home-route {
+            display: none;
+        }
     }
 </style>
