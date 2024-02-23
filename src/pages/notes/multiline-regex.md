@@ -18,13 +18,13 @@ Annoyingly, Regex is often the right tool if your problem space isn't worthy of 
 As an example, here is an emoji-aware string split.
 
 ```js
-const emojiSplitRe = /(?:\p{Emoji}\p{Emoji_Modifier}?\u{200d}\p{Emoji}\p{Emoji_Modifier}?\u{fe0f}?)|(?:\p{Emoji}\p{Emoji_Modifier})|./giu
+const emojiSplitRe = /\p{Regional_Indicator}{2}|(?:\p{Emoji}\p{Emoji_Modifier}?\p{Variation_Selector}?(?:\u{200d}\p{Emoji}\p{Emoji_Modifier}?\p{Variation_Selector}?)*)|./gu
 ```
 
-Say we want to split a string by "visible" characters for common-ish inputs (this is not the focus of this article, I am aware there are still edge cases). Simply doing the following will give us an undesirable result:
+Say we want to split a string by "visible" characters for common-ish inputs (this is not the focus of this article, I am aware there are many **many** more edge cases). Simply doing the following will give us an undesirable result:
 
 ```js
-'hi 💩 ✊🏾'.split('') // ['h', 'i', ' ', '\uD83D', '\uDCA9', ' ', '✊', '\uD83C', '\uDFFE']
+'💩1🇺🇸✋🏻👨‍👩‍👧‍👧🧔🏿‍♀️'.split('') // (28 items) ['\uD83D', '\uDCA9', '1', '\uD83C', '\uDDFA', '\uD83C', '\uDDF8', '✋', '\uD83C', '\uDFFB', '\uD83D', '\uDC68', '‍', '\uD83D', '\uDC69', '‍', '\uD83D', '\uDC67', '‍', '\uD83D', '\uDC67', '\uD83E', '\uDDD4', '\uD83C', '\uDFFF', '‍', '♀', '️']
 ```
 
 We have split both our surrogates (a signature of our text encoding format) and our emoji.
@@ -32,15 +32,15 @@ We have split both our surrogates (a signature of our text encoding format) and 
 We can solve the surrogates issue by iterating through the string, which is defined to not split surrogates.
 
 ```js
-[...'hi 💩 ✊🏾'] // ['h', 'i', ' ', '💩', ' ', '✊', '🏾']
+[...'💩1🇺🇸✋🏻👨‍👩‍👧‍👧🧔🏿‍♀️'] // (18 items) ['💩', '1', '🇺', '🇸', '✋', '🏻', '👨', '‍', '👩', '‍', '👧', '‍', '👧', '🧔', '🏿', '‍', '♀', '️']
 ```
 
-This gives us distinct unicode characters, but some emojis are made up of multiple codepoints, such as this closed-fist which uses a skin-tone modifier.
+This gives us distinct unicode characters, but some emojis are made up of multiple codepoints.
 
 To split this text without splitting up the emoji, we can use the previous regex.
 
 ```js
-'hi 💩 ✊🏾'.match(emojiSplitRe) // ['h', 'i', ' ', '💩', ' ', '✊🏾']
+'💩1🇺🇸✋🏻👨‍👩‍👧‍👧🧔🏿‍♀️'.match(emojiSplitRe) //  ['💩', '1', '🇺🇸', '✋🏻', '👨‍👩‍👧‍👧', '🧔🏿‍♀️']
 ```
 
 We've at least established that our regex is useful, but it still is far from readable. How do we remedy this? Many approach this by pulling in an entire library which allows expressing the regex as a less terse series of steps in english. I prefer a multi-line regex.
@@ -77,21 +77,23 @@ const regExtend = flags => str =>
 This allows us to generate our emoji-split regex with:
 
 ```js
-const emojiSplitRe = regExtend('mgui')`
+const emojiSplitRe = regExtend('gu')`
+# flags
+\p{Regional_Indicator}{2}
+
 # emoji sequence
-(?:
-    \p{Emoji}
-    \p{Emoji_Modifier}?
-    \u{200d}
-    \p{Emoji}
-    \p{Emoji_Modifier}?
-    \u{fe0f}?
-)
-# regular emojis
 |(?:
-	\p{Emoji}
-	\p{Emoji_Modifier}
+    \p{Emoji}
+    \p{Emoji_Modifier}?
+    \p{Variation_Selector}?
+    (?:
+        \u{200d} # ZWJ
+        \p{Emoji}
+        \p{Emoji_Modifier}?
+        \p{Variation_Selector}?
+    )*
 )
+
 # anything else
 |.
 `
@@ -155,13 +157,13 @@ I really like this solution, but it's still not great for our emoji regex which 
 
 ```js
 const re = zipRegex([
+    // flags
+    /\p{Regional_Indicator}{2}/
     // emoji sequence
-    /(?:\p{Emoji}\p{Emoji_Modifier}?\u{200d}\p{Emoji}\p{Emoji_Modifier}?\u{fe0f}?)/,
-    // regular emojis
-    /|(?:\p{Emoji}\p{Emoji_Modifier})/,
+    /|(?:\p{Emoji}\p{Emoji_Modifier}?\p{Variation_Selector}?(?:\u{200d}\p{Emoji}\p{Emoji_Modifier}?\p{Variation_Selector}?)*)/,
     // anything else
     /|./,
-], 'mgui');
+], 'gu');
 ```
 
 It does improve clarity somewhat, but we cannot split our groups. Doing so would result in regex compilation errors.
@@ -179,22 +181,27 @@ const regExtend =
     return new RegExp(String.raw({ raw }, ...regexStrings), flags);
   };
 
-const emojiSplitRe = regExtend("mgui")`
+const emojiSplitRe = regExtend("gu")`
+# flags
+${[/\p{Regional_Indicator}{2}/]}
+
 # emoji sequence
-(?:
-    ${[
-      /\p{Emoji}/,
-      /\p{Emoji_Modifier}?/,
-      /\u{200d}/,
-      /\p{Emoji}/,
-      /\p{Emoji_Modifier}?/,
-      /\u{fe0f}?/,
-    ]}
-)
-# regular emojis
 |(?:
-    ${[/\p{Emoji}/, /\p{Emoji_Modifier}/]}
+    ${[
+        /\p{Emoji}/,
+        /\p{Emoji_Modifier}?/,
+        /\p{Variation_Selector}?/,
+    ]}
+    (?:
+        ${[
+            /\u{200d}/, // ZWJ
+            /\p{Emoji}/,
+            /\p{Emoji_Modifier}?/,
+            /\p{Variation_Selector}?/,
+        ]}
+    )*
 )
+
 # anything else
 |.
 `;
