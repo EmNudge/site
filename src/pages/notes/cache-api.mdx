@@ -1,0 +1,46 @@
+---
+pubDate: Mar 4, 2024
+title: "Caching Binary Content On The Web"
+summary: The Cache API can be easily abused
+tags: coding
+icon: technologies/languages/javascript
+layout: ../../layouts/Blog.astro
+---
+
+import IframeContainer from '../../components/article/IframeContainer.astro'
+
+Oh you know web development, do you? What's the best way to cache a binary file on the frontend?
+
+It seems like a question most people should know the answer to, but it really doesn't come up nearly as often as you'd think. Hosted services are probably using some storage bucket and saving a link to this resource. Rarely do you ever want a large resource that is entirely hosted on your computer to persist between sessions.
+
+I've ran into this use-case when working on local media inspection and manipulation tools. I am often reloading the page (whether automatically or manually) to see how my code change has affected the experience. Each time I do this, I need to open the file picker and re-add the file. Annoying.
+
+Your first instinct might be to use the [Web Storage API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API) (`LocalStorage`/`SessionStorage`), which is primarily used for text. You would need to base64 encode your blob, which wastes quite a bit of space. It also means some time spent on the encode/decode process.
+
+[IndexDB](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) is capable of storing binary data, it's just **incredibly** verbose for something like this.
+
+# The Cache API
+
+The absolute simplest method is the [Cache API](https://developer.mozilla.org/en-US/docs/Web/API/Cache). You won't see the docs using it like this as its main purpose is caching networked assets, but we can abuse it by wrapping our blobs in a [Response](https://developer.mozilla.org/en-US/docs/Web/API/Response) object.
+
+```js
+/** @param {Blob} blob @param {string} name */
+const placeBlobInCache = async (blob, name) => {
+  const cache = await caches.open('blobCache');
+  await cache.put(name, new Response(blob));
+};
+
+/** @param {Blob} blob @param {string} name */
+const getBlobFromCache = async (blob, name) => {
+  const cache = await caches.open('blobCache');
+  return cache.match(name).then(resp => resp.blob());
+};
+```
+
+This cache is long-lived, so we should be careful not to store too much for too long.
+
+Here's a stackblitz container to see this in action.
+
+<IframeContainer src="https://stackblitz.com/edit/js-gg4kzm?embed=1&file=index.js" />
+
+\# end note
