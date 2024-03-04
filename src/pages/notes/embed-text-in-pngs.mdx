@@ -7,6 +7,8 @@ icon: technologies/languages/javascript
 layout: ../../layouts/Blog.astro
 ---
 
+import IframeContainer from '../../components/article/IframeContainer.astro'
+
 I've been in the unfortunate (but important) business of "docs" recently and pictures have been an absolute nightmare.
 
 Pictures of code, CLIs, interfaces. They all eventually get out of date. With regards to interfaces, this is often very quickly and without notice as visual updates don't require "backwards compatibility" in the same way as programmatic interfaces often do.
@@ -60,6 +62,6 @@ Optimally you should not use images of code at all. Inline it if possible.
 
 For now, you can do this process manually. I made a quick Stackblitz project where you can add the code as text input to the image and retrieve it later. Feel free to build your own tools and expand on the concept!
 
-<iframe src="https://stackblitz.com/edit/vitejs-vite-xksnwx?embed=1&file=main.js" style="width: 100%; min-height: 600px"></iframe>
+<IframeContainer src="https://stackblitz.com/edit/vitejs-vite-xksnwx?embed=1&file=main.js" />
 
 \# end note

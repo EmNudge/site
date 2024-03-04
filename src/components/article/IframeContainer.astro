@@ -1,0 +1,19 @@
+---
+const { src } = Astro.props;
+
+let id = Math.random().toString(36).substring(2, 8);
+---
+
+<iframe class={'iframe-' + id} src="about:blank" style="width: 100%; min-height: 600px"></iframe>
+
+<script define:vars={{ id, src }}>
+  const iframe = document.querySelector('.iframe-' + id);
+
+  const observer = new IntersectionObserver((entries) => {
+    for (const entry of entries) {
+      if (!entry.isIntersecting) continue;
+      iframe.src = src;
+    }
+  }, { threshold: 1 });
+  observer.observe(iframe);
+</script>
