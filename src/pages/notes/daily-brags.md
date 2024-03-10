@@ -18,28 +18,32 @@ I used to look into really fancy pens and notebooks, but this another trap. If y
 
 # My Current Setup
 
-I got the core of this idea from [Julia Evans' Brag Documents post](https://jvns.ca/blog/brag-documents/), so I started by calling these "brag documents". The idea is to keep a work history in order to better "brag" about your work later down the line. She mentions what looks like a pretty sophisticated system - another trap, I'm afraid.
+I got the core of this idea from [Julia Evans' Brag Documents post](https://jvns.ca/blog/brag-documents/), so I started by calling these "brag documents" even though they differ in some ways.
 
-Here's my "brag document":
+The idea is to keep a work history in order to better "brag" about your work later down the line. She mentions what looks like a pretty sophisticated system - another trap, I'm afraid.
+
+Here's my "brag" document:
 
 ```md
 # Todo
-- item 1
+- work item
 
 # Done
-- item 2
+- thing
 
 # Notes
--
+- useful info
 ```
 
-Each document is titled with the current day and I make these documents every day. I often don't include the `Notes` section unless I think I need it. 
+Each document is titled with the current date and I make a new one every morning. I often don't include the `Notes` section unless I think I need it. 
 
-Each day I start off with some "todo" items. I will add items to this section in bullet points as I get ideas. We have the full power of markdown, so I will include links very often which can be useful in getting back to a todo list item. 
+Each day I start off with some `ToDo` items. These are actionable work items, accomplishable within the bounds of the day. 
+
+I will add items to this section in bullet points as I get ideas. We have the full power of markdown, so I will embed links which can be useful in making progress when going back to a skipped todo list item. 
 
 What do I put in the `Done` section? Absolutely everything. 
 
-Well, anything that feels like work. Here's what an example document might look like at the end of the day:
+Well, anything that feels like work - even if not included in my `ToDo` section. Here's what an example document might look like at the end of the day:
 
 ```md
 # Todo
@@ -64,13 +68,15 @@ Well, anything that feels like work. Here's what an example document might look 
 
 This is a real document from a week ago! Perhaps this is a bit revealing into what I do on my weekend, but here you have it.
 
-You'll notice that I put `?` next to todo list items that I'm unsure if I want to pursue. All my items should be actionable. If something feels too big, I'll make it optional. 
-
-Also notice that I said this is the document from the end of the day and yet it still has items I had not done (like taking out the trash).
-
-This is fine. When I create my document for the next day I'll carry over yesterday's todo items. Sometimes I'll re-evaluate and realize I have more pressing things to get to.
-
-I try to fill in the `Done` section with as many "work" items as possible. This is partly to keep a record of things that might be important retrospectively and also to give myself a better feel of accomplishment. I can gaze upon my list of "stuff" and exclaim "Today I was productive!".
+Notice the following:
+- This is messy. Inconsistent capitalization, a lack of organization, and no care for consistent narrative.
+  - Spending time on improving these areas is time spent on the wrong thing.
+- I put `?` next to todo list items that I'm unsure if I want to pursue. 
+  - All my items should be actionable. If something feels too big, I'll make it optional. 
+- This "end of day" documentd still has items I had not done (like taking out the trash). 
+  - Not everything can or will be done. Unfinished items are moved over to the next day's document. Often, they are re-evaluated and scrapped.
+- I try to fill in the `Done` section with as many "work" items as possible. 
+  - This is partly to keep a record of things that might be important retrospectively and also to give myself a better feel of accomplishment. I can gaze upon my list of "stuff" and exclaim **"Today I was productive!"**.
 
 The `Done` section also has information that I will probably want to reference, like the license key (I cut off part of it) that I might need to use the next day.
 
@@ -79,7 +85,7 @@ The `Notes` section is usually empty, but I'll sometimes use it for things that 
 # Organizing The Documents
 
 I think the most important part of the system is that 
-1. It is done daily
+1. It is done **daily**
 2. I add items liberally and constantly
 
 The rest of this is just some conventions which make managing this system easier, but it is not the main part of the system.
@@ -88,7 +94,9 @@ I use [Obsidian](https://obsidian.md/) to keep things as plain-text and local as
 
 Obsidian is **far** less pretty, but I best stay away from pretty. I need simple and friction-free.
 
-For syncing my notes between devices I use iCloud. I'd suggest some sort of managed file sync. Git sounds good in theory, but you need to remember to commit often, which can be difficult on a mobile device in general. With my current setup, I don't have to manually sync anything. The folder itself syncs up as often as it can. I'm writing plain markdown - I'll probably never run out of space.
+For syncing my notes between devices I use **iCloud**. I'd suggest some sort of managed file sync. Git sounds good in theory, but you need to remember to commit often, which can be difficult on a mobile device in general. 
+
+With my current setup, I don't have to manually sync anything. The folder itself syncs up as often as it can. I'm writing plain markdown - I'll probably never run out of space.
 
 As mentioned earlier, I store each note with the date. To make copying over data simpler, I will duplicate yesterday's document and just increment the day. My iCloud Obsidian vault current looks like this (assuming today is March 5th):
 
@@ -109,7 +117,9 @@ I use the same vault for drafts on my "Notes" and "Articles" for my website.
 
 I group a whole month's documents into a sub-folder to help with visual clutter when trying to find documents. I can find a document just by knowing its day and I can know the day of an event or accomplishment by the title of the document.
 
-You'll notice it says "Personal Brags". This is because I also maintain a list of Work Brag documents, mimicking the exact same system, but for work and stored on my work laptop (without an iCloud vault). The work brag documents are often much more extensive with multiple streams of thoughts and links to different documents, but they are similarly useful and are more closely aligned to the actual brag document definition.
+You'll notice it says "Personal Brags". This is because I also maintain a list of "Work Brag" documents, mimicking the exact same system, but for work and stored on my work laptop (without an iCloud vault).
+
+The work brag documents are often much more extensive with multiple streams of thoughts and links to different documents, but they are similarly useful and are more closely aligned to the actual brag document definition.
 
 I still make it my mission to write them every day. Whenever we have a sync on what work we've been doing - I often just read through bullet points of the last few days and summarize it like that. I also embed links, which makes linking to work items much simpler as well.
 
@@ -121,7 +131,7 @@ Since we're just using markdown and a generalized sync, I could actually make my
 
 One of the other issues is that this system is entirely digital. One really nice thing about notebooks is that you can diagram in ways unbounded by grid lines and unicode. Unfortunately, notebooks can't embed links, can't be quickly duplicated, are slower to use, and are restricted by your handwriting.
 
-I haven't found a simple way to combine notebook diagrams to my markdown files.
+I haven't found a simple way to combine notebook diagrams to my markdown files. Maybe if I can automate scanning and uploading. Perhaps airdrop can be useful?
 
 Whatever system you choose, just make sure it's simple and accessible enough to do consistently. It should feel rewarding and messy. It should **not** be elegant. Run away from pretty. Creativity and productivity does not thrive in "elegant". You will spend too much time "improving" the system as opposed to getting things done.
 
