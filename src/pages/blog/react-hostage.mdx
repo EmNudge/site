@@ -11,6 +11,8 @@ discussions:
 import Details from '../../components/article/Details.astro';
 import Image from '../../components/article/Image.astro';
 import Tweet from '../../components/article/Tweet/index.astro';
+import Graph01 from '../../icons/rh_graph_01.astro';
+import Graph02 from '../../icons/rh_graph_02.astro';
 
 # Prologue
 
@@ -90,9 +92,9 @@ I recently read someone's astonishment at how smoothly the React ecosystem's tra
 <Tweet
   nickname="дэн"
   handle="dan_abramov"
-  profile="https://pbs.twimg.com/profile_images/1545194945161707520/rqkwPViA_400x400.jpg"
+  profile="https://dev-to-uploads.s3.amazonaws.com/uploads/user/profile_image/50592/f46e43c2-f4f0-4787-b34e-a310cecc221a.jpg"
   date="Feb 7, 2019"
-  content="I think I understand now where a lot of ideological resistance to React Hooks comes from.\n\n(Thread)"
+  content={"I think I understand now where a lot of ideological resistance to React Hooks comes from.\n\n(Thread)"}
   link="https://twitter.com/dan_abramov/status/1093694465917751298"
 />
 
@@ -169,7 +171,7 @@ Both `state` and `props` are kinds of inputs. Calls to `setState` are signals to
 
 These signals will in turn update its component *state-stack* and rerun a component. This component will then produce a certain output given this new input.
 
-<Image src="https://react-hostage.emnudge.dev/assets/state-tree-cf7b2df6.png" alt="state tree" />
+<Graph01 />
 
 React components might as well be a black-box to React.
 
@@ -181,7 +183,7 @@ For this reason, React needs a way to not re-write the entire DOM on each update
 
 Maybe none. Maybe all. We can't know without checking.
 
-<Image src="https://react-hostage.emnudge.dev/assets/component-signaling-92f6817c.png" lt="component signaling" />
+<Graph02 />
 
 This is React. This relationship between the renderer and the reconciler. This "pure component" behavior. This lack of a direct connection between state and DOM updates.
 
