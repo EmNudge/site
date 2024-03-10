@@ -119,6 +119,10 @@ The mobile experience is still lacking a bit. I'm using Obsidian for my phone, b
 
 Since we're just using markdown and a generalized sync, I could actually make my own phone app if I had some great idea, but that would probably work against the "keeping it simple" principle.
 
+One of the other issues is that this system is entirely digital. One really nice thing about notebooks is that you can diagram in ways unbounded by grid lines and unicode. Unfortunately, notebooks can't embed links, can't be quickly duplicated, are slower to use, and are restricted by your handwriting.
+
+I haven't found a simple way to combine notebook diagrams to my markdown files.
+
 Whatever system you choose, just make sure it's simple and accessible enough to do consistently. It should feel rewarding and messy. It should **not** be elegant. Run away from pretty. Creativity and productivity does not thrive in "elegant". You will spend too much time "improving" the system as opposed to getting things done.
 
 \# end note
