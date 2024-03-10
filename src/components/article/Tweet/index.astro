@@ -17,7 +17,7 @@ const {
     link = "#",
 } = Astro.props;
 
-const tweetHtml = content.replaceAll("\\n", "<br>");
+const tweetHtml = content.split('\n').map(line => `<div>${line}</div>`).join('');
 
 const authorLink = 'https://twitter.com/' + handle;
 ---
