@@ -3,7 +3,7 @@
     export let paragraphPercentage = 0;
 </script>
 
-<div class="controls" class:hide={!showControls}>
+<div class="controls speak-aloud-controls" class:hide={!showControls}>
     <slot />
     <div class="progress" style="--percentage: {paragraphPercentage * 100}%;" />
 </div>

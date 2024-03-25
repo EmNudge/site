@@ -29,10 +29,34 @@
         timestamps = data.timestamps;
 		paragraphs = Array.from(document.querySelectorAll("article > p"));
         paragraphHighlighter = getParagraphHighlighter(paragraphs);
+
+        for (const [index, paragraph] of paragraphs.entries()) {
+            paragraph.setAttribute("data-index", index.toString());
+        }
+        const articleClickListener = (event: MouseEvent) => {
+            const audioControls = document.querySelector('.speak-aloud-controls');
+            if (!audioControls || audioControls.classList.contains('hide')) return;
+
+            if (!(event.target instanceof HTMLParagraphElement)) return;
+            
+            const index = Number(event.target.dataset.index);
+            if (Number.isNaN(index)) {
+                console.error('Cannot find data index');
+                return;
+            }
+            updateToIndex(index);
+        }
+        const article = document.querySelector('article')
+        article.addEventListener('click', articleClickListener);
+
         audio.addEventListener("ended", () => {
             paragraphHighlighter.clear();
             isPlaying = false;
         });
+
+        return () => {
+            article.removeEventListener('click', articleClickListener);
+        }
     });
 
     onDestroy(() => {
@@ -48,6 +72,12 @@
         isPlaying = !isPlaying;
         setAudio(audio, isPlaying);
         updateParagraphs();
+    }
+
+    function updateToIndex(index: number) {
+        paragraphHighlighter.highlight(index);
+        paragraphIndex = index;
+        audio.currentTime = timestamps[index];
     }
 
     function updateParagraphs() {
