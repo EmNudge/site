@@ -3,6 +3,7 @@ pubDate: March 24, 2024
 title: How To Write Better - A Guide For Developers
 summary: Become a pro at prose
 tags: general
+recording: write-better
 layout: ../../layouts/Blog.astro
 ---
 

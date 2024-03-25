@@ -1,7 +1,7 @@
 import { getDefferedPromise } from "../../utils/getDefferedPromise";
 
 const getTimestamps = async (baseUrl: string) => {
-    const timestampsText = await (await fetch(baseUrl + '.timestamps')).text();
+    const timestampsText = await fetch(baseUrl + '.timestamps').then(r => r.text());
     return timestampsText.split(/\s+/).map(time => {
         const [minutes, seconds] = time.split(':');
         return Number(minutes) * 60 + Number(seconds);
@@ -29,8 +29,10 @@ const getAudio = (baseUrl: string) => {
 }
 
 export const getDataForRecording = async (recording: string) => {
-    const baseUrl = `/recordings/${recording}`;
-    const [timestamps, audio] = await Promise.all([getTimestamps(baseUrl), getAudio(baseUrl)])
+    const [timestamps, audio] = await Promise.all([
+        getTimestamps(`/recordings/${recording}`),
+        getAudio(`https://assets.emnudge.com/${recording}`)
+    ]);
 
     return { timestamps, audio }
 }
