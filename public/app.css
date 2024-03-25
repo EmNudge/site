@@ -36,6 +36,9 @@ body {
     img.dark-mode {
         filter: invert(1);
     }
+    ::selection {
+        background: #ffb7b7;
+    }
 }
 /* copy of everything above */
 :root.light {
@@ -55,6 +58,9 @@ body {
 }
 :root.light img.dark-mode {
     filter: invert(1);
+}
+:root.light ::selection {
+    background: #ffb7b7;
 }
 
 main {
