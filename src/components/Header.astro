@@ -12,9 +12,21 @@ const routes: [string, string][] = [
 ---
 
 <header>
-    <a href="/" class="logo">
-        <img src="/icons/logo_neon.png" alt="logo" />
-    </a>
+    <div>
+        <a href="/" class="logo">
+            <img src="/icons/logo_neon.png" alt="logo" />
+            <div 
+                class="bg-shape" 
+                aria-hidden="true" 
+                style="--color: rgb(175, 42, 233); --offset: -6;"
+            ></div>
+            <div 
+                class="bg-shape" 
+                aria-hidden="true"
+                style="--color: rgb(15, 153, 72); --offset: 6;"
+            ></div>
+        </a>
+    </div>
     <Nav {routes} {path} />
 </header>
 
@@ -27,16 +39,34 @@ const routes: [string, string][] = [
         grid-template-columns: 1fr auto;
         align-items: center;
     }
-    img {
-        height: 40px;
-        filter: grayscale(.6);
-        transition: 150ms;
-    }
-    img:hover {
-        filter: grayscale(0);
-    }
     .logo {
         display: flex;
         align-items: center;
+        position: relative;
+    }
+    img {
+        height: 40px;
+        filter: grayscale(.6);
+        transition: 0.25s;
+    }
+    .logo:hover img {
+        filter: grayscale(0);
+    }
+    .bg-shape {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 45px;
+        height: 100%;
+        background-color: var(--color, red);
+        transform: translate(calc(var(--offset, 0) * 1px));
+        z-index: -1;
+        filter: blur(10px);
+
+        opacity: 0;
+        transition: 0.4s;
+    }
+    .logo:hover .bg-shape {
+        opacity: 0.5;
     }
 </style>
