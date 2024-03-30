@@ -10,26 +10,27 @@ You sit in a fixed position. The most interesting object to ever exist is sittin
 
 If there's one mantra I've had hammered into me, it is that you cannot trust yourself to choose the harder thing. Being the glorious energy-efficient organism you are, the path of least resistance is the one you will take time and time again. It's just a biologically smart thing to do.
 
-Do hard thing? Why do hard thing when easy thing is not as hard? I smart man. Choose easy thing!
+> Do hard thing? Why do hard thing when easy thing is not as hard? I smart man. Choose easy thing!
 
-We each have an inner Grug. Grug is real good at conserving energy. Greg is not good at long term thinking. Luckily, we can outsmart Grug. Some nerd like Robert Sapolsky would probably call this the difference between the OFC and PMC. Good thing we're cool and hip and use regular human language.
+We each have an inner *Grug*. Grug is real good at conserving energy. Grug is not good at long term thinking. Luckily, we can outsmart Grug. Some nerd like [Robert Sapolsky](https://en.wikipedia.org/wiki/Behave_(book)) would probably call this the difference between the OFC and PMC. Good thing we're cool and hip and use regular human language.
 
 All this means is that you can and **should** trick yourself. It takes considerably more effort to plan around long term satisfaction, but we can organize systems (such as our habits and environment) to move long term satisfaction planning into short term satisfaction bursts.
 
-And I'm telling you, it's much easier thank you think. Just be bored.
+And I'm telling you, it's much easier than you think. Just be bored.
+
 # Being Bored
 
 I'll admit it. I spend way too much time on my phone. It's at least much more than I'd like to. It feels silly. I know I should stop looking at my phone. I **know** this. This is obvious. So obvious that I do it.
 
-I put down my phone. And then I look around and **on instinct** pick my phone back up and begin scrolling through the same 5 apps. I am sisyphus, but way less cool.
+I put down my phone. And then I look around and **on instinct** pick my phone back up and begin scrolling through the same 5 apps. I am sisyphus with an iphone.
 
 You cannot trust yourself to do the harder thing. It may seem that an action, such as scrolling through your phone, is less energy efficient than doing nothing at all, but "the harder thing" is not using energy, but being bored.
 
-Boredom is the worst. It is torture. You will do anything but be bored if it is within your power. You would rather hurt yourself repeatedly than be bored for more than 15 minutes. Another one of those biological efficiencies we're so fond of. Keeps us learning and ready for the next challenge.
+Boredom is the worst. It is torture. You will do anything but be bored if it is within your power. You would rather [hurt yourself repeatedly](https://www.science.org/content/article/people-would-rather-be-electrically-shocked-left-alone-their-thoughts) than be bored for more than 15 minutes. Another one of those biological efficiencies we're so fond of. Keeps us learning and ready for the next challenge.
 
-So how do we weaponize this? **Put away your phone.** Make it inconvenient to use. Put away your computer. Take *the most interesting thing in the world* and put it somewhere else. You will find, very quickly, that everything else now suddenly takes on a new level of interest.
+So how do we weaponize this? **Put away your phone**. Make it inconvenient to use. Put away your computer. Take *the most interesting thing in the world* and put it somewhere else. You will find, very quickly, that everything else now suddenly takes on a new level of interest.
 
-You will begin to find interest in writing. In reading! In cleaning up! In doing **absolutely anything to rid yourself of this torturous boredom**. 
+You will begin to find interest in writing. In reading! In cleaning up! In doing **absolutely anything for the slightest chance of excitement**.
 
 Doing work becomes more engaging than doing nothing. You must make the productive thing become the easier thing. It is the only way to make this system sustainable. If it is more difficult to do the thing you most want to do, you are unlikely to do it for any sustained amount of time.
 
