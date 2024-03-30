@@ -6,7 +6,7 @@ tags: productivity
 layout: ../../layouts/Blog.astro
 ---
 
-You sit in a fixed position. The most interesting object to ever exist is sitting inches from your face. as you absorb the top 100 "funny media" and "hot take" of the hour. Better keep checking! Maybe the next bit of stimulus will be what you really need to feel like you've "absorbed the media" and you can finally get on to more productive endeavors.
+You sit in a fixed position. The most interesting object to ever exist is sitting inches from your face. You absorb the top 100 "funny media" and "hot take" of the hour. Better keep checking! Maybe the next bit of stimulus will be what you really need to feel like you've "absorbed the media" and you can finally get on to more productive endeavors.
 
 If there's one mantra I've had hammered into me, it is that you cannot trust yourself to choose the harder thing. Being the glorious energy-efficient organism you are, the path of least resistance is the one you will take time and time again. It's just a biologically smart thing to do.
 
@@ -34,7 +34,7 @@ You will begin to find interest in writing. In reading! In cleaning up! In doing
 
 Doing work becomes more engaging than doing nothing. You must make the productive thing become the easier thing. It is the only way to make this system sustainable. If it is more difficult to do the thing you most want to do, you are unlikely to do it for any sustained amount of time.
 
-I am repeating myself in these sentences. You may noticed that. I only do it because if are the type to skim, I need you to understand this. **You will not do the harder thing**.
+I am repeating myself in these sentences. You may have noticed that. I only do it because if are the type to skim, I need you to understand this. **You will not do the harder thing**.
 
 Make the harder thing easier. Trick yourself. It is the only way.
 
