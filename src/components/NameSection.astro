@@ -20,12 +20,33 @@ const titles = [
 <section>
     <div class="name">
         <IconHolder {icons} small translucent staggered />
-        <h1>👋 Hey there!</h1>
+        <h1><button class="hand-wave">👋</button> Hey there!</h1>
         <NameTitle titles={titles} client:idle />
     </div>
 </section>
 
+<script type="module">
+    const hand = document.querySelector('.hand-wave');
+    hand.addEventListener('click', () => {
+        hand.animate([
+            { transform: 'rotate(0deg)' },
+            { transform: 'rotate(15deg)' },
+            { transform: 'rotate(-15deg)' },
+            { transform: 'rotate(15deg)' },
+            { transform: 'rotate(-15deg)' },
+            { transform: 'rotate(15deg)' },
+            { transform: 'rotate(0deg)' },
+        ], { duration: 1000, easing: 'ease-in-out' });
+    });
+</script>
+
 <style>
+    .hand-wave {
+        font-size: inherit;
+        border: none;
+        background-color: transparent;
+        transform-origin: bottom right;
+    }
     section {
         display: flex;
         justify-content: center;
