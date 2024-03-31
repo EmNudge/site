@@ -34,7 +34,7 @@ You will begin to find interest in writing. In reading! In cleaning up! In doing
 
 Doing work becomes more engaging than doing nothing. You must make the productive thing become the easier thing. It is the only way to make this system sustainable. If it is more difficult to do the thing you most want to do, you are unlikely to do it for any sustained amount of time.
 
-I am repeating myself in these sentences. You may have noticed that. I only do it because if are the type to skim, I need you to understand this. **You will not do the harder thing**.
+I am repeating myself in these sentences. You may have noticed that. I only do it because if you are the type to skim, I need you to understand this. **You will not do the harder thing**.
 
 Make the harder thing easier. Trick yourself. It is the only way.
 
