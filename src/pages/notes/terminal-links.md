@@ -76,7 +76,7 @@ From the context I recognized this as a markdown-like link, but with the link be
 
 The link above is directly from `cargo build`. It looks something like this:
 
-<div style="background: black; color: white; white-space: pre; padding: 0 12px; border-radius: 4px">
+<div style="background: black; color: white; white-space: pre; padding: 0 12px; border-radius: 4px; overflow: auto;">
 <span style="color: yellow">warning</span>: `inspect_wav` (bin "inspect_wav") generated 3 warnings
     <span style="color: limegreen">Finished</span> <a href="https://doc.rust-lang.org/cargo/reference/profiles.html#default-profiles" style="text-decoration: none; color: inherit;">`dev` profile [unoptimized + debuginfo]</a> target(s) in 0.04s
 <span></span>
