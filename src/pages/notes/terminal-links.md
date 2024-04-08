@@ -1,24 +1,24 @@
 ---
 pubDate: April 7, 2024
 title: "Your Terminal Might Support Links?"
-summary: Markdown style links MIGHT be supported! Find out here!
+summary: Markdown-style links MIGHT be supported! Find out here!
 tags: productivity
 layout: ../../layouts/Blog.astro
 ---
 
-I've been working on [logpipe](https://github.com/EmNudge/logpipe) over the weekend. It's a tool to display logs directly from cli programs by just piping the output directly into it.
+I've been working on [logpipe](https://github.com/EmNudge/logpipe) over the weekend. It's a tool to display logs directly from CLI programs by just piping the output directly into it.
 
 I apply some heuristics to provide automatic syntax-highlighting and grouping. It's neat. You should check it out.
 
-One of the issues I ran up against was tools that don't plan on having their output piped. They preserve their own syntax highlighting through ANSI color codes. It's how you do color on the terminal in general.
+One of the issues I ran up against was tools that don't plan on having their output piped. They preserve their syntax highlighting through ANSI color codes. It's how you do color on the terminal in general.
 
 Most tools will remove it if they detect their output is going to something that isn't a terminal, but some tools don't suspect that will ever happen, like the CLI output from [Shuttle](https://www.shuttle.rs/).
 
 So you get something like this.
 
-![logpipe without ansi](https://assets.emnudge.com/logpipe_ansi_preparse.png)
+![logpipe without ANSI](https://assets.emnudge.com/logpipe_ANSI_preparse.png)
 
-Which is not ideal. I could simply remove all these ansi color codes, but it's probably better if I just parse them. The colors already included are likely better than ones I would be guessing at.
+Which is not ideal. I could simply remove all these ANSI color codes, but it's probably better if I just parse them. The colors already included are likely better than ones I would be guessing at.
 
 # Parsing ANSI
 
@@ -52,7 +52,7 @@ There's a lot of repetition there. We can combine modifiers by semicolon separat
 ```
 <div style="color: green; text-decoration: underline; font-weight: bold; white-space: pre"> Hello </div>
 
-I'd recommend checking out [this StackOverflow answer](https://stackoverflow.com/questions/4842424/list-of-ansi-color-escape-sequences) for a larger explanation. It's surprisingly thorough.
+I'd recommend checking out [this StackOverflow answer](https://stackoverflow.com/questions/4842424/list-of-ANSI-color-escape-sequences) for a larger explanation. It's surprisingly thorough.
 
 If you ever wondered how console coloring libraries like [chalk](https://github.com/chalk/chalk) work, this is how. Just ANSI escapes. 
 
@@ -82,39 +82,42 @@ The link above is directly from `cargo build`. It looks something like this:
 <span></span>
 </div>
 
-Yeah, I had no idea that middle bit was clickable either! 
+Yeah, I had no idea that middle bit was CLIckable either! 
 
 # Comparing Terminals
 
-Many terminals either don't highlight this behavior or don't make it clickable at all. I went through a couple. 
+Many terminals either don't highlight this behavior or don't make it CLIckable at all. I went through a couple. 
 
 These are the terminals with default settings. It's possible they contain some secret toggle which I didn't have time to find.
-## Disappointments.
 
-Terminal.app, [Hyper](https://hyper.is/), and [Warp](https://www.warp.dev/) all do not display special formatting and do not let you click these links. Nothing breaks - it just appears as regular text.
+## Disappointments
+
+Terminal.app, [Hyper](https://hyper.is/), and [Warp](https://www.warp.dev/) all do not display special formatting and do not let you CLIck these links. Nothing breaks - it just appears as regular text.
 
 ## Passable
 
-Then some terminals like [Wezterm](https://wezfurlong.org/wezterm/index.html), [Alacritty](https://alacritty.org), and [Kitty](https://sw.kovidgoyal.net/kitty/) let you click the link! 
-They display an underline when you hover over the clickable text, but not before. This makes discovery a bit difficult, but at least it works!
+Then some terminals like [Wezterm](https://wezfurlong.org/wezterm/index.html), [Alacritty](https://alacritty.org), and [Kitty](https://sw.kovidgoyal.net/kitty/) let you CLIck the link! 
+They display an underline when you hover over the CLIckable text, but not before. This makes discovery a bit difficult, but at least it works!
 
 ![kitty link while hovering](https://assets.emnudge.com/kitty_link.png)
 
 Notably, cargo will not output the special link text for Alacritty for some reason. I don't think it's special-cased, so there's some context being used. Wezterm and Kitty get the upper hand here.
+
 ## Great
 
-[iterm2](https://iterm2.com/) comes in with an almost perfect design. It gives special syntax, but the link is not clickable unless you are holding `cmd`. When you do, it shows a link preview, which is better than the previous 3 terminals.
+[iterm2](https://iterm2.com/) comes in with an almost perfect design. It gives special syntax, but the link is not CLIckable unless you are holding `cmd`. When you do, it shows a link preview, which is better than the previous 3 terminals.
 
 Annoyingly, it suffers from the same issue as Alacritty. Cargo does not seem to think it supports links, so it won't supply the ANSI escape codes.
 
 ![iterm2 while command-hovering](https://assets.emnudge.com/iterm2_link.png)
 
 ## Perfect
+
 The winner absolutely no one predicted - [VS Code](https://code.visualstudio.com/)'s integrated terminal!
 
 ![VS Code before hovering](https://assets.emnudge.com/vscode_link_prehover.png)
 
-By far the best experience. It displays this dotted underline for clickable links. It works with Cargo. When you hover over, the underline becomes solid and it shows the destination.
+By far the best experience. It displays this dotted underline for CLIckable links. It works with Cargo. When you hover over, the underline becomes solid and it shows the destination.
 
 ![VS Code right after hovering](https://assets.emnudge.com/vscode_link_posthover.png)
 
@@ -122,8 +125,8 @@ By far the best experience. It displays this dotted underline for clickable link
 
 My tool displays terminal content. I have a chance to do the correct thing. So I do!
 
-If I detect a terminal markdown-like link, I make it clickable.
+If I detect a terminal markdown-like link, I make it CLIckable.
 
-![logpipe after parsing ANSI links](https://assets.emnudge.com/logpipe_ansi_postparse.png)
+![logpipe after parsing ANSI links](https://assets.emnudge.com/logpipe_ANSI_postparse.png)
 
 \# end note
