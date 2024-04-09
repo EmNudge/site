@@ -16,7 +16,7 @@ Most tools will remove it if they detect their output is going to something that
 
 So you get something like this.
 
-![logpipe without ANSI](https://assets.emnudge.com/logpipe_ANSI_preparse.png)
+![logpipe without ANSI](https://assets.emnudge.com/logpipe_ansi_preparse.png)
 
 Which is not ideal. I could simply remove all these ANSI color codes, but it's probably better if I just parse them. The colors already included are likely better than ones I would be guessing at.
 
@@ -127,6 +127,6 @@ My tool displays terminal content. I have a chance to do the correct thing. So I
 
 If I detect a terminal markdown-like link, I make it CLIckable.
 
-![logpipe after parsing ANSI links](https://assets.emnudge.com/logpipe_ANSI_postparse.png)
+![logpipe after parsing ANSI links](https://assets.emnudge.com/logpipe_ansi_postparse.png)
 
 \# end note
