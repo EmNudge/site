@@ -70,7 +70,7 @@ It's hard to tell with all that other text there. Here are the escapes without t
 \x1B]8;; <link> \x1B\\  <text> \x1B]8;;\x1B\\
 ```
 
-The syntax here is different. We're used to seeing the left `[` bracket, but this `\x1B]8;;`. And then sometime later there's a lone `\`  with `\x1B\\`? It looks bizarre. Well, I guess the previous syntax was also strange.
+The syntax here is different. We're used to seeing the left `[` bracket, but what is this `\x1B]8;;`? And then sometime later there's a lone `\`  with `\x1B\\`? It looks bizarre. Well, I guess the previous syntax was also strange.
 
 From the context I recognized this as a markdown-like link, but with the link before the text. A lot of these orderings make more sense when you think about performance characteristics. It's not there for readability. 
 
@@ -82,22 +82,22 @@ The link above is directly from `cargo build`. It looks something like this:
 <span></span>
 </div>
 
-Yeah, I had no idea that middle bit was CLIckable either! 
+Yeah, I had no idea that middle bit was clickable either! 
 
 # Comparing Terminals
 
-Many terminals either don't highlight this behavior or don't make it CLIckable at all. I went through a couple. 
+Many terminals either don't highlight this behavior or don't make it clickable at all. I went through a couple. 
 
 These are the terminals with default settings. It's possible they contain some secret toggle which I didn't have time to find.
 
 ## Disappointments
 
-Terminal.app, [Hyper](https://hyper.is/), and [Warp](https://www.warp.dev/) all do not display special formatting and do not let you CLIck these links. Nothing breaks - it just appears as regular text.
+Terminal.app, [Hyper](https://hyper.is/), and [Warp](https://www.warp.dev/) all do not display special formatting and do not let you click these links. Nothing breaks - it just appears as regular text.
 
 ## Passable
 
-Then some terminals like [Wezterm](https://wezfurlong.org/wezterm/index.html), [Alacritty](https://alacritty.org), and [Kitty](https://sw.kovidgoyal.net/kitty/) let you CLIck the link! 
-They display an underline when you hover over the CLIckable text, but not before. This makes discovery a bit difficult, but at least it works!
+Then some terminals like [Wezterm](https://wezfurlong.org/wezterm/index.html), [Alacritty](https://alacritty.org), and [Kitty](https://sw.kovidgoyal.net/kitty/) let you click the link! 
+They display an underline when you hover over the clickable text, but not before. This makes discovery a bit difficult, but at least it works!
 
 ![kitty link while hovering](https://assets.emnudge.com/kitty_link.png)
 
@@ -105,7 +105,7 @@ Notably, cargo will not output the special link text for Alacritty for some reas
 
 ## Great
 
-[iterm2](https://iterm2.com/) comes in with an almost perfect design. It gives special syntax, but the link is not CLIckable unless you are holding `cmd`. When you do, it shows a link preview, which is better than the previous 3 terminals.
+[iterm2](https://iterm2.com/) comes in with an almost perfect design. It gives special syntax, but the link is not clickable unless you are holding `cmd`. When you do, it shows a link preview, which is better than the previous 3 terminals.
 
 Annoyingly, it suffers from the same issue as Alacritty. Cargo does not seem to think it supports links, so it won't supply the ANSI escape codes.
 
@@ -117,7 +117,7 @@ The winner absolutely no one predicted - [VS Code](https://code.visualstudio.com
 
 ![VS Code before hovering](https://assets.emnudge.com/vscode_link_prehover.png)
 
-By far the best experience. It displays this dotted underline for CLIckable links. It works with Cargo. When you hover over, the underline becomes solid and it shows the destination.
+By far the best experience. It displays this dotted underline for clickable links. It works with Cargo. When you hover over, the underline becomes solid and it shows the destination.
 
 ![VS Code right after hovering](https://assets.emnudge.com/vscode_link_posthover.png)
 
@@ -125,7 +125,7 @@ By far the best experience. It displays this dotted underline for CLIckable link
 
 My tool displays terminal content. I have a chance to do the correct thing. So I do!
 
-If I detect a terminal markdown-like link, I make it CLIckable.
+If I detect a terminal markdown-like link, I make it clickable.
 
 ![logpipe after parsing ANSI links](https://assets.emnudge.com/logpipe_ansi_postparse.png)
 
