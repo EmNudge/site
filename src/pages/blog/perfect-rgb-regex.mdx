@@ -7,15 +7,16 @@ layout: ../../layouts/Blog.astro
 discussions:
 	- { site: lobsters, url: https://lobste.rs/s/jvzg1g/writing_perfect_rgb_regex_failing }
 ---
+
 import Details from '../../components/article/Details.astro';
 
-I’m a big fan of regex. I don’t know why. Perhaps it makes me feel powerful. Perhaps I enjoy horrors beyond my comprehension. It’s good fun to write code that looks foreign the second it leaves your fingers.
+I'm a big fan of regex. I don't know why. Perhaps it makes me feel powerful. Perhaps I enjoy horrors beyond my comprehension. It's good fun to write code that looks foreign the second it leaves your fingers.
 
-Regex always feels like a fun puzzle. The syntax looks alien, but you could learn it all in an hour. There are a couple of [neat](http://www.rexegg.com/regex-best-trick.html) [tricks](https://surma.dev/things/regexp-quote/index.html), but most cases aren’t tricky enough to warrant them. When I get asked a regex question, I get excited. 
+Regex always feels like a fun puzzle. The syntax looks alien, but you could learn it all in an hour. There are a couple of [neat](http://www.rexegg.com/regex-best-trick.html) [tricks](https://surma.dev/things/regexp-quote/index.html), but most cases aren't tricky enough to warrant them. When I get asked a regex question, I get excited. 
 
-I get so excited that I’ll take on a regex challenge even when not particularly sober. Especially so, in fact. I always wondered how well I can code with some impairments. Maybe my brain unlocks and I become some coding superhero. Maybe I start levitating. 
+I get so excited that I'll take on a regex challenge even when not particularly sober. Especially so, in fact. I always wondered how well I can code with some impairments. Maybe my brain unlocks and I become some coding superhero. Maybe I start levitating. 
 
-Let’s take a look at a small journey and hopefully learn a little regex on the side while doing this!
+Let's take a look at a small journey and hopefully learn a little regex on the side while doing this!
 
 ## The Quandary
 
@@ -25,59 +26,59 @@ So I find a regex issue posted on a public Discord server. The task seems simple
 >
 > <cite>Discord User</cite>
 
-A worthy challenge! Let’s see how fast I can crank this one out!
+A worthy challenge! Let's see how fast I can crank this one out!
 
-```jsx
+```sass
 rgb\(\d+, \d+, \d+\)
 ```
 
 <Details title="Confused already? Check out this explanation!">
 Regex will match character by character. The regex “rgb” matches the string “rgb”. 
 
-Parentheses have special meaning in regex. They’re used to group things and they can do cool stuff. We don’t want cool stuff. We just want the literal parentheses. So we escape them with `\`. 
+Parentheses have special meaning in regex. They're used to group things and they can do cool stuff. We don't want cool stuff. We just want the literal parentheses. So we escape them with `\`. 
 
 That `\d+`? That means 1 or more digits. `\d` meaning digit and `+` meaning 1 or more. So this matches “rgb(`[]`, `[]`, `[]`)” where we replace the `[]` with some numbers.
 </Details>
 
-Woohoo! And off we go to the locker room for a much deserved rest. The battle was brutal, but we made it through. And they said you couldn’t smart good when inebriated. 
+Woohoo! And off we go to the locker room for a much deserved rest. The battle was brutal, but we made it through. And they said you couldn't smart good when inebriated. 
 
-What? This isn’t it? What am I missing?
+What? This isn't it? What am I missing?
 
-```jsx
+```
 rgb(100, 100, 100, .5)
 ```
 
-Ah. Okay, so the `a` in `rgba()` is kind of redundant. We can add alpha values to regular `rgb()` colors without specifying it as being `rgba`. Alright, let’s add that bit to the regex.
+Ah. Okay, so the `a` in `rgba()` is kind of redundant. We can add alpha values to regular `rgb()` colors without specifying it as being `rgba`. Alright, let's add that bit to the regex.
 
-```jsx
-rgb\(\d+, \d+, \d+\(, \d+)?)
+```sass
+rgb\(\d+, \d+, \d+(, \d+)?\)
 ```
 
 <Details title="Keeping it with the explanations, here we go!">
-See those new parentheses there? We didn’t escape them. That means they’re special. Well, it means we’re grouping something and the parentheses themselves actually don’t do much presently. 
+See those new parentheses there? We didn't escape them. That means they're special. Well, it means we're grouping something and the parentheses themselves actually don't do much presently. 
 
 The question mark is the real cool part. Like how `+` means “1 more more”, `?` means “1 or 0”. They call these symbols “quantifiers”. 
 
 So this just means “that last part is optional”. 
 
-Now we allow for “`rgb(255, 255, 255, .5)`”
+Now we allow for “`rgb(255, 255, 255, 1)`”
 </Details>    
 
-Hmmm… I’m now realizing there are a bunch of other issues with this. 
+Hmmm… I'm now realizing there are a bunch of other issues with this. 
 
-First off, there’s probably a variable amount of whitespace here which we’re not accounting for with just the one space. Secondly, that alpha value is usually a number between 0 and 1. It’s a decimal value. Those other numbers can be decimals too, actually.
+First off, there's probably a variable amount of whitespace here which we're not accounting for with just the one space. Secondly, that alpha value is usually a number between 0 and 1. It's a decimal value. Those other numbers can be decimals too, actually.
 
-Ugh, okay, before we go any further we need to set up some examples of valid test cases. I have a feeling this isn’t as easy as I thought.
+Ugh, okay, before we go any further we need to set up some examples of valid test cases. I have a feeling this isn't as easy as I thought.
 
-Luckily there’s a built in API where we can validate if a color is correct or not. 
+Luckily there's a built in API where we can validate if a color is correct or not. 
 
-```jsx
+```js
 CSS.supports('color', 'rgb(1, 2, 3)')
 ```
 
 According to some quick tests, these should all match
 
-```jsx
+```js
 rgb(255, 255, 255)
 rgb(255  255  255)
 rgb(25.5   2.55  .255)
@@ -87,57 +88,57 @@ rgb(   255 ,   255     ,255 ,33  )
 rgb(   255    255     255 / 33  )
 ```
 
-Nice, that looks like it complicates things. Let’s crank out the eyeglass and get to work.
+Nice, that looks like it complicates things. Let's crank out the eyeglass and get to work.
 
 So in addition to supporting whole numbers and decimals, we also need to support this new-fangled syntax where we use spaces instead of commas. If we use this new syntax, our alpha value is separated by `/` instead of another space.
 
 Cool. Cool. Cool. Dope. Dope. Nice.
 
-Let’s start building up our regex with JS, this is getting too much for me to eyeball. I’m going to build a bunch of smaller regexes (is that a word?) and then add them together as we go.
+Let's start building up our regex with JS, this is getting too much for me to eyeball. I'm going to build a bunch of smaller regexes (is that a word?) and then add them together as we go.
 
 ## Parsing The Almighty Number
 
-This ones gonna be a toughie, so let’s just rip the band-aid off.
+This ones gonna be a toughie, so let's just rip the band-aid off.
 
-We’ll need to allow for decimals, even without leading numbers (both 0.1 and .1). We’ll also want to allow negatives. Yeah, negative values make no sense, but we need to match all valid `rgb()` values, not just sensible ones.
+We'll need to allow for decimals, even without leading numbers (both 0.1 and .1). We'll also want to allow negatives. Yeah, negative values make no sense, but we need to match all valid `rgb()` values, not just sensible ones.
 
-Let’s start off without the negative symbol.
+Let's start off without the negative symbol.
 
-```jsx
+```elm
 \d+|\d*\.\d+
 ```
 
 <Details title="Time to learn some more!">
-2 new symbols here! `*` is the little sibling of `+`. It means “0 or more”. Meaning optional, but as many as you’d like.
+2 new symbols here! `*` is the little sibling of `+`. It means “0 or more”. Meaning optional, but as many as you'd like.
 
-Similar to `||`, the `|` here just means “or”. It’s called the “alternation operator”. It means either one of these can match and it’ll be fine. This operator has a “weak binding” or “low precedence” or “end of the PEMDAS status”. It means the entire thing to the left and right is included. 
+Similar to `||`, the `|` here just means “or”. It's called the “alternation operator”. It means either one of these can match and it'll be fine. This operator has a “weak binding” or “low precedence” or “end of the PEMDAS status”. It means the entire thing to the left and right is included. 
 
 That `\.` is us escaping a character like how we escaped the parentheses. This is because `.` has special meaning as well. It means “any character”, like a wildcard. 
 
 So this means “either a bunch of digits OR `0+` digits followed by a decimal and `1+` digits”.
 
-This feels like a weird way to write this, but it’s slightly smaller than the alternative which is `\d+|\.\d+|\d+\.\d+`.
+This feels like a weird way to write this, but it's slightly smaller than the alternative which is `\d+|\.\d+|\d+\.\d+`.
 </Details>
 
-```jsx
+```js
 const numRe = /-?(?:\d+|\d*\.\d+)/.source;
 ```
 
-Now let’s set it to a variable where we wrap it in parentheses to enclose the alternation and add an optional negative sign. 
+Now let's set it to a variable where we wrap it in parentheses to enclose the alternation and add an optional negative sign. 
 
-We’re using a [regex literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#creating_a_regular_expression) and `.source` so that we don’t have to escape the `\` stuff, which would make our regex look even more messy.
+We're using a [regex literal](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions#creating_a_regular_expression) and `.source` so that we don't have to escape the `\` stuff, which would make our regex look even more messy.
 
 <Details title="Uhh… Looks like we added something weird there…"> 
-Okay, so remember when I said the parentheses just captured things and didn’t do that much else? I lied. I’m a liar. Chronically, pathologically, I’m sorry. It’s also a capturing group.
+Okay, so remember when I said the parentheses just captured things and didn't do that much else? I lied. I'm a liar. Chronically, pathologically, I'm sorry. It's also a capturing group.
 
 Parentheses, unless we add some special sauce, do **********extra********** work. They save data for later. It captures things into a group. A capturing group.
 
-To avoid doing that, we can add `?:` to the start of a group. Actually, the `?` when placed as the first character in parentheses signals a special kind of group. Other special types are `(?=)`, `(?!)`, `(?<>)`, `(?<=)`, and `(?<!)`. Those symbols mean different things which we won’t get into (…yet)
+To avoid doing that, we can add `?:` to the start of a group. Actually, the `?` when placed as the first character in parentheses signals a special kind of group. Other special types are `(?=)`, `(?!)`, `(?<>)`, `(?<=)`, and `(?<!)`. Those symbols mean different things which we won't get into (…yet)
 </Details>
 
 ## Building The Regex
 
-And with that we have a number to save for later. Let’s build a test regex using our new number as an example.
+And with that we have a number to save for later. Let's build a test regex using our new number as an example.
 
 ```js title="Using String.raw" runnable
 const numRe = /-?(?:\d+|\d*\.\d+)/.source;
@@ -149,7 +150,7 @@ console.log(new RegExp(rgbRe).toString());
 
 `String.raw` with [tagged template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#tagged_templates) is another way to avoid escaping slashes. 
 
-Let’s also fix the “variable spaces issue” with a custom function and replace `String.raw` entirely.
+Let's also fix the “variable spaces issue” with a custom function and replace `String.raw` entirely.
 
 ```js title="replacing with \s*" runnable
 const numRe = /-?(?:\d+|\d*\.\d+)/.source;
@@ -164,24 +165,24 @@ console.log(finalRegex.toString());
 <Details title="Do I even have to ask anymore?">
 New symbol! `\s` is just like `\d` but instead of matching digits it matches “whitespace”!
 
-Practically our whitespace is only ever going to be a space, but it could be a tab or a newline! There are also some other whitespace characters you don’t see very often which we are now matching.
+Practically our whitespace is only ever going to be a space, but it could be a tab or a newline! There are also some other whitespace characters you don't see very often which we are now matching.
 
 Our `.replace` function will replace every instance of “1 or more” spaces with `\s*` (we had to escape the `\`). This means we can make our regex a bit less ugly and just replace it after.;
 </Details>
 
 This “simpler” code outputs a regex that looks like
 
-```jsx
+```js
 /rgb\(\s*-?(?:\d+|\d*\.\d+)\s*,\s*-?(?:\d+|\d*\.\d+)\s*,\s*-?(?:\d+|\d*\.\d+)\s*(?:,\s*-?(?:\d+|\d*\.\d+))?\s*\)/
 ```
 
-Okay, fine, the input wasn’t simpler, but I’d hate to write that output by hand.
+Okay, fine, the input wasn't simpler, but I'd hate to write that output by hand.
 
 ## Alternative Separators
 
-Commas are well and good, but we did mention the `rgb(num num num / alpha)` syntax earlier. Let’s add support for that.
+Commas are well and good, but we did mention the `rgb(num num num / alpha)` syntax earlier. Let's add support for that.
 
-It might feel cool to get all clever immediately, but it’s probably better to build this up from a naive solution.
+It might feel cool to get all clever immediately, but it's probably better to build this up from a naive solution.
 
 ```js title="spaces or commas" runnable
 const numRe = /-?(?:\d+|\d*\.\d+)/.source;
@@ -197,35 +198,35 @@ console.log(finalRegex.toString());
 ```
 
 <Details title="Wait why are we adding back in `\s+` again?">
-While our `createRe` function now converts all spaces to `\s*`, we specifically want `\s+` (1 or more, not 0) if we’re separating by spaces.
+While our `createRe` function now converts all spaces to `\s*`, we specifically want `\s+` (1 or more, not 0) if we're separating by spaces.
 
-We’re also adding back in our `(?:)` group to enclose the alternation operator to just the contents of the parentheses.
+We're also adding back in our `(?:)` group to enclose the alternation operator to just the contents of the parentheses.
 </Details>
 
 A bit of a refactor, but now our regex works for our previous test cases. What did we have left?
 
-```jsx
+```js
 rgb(100%, 60%, 10%)
 ```
 
 Ah. Forgot about that.
 
-Not too much trouble then. Let’s just modify our number regex to allow for percentage signs
+Not too much trouble then. Let's just modify our number regex to allow for percentage signs
 
-```jsx
+```elm
 const numRe = /-?(?:\d+|\d*\.\d+)%?/.source;
 //                               ^^
 ```
 
 Legitimately just adding `%?` there. Not much.
 
-All good? Not quite yet. We can’t just allow percentages to be variable with each number. This should fail:
+All good? Not quite yet. We can't just allow percentages to be variable with each number. This should fail:
 
-```jsx
+```elm
 rgb(100% 100 100%)
 ```
 
-If one of the 3 numbers is a percentage, the others must be as well. The alpha value can be either one, regardless of the other 3. Let’s do another refactor.
+If one of the 3 numbers is a percentage, the others must be as well. The alpha value can be either one, regardless of the other 3. Let's do another refactor.
 
 ```js title="fix alphas" runnable
 const numRe = /-?(?:\d+|\d*\.\d+)/.source;
@@ -246,11 +247,11 @@ const finalRegex = createRe`rgb\( (?:${commaRgbRe}|${spaceRgbRe}) \)`;
 console.log(finalRegex.toString());
 ```
 
-The main change is just grouping our percentages together so there’s no mixing with those plain numbers. I also snuck in a fix for a different problem. The regex `rgb(123)` isn’t valid, but `rgb(1%2%3%)` is perfectly fine. We only need spaces when things aren’t distinguishable. 
+The main change is just grouping our percentages together so there's no mixing with those plain numbers. I also snuck in a fix for a different problem. The regex `rgb(123)` isn't valid, but `rgb(1%2%3%)` is perfectly fine. We only need spaces when things aren't distinguishable. 
 
-But percentages aren’t the only case where things are distinguishable without spaces.
+But percentages aren't the only case where things are distinguishable without spaces.
 
-```jsx
+```elm
 rgb(1-2-3)
 rgb(1-.2.3)
 rgb(1 .2.3)
@@ -258,9 +259,9 @@ rgb(1 .2.3)
 
 These are valid.
 
-That means if a number contains a leading decimal or negative sign, spaces are not necessary. Let’s take another stab at it.
+That means if a number contains a leading decimal or negative sign, spaces are not necessary. Let's take another stab at it.
 
-```jsx
+```js
 const numRegRe = /\d+(?:\.\d+)?/.source;
 const numNonRegRe = /(?:-(?:\d+|\d*\.\d+)|(\.\d+))/.source;
 
@@ -272,13 +273,13 @@ const spaceRgbRe = String.raw`
 `;
 ```
 
-The technique here is matching either “space + regular number” or “maybe space + special numbers that don’t need spaces to distinguish them”.
+The technique here is matching either “space + regular number” or “maybe space + special numbers that don't need spaces to distinguish them”.
 
-Ah! Okay! We’re done! Right? This is it?
+Ah! Okay! We're done! Right? This is it?
 
 Please?
 
-Please say we’re done. It is 2am.
+Please say we're done. It is 2am.
 
 ## Failing On Purpose
 
@@ -286,18 +287,18 @@ Sorry, buddy. The issue now is our regex is **too** good. Yes, we are that power
 
 It **should** also fail on the following input
 
-```jsx
+```elm
 rgb(1.2.3)
 ```
 
 Now this was a bit weird to me. Because it the following inputs are valid
 
-```jsx
+```elm
 rgb(1 .2.3)
 rgb(.1.2.3)
 ```
 
-We’ve now run into the issue of comparing regex with a more standard parser.
+We've now run into the issue of comparing regex with a more standard parser.
 
 In a parser, we might call a function like `getNextNumber()`. This function will “eat” the input, trying to parse either an integer like “1” or a float like “1.2”. Then it moves onto the next one and gets “.3” before it searches for the 3rd number and finds nothing.
 
@@ -305,10 +306,11 @@ Regex does not do this. Regex does not like to give up!
 
 Seeing this kind of an issue, a regular expression engine will try to retrace its steps and go for another route. Instead of parsing the first number as “1.2”, perhaps it was instead “1” and the next number is “.2”.  Thus we extract a valid output!
 
-There’s no clean way for us to avoid this in regex. We must therefore reach for the closest thing we have to exclusions, the negative lookahead.
+There's no clean way for us to avoid this in regex. We must therefore reach for the closest thing we have to exclusions, the negative lookahead.
 
-```jsx
-(?!\d+(?:\.|\s*-?)\d+\.\d+)
+```js
+/(?!\d+(?:\.|\s*-?)\d+\.\d+)/
+  ^^     
 ```
 
 <Details title="Woah! A new one!">
@@ -351,14 +353,14 @@ console.log(finalRegex.toString());
 
 Which has the output of… 385 characters
 
-```jsx
-rgb\(\s*(?!\d+(?:\.|\s*-?)\d+\.\d+)\s*(?:\s*(?:\s*-?(?:\d+|\d*\.\d+)\s*,\s*-?(?:\d+|\d*\.\d+)\s*,\s*-?(?:\d+|\d*\.\d+)\s*|\s*-?(?:\d+|\d*\.\d+)%\s*,\s*-?(?:\d+|\d*\.\d+)%\s*,\s*-?(?:\d+|\d*\.\d+)%\s*)\s*(?:\s*,\s*-?(?:\d+|\d*\.\d+)%?)?\s*|\s*(?:\s*-?(?:\d+|\d*\.\d+)\s*(?:\s+\d+(?:\.\d+)?|\s*(?:-(?:\d+|\d*\.\d+)|(\.\d+)))\s*(?:\s+\d+(?:\.\d+)?|\s*(?:-(?:\d+|\d*\.\d+)|(\.\d+)))\s*|\s*-?(?:\d+|\d*\.\d+)%\s*-?(?:\d+|\d*\.\d+)%\s*-?(?:\d+|\d*\.\d+)%\s*)\s*(?:\s*\/\s*-?(?:\d+|\d*\.\d+)%?)?\s*)\s*\)
+```js
+/rgb\(\s*(?!\d+(?:\.|\s*-?)\d+\.\d+)\s*(?:\s*(?:\s*-?(?:\d+|\d*\.\d+)\s*,\s*-?(?:\d+|\d*\.\d+)\s*,\s*-?(?:\d+|\d*\.\d+)\s*|\s*-?(?:\d+|\d*\.\d+)%\s*,\s*-?(?:\d+|\d*\.\d+)%\s*,\s*-?(?:\d+|\d*\.\d+)%\s*)\s*(?:\s*,\s*-?(?:\d+|\d*\.\d+)%?)?\s*|\s*(?:\s*-?(?:\d+|\d*\.\d+)\s*(?:\s+\d+(?:\.\d+)?|\s*(?:-(?:\d+|\d*\.\d+)|(\.\d+)))\s*(?:\s+\d+(?:\.\d+)?|\s*(?:-(?:\d+|\d*\.\d+)|(\.\d+)))\s*|\s*-?(?:\d+|\d*\.\d+)%\s*-?(?:\d+|\d*\.\d+)%\s*-?(?:\d+|\d*\.\d+)%\s*)\s*(?:\s*\/\s*-?(?:\d+|\d*\.\d+)%?)?\s*)\s*\)/
 ```
 
-We can decrease this down to a cool 188 by using some fancier quantifiers and a smarter use of our generated `\s*` we’re sprinkling everywhere
+We can decrease this down to a cool 188 by using some fancier quantifiers and a smarter use of our generated `\s*` we're sprinkling everywhere
 
-```jsx
-rgb\(\s*(?!\d+(?:\.|\s*-?)\d+\.\d+)-?(?:\d*\.\d+|\d+)(%?)(?:(?:\s*,\s*-?(?:\d+|\d*\.\d+)\1){2}(?:\s*,\s*-?(?:\d+|\d*\.\d+)%?)?|(?:(?:\s*-?\d*\.\d+|\s*-\d+|\s+\d+){2}|(?:\s*-?(?:\d+|\d*\.\d+)%){2})(?:\s*\/\s*-?(?:\d+|\d*\.\d+)%?)?)\s*\)
+```js
+/rgb\(\s*(?!\d+(?:\.|\s*-?)\d+\.\d+)-?(?:\d*\.\d+|\d+)(%?)(?:(?:\s*,\s*-?(?:\d+|\d*\.\d+)\1){2}(?:\s*,\s*-?(?:\d+|\d*\.\d+)%?)?|(?:(?:\s*-?\d*\.\d+|\s*-\d+|\s+\d+){2}|(?:\s*-?(?:\d+|\d*\.\d+)%){2})(?:\s*\/\s*-?(?:\d+|\d*\.\d+)%?)?)\s*\)/
 ```
 
 # We done?
