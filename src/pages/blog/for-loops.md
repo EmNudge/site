@@ -23,7 +23,7 @@ Well then let's provide a snippet.
 # The Problem
 You may have seen this question as a part of interview prep or cool tricky JS code snippets. 
 
-```js title="tricky problem (runnable)"
+```js title="tricky problem" runnable
 for (var i = 0; i < 10; i++) {
     setTimeout(() => console.log(i), 0);
 }
@@ -45,7 +45,7 @@ Let's first go over `var` vs `let`.
 
 I call `var` variables *semi* hoisted because, unlike [function declarations](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function), only their declaration is hoisted. This means that the following 2 snippets are identical:
 
-```js  title="pre-semi-hoisted example (runnable)"
+```js  title="pre-semi-hoisted example" runnable
 var myVal = 233;
 
 for (var i = 0; i < 5; i++) {
@@ -60,7 +60,7 @@ function showNumPlusOne(num) {
 ```
 and 
 
-```js  title="semi-hoisted equivalent (runnable)"
+```js  title="semi-hoisted equivalent" runnable
 var myVal, i, newVal;
 function showNumPlusOne(num) {
   var plusOne;
@@ -84,7 +84,7 @@ What this means, is that we can access variables declared with `var` before we d
 
 To illustrate, here is `let` vs `var` block-scoping:
 
-```js title="function scoping (runnable)"
+```js title="function scoping" runnable
 {
   var blockVar = 4;
 }
@@ -99,7 +99,7 @@ console.log(i); // > 10
 ```
 vs 
 
-```js title="block scoping (runnable)"
+```js title="block scoping" runnable
 {
   let blockVar = 4;
 }
@@ -119,7 +119,7 @@ We get an error when trying to access the variables when declared with `let`, bu
 
 This is the point where many explanations online stop. `let` is different than `var` and since `var` isn't block scoped; it jumps out of the for loop. If we were to use `let`, we'd be fine, but `var` makes `i` equal to what it last was (10) and that gets outputted each time.
 
-```js title="var hoisting (runnable)"
+```js title="var hoisting" runnable
 // i's declaration gets hoisted
 var i;
 for (i = 0; i < 10; i++) {
@@ -140,7 +140,7 @@ The more astute among you might have guessed it. A [closure](https://developer.m
 
 The concept can get complicated for many, so I'm going to try to skim over some of the more complicated and abstract bits. I will instead explain what we need to understand for our use case.
 
-```js title="capturing variables with closures (runnable)"
+```js title="capturing variables with closures" runnable
 let myVar = 4;
 
 function showNumPlusOne() {
@@ -160,7 +160,7 @@ The important thing to note about closures is that they don't just grab the valu
 
 This can make for some very interesting code. Have a look at this snippet:
 
-```js title="closure setter and getter (runnable)"
+```js title="closure setter and getter" runnable
 let getVar;
 let myVar = 4;
 {
@@ -182,7 +182,7 @@ It's still grabbing the actual variable and not just its value, but it's using a
 
 So now some of the better explanations will include the concept of closures. Let's explain our example with both `var` and closures now.
 
-```js title="var scoping in for loops (runnable)"
+```js title="var scoping in for loops" runnable
 var i;
 for (i = 0; i < 10; i++) {
   // closure referencing the i variable outside of the for loop
@@ -196,7 +196,7 @@ So since our `var` is outside of the scope and our closure is referencing the li
 
 Let's illustrate this with another snippet
 
-```js title="var scoping (runnable)"
+```js title="var scoping" runnable
 var i = 0;
 function myFunc() {
   console.log(i);
@@ -230,7 +230,7 @@ To answer this, we need to try and simulate a for loop.
 
 Our first instinct would probably be to use a `while` loop. Let's do that.
 
-```js title="simulated for loop p1 (runnable)"
+```js title="simulated for loop p1" runnable
 let i = 0;
 while (i < 10) {
   setTimeout(() => console.log(i), 0)
@@ -240,7 +240,7 @@ while (i < 10) {
 
 This would work like a for loop, but not in this specific context. We're still going to get `10` 10 times even though we're using `let`. Let's put it in a block to stop that.
 
-```js title="simulated for loop p2 (runnable)"
+```js title="simulated for loop p2" runnable
 {
   let i = 0;
   while (i < 10) {
@@ -253,7 +253,7 @@ This would work like a for loop, but not in this specific context. We're still g
 So now we can't access it ourselves, but the function is still referencing a common variable `i`, so we get the same buggy result as we would with `var`.
 There must be something else here. Let's try creating a variable local to the most inner scope. 
 
-```js title="simulated for loop p3 (runnable)"
+```js title="simulated for loop p3" runnable
 {
   let i = 0;
   while (i < 10) {

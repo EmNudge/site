@@ -1,4 +1,4 @@
-[data-rehype-pretty-code-fragment].runnable [data-rehype-pretty-code-title] {
+.expressive-code.runnable .header {
     display: flex;
     align-items: stretch;
     gap: 0.5rem;
@@ -6,11 +6,11 @@
     z-index: 0;
 }
 
-[data-rehype-pretty-code-fragment].runnable [data-rehype-pretty-code-title] span {
+.expressive-code.runnable .header span {
     padding-right: 2rem;
 }
 
-[data-rehype-pretty-code-fragment].runnable [data-rehype-pretty-code-title] button {
+.expressive-code.runnable .header button {
     cursor: pointer;
     background: var(--background);
     border: none;
@@ -20,17 +20,17 @@
     transition: .15s;
 }
 
-[data-rehype-pretty-code-fragment].runnable [data-rehype-pretty-code-title] button:hover {
+.expressive-code.runnable .header button:hover {
     background: var(--bg-light-transparent);
 }
 
 @media screen and (max-width: 600px) {
-    [data-rehype-pretty-code-fragment].runnable [data-rehype-pretty-code-title] button {
+    .expressive-code.runnable .header button {
         display: none;
     }
 }
 
-[data-rehype-pretty-code-fragment].runnable output {
+.expressive-code.runnable output {
     transition: .15s;
     display: grid;
     gap: .1rem;
@@ -53,7 +53,7 @@
     }
 }
 
-[data-rehype-pretty-code-fragment].runnable output console-log {
+.expressive-code.runnable output console-log {
     display: block;
     padding: .1rem 1rem;
 
@@ -66,22 +66,22 @@
     color: white;
 }
 
-[data-rehype-pretty-code-fragment].runnable output console-log:hover {
+.expressive-code.runnable output console-log:hover {
     filter: brightness(2);
 }
 
-[data-rehype-pretty-code-fragment].runnable console-log[data-type=log] {
+.expressive-code.runnable console-log[data-type=log] {
     background: #60606022;
 }
 
-[data-rehype-pretty-code-fragment].runnable console-log[data-type=info] {
+.expressive-code.runnable console-log[data-type=info] {
     background: orange;
 }
 
-[data-rehype-pretty-code-fragment].runnable console-log[data-type=error] {
+.expressive-code.runnable console-log[data-type=error] {
     background: #ff38003b;
 }
 
-[data-rehype-pretty-code-fragment].runnable output console-log .spacer {
+.expressive-code.runnable output console-log .spacer {
     padding: 0 5px;
 }

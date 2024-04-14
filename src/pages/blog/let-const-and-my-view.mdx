@@ -53,7 +53,7 @@ Additionally, `var` is not constrained to block scopes, allowing it to hoist its
 The "constant variable bindings" and not "creates constant values" distinction is important. If you create a variable with `const` that is assigned to some non-primitive data structure, the structure can be mutated, but the variable cannot be re-assigned. This distinction can be conveyed with a single sentence and it would be much easier to teach if people stopped teaching `const` as something to create immutable data structures, but rather immutable bindings.
 
 As a quick example:
-```js title="const mutability (runnable)"
+```js title="const mutability" runnable
 const myObj = {};       // {} is a non-primitive
 myObj.name = 'EmNudge'; // You can still mutate the object
 myObj = 3               // ERROR - you can't reassign it.

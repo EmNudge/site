@@ -5,10 +5,15 @@ import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeToc from "@jsdevtools/rehype-toc";
 import expressiveCode from "astro-expressive-code";
+import { codeRunnerPlugin } from "./src/components/CodeRunner/plugin";
 
 // https://astro.build/config
 export default defineConfig({
-  integrations: [svelte(), expressiveCode(), mdx()],
+  integrations: [
+    svelte(),
+    expressiveCode({ plugins: [codeRunnerPlugin()] }),
+    mdx(),
+  ],
   markdown: {
     syntaxHighlight: false,
     rehypePlugins: [

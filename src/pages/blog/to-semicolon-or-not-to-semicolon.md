@@ -29,7 +29,7 @@ It should be noted that it's not *literally* adding a semicolon. It just makes t
 
 The following code would function properly since ASI adds in the semicolons we needed.
 
-```js title="auto-added semicolons (runnable)"
+```js title="auto-added semicolons" runnable
 let myVar = 3
 myVar++
 console.log(myVar) // > 4
@@ -39,7 +39,7 @@ ASI sees a newline after `3` and knows that `let myVar = 3 myVar++` is illegal, 
 
 We see that ASI is not just checking for new lines, it's checking if there's a new line **and** the next token would be "illegal" if there was no semicolon between them. What if it *wasn't* illegal if there was no semicolon between them?
 
-```js title="multiline semicolons (runnable)"
+```js title="multiline semicolons" runnable
 let myVar = 1 +
 3
 console.log(myVar) // > 4
@@ -65,7 +65,7 @@ Now that we have learned how it works, let's discuss cases where we *think* it w
 
 There are cases where ASI won't add semicolons because the subsequent token isn't illegal.
 
-```js title="breaking ASI (runnable)"
+```js title="breaking ASI" runnable
 console.log(4) // > 4
 ['foo', 'bar'].forEach(el => console.log(el)) // > Uncaught TypeError: Cannot read property 'bar' of undefined
 ```
@@ -78,7 +78,7 @@ In this case, ASI really doesn't know that we didn't want that syntax. We'd have
 
 [The JS spec](https://www.ecma-international.org/ecma-262/10.0/index.html#sec-automatic-semicolon-insertion) also gives an example with parentheses that results in a similar effect. It wasn't valid JS (funny enough), so here is a more "practical" example.
 
-```js title="practicqally breaking ASI (runnable)"
+```js title="practicqally breaking ASI" runnable
 let s1 = "Hello "
 let s2 = "World"
 let myStr = s1 + s2
@@ -95,7 +95,7 @@ ASI sometimes will **add in** semicolons which hurt us as well.
 
 Some programmers prefer [Allman brace style](https://en.wikipedia.org/wiki/Indentation_style) and carry over this preference to other languages. This means that every brace gets its own line. This works fine (but is generally avoided by JS programmers) until you encounter a case of ASI.
 
-```js title="Allman braces (runnable)"
+```js title="Allman braces" runnable
 // Allman brace style
 function myFunc(val) 
 {
@@ -120,7 +120,7 @@ How does the engine differentiate between blocks and objects? If an opening brac
 
 What that means, is even if we make the block look like an object, it is still treated like a block. 
 
-```js title="newlined return (runnable)"
+```js title="newlined return" runnable
 function myFunc(val) {
   return
   {
@@ -135,7 +135,7 @@ function myFunc(val) {
 labels cannot have a comma after them. This is most certainly therefore not a label. JS sees a block and then sees this weird quasi-label syntax. It throws an error, telling us our block has semicolons. 
 
 **However** this was a fun aside, but it still doesn't fully explain the behavior of ASI in this instance due to the following behavior:
-```js title="newlined fixed return (runnable)"
+```js title="newlined fixed return" runnable
 function myFunc1(val) {
   return
   ({

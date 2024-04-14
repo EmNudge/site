@@ -73,35 +73,25 @@ const h = (name: string, attributes: Record<string, string> | null = null, ...ch
 }
 
 export function addRunnableCode() {
-  const codeBlocks = document.querySelectorAll('[data-rehype-pretty-code-fragment]');
-  const runnableCodeBlocks = [...codeBlocks].filter(codeBlock => {
-    const titleEl = codeBlock.querySelector('[data-rehype-pretty-code-title]');
-    if (!titleEl || !('dataset' in titleEl)) return false;
-    
-    const lang = (titleEl.dataset as any)?.language
-    if (!['js', 'javascript'].includes(lang)) return false;
-    return titleEl.textContent.endsWith('(runnable)');
+  const codeBlocks = Array.from(document.querySelectorAll('.expressive-code'));
+
+  const runnableCodeBlocks = codeBlocks.filter(codeBlock => {
+    return codeBlock.querySelector('.runnable-btn');
   });
 
   for (const codeBlock of runnableCodeBlocks) {
+    const runButton = codeBlock.querySelector('.runnable-btn');;
+
     codeBlock.classList.add('runnable')
 
-    const titleEl = codeBlock.querySelector('[data-rehype-pretty-code-title]');
-
-    const newTitleEl = h('span', null, titleEl.textContent);
-    const runButton = h('button', null, 'Run');
-    const clearButton = h('button', null, 'Clear');
-    titleEl.textContent = '';
-    titleEl.append(newTitleEl, runButton, clearButton);
-
     runButton.addEventListener('click', () => onExecute(codeBlock));
-    clearButton.addEventListener('click', () => {
-      const outputEl = codeBlock.querySelector('output');
-      if (outputEl && outputEl.classList.contains('opened')) {
-        outputEl.classList.remove('opened');
-        outputEl.textContent = '';
-      }
-    });
+    // clearButton.addEventListener('click', () => {
+    //   const outputEl = codeBlock.querySelector('output');
+    //   if (outputEl && outputEl.classList.contains('opened')) {
+    //     outputEl.classList.remove('opened');
+    //     outputEl.textContent = '';
+    //   }
+    // });
 
     codeBlock.append(h('output'));
   }
