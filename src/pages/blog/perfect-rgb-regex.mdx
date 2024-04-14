@@ -139,7 +139,7 @@ To avoid doing that, we can add `?:` to the start of a group. Actually, the `?` 
 
 And with that we have a number to save for later. Let’s build a test regex using our new number as an example.
 
-```js title="Using String.raw (runnable)"
+```js title="Using String.raw" runnable
 const numRe = /-?(?:\d+|\d*\.\d+)/.source;
 
 const rgbRe = String.raw`rgb\(${numRe}, ${numRe}, ${numRe}(?:, ${numRe})?\)`;
@@ -151,7 +151,7 @@ console.log(new RegExp(rgbRe).toString());
 
 Let’s also fix the “variable spaces issue” with a custom function and replace `String.raw` entirely.
 
-```js title="replacing with \s* (runnable)"
+```js title="replacing with \s*" runnable
 const numRe = /-?(?:\d+|\d*\.\d+)/.source;
 
 const createRe = (...args) => 
@@ -183,7 +183,7 @@ Commas are well and good, but we did mention the `rgb(num num num / alpha)` synt
 
 It might feel cool to get all clever immediately, but it’s probably better to build this up from a naive solution.
 
-```js title="spaces or commas (runnable)"
+```js title="spaces or commas" runnable
 const numRe = /-?(?:\d+|\d*\.\d+)/.source;
 
 const createRe = (...args) => 
@@ -227,7 +227,7 @@ rgb(100% 100 100%)
 
 If one of the 3 numbers is a percentage, the others must be as well. The alpha value can be either one, regardless of the other 3. Let’s do another refactor.
 
-```js title="fix alphas (runnable)"
+```js title="fix alphas" runnable
 const numRe = /-?(?:\d+|\d*\.\d+)/.source;
 
 const createRe = (...args) => 
@@ -321,7 +321,7 @@ We are forbidding this entire regex continuing if it can conceivably be read as 
 
 Making our whole regex look like
 
-```js title="final output (runnable)"
+```js title="final output" runnable
 const numRe = /-?(?:\d+|\d*\.\d+)/.source;
 
 const createRe = (...args) => 
