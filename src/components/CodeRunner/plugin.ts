@@ -12,6 +12,7 @@ export function codeRunnerPlugin() {
         // @ts-ignore
         const header = select('.header', renderData.blockAst);
         header.children.push(h('button', { className: 'runnable-btn' }, 'Run Code'));
+        header.children.push(h('button', { className: 'clear-btn' }, 'Clear Console'));
       },
     },
   })

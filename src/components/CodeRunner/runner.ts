@@ -80,18 +80,20 @@ export function addRunnableCode() {
   });
 
   for (const codeBlock of runnableCodeBlocks) {
-    const runButton = codeBlock.querySelector('.runnable-btn');;
-
     codeBlock.classList.add('runnable')
-
+    
+    
+    const runButton = codeBlock.querySelector('.runnable-btn');;
     runButton.addEventListener('click', () => onExecute(codeBlock));
-    // clearButton.addEventListener('click', () => {
-    //   const outputEl = codeBlock.querySelector('output');
-    //   if (outputEl && outputEl.classList.contains('opened')) {
-    //     outputEl.classList.remove('opened');
-    //     outputEl.textContent = '';
-    //   }
-    // });
+    
+    const clearButton = codeBlock.querySelector('.clear-btn');;
+    clearButton.addEventListener('click', () => {
+      const outputEl = codeBlock.querySelector('output');
+      if (outputEl && outputEl.classList.contains('opened')) {
+        outputEl.classList.remove('opened');
+        outputEl.textContent = '';
+      }
+    });
 
     codeBlock.append(h('output'));
   }
