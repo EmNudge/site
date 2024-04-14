@@ -15,6 +15,7 @@
         "@jsdevtools/rehype-toc": "^3.0.2",
         "@types/node": "^18.14.0",
         "astro": "^4.6.1",
+        "astro-expressive-code": "^0.34.1",
         "dotenv": "^16.0.0",
         "rehype-autolink-headings": "^6.1.1",
         "rehype-infer-reading-time-meta": "^1.1.0",

@@ -75,3 +75,7 @@ article > ol > li, article > ul > li {
 article strong {
     color: salmon;
 }
+
+.expressive-code {
+    margin-bottom: 1rem;
+}
