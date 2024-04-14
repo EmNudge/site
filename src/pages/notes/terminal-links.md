@@ -58,7 +58,7 @@ If you ever wondered how console coloring libraries like [chalk](https://github.
 
 # Embedding Links
 
-Okay, so this is the part was really surprising to me. I built my parser and found some text not captured by my code.
+Okay, so this is the part that was really surprising to me. I built my parser and found some text not captured by my code.
 
 ```
 \x1B]8;;https://doc.rust-lang.org/cargo/reference/profiles.html#default-profiles\x1B\\`dev` profile [unoptimized + debuginfo]\x1B]8;;\x1B\\
