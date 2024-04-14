@@ -121,6 +121,9 @@ By far the best experience. It displays this dotted underline for clickable link
 
 ![VS Code right after hovering](https://assets.emnudge.com/vscode_link_posthover.png)
 
+
+**EDIT**: [Zed](https://zed.dev)'s terminal also does a great job of this, although the default styling is simply an underline as opposed to a custom one just for links.
+
 # logpipe
 
 My tool displays terminal content. I have a chance to do the correct thing. So I do!
