@@ -7,9 +7,11 @@ import Stub from "../components/Stub.astro";
 
 import { getVideos } from "../data/videos";
 import { reads } from "../data/bookmarks";
-import { MdOrMdxFile, getSlugs } from "../data/blogs";
+import { getSlugs } from "../data/blogs";
 import ProjectStub from "../components/ProjectStub.astro";
 import BlogStub from "../components/article/BlogStub.astro";
+
+import type { MdOrMdxFile } from "../data/blogs";
 
 const posts = await getSlugs(
   (await Astro.glob("./blog/*.md*")) as MdOrMdxFile[]
@@ -80,6 +82,12 @@ const videos = await getVideos();
         name="What I Believe"
         description="A list of my beliefs and/or free advice."
         url="https://beliefs.emnudge.dev"
+      />
+      <ProjectStub
+        icon="🪵"
+        name="Logpipe"
+        description="A better view into your development logs"
+        url="https://logpipe.dev"
       />
     </div>
   </TitleSection>
