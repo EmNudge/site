@@ -2,7 +2,7 @@ import rss from "@astrojs/rss";
 import { books } from "../data/bookmarks";
 import { SITE as site } from '../data/env';
 
-export const get = () =>
+export const GET = () =>
   rss({
     title: "Recent Books",
 

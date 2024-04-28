@@ -1,7 +1,7 @@
 import rss from "@astrojs/rss";
 import { SITE as site } from "../data/env";
 
-export const get = async () => {
+export const GET = async () => {
   const files = import.meta.glob("./blog/*.md*");
   const blogPosts = Object.values(files).map(async (post) => {
     const file = await post() as any;
