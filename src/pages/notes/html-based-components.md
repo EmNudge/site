@@ -2,7 +2,7 @@
 pubDate: April 14, 2024
 title: HTML-Based Single-Use Components
 summary: Vanilla JavaScript components with native HTML
-tags: code
+tags: coding
 layout: ../../layouts/Blog.astro
 ---
 
