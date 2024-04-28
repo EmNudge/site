@@ -44,10 +44,22 @@ details.toc {
 }
 details.toc summary {
     background: var(--bg-light-transparent);
+    cursor: pointer;
+    margin: 0;
 }
 details.toc ul, details.toc ol {
-    font-size: 0.8rem;
+    margin: 0;
     margin-left: 0.5rem;
+    list-style: circle;
+}
+details.toc a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+
+    &:hover {
+        text-decoration: underline;
+    }
 }
 
 .admonition.center {
