@@ -88,7 +88,7 @@ Applied to job applications, this would appear as in-person applications. A lot 
 
 ## The Obstacles
 
-MAU is not the only metric that matters. Hinge will likely soon eclipse Tinder in this respect, but it will take much longer to reach Tinder's profit margins. Market forces are looking too kindly on this strategy.
+MAU is not the only metric that matters. Hinge will likely soon eclipse Tinder in this respect, but it will take much longer to reach Tinder's profit margins. Market forces are not looking too kindly on this strategy.
 
 For job applications, this one is a bit less clear. Hiring managers would much prefer better candidates. Manufactured friction would lower the candidate pool, but screen out a significant portion of candidates who might have been a waste of time. That is, unless the friction prevents better candidates from applying. 
 
