@@ -100,7 +100,14 @@ const videos = await getVideos();
 
 <style>
   .newest-blog {
-    background: linear-gradient(93deg, transparent, #007183, #007183, transparent);
+    --highlight: #00515e;
+    background: linear-gradient(
+      to right,
+      transparent,
+      var(--highlight),
+      var(--highlight),
+      transparent
+    );
     margin: 0 -4rem;
     padding: 0 4rem;
     box-sizing: border-box;
