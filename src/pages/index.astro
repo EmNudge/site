@@ -23,9 +23,14 @@ const videos = await getVideos();
   <NameSection />
 
   <TitleSection title="Blog" link="/blog" staggered>
+    <div class="newest-blog">
+      <post-container style={`--index: 0`}>
+        <BlogStub {...posts[0]} />
+      </post-container>
+    </div>
     {
-      posts.slice(0, 5).map((post, i) => (
-        <post-container style={`--index: ${i}`}>
+      posts.slice(1, 5).map((post, i) => (
+        <post-container style={`--index: ${i + 1}`}>
           <BlogStub {...post} />
         </post-container>
       ))
@@ -94,6 +99,18 @@ const videos = await getVideos();
 </MainLayout>
 
 <style>
+  .newest-blog {
+    background: linear-gradient(93deg, transparent, #007183, #007183, transparent);
+    margin: 0 -4rem;
+    padding: 0 4rem;
+    box-sizing: border-box;
+  }
+  @media screen and (max-width: 1000px) {
+    .newest-blog {
+      margin: 0 calc(51% - 50vw);
+      padding: 0 calc(50vw - 50%);
+    }
+  }
   .videos {
     display: grid;
     grid-template-columns: 1fr 1fr;
