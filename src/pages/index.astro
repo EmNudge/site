@@ -118,6 +118,15 @@ const videos = await getVideos();
       padding: 0 calc(50vw - 50%);
     }
   }
+
+  @media (prefers-color-scheme: light) {
+    .newest-blog {
+      --highlight: #c6dce0
+    }
+  }
+  :root.light .newest-blog {
+    --highlight: #c6dce0
+  }
   .videos {
     display: grid;
     grid-template-columns: 1fr 1fr;
