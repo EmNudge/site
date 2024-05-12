@@ -8,9 +8,10 @@ layout: ../../layouts/Blog.astro
 
 It's been pretty useful to try making web servers with as little framework usage as possible. With Node, you can get pretty far just using the included `http` package.
 
-Every front-end dev setup comes included with a live-reload function - the page reloading in reaction to files changes. It's pretty useful and in theory not terribly complicated to make from scratch.
+Every front-end dev setup comes included with a live-reload function - the page reloading in reaction to file changes. It's pretty useful and in theory not terribly complicated to make from scratch.
 
 I was wondering what the simplest implementation of this would look like. Here's what I came up with.
+
 ## Minimal Live Reload
 
 First, we set up our listeners/subscribers - pages that are waiting for reload signals.
@@ -45,7 +46,7 @@ On pages that we want to reload, we set up a [SSE](https://developer.mozilla.org
 </script>
 ```
 
-I'm using [watchexec](https://github.com/watchexec/watchexec) to listen for file changes and chose the path `/~_` for the reload signal, because it looks strange enough to be unused.
+I'm using [watchexec](https://github.com/watchexec/watchexec) to listen for file changes and chose the path `/~_` for the reload signal because it looks strange enough to be unused.
 
 ```sh
 watchexec -e html,css,js 'curl -X POST http://localhost:3000/~_'
@@ -99,7 +100,7 @@ require("http")
 
 [The gist is available here](https://gist.github.com/EmNudge/5d20e433919d5d36d78a03d41a2f3afe).
 
-A technique more common these days is "[Hot Module Replacement](https://webpack.js.org/concepts/hot-module-replacement/)". This requires your code to have an understanding of **where** updates happened in order to reload a component of the page without reloading the page itself.
+A technique more common these days is "[Hot Module Replacement](https://webpack.js.org/concepts/hot-module-replacement/)". This requires your code to have an understanding of **where** updates happened to reload a component of the page without reloading the page itself.
 
 For applications that don't use a customized framework, adding in something like this would be considerably more complicated. You can also [just use Vite](https://github.com/EmNudge/audio-visualizer-playground/blob/main/src/main.ts#L48-L71).
 
