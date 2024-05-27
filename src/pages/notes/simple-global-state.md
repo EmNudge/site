@@ -11,13 +11,13 @@ I've been explaining how libraries like [Jotai](https://jotai.org/) work fairly 
 ## Signal-based Global State
 
 The pattern is this.
-```tsx
-// file 1
+```js title="state.js"
 export const usernameSignal = signal('John');
+```
 
-// file 2
+```jsx title="components.jsx"
 import { useSignal } from 'library';
-import { usernameSignal } from './state';
+import { usernameSignal } from './state.js';
 
 export const UserIcon = () => {
 	const [username, setUsername] = useSignal(usernameSignal);
@@ -39,7 +39,7 @@ With a hidden mapping of signal objects to a list of `setState` functions.
 
 It may be clearer with this stripped-down example of the implementation.
 
-```ts
+```js title="library.js"
 import { useState } from 'react';
 
 const setStateFuncs = new Set();
@@ -61,7 +61,7 @@ When we call our local `setState`, we're actually calling all `setState` functio
 
 For this to actually be useful, however, we'll need to actually map our signal object to its own `setStateFuncs` list, making our full code look more like this.
 
-```ts
+```js title="library.js"
 import { useState } from 'react';
 
 const setStateMap = new Map();
@@ -85,7 +85,7 @@ export const useSignal = (signal) => {
 ```
 
 Because our "signal objects" just need to be an object with a value property, they can be defined as simply as:
-```js
+```js title="state.js"
 export const usernameSignal = { value: 'John' };
 ```
 
