@@ -7,7 +7,6 @@
         getParagraphHighlighter,
         getParagraphPercentage,
     } from "./utils";
-    import { mod } from "../../utils/mod";
     import Playback from "./Playback.svelte";
     import Volume from "./Volume.svelte";
     import Container from "./Container.svelte";
@@ -109,6 +108,9 @@
             }
         }
         paragraphIndex += offset;
+
+        const mod = (value: number, mod: number) => ((value % mod) + mod) % mod;
+
         const index = mod(paragraphIndex, paragraphs.length);
         audio.currentTime = timestamps[index];
         paragraphHighlighter.highlight(index);

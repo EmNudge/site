@@ -20,6 +20,23 @@
     opacity: .8;
 }
 
+@font-face {
+    font-family: 'Merriweather';
+    src: url(/fonts/Merriweather-Regular.ttf) format('woff2');
+}
+
+@font-face {
+    font-family: 'Merriweather';
+    src: url(/fonts/Merriweather-Black.ttf) format('woff2');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Merriweather';
+    src: url(/fonts/Merriweather-Italic.ttf) format('woff2');
+    font-style: italic;
+}
+
 article {
     color: var(--light-foreground);
     font-size: 1rem;
