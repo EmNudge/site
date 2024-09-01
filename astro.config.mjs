@@ -4,6 +4,7 @@ import mdx from "@astrojs/mdx";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeToc from "@jsdevtools/rehype-toc";
+import rehypeCitation from "rehype-citation";
 import expressiveCode from "astro-expressive-code";
 import { codeRunnerPlugin } from "./src/components/CodeRunner/plugin";
 
@@ -18,6 +19,7 @@ export default defineConfig({
     syntaxHighlight: false,
     rehypePlugins: [
       rehypeSlug,
+      rehypeCitation,
       [
         rehypeToc,
         {

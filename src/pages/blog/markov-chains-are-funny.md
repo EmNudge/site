@@ -14,7 +14,7 @@ And
 
 > In the beginning was the lambda expression, and the lambda expression was with Scheme, and the lambda expression was Scheme.
 
-One of these is the result of a Markov chain trained on the dataset of the King James Bible and a Computer Science textbook. The other is ChatGPT 3.5 given instructions to form a similar output.
+One of these is the result of a Markov chain trained on the dataset of the King James Bible and a Computer Science textbook[^1]. The other is ChatGPT 3.5 given instructions to form a similar output.
 
 These 2 examples are somewhat cherry-picked, but each was given a fair fight. I tried to choose the best candidate from both sides. Can you tell which one was which?
 
@@ -97,3 +97,5 @@ This is why every message from ChatGPT reads like a high school essay. It has ta
 It's easy to spot fake Amazon reviews these days by thinking "would I ever write something like this?". Would you add an intro and conclusion to your experiences with Oxiclean dish wipes? Would you thank the manufacturers and acknowledge their dedication to customer service? 
 
 Our LLM detection models, like an on-screen captcha, must soon start screening for personality. 
+
+[^1]: The example comes from a [famous tumblr blog](https://kingjamesprogramming.tumblr.com/) which was recently resurrected!
