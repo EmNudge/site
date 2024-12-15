@@ -3,7 +3,7 @@ import { API_KEY, CHANNEL_ID } from './env';
 const MAX_RESULTS = 4;
 
 const BASE_URL = 'https://www.googleapis.com/youtube/v3/search';
-interface YoutubeAPIResponse {
+type YoutubeAPIResponse = {
     items: {
         id: { videoId: string };
         snippet: {
@@ -13,7 +13,16 @@ interface YoutubeAPIResponse {
             }
         }
     }[];
-}
+} | {  
+    error: {
+        code: 400,
+        message: string,
+        errors: unknown[],
+        status: string,
+        details: unknown[],
+    }
+};
+
 const fetchYouTubeVideos = async (): Promise<YoutubeAPIResponse> => {
     const params = {
         key: API_KEY,
@@ -45,6 +54,10 @@ export async function getVideos(): Promise<Video[]> {
     if (videos) return videos;
 
     const json = await fetchYouTubeVideos();
+
+    if ('error' in json) throw new Error(json.error.message);
+
+    console.log({json})
 
     videos = json.items.map(({ snippet, id: snippetId }) => {
         const { title, thumbnails } = snippet;

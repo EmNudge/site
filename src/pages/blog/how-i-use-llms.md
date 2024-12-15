@@ -1,7 +1,7 @@
 ---
 pubDate: Dec 15, 2024
 title: How I Use LLMs
-summary: Be the wielder of the technology, not its servant
+summary: Why it's useful and where it's dangerous
 tags: coding
 icon: technologies/languages/javascript
 layout: ../../layouts/Blog.astro
