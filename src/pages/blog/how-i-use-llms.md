@@ -9,7 +9,9 @@ layout: ../../layouts/Blog.astro
 
 AI? In my codebase? 
 
-You'll get some very polarizing opinions on this one. You shouldn't "trust" code coming out of an LLM. Therefore you should reject all of it. But you can't trust junior devs either, so you can just lay off half your workforce and only use LLMs. But you'll have a higher maintenance burden and what if subtle bugs cause massive damage and where is the blame in our pipeline and what if about the paperclip problem and what if... or... is there... a third opinion?
+You'll get some very polarizing opinions on this one. You shouldn't "trust" code coming out of an LLM. Therefore you should reject all of it. But you can't trust junior devs either, so you can just lay off half your workforce and only use LLMs. But you'll have a higher maintenance burden and what if subtle bugs cause massive damage and where is the blame in our pipeline and what about the paperclip problem and what if...
+
+Hmmm... Could there be... a third opinion?
 
 Calling LLMs "AI" has done some damage to the discourse. These models do not think in the same way we do. Large language models have some limitations, but a black box statistical model for language is still very useful.
 
