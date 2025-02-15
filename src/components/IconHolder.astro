@@ -3,7 +3,7 @@ const defaultIcons = [
     ["/icons/email.svg", "email", "mailto:contact@emnudge.dev"],
     ["/icons/github.svg", "GitHub", "https://github.com/EmNudge"],
     ["/icons/youtube.svg", "YouTube", "http://youtube.com/EmNudge"],
-    ["/icons/twitter.svg", "Twitter", "http://twitter.com/emnudge"],
+    ["/icons/bsky.svg", "Bluesky", "https://bsky.app/profile/emnudge.dev"],
     ["/icons/devto.svg", "Dev.to", "https://dev.to/emnudge"],
 ];
 
@@ -44,7 +44,7 @@ const classes = [staggered && 'staggered', translucent && 'translucent']
     .translucent a img {
         opacity: .5;
     }
-    a:hover img {
+    a:hover img, .translucent a:hover img {
         opacity: 1;
     }
     img.small {
