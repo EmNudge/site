@@ -3,18 +3,20 @@
     --active: #75a2ff;
     --light-active: #31616a;
     --foreground: white;
-    --light-foreground: #ddd;
+    --light-foreground: #dedede;
     --bg-green: #193337;
     --background: #131619;
     --bg-contrast: #222;
     --light-bg: #fff1;
     --bg-light-transparent: #2225;
     --box-shadow-light-only: none;
+    font-size: 18px;
 }
 
 body {
     background: linear-gradient(to bottom right, #04040e, #060616, black, #03041d);
     color: var(--foreground);
+    margin: 0;
 }
 
 @media (prefers-color-scheme: light) {
@@ -22,7 +24,7 @@ body {
         --active: #ff7b3a;
         --light-active: #ffdac8;
         --foreground: #222;
-        --light-foreground: #555;
+        --light-foreground: #222;
         --background: white;
         --light-bg: #0001;
         --bg-green: #e8f8fa;
@@ -66,7 +68,7 @@ body {
 main {
     max-width: 800px;
     margin: 0 auto;
-    padding: 5px;
+    padding: 1rem;
 }
 
 h1,
