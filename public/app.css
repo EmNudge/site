@@ -15,6 +15,7 @@
 body {
     background: linear-gradient(to bottom right, #04040e, #060616, black, #03041d);
     color: var(--foreground);
+    margin: 0;
 }
 
 @media (prefers-color-scheme: light) {
@@ -66,7 +67,7 @@ body {
 main {
     max-width: 800px;
     margin: 0 auto;
-    padding: 5px;
+    padding: 1rem;
 }
 
 h1,
@@ -79,6 +80,7 @@ h5 {
 
 h2 {
     font-weight: 300;
+    font-size: 1.25rem;
 }
 
 a {
