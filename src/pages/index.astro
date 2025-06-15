@@ -54,7 +54,7 @@ const videos = await getVideos();
     </div>
   </TitleSection>
 
-  <TitleSection title="What I'm Reading" link="/reads" staggered>
+  <TitleSection title="What I'm Reading" link="/articles" staggered>
     {
       reads.slice(0, 5).map((read, i) => (
         <post-container style={`--index: ${i}`}>
