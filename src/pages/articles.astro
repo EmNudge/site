@@ -8,8 +8,9 @@ import Tags from "../components/Tags.astro";
 
 const tags = [...new Set(reads.map((read) => read.tags.split(",")).flat())];
 
-export const getStaticPaths = async ({ paginate }) =>
-	paginate(reads, { pageSize: 25 });
+export async function getStaticPaths({ paginate }) {
+	return paginate(reads, { pageSize: 25 });
+}
 ---
 
 <MainLayout title="Bookmarks">
