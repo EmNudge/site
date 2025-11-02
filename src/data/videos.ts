@@ -61,8 +61,6 @@ export async function getVideos(): Promise<Video[]> {
 
 	if ("error" in json) throw new Error(json.error.message);
 
-	console.log({ json });
-
 	videos = json.items.map(({ snippet, id: snippetId }) => {
 		const { title, thumbnails } = snippet;
 		const id = snippetId.videoId;

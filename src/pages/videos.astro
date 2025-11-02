@@ -8,8 +8,9 @@ import Tags from "../components/Tags.astro";
 
 const tags = [...new Set(videos.map((video) => video.tags.split(",")).flat())];
 
-export const getStaticPaths = async ({ paginate }) =>
-	paginate(videos, { pageSize: 25 });
+export async function getStaticPaths({ paginate }) {
+  return paginate(videos, { pageSize: 25 });
+}
 ---
 
 <MainLayout title="Bookmarks">
