@@ -4,22 +4,25 @@ import { profile as profilePic, toolbar } from "./icons.js";
 // broken:
 // /ɜ́mnʌdʒ/·
 const {
-    nickname = "UNKNOWN",
-    handle = "UNKNOWN",
-    date = "Dec 25, 2018",
-    profile = profilePic,
-    stats = {
-        comments: 0,
-        retweets: 0,
-        favorites: 0,
-    },
-    content = "",
-    link = "#",
+	nickname = "UNKNOWN",
+	handle = "UNKNOWN",
+	date = "Dec 25, 2018",
+	profile = profilePic,
+	stats = {
+		comments: 0,
+		retweets: 0,
+		favorites: 0,
+	},
+	content = "",
+	link = "#",
 } = Astro.props;
 
-const tweetHtml = content.split('\n').map(line => `<div>${line}</div>`).join('');
+const tweetHtml = content
+	.split("\n")
+	.map((line) => `<div>${line}</div>`)
+	.join("");
 
-const authorLink = 'https://twitter.com/' + handle;
+const authorLink = "https://twitter.com/" + handle;
 ---
 
 <div class="tweet">

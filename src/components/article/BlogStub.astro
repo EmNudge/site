@@ -1,22 +1,22 @@
 ---
-import type { Post } from '../../data/blogs';
-import Stub from '../Stub.astro';
+import type { Post } from "../../data/blogs";
+import Stub from "../Stub.astro";
 
 type Props = Post & { disableImage?: boolean };
 
 const {
-    url,
-    title,
-    pubDate,
-    minuteLength,
-    discussions,
-    summary,
-    tags,
-    recording,
-    disableImage = false,
+	url,
+	title,
+	pubDate,
+	minuteLength,
+	discussions,
+	summary,
+	tags,
+	recording,
+	disableImage = false,
 } = Astro.props;
 
-const isCode = tags.includes('coding');
+const isCode = tags.includes("coding");
 const hasRecording = Boolean(recording);
 ---
 

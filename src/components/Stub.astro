@@ -1,20 +1,20 @@
 ---
 interface Props {
-    url: string;
-    meta: string;
-    title: string;
-    description?: string;
-    discussions?: { site: string; url: string }[];
-    withDivider?: boolean;
+	url: string;
+	meta: string;
+	title: string;
+	description?: string;
+	discussions?: { site: string; url: string }[];
+	withDivider?: boolean;
 }
 
 const {
-    url,
-    meta,
-    title,
-    description,
-    discussions,
-    withDivider = true,
+	url,
+	meta,
+	title,
+	description,
+	discussions,
+	withDivider = true,
 } = Astro.props;
 ---
 

@@ -1,14 +1,15 @@
-<script>
-    export let titles;
+<script lang="ts">
+export let titles: string[];
 
-    let titleIndex = 0;
-    function changeTitle() {
-        titleIndex = (titleIndex + 1) % titles.length;
-    }
+let titleIndex = 0;
+function changeTitle() {
+	titleIndex = (titleIndex + 1) % titles.length;
+}
 </script>
 
 <div class="special-container">
     {#key titleIndex}
+        <!-- svelte-ignore a11y-no-noninteractive-element-interactions -->
         <h2 on:click={changeTitle} on:keydown={changeTitle}>{titles[titleIndex]}</h2>
     {/key}
 </div>

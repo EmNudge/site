@@ -1,87 +1,87 @@
 .expressive-code.runnable .header {
-    display: flex;
-    align-items: stretch;
-    gap: 0.5rem;
-    padding-right: 0;
-    z-index: 0;
+	display: flex;
+	align-items: stretch;
+	gap: 0.5rem;
+	padding-right: 0;
+	z-index: 0;
 }
 
 .expressive-code.runnable .header span {
-    padding-right: 2rem;
+	padding-right: 2rem;
 }
 
 .expressive-code.runnable .header button {
-    cursor: pointer;
-    background: var(--background);
-    border: none;
-    padding: 0 1rem;
-    z-index: 4;
-    position: relative;
-    transition: .15s;
+	cursor: pointer;
+	background: var(--background);
+	border: none;
+	padding: 0 1rem;
+	z-index: 4;
+	position: relative;
+	transition: 0.15s;
 }
 
 .expressive-code.runnable .header button:hover {
-    background: var(--bg-light-transparent);
+	background: var(--bg-light-transparent);
 }
 
 @media screen and (max-width: 600px) {
-    .expressive-code.runnable .header button {
-        display: none;
-    }
+	.expressive-code.runnable .header button {
+		display: none;
+	}
 }
 
 .expressive-code.runnable output {
-    transition: .15s;
-    display: grid;
-    gap: .1rem;
-    font-family: monospace;
+	transition: 0.15s;
+	display: grid;
+	gap: 0.1rem;
+	font-family: monospace;
 
-    background: #0f1017;
-    border: 1px solid #3d3d3d;
-    overflow: hidden;
+	background: #0f1017;
+	border: 1px solid #3d3d3d;
+	overflow: hidden;
 }
 
 @keyframes console-slide-in {
-    from {
-        opacity: .2;
-        transform: translateX(-2rem) scaleX(1.2);
-    }
+	from {
+		opacity: 0.2;
+		transform: translateX(-2rem) scaleX(1.2);
+	}
 
-    to {
-        opacity: 1;
-        transform: translateX(1) scaleX(1);
-    }
+	to {
+		opacity: 1;
+		transform: translateX(1) scaleX(1);
+	}
 }
 
 .expressive-code.runnable output console-log {
-    display: block;
-    padding: .1rem 1rem;
+	display: block;
+	padding: 0.1rem 1rem;
 
-    animation: console-slide-in .25s forwards;
-    display: block;
-    --percentage: min(calc(var(--index) / var(--max-depth, 20)), 1);
-    --curve: calc(1 - (1 - var(--percentage)) * (1 - var(--percentage)));
-    animation-delay: calc(var(--curve) * var(--max-delay, 400ms));
-    opacity: 0;
-    color: white;
+	animation: console-slide-in 0.25s forwards;
+	display: block;
+	--percentage: min(calc(var(--index) / var(--max-depth, 20)), 1);
+	--curve: calc(1 - (1 - var(--percentage)) * (1 - var(--percentage)));
+	animation-delay: calc(var(--curve) * var(--max-delay, 400ms));
+	opacity: 0;
+	color: white;
 }
 
 .expressive-code.runnable output console-log:hover {
-    filter: brightness(2);
+	filter: brightness(2);
 }
 
-.expressive-code.runnable console-log[data-type=log] {
-    background: #60606022;
+.expressive-code.runnable console-log[data-type="log"] {
+	background: #60606022;
 }
 
-.expressive-code.runnable console-log[data-type=info] {
-    background: orange;
+.expressive-code.runnable console-log[data-type="info"] {
+	background: orange;
 }
 
-.expressive-code.runnable console-log[data-type=error] {
-    background: #ff38003b;
+.expressive-code.runnable console-log[data-type="error"] {
+	background: #ff38003b;
 }
 
 .expressive-code.runnable output console-log .spacer {
-    padding: 0 5px;
+	padding: 0 5px;
 }

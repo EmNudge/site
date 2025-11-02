@@ -1,14 +1,15 @@
 ---
-import MainLayout from '../layouts/Main.astro'
-import Stub from '../components/Stub.astro';
-import BookmarksNav from '../components/BookmarksNav.astro';
+import MainLayout from "../layouts/Main.astro";
+import Stub from "../components/Stub.astro";
+import BookmarksNav from "../components/BookmarksNav.astro";
 
-import { videos } from '../data/bookmarks';
-import Tags from '../components/Tags.astro';
+import { videos } from "../data/bookmarks";
+import Tags from "../components/Tags.astro";
 
-const tags = [...new Set(videos.map(video => video.tags.split(',')).flat())];
+const tags = [...new Set(videos.map((video) => video.tags.split(",")).flat())];
 
-export const getStaticPaths = async ({ paginate }) => paginate(videos, { pageSize: 25 });
+export const getStaticPaths = async ({ paginate }) =>
+	paginate(videos, { pageSize: 25 });
 ---
 
 <MainLayout title="Bookmarks">

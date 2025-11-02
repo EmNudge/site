@@ -1,6 +1,6 @@
 <script>
-    export let showControls = false;
-    export let paragraphPercentage = 0;
+export let showControls = false;
+export let paragraphPercentage = 0;
 </script>
 
 <div class="controls speak-aloud-controls" class:hide={!showControls}>

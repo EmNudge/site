@@ -1,12 +1,12 @@
 <script lang="ts">
-    import { createEventDispatcher } from "svelte";
-    const dispatch = createEventDispatcher();
+import { createEventDispatcher } from "svelte";
+const dispatch = createEventDispatcher();
 
-    export let volume;
+export let volume;
 
-    function handleChange(e: Event & { currentTarget: HTMLInputElement }) {
-        dispatch("adjust", e.currentTarget.value);
-    }
+function handleChange(e: Event & { currentTarget: HTMLInputElement }) {
+	dispatch("adjust", e.currentTarget.value);
+}
 </script>
 
 <input

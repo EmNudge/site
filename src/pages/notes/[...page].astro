@@ -1,38 +1,49 @@
 ---
-import MainLayout from '../../layouts/Main.astro';
+import MainLayout from "../../layouts/Main.astro";
 
-import { getSlugs } from '../../data/blogs';
-import type { MdOrMdxFile } from '../../data/blogs'
-import Tags from '../../components/Tags.astro';
-import BlogStub from '../../components/article/BlogStub.astro';
+import { getSlugs } from "../../data/blogs";
+import type { MdOrMdxFile } from "../../data/blogs";
+import Tags from "../../components/Tags.astro";
+import BlogStub from "../../components/article/BlogStub.astro";
 
-const posts = await Astro.glob('./*.md*') as MdOrMdxFile[];
+const posts = (await Astro.glob("./*.md*")) as MdOrMdxFile[];
 const postSlugs = await getSlugs(posts);
-const tags = [...new Set(posts.flatMap(post => post.frontmatter.tags.trim().split(/\s*,\s*/)))];
+const tags = [
+	...new Set(
+		posts.flatMap((post) => post.frontmatter.tags.trim().split(/\s*,\s*/)),
+	),
+];
 
 export async function getStaticPaths({ paginate }) {
-  const allPosts = await Astro.glob('./*.md*') as MdOrMdxFile[];
-  
-  const sortedPosts = allPosts.sort((a, b) => +new Date(b.frontmatter.pubDate) - +new Date(a.frontmatter.pubDate));
-  return paginate(sortedPosts, { pageSize: 25 })
-}
+	const allPosts = (await Astro.glob("./*.md*")) as MdOrMdxFile[];
 
+	const sortedPosts = allPosts.sort(
+		(a, b) =>
+			+new Date(b.frontmatter.pubDate) - +new Date(a.frontmatter.pubDate),
+	);
+	return paginate(sortedPosts, { pageSize: 25 });
+}
 ---
 
 <MainLayout title="Notes">
-    <h1>Notes</h1>
+  <h1>Notes</h1>
 
-    <Tags tags={tags} itemSelector='post-container' />
+  <Tags tags={tags} itemSelector="post-container" />
 
-    <div class="staggered">
-        {postSlugs.map((post, i) => 
-            <post-container style={`--index: ${i}`} data-tags={post.tags}>
-                <BlogStub {...post} disableImage={true} />
-            </post-container>  
-        )}
-    </div>
+  <div class="staggered">
+    {
+      postSlugs.map((post, i) => (
+        <post-container style={`--index: ${i}`} data-tags={post.tags}>
+          <BlogStub {...post} disableImage={true} />
+        </post-container>
+      ))
+    }
+  </div>
 
-    <p class="feed">Subscribe to <a href="/notes.xml" rel="external">my rss feed <img src="/icons/rss-feed-icon.png" alt="rss icon" /></a></p>
+  <p class="feed">
+    Subscribe to <a href="/notes.xml" rel="external"
+      >my rss feed <img src="/icons/rss-feed-icon.png" alt="rss icon" /></a>
+  </p>
 </MainLayout>
 
 <style>

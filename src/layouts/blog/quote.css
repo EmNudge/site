@@ -1,34 +1,33 @@
-
 blockquote {
-    position: relative;
-    border: 1px solid #41818d;
-    background: var(--bg-green);
-    border-radius: 4px;
-    padding: 1rem 2rem;
-    margin: 0 -1rem;
-    margin-top: 1rem;
-    margin-bottom: 3rem;
-    opacity: .9;
+	position: relative;
+	border: 1px solid #41818d;
+	background: var(--bg-green);
+	border-radius: 4px;
+	padding: 1rem 2rem;
+	margin: 0 -1rem;
+	margin-top: 1rem;
+	margin-bottom: 3rem;
+	opacity: 0.9;
 }
 
 blockquote > p:last-child {
-    margin-bottom: 0;
-} 
+	margin-bottom: 0;
+}
 
 blockquote pre {
-    font-size: .7em;
+	font-size: 0.7em;
 }
 
 article blockquote p {
-    margin: 0;
-    margin-bottom: 1rem;
+	margin: 0;
+	margin-bottom: 1rem;
 }
 
 blockquote cite {
-    font-size: 1rem;
-    display: block;
+	font-size: 1rem;
+	display: block;
 }
 
 blockquote cite:before {
-    content: '— ';
+	content: "— ";
 }

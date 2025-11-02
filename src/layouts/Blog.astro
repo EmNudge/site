@@ -1,13 +1,27 @@
 ---
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 
-import PictureZoom from '../components/PictureZoom.svelte';
-import SpeakAloud from '../components/SpeakAloud/index.svelte';
+import PictureZoom from "../components/PictureZoom.svelte";
+import SpeakAloud from "../components/SpeakAloud/index.svelte";
 
-import { getMinuteLengthFromFile, getSlugs } from '../data/blogs';
+import {
+	getMinuteLengthFromFile,
+	getSlugs,
+	type MdOrMdxFile,
+} from "../data/blogs";
 
-import './blog/index.css';
+import "./blog/index.css";
+
+interface Props {
+	content: {
+		pubDate: string;
+		title: string;
+		summary: string;
+		recording?: string;
+	};
+	file: MdOrMdxFile | string;
+}
 
 const { content, file } = Astro.props;
 const { pubDate, title, summary, recording } = content;
@@ -19,89 +33,94 @@ const postItems = slugs.map(({ title, url }) => [title, url] as const);
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-		<meta name="description" content={summary}>
-		<meta name="author" content="EmNudge">
-		<meta name="keywords" content="EmNudge">
-		<meta name="color-scheme" content="dark light">
+    <meta name="description" content={summary} />
+    <meta name="author" content="EmNudge" />
+    <meta name="keywords" content="EmNudge" />
+    <meta name="color-scheme" content="dark light" />
 
-		<script>
-			if (localStorage.getItem('theme') === 'light') {
-				document.documentElement.classList.add('light');
-			}
-		</script>
-		
-		<link rel="alternate" type="application/rss+xml" href="/blog/rss.xml" title="RSS feed for my blog">
-		<link rel="icon" href="/icons/icon_neon.webp" />
-		<link rel="stylesheet" href="/app.css">
+    <script>
+      if (localStorage.getItem("theme") === "light") {
+        document.documentElement.classList.add("light");
+      }
+    </script>
 
-		<title>{title}</title>
-	</head>
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      href="/blog/rss.xml"
+      title="RSS feed for my blog"
+    />
+    <link rel="icon" href="/icons/icon_neon.webp" />
+    <link rel="stylesheet" href="/app.css" />
 
-	<body>
-		<Header />
+    <title>{title}</title>
+  </head>
 
-		<main>
-			<div class="title-container">
-				<h5>{pubDate} • {minuteLength} minute read</h5>
-				<h1>{title}</h1>
-				<p>{summary}</p>
+  <body>
+    <Header />
 
-				{recording && <SpeakAloud recording={recording} client:load />}
-			</div>
+    <main>
+      <div class="title-container">
+        <h5>{pubDate} • {minuteLength} minute read</h5>
+        <h1>{title}</h1>
+        <p>{summary}</p>
 
-			<article class={recording ? 'with-audio' : undefined}>
-				<slot />
-			</article>
-		</main>
+        {recording && <SpeakAloud recording={recording} client:load />}
+      </div>
 
-		<Footer />
+      <article class={recording ? "with-audio" : undefined}>
+        <slot />
+      </article>
+    </main>
 
-		<PictureZoom client:load />
-		<script src="../components/CodeRunner/index.ts"></script>
+    <Footer />
 
-		
+    <PictureZoom client:load />
+    <script src="../components/CodeRunner/index.ts"></script>
+
     <ninja-keys></ninja-keys>
 
     <script type="module" define:vars={{ postItems }}>
-			import { addCommandPaletteConditionally } from '/libraries/command-palette.js';
-			addCommandPaletteConditionally(postItems);
+      import { addCommandPaletteConditionally } from "/libraries/command-palette.js";
+      addCommandPaletteConditionally(postItems);
     </script>
-	</body>
+  </body>
 </html>
 
 <style>
-	article:global(.js-enabled p > img), 
-	article:global(.js-enabled figure  img) {
-		transition: .25s;
-	}
-	article:global(.js-enabled p > img:hover), 
-	article:global(.js-enabled figure  img:hover) {
-		transform: scale(1.03);
-		cursor: pointer;
-	}
-	.overlay-image {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		position: fixed;
-		top: 0; left: 0;
-		width: 100%;
-		height: 100%;
-		background: #000a;
-	}
-	.overlay-image img {
-		max-height: 80%;
-		max-width: 80%;
-	}
-	.title-container h1 {
-		font-size: 2rem;
-	}
-	.title-container p {
-		font-size: 1.35rem;
-		margin-top: 0.5rem;
-	}
+  article:global(.js-enabled p > img),
+  article:global(.js-enabled figure img) {
+    transition: 0.25s;
+  }
+  article:global(.js-enabled p > img:hover),
+  article:global(.js-enabled figure img:hover) {
+    transform: scale(1.03);
+    cursor: pointer;
+  }
+  .overlay-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000a;
+  }
+  .overlay-image img {
+    max-height: 80%;
+    max-width: 80%;
+  }
+  .title-container h1 {
+    font-size: 2rem;
+  }
+  .title-container p {
+    font-size: 1.35rem;
+    margin-top: 0.5rem;
+  }
 </style>

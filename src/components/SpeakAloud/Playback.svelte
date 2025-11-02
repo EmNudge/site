@@ -1,7 +1,7 @@
 <script>
-    import { createEventDispatcher } from "svelte";
-    const dispatch = createEventDispatcher();
-    export let isPlaying;
+import { createEventDispatcher } from "svelte";
+const dispatch = createEventDispatcher();
+export let isPlaying;
 </script>
 
 <div class="main-controls">
