@@ -15,6 +15,7 @@
 		"@astrojs/rss": "^4.0.5",
 		"@astrojs/svelte": "^4.0.4",
 		"@biomejs/biome": "^2.3.2",
+		"@floating-ui/dom": "^1.7.4",
 		"@jsdevtools/rehype-toc": "^3.0.2",
 		"@types/node": "^18.14.0",
 		"astro": "^4.6.1",

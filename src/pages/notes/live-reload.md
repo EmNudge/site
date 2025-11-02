@@ -104,4 +104,3 @@ A technique more common these days is "[Hot Module Replacement](https://webpack.
 
 For applications that don't use a customized framework, adding in something like this would be considerably more complicated. You can also [just use Vite](https://github.com/EmNudge/audio-visualizer-playground/blob/main/src/main.ts#L48-L71).
 
-\# end note

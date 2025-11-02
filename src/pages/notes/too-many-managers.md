@@ -55,4 +55,3 @@ Hiring for such an organization is a little difficult. You need some percentage 
 I've not heard one person complain about "middle management" under this structure - the role simply doesn't exist.
 
 
-\# end note

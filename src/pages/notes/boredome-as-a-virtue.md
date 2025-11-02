@@ -28,4 +28,3 @@ I don't always have a main task. Sometimes the task is finding the task. I make 
 
 Forcing yourself to be bored once in a while gives you the opportunity to think. I used to have a lot of great ideas when I was bored. Oh how I hated the boredom, but maybe it's akin to going to the gym.
 
-\# end note

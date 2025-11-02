@@ -38,4 +38,4 @@ I am repeating myself in these sentences. You may have noticed that. I only do i
 
 Make the harder thing easier. Trick yourself. It is the only way.
 
-\# end note
+

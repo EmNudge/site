@@ -53,4 +53,3 @@ It's enough that I am satisfied with where I am at and will be moving on to the 
 
 I hope to be completely satisfied with my progress by June of this year, but I'm sure I can get there by April or even mid-March with some effort. 
 
-\# end note

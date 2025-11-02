@@ -101,4 +101,3 @@ Unfortunately, using a texting service requires a ton of regulatory oversight an
 
 However, if I'm solely using iMessage anyway, I might want to check out self-hosting Beeper.
 
-\# end note

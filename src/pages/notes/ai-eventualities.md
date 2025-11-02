@@ -73,4 +73,3 @@ With each leap in "wealth," there comes a time to refocus our energy on leveling
 
 Our success. I am afraid to guess on this.
 
-\# end note

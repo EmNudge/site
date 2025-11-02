@@ -207,4 +207,3 @@ ${[/\p{Regional_Indicator}{2}/]}
 `;
 ```
 
-\# end note

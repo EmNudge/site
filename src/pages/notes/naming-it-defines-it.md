@@ -24,4 +24,3 @@ But that's for someone else to tackle - our job is to procure gloves and coats.
 
 Names can blind you to the actual goals. 
 
-\# end note

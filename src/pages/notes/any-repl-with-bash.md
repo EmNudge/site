@@ -77,4 +77,3 @@ $ graduate rust-proj
 
 Quick. Efficient. Local.
 
-\# end note

@@ -135,4 +135,3 @@ I haven't found a simple way to combine notebook diagrams to my markdown files. 
 
 Whatever system you choose, just make sure it's simple and accessible enough to do consistently. It should feel rewarding and messy. It should **not** be elegant. Run away from pretty. Creativity and productivity does not thrive in "elegant". You will spend too much time "improving" the system as opposed to getting things done.
 
-\# end note

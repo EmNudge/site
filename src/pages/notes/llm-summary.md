@@ -54,4 +54,3 @@ This is doable today and there have already been [attempts to patent](https://ww
 
 What's left is the TOS being publicly accessible in a standardized way. Similar to a `robots.txt` file being available on many domains, making it accessible before the sign-up flow would allow tools to summarize and compare these documents before getting too deep.
 
-\# end note

@@ -164,4 +164,3 @@ Ain't that neat!
 
 You can view the [full code here in a github gist](https://gist.github.com/EmNudge/2a5353488a41b8ea543cf5b7e0f1d31b).
 
-\# end note
