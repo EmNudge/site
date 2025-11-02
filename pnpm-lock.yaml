@@ -20,6 +20,9 @@ importers:
       '@biomejs/biome':
         specifier: ^2.3.2
         version: 2.3.2
+      '@floating-ui/dom':
+        specifier: ^1.7.4
+        version: 1.7.4
       '@jsdevtools/rehype-toc':
         specifier: ^3.0.2
         version: 3.0.2
@@ -429,6 +432,15 @@ packages:
 
   '@expressive-code/plugin-text-markers@0.34.2':
     resolution: {integrity: sha512-yHVNoIvqAruxtMnmcITkjhyFaHg6fraitodSXWe5KLZcaBLLJ9AieE/RGhzHIKjRuG0zlEWMNd2y2nh/XIPBew==}
+
+  '@floating-ui/core@1.7.3':
+    resolution: {integrity: sha512-sGnvb5dmrJaKEZ+LDIpguvdX3bDlEllmv4/ClQ9awcmCZrlx5jQyyMWFM5kBI+EyNOCDDiKk8il0zeuX3Zlg/w==}
+
+  '@floating-ui/dom@1.7.4':
+    resolution: {integrity: sha512-OOchDgh4F2CchOX94cRVqhvy7b3AFb+/rQXyswmzmGakRfkMgoWVjfnLWkRirfLEfuD4ysVW16eXzwt3jHIzKA==}
+
+  '@floating-ui/utils@0.2.10':
+    resolution: {integrity: sha512-aGTxbpbg8/b5JfU1HXSrbH3wXZuLPJcNEcZQFMxLs3oSzgtVu6nFPkbbGGUvBcUjKV2YyB9Wxxabo+HEH9tcRQ==}
 
   '@img/sharp-darwin-arm64@0.33.5':
     resolution: {integrity: sha512-UT4p+iz/2H4twwAoLCqfA9UH5pI6DggwKEGuaPy7nCVQ8ZsiY5PIcrRvD1DzuY3qYL07NtIQcWnBSY/heikIFQ==}
@@ -2730,6 +2742,17 @@ snapshots:
   '@expressive-code/plugin-text-markers@0.34.2':
     dependencies:
       '@expressive-code/core': 0.34.2
+
+  '@floating-ui/core@1.7.3':
+    dependencies:
+      '@floating-ui/utils': 0.2.10
+
+  '@floating-ui/dom@1.7.4':
+    dependencies:
+      '@floating-ui/core': 1.7.3
+      '@floating-ui/utils': 0.2.10
+
+  '@floating-ui/utils@0.2.10': {}
 
   '@img/sharp-darwin-arm64@0.33.5':
     optionalDependencies:

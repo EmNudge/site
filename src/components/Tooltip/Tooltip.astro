@@ -1,0 +1,43 @@
+---
+const uniqueId = `tooltip-${Math.random().toString(36).slice(2, 8)}`;
+---
+
+<tooltip-container id={uniqueId}>
+  <span class="regular-content">
+    <slot name="main-content" />
+  </span>
+
+  <span class="tooltip hidden">
+    <slot name="tooltip-content" />
+    <span class="arrow"></span>
+  </span>
+</tooltip-container>
+
+<script src="./script.ts"></script>
+
+<style>
+  .tooltip {
+    width: max-content;
+    max-width: 400px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: var(--bg-contrast);
+    color: var(--light-foreground);
+    padding: 1rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+  }
+
+  .tooltip.hidden {
+    display: none;
+  }
+
+  .arrow {
+    position: absolute;
+    background: var(--bg-contrast);
+    width: 8px;
+    height: 8px;
+    transform: rotate(45deg);
+  }
+</style>

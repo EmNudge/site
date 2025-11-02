@@ -91,4 +91,3 @@ export const usernameSignal = { value: 'John' };
 
 The full code (with some minor tweaks) is available as a [github gist here](https://gist.github.com/EmNudge/7092b70635c6067c8759f55e75d1c9f3).
 
-\# end note

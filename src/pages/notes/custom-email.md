@@ -31,4 +31,3 @@ On the next, it will ask for some more technical information. Assuming I'm routi
 
 That Google App Password must be created through the normal way. It's somewhere under the "Sign-in & security" section of your google account, but there are enough guides for this already
 
-\# end note

@@ -22,4 +22,3 @@ The linked article makes mention of people who tread the line - people who are o
 
 At some scale, members of your community will expect justice. This is a shame and I don't know of a reliable way to deal with this. Perhaps be upfront with this. It's a community, not a country.
 
-\# end note

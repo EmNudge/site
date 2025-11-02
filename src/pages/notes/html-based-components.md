@@ -102,4 +102,3 @@ export async function loadHtmlComponent(folder) {
 }
 ```
 
-\# end note

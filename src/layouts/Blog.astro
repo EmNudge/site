@@ -6,30 +6,34 @@ import PictureZoom from "../components/PictureZoom.svelte";
 import SpeakAloud from "../components/SpeakAloud/index.svelte";
 
 import {
-	getMinuteLengthFromFile,
-	getSlugs,
-	type MdOrMdxFile,
+  getMinuteLengthFromFile,
+  getSlugs,
+  type MdOrMdxFile,
 } from "../data/blogs";
 
 import "./blog/index.css";
+import Tooltip from "../components/Tooltip/Tooltip.astro";
 
 interface Props {
-	content: {
-		pubDate: string;
-		title: string;
-		summary: string;
-		recording?: string;
-	};
-	file: MdOrMdxFile | string;
+  content: {
+    pubDate: string;
+    title: string;
+    summary: string;
+    recording?: string;
+  };
+  file: MdOrMdxFile | string;
+  url: string;
 }
 
-const { content, file } = Astro.props;
+const { content, file, url } = Astro.props;
 const { pubDate, title, summary, recording } = content;
 
 const minuteLength = getMinuteLengthFromFile(file);
 
 const slugs = await Astro.glob("../pages/blog/*.md*").then(getSlugs);
 const postItems = slugs.map(({ title, url }) => [title, url] as const);
+
+const isNote = url.startsWith("/notes/");
 ---
 
 <html lang="en">
@@ -74,6 +78,18 @@ const postItems = slugs.map(({ title, url }) => [title, url] as const);
 
       <article class={recording ? "with-audio" : undefined}>
         <slot />
+        {
+          isNote && (
+            <div class="end-note-container">
+              <Tooltip>
+                <div slot="main-content" class="end-note">
+                  # end note
+                </div>
+                <div slot="tooltip-content">Notes don't always have a neat conclusion, unlike articles. That's why this is a note.</div>
+              </Tooltip>
+            </div>
+          )
+        }
       </article>
     </main>
 
@@ -122,5 +138,19 @@ const postItems = slugs.map(({ title, url }) => [title, url] as const);
   .title-container p {
     font-size: 1.35rem;
     margin-top: 0.5rem;
+  }
+
+  .end-note-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2rem;
+  }
+  .end-note {
+    text-align: center;
+    opacity: 0.5;
+    &:hover {
+      opacity: 1;
+    }
   }
 </style>

@@ -185,4 +185,3 @@ I could keep adding on strategies to ward off the botnet, but it's not really a 
 
 **At least now I know**
 
-\# end note

@@ -34,4 +34,3 @@ I also added a reviews page because I'm somehow too lazy for Letterboxd.
 
 https://shows.5t.rip/
 
-\# end note

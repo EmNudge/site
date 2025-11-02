@@ -176,4 +176,3 @@ It also wouldn't be too difficult to return some HTML to get a better interface,
 
 Maybe we can check the user agent and return different content like some other tools?
 
-\# end note

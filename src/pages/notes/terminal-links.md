@@ -132,4 +132,3 @@ If I detect a terminal markdown-like link, I make it clickable.
 
 ![logpipe after parsing ANSI links](https://assets.emnudge.com/logpipe_ansi_postparse.png)
 
-\# end note
