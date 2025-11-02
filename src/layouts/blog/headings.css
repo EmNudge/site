@@ -3,12 +3,12 @@ article h2 a,
 article h3 a,
 article h4 a,
 article h5 a {
-    margin-left: -1em;
-    user-select: none;
-    transform: skewX(-15deg);
-    opacity: 0;
-    margin-right: 8px;
-    transition: opacity .25s;
+	margin-left: -1em;
+	user-select: none;
+	transform: skewX(-15deg);
+	opacity: 0;
+	margin-right: 8px;
+	transition: opacity 0.25s;
 }
 
 article h1:hover a,
@@ -16,59 +16,59 @@ article h2:hover a,
 article h3:hover a,
 article h4:hover a,
 article h5:hover a {
-    opacity: 1;
+	opacity: 1;
 }
 
 article h1,
 article h2,
 article h3,
 article h4 {
-    margin-top: 2rem;
-    padding: 0 2rem;
-    padding-top: 1rem;
-    font-weight: 800;
+	margin-top: 2rem;
+	padding: 0 2rem;
+	padding-top: 1rem;
+	font-weight: 800;
 
-    text-decoration: underline;
-    text-decoration-color: coral;
-    text-decoration-thickness: 4px;
-    transform: scale(1.2) skewX(-10deg) translate(27px, -7px);
+	text-decoration: underline;
+	text-decoration-color: coral;
+	text-decoration-thickness: 4px;
+	transform: scale(1.2) skewX(-10deg) translate(27px, -7px);
 }
 
 @media screen and (max-width: 900px) {
-    article h1,
-    article h2,
-    article h3,
-    article h4 {
-        padding: 0;
-        transform: none;
-    }
-    article h1 a,
-    article h2 a,
-    article h3 a,
-    article h4 a,
-    article h5 a { 
-        display: none;
-    }
+	article h1,
+	article h2,
+	article h3,
+	article h4 {
+		padding: 0;
+		transform: none;
+	}
+	article h1 a,
+	article h2 a,
+	article h3 a,
+	article h4 a,
+	article h5 a {
+		display: none;
+	}
 }
 
 article h2 {
-    &:before {
-        content: '';
-        display: block;
-        width: 100%;
-        height: 1px;
-        background: var(--light-bg);
-        margin-bottom: 1rem;
-    }
-    font-size: 1.5rem;
-    width: 75%;
+	&:before {
+		content: "";
+		display: block;
+		width: 100%;
+		height: 1px;
+		background: var(--light-bg);
+		margin-bottom: 1rem;
+	}
+	font-size: 1.5rem;
+	width: 75%;
 
-    &:before {
-        content: '';
-        display: block;
-        width: 100%;
-        height: 1px;
-        background: var(--light-bg);
-        margin-bottom: 1rem;
-    }
+	&:before {
+		content: "";
+		display: block;
+		width: 100%;
+		height: 1px;
+		background: var(--light-bg);
+		margin-bottom: 1rem;
+	}
 }

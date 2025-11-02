@@ -1,21 +1,22 @@
 ---
 const defaultIcons = [
-    ["/icons/email.svg", "email", "mailto:contact@emnudge.dev"],
-    ["/icons/github.svg", "GitHub", "https://github.com/EmNudge"],
-    ["/icons/youtube.svg", "YouTube", "http://youtube.com/EmNudge"],
-    ["/icons/bsky.svg", "Bluesky", "https://bsky.app/profile/emnudge.dev"],
-    ["/icons/devto.svg", "Dev.to", "https://dev.to/emnudge"],
+	["/icons/email.svg", "email", "mailto:contact@emnudge.dev"],
+	["/icons/github.svg", "GitHub", "https://github.com/EmNudge"],
+	["/icons/youtube.svg", "YouTube", "http://youtube.com/EmNudge"],
+	["/icons/bsky.svg", "Bluesky", "https://bsky.app/profile/emnudge.dev"],
+	["/icons/devto.svg", "Dev.to", "https://dev.to/emnudge"],
 ];
 
-const { 
-    icons = defaultIcons, 
-    small = false, 
-    translucent = false,
-    staggered = false 
+const {
+	icons = defaultIcons,
+	small = false,
+	translucent = false,
+	staggered = false,
 } = Astro.props;
 
-const classes = [staggered && 'staggered', translucent && 'translucent']
-    .filter(Boolean).join(' ');
+const classes = [staggered && "staggered", translucent && "translucent"]
+	.filter(Boolean)
+	.join(" ");
 ---
 
 <div class={classes}>

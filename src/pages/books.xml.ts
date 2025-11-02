@@ -1,19 +1,19 @@
 import rss from "@astrojs/rss";
 import { books } from "../data/bookmarks";
-import { SITE as site } from '../data/env';
+import { SITE as site } from "../data/env";
 
 export const GET = () =>
-  rss({
-    title: "Recent Books",
+	rss({
+		title: "Recent Books",
 
-    description: "Books you might find interesting",
-    customData: `<language>en-us</language>`,
-    site,
+		description: "Books you might find interesting",
+		customData: `<language>en-us</language>`,
+		site,
 
-    items: books.map(({ title, description, readAt, link }) => ({
-      title,
-      description,
-      link,
-      pubDate: new Date(readAt),
-    })),
-  });
+		items: books.map(({ title, description, readAt, link }) => ({
+			title,
+			description,
+			link,
+			pubDate: new Date(readAt),
+		})),
+	});

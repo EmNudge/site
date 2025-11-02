@@ -14,7 +14,7 @@ import BlogStub from "../components/article/BlogStub.astro";
 import type { MdOrMdxFile } from "../data/blogs";
 
 const posts = await getSlugs(
-  (await Astro.glob("./blog/*.md*")) as MdOrMdxFile[]
+	(await Astro.glob("./blog/*.md*")) as MdOrMdxFile[],
 );
 const videos = await getVideos();
 ---

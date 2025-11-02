@@ -1,85 +1,100 @@
 import { getDefferedPromise } from "../../utils/getDefferedPromise";
 
 const getTimestamps = async (baseUrl: string) => {
-    const timestampsText = await fetch(baseUrl + '.timestamps').then(r => r.text());
-    return timestampsText.split(/\s+/).map(time => {
-        const [minutes, seconds] = time.split(':');
-        return Number(minutes) * 60 + Number(seconds);
-    });
-}
+	const timestampsText = await fetch(baseUrl + ".timestamps").then((r) =>
+		r.text(),
+	);
+	return timestampsText.split(/\s+/).map((time) => {
+		const [minutes, seconds] = time.split(":");
+		return Number(minutes) * 60 + Number(seconds);
+	});
+};
 
 const getAudioSource = (url: string, type: string) => {
-    const source = document.createElement('source');
-    source.setAttribute('src', url);
-    source.setAttribute('type', 'audio/' + type);
+	const source = document.createElement("source");
+	source.setAttribute("src", url);
+	source.setAttribute("type", "audio/" + type);
 
-    return source;
-}
+	return source;
+};
 
 const getAudio = (baseUrl: string) => {
-    const audio = document.createElement('audio');
-    audio.appendChild(getAudioSource(baseUrl + '.ogg', 'ogg'));
-    audio.appendChild(getAudioSource(baseUrl + '.mp3', 'mpeg'));
+	const audio = document.createElement("audio");
+	audio.appendChild(getAudioSource(baseUrl + ".ogg", "ogg"));
+	audio.appendChild(getAudioSource(baseUrl + ".mp3", "mpeg"));
 
-    const [promise, res] = getDefferedPromise<HTMLAudioElement>();
+	const [promise, res] = getDefferedPromise<HTMLAudioElement>();
 
-    audio.addEventListener('canplaythrough', () => res(audio));
+	audio.addEventListener("canplaythrough", () => res(audio));
 
-    return promise;
-}
+	return promise;
+};
 
 export const getDataForRecording = async (recording: string) => {
-    const [timestamps, audio] = await Promise.all([
-        getTimestamps(`/recordings/${recording}`),
-        getAudio(`https://assets.emnudge.com/${recording}`)
-    ]);
+	const [timestamps, audio] = await Promise.all([
+		getTimestamps(`/recordings/${recording}`),
+		getAudio(`https://assets.emnudge.com/${recording}`),
+	]);
 
-    return { timestamps, audio }
-}
+	return { timestamps, audio };
+};
 
-export const getParagraphIndex = (currentTime: number, timestamps: number[]) => {
-    let i = 0;
-    while (i < timestamps.length && currentTime > timestamps[i + 1]) i++;
+export const getParagraphIndex = (
+	currentTime: number,
+	timestamps: number[],
+) => {
+	let i = 0;
+	while (i < timestamps.length && currentTime > timestamps[i + 1]) i++;
 
-    return i;
-}
+	return i;
+};
 
-export const updateParagraphHighlight = (paragraphs: HTMLParagraphElement[], oldIndex: number, newIndex: number) => {
-    if (oldIndex >= 0) paragraphs[oldIndex].classList.remove('speaking');
-    if (newIndex >= 0) {
-        paragraphs[newIndex].classList.add('speaking');
-        paragraphs[newIndex].scrollIntoView({
-            behavior: 'smooth',
-            block: 'center',
-            inline: 'nearest'
-        });
-    }
-}
+export const updateParagraphHighlight = (
+	paragraphs: HTMLParagraphElement[],
+	oldIndex: number,
+	newIndex: number,
+) => {
+	if (oldIndex >= 0) paragraphs[oldIndex].classList.remove("speaking");
+	if (newIndex >= 0) {
+		paragraphs[newIndex].classList.add("speaking");
+		paragraphs[newIndex].scrollIntoView({
+			behavior: "smooth",
+			block: "center",
+			inline: "nearest",
+		});
+	}
+};
 
 export const setAudio = (audio: HTMLAudioElement, isPlaying: boolean) => {
-    if (isPlaying) audio.play();
-    else audio.pause();
-}
+	if (isPlaying) audio.play();
+	else audio.pause();
+};
 
-export const getParagraphPercentage = (audio: HTMLAudioElement, timestampIndex: number, timestamps: number[]) => {
-    const curr = audio.currentTime - timestamps[timestampIndex];
-    const next = (timestamps[timestampIndex + 1] ?? audio.duration) - timestamps[timestampIndex];
-    return curr / next;
-}
+export const getParagraphPercentage = (
+	audio: HTMLAudioElement,
+	timestampIndex: number,
+	timestamps: number[],
+) => {
+	const curr = audio.currentTime - timestamps[timestampIndex];
+	const next =
+		(timestamps[timestampIndex + 1] ?? audio.duration) -
+		timestamps[timestampIndex];
+	return curr / next;
+};
 
 export const getParagraphHighlighter = (paragraphs: HTMLParagraphElement[]) => {
-    let index = -1;
+	let index = -1;
 
-    return {
-        clear() {
-            updateParagraphHighlight(paragraphs, index, -1);
-            index = -1;
-        },
-        highlight(newIndex: number) {
-            if (newIndex === index) return;
+	return {
+		clear() {
+			updateParagraphHighlight(paragraphs, index, -1);
+			index = -1;
+		},
+		highlight(newIndex: number) {
+			if (newIndex === index) return;
 
-            updateParagraphHighlight(paragraphs, index, newIndex);
-            index = newIndex;
-        },
-    }
-}
+			updateParagraphHighlight(paragraphs, index, newIndex);
+			index = newIndex;
+		},
+	};
+};

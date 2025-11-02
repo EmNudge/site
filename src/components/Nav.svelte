@@ -1,6 +1,6 @@
 <script lang="ts">
-    export let routes: [string, string][];
-    export let path;
+export let routes: [string, string][];
+export let path;
 </script>
 
 <nav>

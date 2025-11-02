@@ -1,136 +1,134 @@
 <script lang="ts">
-    import { onDestroy, onMount } from "svelte";
-    import {
-        getDataForRecording,
-        getParagraphIndex,
-        setAudio,
-        getParagraphHighlighter,
-        getParagraphPercentage,
-    } from "./utils";
-    import Playback from "./Playback.svelte";
-    import Volume from "./Volume.svelte";
-    import Container from "./Container.svelte";
+import { onDestroy, onMount } from "svelte";
+import {
+	getDataForRecording,
+	getParagraphIndex,
+	setAudio,
+	getParagraphHighlighter,
+	getParagraphPercentage,
+} from "./utils";
+import Playback from "./Playback.svelte";
+import Volume from "./Volume.svelte";
+import Container from "./Container.svelte";
 
-    export let recording: string;
+export let recording: string;
 
-    let audio: HTMLAudioElement;
-    let timestamps: number[];
-    let paragraphs: HTMLParagraphElement[];
-    let paragraphHighlighter: {
-        clear(): void;
-        highlight(newIndex: number): void;
-    };
+let audio: HTMLAudioElement;
+let timestamps: number[];
+let paragraphs: HTMLParagraphElement[];
+let paragraphHighlighter: {
+	clear(): void;
+	highlight(newIndex: number): void;
+};
 
-    let isPlaying = false;
-    onMount(async () => {
-        const data = await getDataForRecording(recording);
-        audio = data.audio;
-        timestamps = data.timestamps;
-		paragraphs = Array.from(document.querySelectorAll("article > p"));
-        paragraphHighlighter = getParagraphHighlighter(paragraphs);
+let isPlaying = false;
+onMount(async () => {
+	const data = await getDataForRecording(recording);
+	audio = data.audio;
+	timestamps = data.timestamps;
+	paragraphs = Array.from(document.querySelectorAll("article > p"));
+	paragraphHighlighter = getParagraphHighlighter(paragraphs);
 
-        for (const [index, paragraph] of paragraphs.entries()) {
-            paragraph.setAttribute("data-index", index.toString());
-        }
-        const articleClickListener = (event: MouseEvent) => {
-            const audioControls = document.querySelector('.speak-aloud-controls');
-            if (!audioControls || audioControls.classList.contains('hide')) return;
+	for (const [index, paragraph] of paragraphs.entries()) {
+		paragraph.setAttribute("data-index", index.toString());
+	}
+	const articleClickListener = (event: MouseEvent) => {
+		const audioControls = document.querySelector(".speak-aloud-controls");
+		if (!audioControls || audioControls.classList.contains("hide")) return;
 
-            if (!(event.target instanceof HTMLParagraphElement)) return;
-            
-            const index = Number(event.target.dataset.index);
-            if (Number.isNaN(index)) {
-                console.error('Cannot find data index');
-                return;
-            }
-            updateToIndex(index);
-        }
-        const article = document.querySelector('article')
-        article.addEventListener('click', articleClickListener);
+		if (!(event.target instanceof HTMLParagraphElement)) return;
 
-        audio.addEventListener("ended", () => {
-            paragraphHighlighter.clear();
-            isPlaying = false;
-        });
+		const index = Number(event.target.dataset.index);
+		if (Number.isNaN(index)) {
+			console.error("Cannot find data index");
+			return;
+		}
+		updateToIndex(index);
+	};
+	const article = document.querySelector("article");
+	article.addEventListener("click", articleClickListener);
 
-        return () => {
-            article.removeEventListener('click', articleClickListener);
-        }
-    });
+	audio.addEventListener("ended", () => {
+		paragraphHighlighter.clear();
+		isPlaying = false;
+	});
 
-    onDestroy(() => {
-        showControls = false;
-        if (audio) {
-            paragraphHighlighter.clear();
-            audio.pause();
-            audio.currentTime = 0;
-        }
-    });
+	return () => {
+		article.removeEventListener("click", articleClickListener);
+	};
+});
 
-    function handleTogglePlay() {
-        isPlaying = !isPlaying;
-        setAudio(audio, isPlaying);
-        updateParagraphs();
-    }
+onDestroy(() => {
+	showControls = false;
+	if (audio) {
+		paragraphHighlighter.clear();
+		audio.pause();
+		audio.currentTime = 0;
+	}
+});
 
-    function updateToIndex(index: number) {
-        paragraphHighlighter.highlight(index);
-        paragraphIndex = index;
-        audio.currentTime = timestamps[index];
-    }
+function handleTogglePlay() {
+	isPlaying = !isPlaying;
+	setAudio(audio, isPlaying);
+	updateParagraphs();
+}
 
-    function updateParagraphs() {
-        if (!isPlaying) return;
-        const index = getParagraphIndex(audio.currentTime, timestamps);
-        paragraphHighlighter.highlight(index);
-        paragraphPercentage = getParagraphPercentage(audio, index, timestamps);
-        paragraphIndex = index;
-        requestAnimationFrame(updateParagraphs);
-    }
+function updateToIndex(index: number) {
+	paragraphHighlighter.highlight(index);
+	paragraphIndex = index;
+	audio.currentTime = timestamps[index];
+}
 
-    function changePlaybackSpeed(
-        e: Event & { currentTarget: HTMLSelectElement }
-    ) {
-        const speed = Number(e.currentTarget.value.slice(1));
-        audio.playbackRate = speed;
-    }
+function updateParagraphs() {
+	if (!isPlaying) return;
+	const index = getParagraphIndex(audio.currentTime, timestamps);
+	paragraphHighlighter.highlight(index);
+	paragraphPercentage = getParagraphPercentage(audio, index, timestamps);
+	paragraphIndex = index;
+	requestAnimationFrame(updateParagraphs);
+}
 
-    let paragraphIndex = 0;
-    function handleSkip(e: Event & { detail: number }) {
-        const offset = e.detail;
-        // if back, just go to beginning of paragraph unless too close to it
-        if (offset === -1) {
-            const beginning = timestamps[paragraphIndex];
-            const delta = audio.currentTime - beginning;
-            if (delta > 3) {
-                audio.currentTime = beginning;
-                return;
-            }
-        }
-        paragraphIndex += offset;
+function changePlaybackSpeed(e: Event & { currentTarget: HTMLSelectElement }) {
+	const speed = Number(e.currentTarget.value.slice(1));
+	audio.playbackRate = speed;
+}
 
-        const mod = (value: number, mod: number) => ((value % mod) + mod) % mod;
+let paragraphIndex = 0;
+function handleSkip(e: Event & { detail: number }) {
+	const offset = e.detail;
+	// if back, just go to beginning of paragraph unless too close to it
+	if (offset === -1) {
+		const beginning = timestamps[paragraphIndex];
+		const delta = audio.currentTime - beginning;
+		if (delta > 3) {
+			audio.currentTime = beginning;
+			return;
+		}
+	}
+	paragraphIndex += offset;
 
-        const index = mod(paragraphIndex, paragraphs.length);
-        audio.currentTime = timestamps[index];
-        paragraphHighlighter.highlight(index);
-    }
+	const mod = (value: number, mod: number) => ((value % mod) + mod) % mod;
 
-    let volume = 0.5;
-    function handleVolumeAdjust(e: Event & { detail: number }) {
-        volume = e.detail;
-        audio.volume = volume;
-    }
+	const index = mod(paragraphIndex, paragraphs.length);
+	audio.currentTime = timestamps[index];
+	paragraphHighlighter.highlight(index);
+}
 
-    let showControls = false;
-    function closeAudioControls() {
-        showControls = false;
-        audio.pause();
-        audio.currentTime = 0;
-        paragraphHighlighter.clear();
-    }
+let volume = 0.5;
+function handleVolumeAdjust(e: Event & { detail: number }) {
+	volume = e.detail;
+	audio.volume = volume;
+}
 
-    let paragraphPercentage = 0;
+let showControls = false;
+function closeAudioControls() {
+	showControls = false;
+	audio.pause();
+	audio.currentTime = 0;
+	paragraphHighlighter.clear();
+}
+
+let paragraphPercentage = 0;
 </script>
 
 {#if audio}
