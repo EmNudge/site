@@ -52,7 +52,32 @@ export interface Video {
 let videos: Video[] = null;
 export async function getVideos(): Promise<Video[]> {
 	if (import.meta.env.DEV) {
-		return Array(4).fill({ title: "Example Video" });
+		return [
+			{
+				title: "The Implicit Props Pattern - React vs Vue vs Svelte vs Solid",
+				id: "qznuoFecZr0",
+				link: "https://youtube.com/watch?v=qznuoFecZr0",
+				img: "https://i.ytimg.com/vi/qznuoFecZr0/mqdefault.jpg",
+			},
+			{
+				title: "Rate Limiting - From Scratch Episode 3",
+				id: "IUmC_dC87oc",
+				link: "https://youtube.com/watch?v=IUmC_dC87oc",
+				img: "https://i.ytimg.com/vi/IUmC_dC87oc/mqdefault.jpg",
+			},
+			{
+				title: "Understanding The Standard For Loop",
+				id: "lebu6I-qJrg",
+				link: "https://youtube.com/watch?v=lebu6I-qJrg",
+				img: "https://i.ytimg.com/vi/lebu6I-qJrg/mqdefault.jpg",
+			},
+			{
+				title: "World Champion Typist 320wpm - How I did it",
+				id: "7DAG74o3p3o",
+				link: "https://youtube.com/watch?v=7DAG74o3p3o",
+				img: "https://i.ytimg.com/vi/7DAG74o3p3o/mqdefault.jpg",
+			},
+		];
 	}
 
 	if (videos) return videos;
@@ -69,6 +94,8 @@ export async function getVideos(): Promise<Video[]> {
 
 		return { title, id, link, img } as Video;
 	});
+
+	console.log({ videos });
 
 	return videos;
 }
