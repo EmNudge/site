@@ -9,7 +9,7 @@ import Tags from "../components/Tags.astro";
 const tags = [...new Set(videos.map((video) => video.tags.split(",")).flat())];
 
 export async function getStaticPaths({ paginate }) {
-  return paginate(videos, { pageSize: 25 });
+	return paginate(videos, { pageSize: 25 });
 }
 ---
 

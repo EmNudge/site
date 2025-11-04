@@ -17,7 +17,7 @@ details[open] summary {
 details summary {
 	background: var(--bg-light-transparent);
 	padding: 1rem;
-	font-size: 1rem;
+	font-size: var(--font-small);
 }
 details summary::before {
 	content: "";
@@ -26,7 +26,7 @@ details summary::before {
 details > *:not(summary) {
 	padding-left: 2rem;
 	padding-right: 1rem;
-	font-size: 1rem;
+	font-size: var(--font-small);
 }
 details > p:nth-child(2) {
 	margin-top: 0;

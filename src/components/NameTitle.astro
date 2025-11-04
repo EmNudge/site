@@ -1,0 +1,61 @@
+---
+interface Props {
+	titles: string[];
+}
+
+const { titles } = Astro.props;
+---
+
+<div class="special-container">
+    <name-title role="heading" aria-level="2" tabindex="0" titles={JSON.stringify(titles)}></name-title>
+</div>
+
+<script>
+    class NameTitle extends HTMLElement {
+        constructor() {
+            super();
+        }
+
+        connectedCallback() {
+            let titleIndex = 0;
+
+            const titles = JSON.parse(this.getAttribute("titles"));
+            this.textContent = titles[0];
+
+            this.addEventListener("click", () => {
+                titleIndex = (titleIndex + 1) % titles.length;
+                this.textContent = titles[titleIndex];
+
+                console.log(this)
+
+                this.animate([
+                    { transform: "translateY(2px)" },
+                    { transform: "translateY(0px)" },
+                ], { duration: 25, easing: "ease-in-out" });
+            });
+        }
+    }
+
+    customElements.define("name-title", NameTitle);
+</script>
+
+<style>
+    .special-container {
+        width: 100%;
+        height: var(--font-large);
+    }
+
+    name-title {
+        display: block;
+        opacity: 0.8;
+        width: 100%;
+        cursor: pointer;
+        user-select: none;
+        width: max-content;
+        transform-origin: left center;
+        font-family: "Merriweather", "Times New Roman", Times, serif;
+    }
+    name-title:active {
+        transform: translateY(2px);
+    }
+</style>

@@ -1,0 +1,46 @@
+---
+interface Props {
+	routes: [string, string][];
+	path: string;
+}
+
+const { routes, path } = Astro.props;
+---
+
+<nav>
+    {routes.map(([route, name]) =>
+        <a
+            rel="prefetch"
+            aria-current={path == route ? "page" : undefined}
+            href={route}
+            class={[path == route && "active", route == "/" && "home-route"].filter(Boolean).join(" ")}
+        >{name}</a>
+    )}
+</nav>
+
+<style>
+    nav {
+        display: flex;
+    }
+    a {
+        text-decoration: none;
+        color: var(--foreground);
+        font-size: var(--font-medium);
+        padding: 0.5rem 1rem;
+
+        border: 1px solid transparent;
+    }
+    a:hover {
+        background: var(--light-bg);
+        border-radius: 9px;
+        border: 1px solid #ffffff29;
+    }
+    a.active {
+        color: var(--active);
+    }
+    @media screen and (max-width: 500px) {
+        .home-route {
+            display: none;
+        }
+    }
+</style>
