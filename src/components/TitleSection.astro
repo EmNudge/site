@@ -9,22 +9,32 @@ const { title, link, staggered = false } = Astro.props;
         <slot />
     </div>
 
-    {link && <a href={link} title={`more ${title}`} class="more">More</a>}
+    {link && 
+        <div class="more-container">
+            <a href={link} title={`more ${title}`} class="more">More</a>
+        </div>
+    }
 </section>
 
 <style>
     section {
         margin: 80px 0;
     }
+
+    .more-container {
+        display: flex;
+        justify-content: center;
+        padding: 1rem 2rem;
+    }
     .more {
-        font-size: 1.5em;
         margin-top: 20px;
-        padding: 15px;
+        padding: 1rem 4rem;
         text-align: center;
         display: block;
     }
     .more:hover {
         background: var(--light-bg);
+        border-radius: 9px;
     }
     h1 {
         margin: 20px 10px;

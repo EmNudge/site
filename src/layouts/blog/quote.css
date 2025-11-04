@@ -15,7 +15,7 @@ blockquote > p:last-child {
 }
 
 blockquote pre {
-	font-size: 0.7em;
+	font-size: var(--font-small);
 }
 
 article blockquote p {

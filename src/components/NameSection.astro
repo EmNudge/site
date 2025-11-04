@@ -1,6 +1,6 @@
 ---
 import IconHolder from "./IconHolder.astro";
-import NameTitle from "./NameTitle.svelte";
+import NameTitle from "./NameTitle.astro";
 
 const icons = [
 	["/icons/github.svg", "GitHub", "https://github.com/EmNudge"],
@@ -29,7 +29,9 @@ const titles = [
 <section>
     <div class="name">
         <IconHolder {icons} small translucent staggered />
-        <h1><button class="hand-wave">👋</button> Hey there!</h1>
+
+        <h1 tabindex="0"><button class="hand-wave">👋</button> Hey there!</h1>
+
         <NameTitle titles={titles} client:idle />
     </div>
 </section>

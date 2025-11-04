@@ -9,7 +9,7 @@ import Tags from "../components/Tags.astro";
 const tags = [...new Set(books.map((read) => read.tags.split(",")).flat())];
 
 export async function getStaticPaths({ paginate }) {
-  return paginate(books, { pageSize: 25 });
+	return paginate(books, { pageSize: 25 });
 }
 ---
 

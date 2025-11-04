@@ -36,7 +36,14 @@ const routes = [
         gap: 40px;
     }
     li {
-        font-size: 1.5em;
+        font-size: var(--font-large);
+        border: 1px solid transparent;
+        padding: 0.5rem 1rem;
+    }
+    li:hover {
+        background: var(--light-bg);
+        border-radius: 9px;
+        border: 1px solid #ffffff29;
     }
     a {
         color: var(--foreground);

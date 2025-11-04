@@ -1,5 +1,5 @@
 ---
-import Nav from "./Nav.svelte";
+import Nav from "./Nav.astro";
 
 const path = new URL(Astro.request.url).pathname.match(/^(.+?)(?:\/|$)/)[1];
 
@@ -27,12 +27,13 @@ const routes: [string, string][] = [
             ></div>
         </a>
     </div>
+
     <Nav {routes} {path} />
 </header>
 
 <style>
     header {
-        padding: 1rem;
+        padding: 2rem 1rem;
         max-width: 800px;
         margin: 0 auto;
         display: grid;
