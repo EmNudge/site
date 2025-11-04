@@ -95,7 +95,5 @@ export async function getVideos(): Promise<Video[]> {
 		return { title, id, link, img } as Video;
 	});
 
-	console.log({ videos });
-
 	return videos;
 }
