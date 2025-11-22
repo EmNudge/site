@@ -1,6 +1,7 @@
 ---
 const { headings } = Astro.props;
 ---
+{headings && headings.length > 0 ? (
 <details class="toc-details">
     <summary>Table Of Contents</summary>
     <ul>
@@ -20,6 +21,7 @@ const { headings } = Astro.props;
         ))}
     </ul>
 </details>
+) : null}
 
 <style>
     .toc-details {
