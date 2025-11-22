@@ -23,89 +23,77 @@ interface Props {
 	};
 	file: MdOrMdxFile | string;
 	url: string;
+	headings: MarkdownHeading[];
 }
-
-const { content, file, url } = Astro.props;
+const { content, file, url, headings } = Astro.props;
 const { pubDate, title, summary, recording } = content;
-
 const minuteLength = getMinuteLengthFromFile(file);
-
 const slugs = await Astro.glob("../pages/blog/*.md*").then(getSlugs);
 const postItems = slugs.map(({ title, url }) => [title, url] as const);
-
 const isNote = url.startsWith("/notes/");
+import Toc from "../components/Toc.astro";
 ---
-
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-
-    <meta name="description" content={summary} />
-    <meta name="author" content="EmNudge" />
-    <meta name="keywords" content="EmNudge" />
-    <meta name="color-scheme" content="dark light" />
-
-    <script>
-      if (localStorage.getItem("theme") === "light") {
-        document.documentElement.classList.add("light");
-      }
-    </script>
-
-    <link
-      rel="alternate"
-      type="application/rss+xml"
-      href="/blog/rss.xml"
-      title="RSS feed for my blog"
-    />
-    <link rel="icon" href="/icons/icon_neon.webp" />
-    <link rel="stylesheet" href="/app.css" />
-
-    <title>{title}</title>
-  </head>
-
-  <body>
-    <Header />
-
-    <main>
-      <div class="title-container">
-        <h5>{pubDate} • {minuteLength} minute read</h5>
-        <h1>{title}</h1>
-        <p>{summary}</p>
-
-        {recording && <SpeakAloud recording={recording} client:load />}
-      </div>
-
-      <article class={recording ? "with-audio" : undefined}>
-        <slot />
-        {
-          isNote && (
-            <div class="end-note-container">
-              <Tooltip>
-                <div slot="main-content" class="end-note">
-                  # end note
-                </div>
-                <div slot="tooltip-content">Notes don't always have a neat conclusion, unlike articles. That's why this is a note.</div>
-              </Tooltip>
-            </div>
-          )
-        }
-      </article>
-    </main>
-
-    <Footer />
-
-    <PictureZoom client:load />
-    <script src="../components/CodeRunner/index.ts"></script>
-
-    <ninja-keys></ninja-keys>
-
-    <script type="module" define:vars={{ postItems }}>
-      import { addCommandPaletteConditionally } from "/libraries/command-palette.js";
-      addCommandPaletteConditionally(postItems);
-    </script>
-  </body>
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="description" content={summary} />
+		<meta name="author" content="EmNudge" />
+		<meta name="keywords" content="EmNudge" />
+		<meta name="color-scheme" content="dark light" />
+		<script>
+			if (localStorage.getItem("theme") === "light") {
+				document.documentElement.classList.add("light");
+			}
+		</script>
+		<link
+			rel="alternate"
+			type="application/rss+xml"
+			href="/blog/rss.xml"
+			title="RSS feed for my blog"
+		/>
+		<link rel="icon" href="/icons/icon_neon.webp" />
+		<link rel="stylesheet" href="/app.css" />
+		<title>{title}</title>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="title-container">
+				<h5>{pubDate} • {minuteLength} minute read</h5>
+				<h1>{title}</h1>
+				<p>{summary}</p>
+				{recording && <SpeakAloud recording={recording} client:load />}
+			</div>
+			<article class={recording ? "with-audio" : undefined}>
+				<Toc headings={headings} />
+				<slot />
+				{isNote && (
+					<div class="end-note-container">
+						<Tooltip>
+							<div slot="main-content" class="end-note">
+# end note
+							</div>
+							<div slot="tooltip-content">
+								Notes don't always have a neat conclusion, unlike articles. That's why
+								this is a note.
+							</div>
+						</Tooltip>
+					</div>
+				)}
+			</article>
+		</main>
+		<Footer />
+		<PictureZoom client:load />
+		<script src="../components/CodeRunner/index.ts"></script>
+		<ninja-keys></ninja-keys>
+		<script type="module" define:vars={{ postItems }}>
+			import { addCommandPaletteConditionally } from "/libraries/command-palette.js";
+			addCommandPaletteConditionally(postItems);
+		</script>
+	</body>
 </html>
+
 
 <style>
   article:global(.js-enabled p > img),

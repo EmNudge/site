@@ -37,7 +37,7 @@ details > p:last-child {
 
 details.toc {
 	background: var(--background);
-	border: 1px solid var(--light-bg);
+	/* border: 1px solid var(--light-bg); */
 	margin-bottom: 2rem;
 }
 details.toc summary {
