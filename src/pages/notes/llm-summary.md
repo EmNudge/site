@@ -2,7 +2,7 @@
 pubDate: December 30, 2024
 title: "LLMs For Summarizing Legal Documents"
 summary: TOS is getting out of hand
-tags: productivity
+tags: technology, productivity
 layout: ../../layouts/Blog.astro
 ---
 

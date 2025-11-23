@@ -2,7 +2,7 @@
 pubDate: April 22, 2024
 title: "A REPL For Any Language Using Bash Functions"
 summary: Local first and ethically farmed
-tags: productivity
+tags: coding, productivity
 layout: ../../layouts/Blog.astro
 ---
 

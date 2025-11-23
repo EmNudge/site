@@ -2,7 +2,7 @@
 pubDate: May 8, 2025
 title: "Naming it defines it"
 summary: On choosing the wrong name
-tags: life
+tags: philosophy
 layout: ../../layouts/Blog.astro
 ---
 

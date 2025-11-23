@@ -2,7 +2,7 @@
 pubDate: March 30, 2024
 title: "The Secret to Productivity - Embracing Boredom"
 summary: You will NOT do the harder thing
-tags: productivity
+tags: philosophy, productivity
 layout: ../../layouts/Blog.astro
 ---
 

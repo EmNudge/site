@@ -2,7 +2,7 @@
 pubDate: Mar 9, 2024
 title: "One Of My Best Habits - Daily Brag Documents"
 summary: Life Coaches hate him! This one tip will change your life!
-tags: productivity
+tags: productivity, philosophy
 layout: ../../layouts/Blog.astro
 ---
 

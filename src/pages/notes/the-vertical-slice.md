@@ -2,7 +2,7 @@
 pubDate: November 22, 2025
 title: The vertical slice
 summary: AKA the MVP
-tags: general
+tags: work, technology
 icon: technologies/languages/javascript
 layout: ../../layouts/Blog.astro
 ---

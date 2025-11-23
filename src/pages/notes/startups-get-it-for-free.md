@@ -2,7 +2,7 @@
 title: Startups get it for free
 pubDate: November 23, 2025
 summary: And how to become a supermassive startup
-tags: career
+tags: work
 layout: ../../layouts/Blog.astro
 ---
 
