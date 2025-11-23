@@ -2,7 +2,7 @@
 pubDate: Oct 19, 2025
 title: "Boredom as a virtue"
 summary: Do nothing, I dare you
-tags: productivity
+tags: philosophy, productivity
 layout: ../../layouts/Blog.astro
 ---
 

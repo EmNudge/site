@@ -2,7 +2,7 @@
 pubDate: April 1, 2024
 title: "The Eventualities of AI"
 summary: My predictions on the future of creative generation
-tags: productivity
+tags: technology, philosophy
 layout: ../../layouts/Blog.astro
 ---
 

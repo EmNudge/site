@@ -2,7 +2,7 @@
 pubDate: June 15, 2025
 title: "I don't pay for a custom email address"
 summary: but I have a custom email
-tags: coding
+tags: coding, productivity
 layout: ../../layouts/Blog.astro
 ---
 

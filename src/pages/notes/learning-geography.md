@@ -2,7 +2,7 @@
 pubDate: Feb 24, 2025
 title: "I am learning geography"
 summary: It's about time
-tags: general
+tags: productivity, philosophy
 layout: ../../layouts/Blog.astro
 ---
 

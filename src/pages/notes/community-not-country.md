@@ -2,7 +2,7 @@
 pubDate: Aug 9, 2025
 title: "It's a community, not a country"
 summary: Rule your friend groups like a dictatorship
-tags: general
+tags: philosophy
 layout: ../../layouts/Blog.astro
 ---
 
