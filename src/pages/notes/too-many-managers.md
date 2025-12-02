@@ -1,5 +1,5 @@
 ---
-pubDate: Nov 22, 2025
+pubDate: Nov 2, 2025
 title: "Your company has too many managers"
 summary: Or, why you need ICMs
 tags: productivity
