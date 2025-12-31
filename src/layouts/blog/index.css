@@ -61,6 +61,14 @@ article ul {
 	line-height: 1.75;
 	margin-top: 18px;
 	margin-bottom: 32px;
+	padding-left: 2rem;
+}
+
+@media screen and (max-width: 600px) {
+	article ol,
+	article ul {
+		padding-left: 1rem;
+	}
 }
 
 article img {

@@ -31,6 +31,12 @@ const { headings } = Astro.props;
     .toc-details ul {
         list-style: circle;
         padding-left: 3rem;
+        margin: 0;
+    }
+    @media screen and (max-width: 600px) {
+        .toc-details ul {
+            padding-left: 2rem;
+        }
     }
     .toc-details a {
         color: inherit;
