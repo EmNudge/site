@@ -59,6 +59,8 @@ article p {
 article ol,
 article ul {
 	line-height: 1.75;
+	margin-top: 18px;
+	margin-bottom: 32px;
 }
 
 article img {
@@ -86,7 +88,7 @@ article.with-audio p.speaking:before {
 
 article > ol > li,
 article > ul > li {
-	margin-bottom: 1.5rem;
+	margin-bottom: 0.75rem;
 }
 
 article strong {
