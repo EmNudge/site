@@ -37,11 +37,11 @@ In a word, WebAssembly is a language.
 
 This makes questions like “how fast is WebAssembly” a bit hard to answer. You don’t ask how fast algebraic notation is—it’s not a very sensible question. 
 
-Taken in the context of something like JavaScript, the language is only as fast as the engine running it. JavaScript, the language has no speed, but you can benchmark JS engines like V8, SpiderMonkey, and JavaScriptCore. You can benchmark the IO libraries of JS runtimes like Bun, Deno, and Node.
+Taken in the context of something like JavaScript, the language is only as fast as the engine running it. JavaScript the language has no speed, but you can benchmark JS engines like V8, SpiderMonkey, and JavaScriptCore. You can benchmark the IO libraries of JS runtimes like Bun, Deno, and Node.
 
-What people actually mean is “how useful are the constructs of this language to efficient mappings of modern hardware” and “what is the current landscape of systems taking advantage of these constructs”..
+What people actually mean is “how useful are the constructs of this language to efficient mappings of modern hardware” and “what is the current landscape of systems taking advantage of these constructs”.
 
-Through clever-enough engineering, you can make any system sufficiently fast with some trade-offs. If compiling your code directly to C doesn’t bother you, getting “near native” speeds is possible in both [JavaScript](https://hermesengine.dev/) and [WebAssembly](https://github.com/WebAssembly/wabt/blob/main/wasm2c/README.md).
+Through clever-enough engineering, you can make any system sufficiently fast with some trade-offs. If compiling your code directly to C doesn’t bother you, getting “near native” speeds is possible in both [JavaScript](https://hermesengine.dev/) and [WebAssembly](https://github.com/WebAssembly/wabt/blob/main/Wasm2c/README.md).
 
 That’s right, you can compile WebAssembly! You can also choose to interpret it directly—that’ll be up to your runtime, just like every other system.
 
@@ -53,7 +53,7 @@ WebAssembly is a pretty close approximation of an assembly language. Not too clo
 
 And yes, you can write WebAssembly by hand! I made a rustlings-esque course called [watlings](https://github.com/EmNudge/watlings/) where you can hand-write WAT to solve some basic exercises.
 
-WAT is a very close approximation to WASM. It is **almost** 1:1 in that you can compile WAT to WASM and then back to WAT with barely any loss in information (you may lose variable names and some metadata). It looks like this:
+WAT is a very close approximation to Wasm. It is **almost** 1:1 in that you can compile WAT to Wasm and then back to WAT with barely any loss in information (you may lose variable names and some metadata). It looks like this:
 
 ```clojure
 (module
@@ -76,9 +76,9 @@ Try reading the code. It will feel both familiar and foreign.
 
 We have functions and S-expressions. We have imports and exports. But we also have instructions like `i32.add` and implicit stack returns.
 
-Wasm is a bytecode perhaps best compared to JVM (i.e. JVM bytecode). They have similar goals and constraints, but different landscapes and guarantees.
+Wasm is a bytecode perhaps best compared to *JVMIS* (i.e. JVM bytecode). They have similar goals and constraints, but different landscapes and guarantees.
 
-Compared to JVM bytecode, WASM has a significantly smaller API and stronger safety guarantees. It has fewer opinions on your memory management strategy and more limitations on what your program can do without permission from its host environment.
+Compared to JVM bytecode, Wasm has a significantly smaller API and stronger safety guarantees. It has fewer opinions on your memory management strategy and more limitations on what your program can do without permission from its host environment.
 
 It can crunch numbers, but must be explicitly provided its memory and all imports. In this way, it is much different from an actual assembly language (or, a more widely used one).
 
@@ -92,12 +92,12 @@ Notable among them are Rust, C, Zig, Go, Kotlin, Java, and C#. Commonly interpre
 
 For many of these, it is important not to require a garbage-collector. For others, it would be helpful to include one. Wasm allows for both (with the GC option being much more recent).
 
-Your browser includes a Wasm “engine”, making this doubly an attractive compilation target. This means without much setup, your phone and laptop can run wasm programs already. 
+Your browser includes a Wasm “engine”, making this doubly an attractive compilation target. This means without much setup, your phone and laptop can run Wasm programs already. 
 
-Like how JVM can have many implementations of its runner, there are many implementations that run independently of your browser such as [Wasmtime](https://github.com/bytecodealliance/wasmtime), [WasmEdge](https://github.com/WasmEdge/WasmEdge), and [Wasmer](https://github.com/wasmerio/wasmer). 
+Like how JVM can have many implementations of its runner, there are many implementations that run independently of your browser such as [Wasmtime](https://github.com/bytecodealliance/Wasmtime), [WasmEdge](https://github.com/WasmEdge/WasmEdge), and [Wasmer](https://github.com/Wasmerio/Wasmer). 
 
 ```bash
-$ wasmer run cowsay "I am cow"
+$ Wasmer run cowsay "I am cow"
  __________
 < I am cow >
  ----------
@@ -120,7 +120,7 @@ WebAssembly maintains a minimal attack surface by treating all external interact
 
 It is such that you can ensure process-like isolation within a single process. Cloudflare takes advantage of this aspect within V8 to run untrusted code very efficiently [using V8 isolates](https://blog.cloudflare.com/mitigating-spectre-and-other-security-threats-the-cloudflare-workers-security-model/). This means significant efficiency gains without significant security trade-offs. 
 
-Wasm programs can start 100x faster if you can avoid spinning up a separate process. Fermyon, a company in the wasm hosting space, advertises [sub-millisecond spinup times](https://www.fermyon.com/serverless-guide/speed-and-execution-time).
+Wasm programs can start 100x faster if you can avoid spinning up a separate process. Fermyon, a company in the Wasm hosting space, advertises [sub-millisecond spinup times](https://www.fermyon.com/serverless-guide/speed-and-execution-time).
 
 In these cases, the performance is a direct result of what the security guarantees enable.
 
@@ -136,13 +136,13 @@ Elsewhere, the security allows for extreme embeddability.
 
 # Portability and Embeddability
 
-We’ve gone over the number of ways you can run wasm programs. A Wasm runner can be pretty light. Instead of forcing library authors into a specific language (usually Lua or JavaScript), supporting Wasm itself opens the door to a much wider set of choices.
+We’ve gone over the number of ways you can run Wasm programs. A Wasm runner can be pretty light. Instead of forcing library authors into a specific language (usually Lua or JavaScript), supporting Wasm itself opens the door to a much wider set of choices.
 
 Tools like [Zellij](https://github.com/zellij-org/zellij), [Envoy](https://www.envoyproxy.io/), and [Lapce](https://github.com/lapce/lapce) support Wasm for their plugin ecosystem. 
 
 In environments where a JavaScript engine is already being used, this means access to programs you would not have been able to run otherwise.
 
-This includes [image processing](https://github.com/kleisauke/wasm-vips), [ocr](https://github.com/naptha/tesseract.js), [physics engines](https://github.com/kripken/ammo.js), [rendering engines](https://skia.org/docs/user/modules/canvaskit/), [media toolkits](https://ffmpegwasm.netlify.app/), [databases](https://github.com/sql-js/sql.js), and [parsers](https://github.com/tree-sitter/tree-sitter/blob/master/lib/binding_web/README.md), among many others.
+This includes [image processing](https://github.com/kleisauke/Wasm-vips), [ocr](https://github.com/naptha/tesseract.js), [physics engines](https://github.com/kripken/ammo.js), [rendering engines](https://skia.org/docs/user/modules/canvaskit/), [media toolkits](https://ffmpegWasm.netlify.app/), [databases](https://github.com/sql-js/sql.js), and [parsers](https://github.com/tree-sitter/tree-sitter/blob/master/lib/binding_web/README.md), among many others.
 
 In a majority of these cases, the use of Wasm will be transparent to you. A library you installed will just be using it somewhere in its dependency tree.
 
@@ -170,11 +170,11 @@ Still, the performance trade-offs might not be significant enough to matter. For
 
 Clearly things are happening.
 
-The [Wasm IO YouTube channel](https://www.youtube.com/@wasmio) has lots of talks worth watching. 
+The [Wasm IO YouTube channel](https://www.youtube.com/@Wasmio) has lots of talks worth watching. 
 
 In fact, standards and language development in Wasm has stirred significant controversy internally. There is a lot of desire for advancement, but standardization means decisions are hard to reverse. For many, things are moving too quickly and in the wrong direction.
 
-There is the “more official” [W3C working group](https://www.w3.org/groups/wg/wasm/) and then the “less official” [Bytecode Alliance](https://github.com/bytecodealliance) which works much more quickly and is centered around tooling and language development outside of Wasm directly (e.g. on [WIT](https://component-model.bytecodealliance.org/design/wit.html) and the [WebAssembly Component Model](https://component-model.bytecodealliance.org/)).
+There is the “more official” [W3C working group](https://www.w3.org/groups/wg/Wasm/) and then the “less official” [Bytecode Alliance](https://github.com/bytecodealliance) which works much more quickly and is centered around tooling and language development outside of Wasm directly (e.g. on [WIT](https://component-model.bytecodealliance.org/design/wit.html) and the [WebAssembly Component Model](https://component-model.bytecodealliance.org/)).
 
 [Wasm feature proposals](https://webassembly.org/features/) are being quickly advanced and adopted by a wide suite of tools. This is remarkable progress for standardization, but is also scary to watch if you fear large missteps. 
 
