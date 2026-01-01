@@ -26,7 +26,12 @@ export async function getStaticPaths({ paginate }) {
 ---
 
 <MainLayout title="Blog">
-  <h1>Blog</h1>
+  <div class="header">
+    <h1>Blog</h1>
+    <a href="/blog.xml" class="feed-link" rel="external">
+      <img src="/icons/rss-feed-icon.png" alt="rss feed" />
+    </a>
+  </div>
 
   <Tags tags={tags} itemSelector="post-container" />
 
@@ -46,9 +51,23 @@ export async function getStaticPaths({ paginate }) {
   </p>
 </MainLayout>
 <style>
-  h1 {
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
     margin: 80px 0;
-    text-align: center;
+  }
+  h1 {
+    margin: 0;
+  }
+  .feed-link {
+    display: flex;
+    align-items: center;
+  }
+  .feed-link img {
+    height: 20px;
+    width: 20px;
   }
   .feed {
     margin-top: 50px;

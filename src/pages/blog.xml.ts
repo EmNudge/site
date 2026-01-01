@@ -9,9 +9,11 @@ export const GET = async () => {
 		return { title, description: summary, link: file.url, pubDate, draft };
 	});
 
-	const items = await Promise.all(blogPosts).then((items) =>
-		items.filter((post) => !post.draft),
-	);
+	const items = await Promise.all(blogPosts)
+		.then((items) => items.filter((post) => !post.draft))
+		.then((items) =>
+			items.sort((a, b) => +new Date(b.pubDate) - +new Date(a.pubDate)),
+		);
 
 	return rss({
 		title: "EmNudge's Blog",
