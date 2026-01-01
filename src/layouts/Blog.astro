@@ -13,6 +13,7 @@ import {
 
 import "./blog/index.css";
 import Tooltip from "../components/Tooltip/Tooltip.astro";
+import { formatDate } from "../utils/formatDate";
 
 interface Props {
 	content: {
@@ -60,7 +61,7 @@ import Toc from "../components/Toc.astro";
 		<Header />
 		<main>
 			<div class="title-container">
-				<h5>{pubDate} • {minuteLength} minute read</h5>
+				<h5>{formatDate(pubDate)} • {minuteLength} minute read</h5>
 				<h1>{title}</h1>
 				<p>{summary}</p>
 				{recording && <SpeakAloud recording={recording} client:load />}

@@ -1,6 +1,7 @@
 ---
 import type { Post } from "../../data/blogs";
 import Stub from "../Stub.astro";
+import { formatDate } from "../../utils/formatDate";
 
 type Props = Post & { disableImage?: boolean };
 
@@ -31,7 +32,7 @@ const hasRecording = Boolean(recording);
     <Stub
         withDivider={false}
         url={url}
-        meta={`${pubDate} • ${minuteLength} minute read`} 
+        meta={`${formatDate(pubDate)} • ${minuteLength} minute read`}
         title={title}
         description={summary}
         discussions={discussions}

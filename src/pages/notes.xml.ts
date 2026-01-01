@@ -6,13 +6,13 @@ export const GET = async () => {
 	const blogPosts = Object.values(files).map(async (post) => {
 		const file = (await post()) as any;
 		const { title, summary, pubDate, draft } = file.frontmatter;
-		return { title, description: summary, link: file.url, pubDate, draft };
+		return { title, description: summary, link: file.url, pubDate: new Date(pubDate), draft };
 	});
 
 	const items = await Promise.all(blogPosts)
 		.then((items) => items.filter((post) => !post.draft))
 		.then((items) =>
-			items.sort((a, b) => +new Date(b.pubDate) - +new Date(a.pubDate)),
+			items.sort((a, b) => +b.pubDate - +a.pubDate),
 		);
 
 	return rss({
