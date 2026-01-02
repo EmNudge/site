@@ -9,6 +9,7 @@ type YoutubeAPIResponse =
 				id: { videoId: string };
 				snippet: {
 					title: string;
+					publishedAt: string;
 					thumbnails: {
 						medium: { url: string };
 					};
@@ -47,6 +48,7 @@ export interface Video {
 	id: string;
 	link: string;
 	img: string;
+	publishedAt: string;
 }
 
 let videos: Video[] = null;
@@ -58,24 +60,28 @@ export async function getVideos(): Promise<Video[]> {
 				id: "qznuoFecZr0",
 				link: "https://youtube.com/watch?v=qznuoFecZr0",
 				img: "https://i.ytimg.com/vi/qznuoFecZr0/mqdefault.jpg",
+				publishedAt: "2022-01-02T16:40:57-08:00",
 			},
 			{
 				title: "Rate Limiting - From Scratch Episode 3",
 				id: "IUmC_dC87oc",
 				link: "https://youtube.com/watch?v=IUmC_dC87oc",
 				img: "https://i.ytimg.com/vi/IUmC_dC87oc/mqdefault.jpg",
+				publishedAt: "2021-06-04T17:02:23-07:00",
 			},
 			{
 				title: "Understanding The Standard For Loop",
 				id: "lebu6I-qJrg",
 				link: "https://youtube.com/watch?v=lebu6I-qJrg",
 				img: "https://i.ytimg.com/vi/lebu6I-qJrg/mqdefault.jpg",
+				publishedAt: "2021-02-24T10:40:08-08:00",
 			},
 			{
 				title: "World Champion Typist 320wpm - How I did it",
 				id: "7DAG74o3p3o",
 				link: "https://youtube.com/watch?v=7DAG74o3p3o",
 				img: "https://i.ytimg.com/vi/7DAG74o3p3o/mqdefault.jpg",
+				publishedAt: "2021-01-30T14:14:20-08:00",
 			},
 		];
 	}
@@ -87,12 +93,12 @@ export async function getVideos(): Promise<Video[]> {
 	if ("error" in json) throw new Error(json.error.message);
 
 	videos = json.items.map(({ snippet, id: snippetId }) => {
-		const { title, thumbnails } = snippet;
+		const { title, thumbnails, publishedAt } = snippet;
 		const id = snippetId.videoId;
 		const link = `https://youtube.com/watch?v=${id}`;
 		const img = thumbnails.medium.url;
 
-		return { title, id, link, img } as Video;
+		return { title, id, link, img, publishedAt } as Video;
 	});
 
 	return videos;

@@ -5,6 +5,7 @@ import BookmarksNav from "../components/BookmarksNav.astro";
 
 import { reads } from "../data/bookmarks";
 import Tags from "../components/Tags.astro";
+import { formatDate } from "../utils/formatDate";
 
 const tags = [...new Set(reads.map((read) => read.tags.split(",")).flat())];
 
@@ -23,7 +24,7 @@ export async function getStaticPaths({ paginate }) {
             <post-container style={`--index: ${i}`} data-tags={read.tags}>
                 <Stub 
                     url={read.link} 
-                    meta={`${read.author} • ${read.createdAt}`} 
+                    meta={`${read.author} • ${formatDate(read.createdAt)}`} 
                     title={read.title}
                 />
             </post-container>

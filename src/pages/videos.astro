@@ -1,6 +1,6 @@
 ---
 import MainLayout from "../layouts/Main.astro";
-import Stub from "../components/Stub.astro";
+import VideoStub from "../components/VideoStub.astro";
 import BookmarksNav from "../components/BookmarksNav.astro";
 
 import { videos } from "../data/bookmarks";
@@ -19,12 +19,14 @@ export async function getStaticPaths({ paginate }) {
     <Tags tags={tags} itemSelector='post-container' />
 
     <div class="staggered">
-        {videos.map((video, i) => 
+        {videos.map((video, i) =>
             <post-container style={`--index: ${i}`} data-tags={video.tags}>
-                <Stub 
-                    url={video.link} 
-                    meta={`${video.speaker} • ${video.uploadedAt}`} 
+                <VideoStub
+                    url={video.link}
                     title={video.title}
+                    speaker={video.speaker}
+                    uploadedAt={video.uploadedAt}
+                    tags={video.tags}
                 />
             </post-container>
         )}

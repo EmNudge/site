@@ -10,6 +10,7 @@ import { reads } from "../data/bookmarks";
 import { getSlugs } from "../data/blogs";
 import ProjectStub from "../components/ProjectStub.astro";
 import BlogStub from "../components/article/BlogStub.astro";
+import { formatDate } from "../utils/formatDate";
 
 import type { MdOrMdxFile } from "../data/blogs";
 
@@ -46,7 +47,12 @@ const videos = await getVideos();
             class="video"
             style={`--index: ${i}`}
           >
-            <img alt="" src={video.img} />
+            <div class="screen">
+              <img alt="" src={video.img} />
+              <div class="scanlines"></div>
+              <div class="play-icon">▶</div>
+            </div>
+            <span class="video-date">{formatDate(video.publishedAt)}</span>
             <h3>{video.title}</h3>
           </a>
         ))
@@ -60,7 +66,7 @@ const videos = await getVideos();
         <post-container style={`--index: ${i}`}>
           <Stub
             url={read.link}
-            meta={`${read.author} • ${read.createdAt}`}
+            meta={`${read.author} • ${formatDate(read.createdAt)}`}
             title={read.title}
           />
         </post-container>
@@ -142,14 +148,17 @@ const videos = await getVideos();
     box-sizing: border-box;
     display: block;
     position: relative;
-    width: 320px;
-    transition: 0.25s;
     width: 100%;
     padding: 24px;
-    box-sizing: border-box;
+  }
+  .video-date {
+    display: block;
+    margin-top: 12px;
+    font-size: 0.85rem;
+    opacity: 0.5;
   }
   .video h3 {
-    margin-top: 10px;
+    margin-top: 4px;
     font-weight: 300;
   }
   .video > * {
@@ -158,10 +167,73 @@ const videos = await getVideos();
   .video:hover {
     background: var(--light-bg);
   }
+  .video .screen {
+    position: relative;
+    background: #1a1a2e;
+    padding: 8px;
+    border-radius: 6px;
+    box-shadow:
+      0 0 0 3px #333,
+      0 0 0 5px #1a1a1a,
+      6px 8px 16px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+  }
+  .video:nth-child(odd) .screen {
+    transform: rotate(-1.5deg);
+  }
+  .video:nth-child(even) .screen {
+    transform: rotate(1.5deg);
+  }
+  .video .screen::before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    height: 30%;
+    background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, transparent 100%);
+    border-radius: 4px 4px 50% 50%;
+    pointer-events: none;
+    z-index: 3;
+  }
   .video img {
+    display: block;
     width: 100%;
-    border: 2px solid var(--active);
-    border-radius: 9px;
+    border-radius: 4px;
+    filter: contrast(1.1) saturate(0.85) brightness(0.95);
+  }
+  .video .scanlines {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    background: repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.12) 0px,
+      rgba(0, 0, 0, 0.12) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    pointer-events: none;
+    border-radius: 4px;
+    z-index: 2;
+  }
+  .video .play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 2rem;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    z-index: 3;
+    pointer-events: none;
+    transition: opacity 0.25s;
+  }
+  .video:hover .play-icon {
+    opacity: 0.9;
   }
 
   .projects-grid {
