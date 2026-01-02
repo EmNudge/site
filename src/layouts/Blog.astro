@@ -64,7 +64,7 @@ import Toc from "../components/Toc.astro";
 				<h5>{formatDate(pubDate)} • {minuteLength} minute read</h5>
 				<h1>{title}</h1>
 				<p>{summary}</p>
-				{recording && <SpeakAloud recording={recording} client:load />}
+				{recording && <SpeakAloud recording={recording} isDev={import.meta.env.DEV} client:load />}
 			</div>
 			<article class={recording ? "with-audio" : undefined}>
 				<Toc headings={headings} />
