@@ -10,8 +10,10 @@ import {
 import Playback from "./Playback.svelte";
 import Volume from "./Volume.svelte";
 import Container from "./Container.svelte";
+import TimestampEditor from "./TimestampEditor.svelte";
 
 export let recording: string;
+export let isDev: boolean = false;
 
 let audio: HTMLAudioElement;
 let timestamps: number[];
@@ -129,6 +131,10 @@ function closeAudioControls() {
 }
 
 let paragraphPercentage = 0;
+
+function handleTimestampUpdate(e: CustomEvent<number[]>) {
+	timestamps = e.detail;
+}
 </script>
 
 {#if audio}
@@ -163,6 +169,15 @@ let paragraphPercentage = 0;
             on:skip={handleSkip}
         />
     </Container>
+
+    {#if isDev && showControls}
+        <TimestampEditor
+            {timestamps}
+            {paragraphs}
+            currentIndex={paragraphIndex}
+            on:update={handleTimestampUpdate}
+        />
+    {/if}
 {/if}
 
 <style>

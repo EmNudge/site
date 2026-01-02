@@ -4,6 +4,7 @@ title: Optimism As Pragmatism
 summary: Be happy because it's better
 tags: general
 layout: ../../layouts/Blog.astro
+recording: optimism-as-pragmatism
 ---
 
 I was in a line for a burger and had trouble reading the sign. Lots of signs in the area were in English, but occasionally you found a spot in Stockholm not meant for tourists. In a few days I would be at a tech conference, but right now I was hungry for a burger and couldn't read Swedish. 
