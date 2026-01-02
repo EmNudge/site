@@ -1,0 +1,10 @@
+{
+  "ignorePatterns": [
+    "**/*.astro",
+    "**/*.css",
+    "**/*.md",
+    "**/*.mdx",
+    "src/components/CodeRunner/runner.ts",
+    "src/data/blogs.ts"
+  ]
+}
