@@ -1,32 +1,39 @@
 {
-	"name": "personal-site",
-	"version": "1.0.0",
-	"private": true,
-	"scripts": {
-		"dev": "astro dev",
-		"dev:local": "astro dev --host",
-		"start": "astro dev",
-		"build": "astro build",
-		"preview": "astro preview",
-		"format": "biome format --write"
-	},
-	"dependencies": {
-		"@astrojs/mdx": "^2.3.0",
-		"@astrojs/rss": "^4.0.5",
-		"@astrojs/svelte": "^4.0.4",
-		"@biomejs/biome": "^2.3.2",
-		"@floating-ui/dom": "^1.7.4",
-		"@jsdevtools/rehype-toc": "^3.0.2",
-		"@types/node": "^18.14.0",
-		"astro": "^4.6.1",
-		"astro-expressive-code": "^0.34.1",
-		"dotenv": "^16.0.0",
-		"rehype-autolink-headings": "^6.1.1",
-		"rehype-citation": "^2.1.1",
-		"rehype-infer-reading-time-meta": "^1.1.0",
-		"rehype-slug": "^5.0.1",
-		"svelte": "^4.2.14",
-		"typescript": "^5.4.5",
-		"vite": "^5.2.8"
-	}
+  "name": "personal-site",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "dev:local": "astro dev --host",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "lint": "oxlint --ignore-pattern '*.astro'",
+    "format": "oxfmt --write src public/libraries astro.config.mjs",
+    "format:check": "oxfmt --check src public/libraries astro.config.mjs",
+    "typecheck": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/mdx": "^2.3.0",
+    "@astrojs/rss": "^4.0.5",
+    "@astrojs/svelte": "^4.0.4",
+    "@floating-ui/dom": "^1.7.4",
+    "@jsdevtools/rehype-toc": "^3.0.2",
+    "@types/node": "^18.14.0",
+    "astro": "^4.6.1",
+    "astro-expressive-code": "^0.34.1",
+    "dotenv": "^16.0.0",
+    "rehype-autolink-headings": "^6.1.1",
+    "rehype-citation": "^2.1.1",
+    "rehype-infer-reading-time-meta": "^1.1.0",
+    "rehype-slug": "^5.0.1",
+    "svelte": "^4.2.14",
+    "typescript": "^5.4.5",
+    "vite": "^5.2.8"
+  },
+  "devDependencies": {
+    "oxfmt": "^0.21.0",
+    "oxlint": "^1.0.0"
+  }
 }

@@ -8,87 +8,86 @@ let commandPaletteCreated = false;
 
 /** @param {[string, string][]} postItems */
 export function addCommandPaletteConditionally(postItems) {
-	if (commandPaletteCreated) return;
+  if (commandPaletteCreated) return;
 
-	if (window.innerWidth < 800) {
-		window.addEventListener("resize", function listener() {
-			if (window.innerWidth > 800) {
-				createCommandPalette(postItems);
-				window.removeEventListener("resize", listener);
-			}
-		});
+  if (window.innerWidth < 800) {
+    window.addEventListener("resize", function listener() {
+      if (window.innerWidth > 800) {
+        createCommandPalette(postItems);
+        window.removeEventListener("resize", listener);
+      }
+    });
 
-		return;
-	}
+    return;
+  }
 
-	createCommandPalette(postItems);
+  createCommandPalette(postItems);
 }
 
 /** @param {[string, string][]} postItems */
 async function createCommandPalette(postItems) {
-	if (commandPaletteCreated) return;
+  if (commandPaletteCreated) return;
 
-	// @ts-ignore - importing ninja keys file from public folder
-	await import("/libraries/ninja-keys.min.js");
+  // @ts-ignore - importing ninja keys file from public folder
+  await import("/libraries/ninja-keys.min.js");
 
-	const ninjaKeys = document.querySelector("ninja-keys");
-	if (!ninjaKeys) {
-		console.error("cannot find ninja keys");
-		return;
-	}
+  const ninjaKeys = document.querySelector("ninja-keys");
+  if (!ninjaKeys) {
+    console.error("cannot find ninja keys");
+    return;
+  }
 
-	if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
-		ninjaKeys.classList.add("dark");
-	}
+  if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+    ninjaKeys.classList.add("dark");
+  }
 
-	const blogPosts = postItems.map(([title, url]) => ({
-		id: url.slice(6),
-		title,
-		parent: "Post",
-		handler: () => {
-			window.location.pathname = url;
-		},
-	}));
+  const blogPosts = postItems.map(([title, url]) => ({
+    id: url.slice(6),
+    title,
+    parent: "Post",
+    handler: () => {
+      window.location.pathname = url;
+    },
+  }));
 
-	const nav = [
-		["Home", "/"],
-		["Blog", "/blog"],
-		["Article Bookmarks", "articles"],
-		["Book Bookmarks", "books"],
-		["Video Bookmarks", "videos"],
-	].map(([title, path]) => ({
-		id: title,
-		title,
-		parent: "Page",
-		handler: () => {
-			window.location.pathname = path;
-		},
-	}));
+  const nav = [
+    ["Home", "/"],
+    ["Blog", "/blog"],
+    ["Article Bookmarks", "articles"],
+    ["Book Bookmarks", "books"],
+    ["Video Bookmarks", "videos"],
+  ].map(([title, path]) => ({
+    id: title,
+    title,
+    parent: "Page",
+    handler: () => {
+      window.location.pathname = path;
+    },
+  }));
 
-	ninjaKeys.data = [
-		{
-			id: "Theme",
-			title: "Toggle Theme",
-			handler: () => {
-				document.documentElement.classList.toggle("light");
-				const isLightClass =
-					document.documentElement.classList.contains("light");
-				localStorage.setItem("theme", isLightClass ? "light" : "dark");
-			},
-		},
-		{
-			id: "Page",
-			title: "Navigate To",
-			children: nav.map((item) => item.id),
-		},
-		...nav,
-		{
-			id: "Post",
-			title: "Open Blog Post",
-			children: blogPosts.map((item) => item.id),
-		},
-		...blogPosts,
-	];
+  ninjaKeys.data = [
+    {
+      id: "Theme",
+      title: "Toggle Theme",
+      handler: () => {
+        document.documentElement.classList.toggle("light");
+        const isLightClass = document.documentElement.classList.contains("light");
+        localStorage.setItem("theme", isLightClass ? "light" : "dark");
+      },
+    },
+    {
+      id: "Page",
+      title: "Navigate To",
+      children: nav.map((item) => item.id),
+    },
+    ...nav,
+    {
+      id: "Post",
+      title: "Open Blog Post",
+      children: blogPosts.map((item) => item.id),
+    },
+    ...blogPosts,
+  ];
 
-	commandPaletteCreated = true;
+  commandPaletteCreated = true;
 }

@@ -12,9 +12,9 @@ export function formatDate(dateString: string): string {
     return dateString; // Return original string if invalid
   }
 
-  return date.toLocaleDateString('en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
   });
 }
