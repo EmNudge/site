@@ -41,6 +41,7 @@ const postItems = slugs.map(({ title, url }) => [title, url] as const);
 
     <script type="module" define:vars={{ postItems }}>
 			import { addCommandPaletteConditionally } from '/libraries/command-palette.js';
+			import '/libraries/new-tag.js';
 			addCommandPaletteConditionally(postItems);
     </script>
   </body>

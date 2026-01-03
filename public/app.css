@@ -134,3 +134,18 @@ a {
 	animation-delay: calc(var(--curve) * var(--max-delay));
 	opacity: 0;
 }
+
+/* "new" tag for recent posts */
+.new-tag {
+	display: inline-block;
+	margin-left: 0.5rem;
+	padding: 0.1rem 0.4rem;
+	font-size: 0.7rem;
+	font-weight: bold;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	background: var(--active);
+	color: var(--background);
+	border-radius: 0.25rem;
+	vertical-align: middle;
+}

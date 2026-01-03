@@ -38,7 +38,7 @@ export async function getStaticPaths({ paginate }) {
   <div class="staggered">
     {
       postSlugs.map((post, i) => (
-        <post-container style={`--index: ${i}`} data-tags={post.tags}>
+        <post-container style={`--index: ${i}`} data-tags={post.tags} data-pub-date={post.pubDate}>
           <BlogStub {...post} disableImage={true} />
         </post-container>
       ))
