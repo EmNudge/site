@@ -25,13 +25,13 @@ const videos = await getVideos();
 
   <TitleSection title="Blog" link="/blog" staggered>
     <div class="newest-blog">
-      <post-container style={`--index: 0`}>
+      <post-container style={`--index: 0`} data-pub-date={posts[0].pubDate}>
         <BlogStub {...posts[0]} />
       </post-container>
     </div>
     {
       posts.slice(1, 5).map((post, i) => (
-        <post-container style={`--index: ${i + 1}`}>
+        <post-container style={`--index: ${i + 1}`} data-pub-date={post.pubDate}>
           <BlogStub {...post} />
         </post-container>
       ))
