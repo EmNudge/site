@@ -7,6 +7,7 @@
 	--light-active: #31616a;
 	--foreground: white;
 	--light-foreground: #dedede;
+	--muted: #888;
 	--bg-green: #193337;
 	--background: #131619;
 	--bg-contrast: #222;
@@ -38,6 +39,7 @@ body {
 		--light-active: #ffdac8;
 		--foreground: #222;
 		--light-foreground: #222;
+		--muted: #777;
 		--background: white;
 		--light-bg: #0001;
 		--bg-green: #e8f8fa;
@@ -61,6 +63,7 @@ body {
 	--light-active: #ffdac8;
 	--foreground: #222;
 	--light-foreground: #555;
+	--muted: #777;
 	--background: white;
 	--light-bg: #0001;
 	--bg-green: #e8f8fa;

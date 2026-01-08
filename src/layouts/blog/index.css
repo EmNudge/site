@@ -9,7 +9,7 @@
 }
 
 .title-container h5 {
-	opacity: 0.5;
+	color: var(--muted);
 	font-weight: 300;
 	margin-bottom: 5px;
 }
@@ -17,7 +17,7 @@
 .title-container p {
 	margin: 0;
 	padding-top: 10px;
-	opacity: 0.8;
+	color: var(--light-foreground);
 }
 
 @font-face {
