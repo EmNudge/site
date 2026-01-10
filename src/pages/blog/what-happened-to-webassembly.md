@@ -6,7 +6,7 @@ tags: coding
 layout: ../../layouts/Blog.astro
 discussions:
   - { site: lobsters, url: https://lobste.rs/s/elj9pq/what_happened_webassembly }
-  - { site: hn, url: https://news.ycombinator.com/item?id=46551044 }
+  - { site: hackernews, url: https://news.ycombinator.com/item?id=46551044 }
 ---
 
 On every WebAssembly discussion, there is inevitably one comment (often near the top) asking what happened.

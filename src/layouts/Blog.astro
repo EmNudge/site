@@ -22,13 +22,14 @@ interface Props {
 		title: string;
 		summary: string;
 		recording?: string;
+		discussions?: { site: string; url: string }[];
 	};
 	file: MdOrMdxFile | string;
 	url: string;
 	headings: MarkdownHeading[];
 }
 const { content, file, url, headings } = Astro.props;
-const { pubDate, title, summary, recording } = content;
+const { pubDate, title, summary, recording, discussions } = content;
 const minuteLength = getMinuteLengthFromFile(file);
 const slugs = await Astro.glob("../pages/blog/*.md*").then(getSlugs);
 const postItems = slugs.map(({ title, url }) => [title, url] as const);
@@ -62,7 +63,18 @@ import Toc from "../components/Toc.astro";
 		<Header />
 		<main>
 			<div class="title-container">
-				<h5>{formatDate(pubDate)} • {minuteLength} minute read</h5>
+				<h5>
+					<span>{formatDate(pubDate)} • {minuteLength} minute read</span>
+					{discussions && (
+						<span class="discussions">
+							{discussions.toSorted((a, b) => a.site.localeCompare(b.site)).map(disc => (
+								<a href={disc.url} target="_blank" rel="noopener">
+									<img src={`/icons/${disc.site}.png`} alt={disc.site} />
+								</a>
+							))}
+						</span>
+					)}
+				</h5>
 				<h1>{title}</h1>
 				<p>{summary}</p>
 				{recording && <SpeakAloud recording={recording} isDev={import.meta.env.DEV} client:load />}
@@ -122,8 +134,31 @@ import Toc from "../components/Toc.astro";
     max-height: 80%;
     max-width: 80%;
   }
+  .title-container h5 {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
   .title-container h1 {
     font-size: var(--font-huge);
+  }
+  .discussions {
+    display: flex;
+    gap: 0.5rem;
+    padding-left: 0.5rem;
+    border-left: 1px solid #fff3;
+  }
+  .discussions a {
+    display: flex;
+    align-items: center;
+  }
+  .discussions img {
+    height: 0.85rem;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .discussions img:hover {
+    opacity: 1;
   }
   .title-container p {
     font-size: var(--font-medium);
@@ -138,9 +173,6 @@ import Toc from "../components/Toc.astro";
   }
   .end-note {
     text-align: center;
-    opacity: 0.5;
-    &:hover {
-      opacity: 1;
-    }
+    color: var(--muted);
   }
 </style>

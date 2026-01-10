@@ -23,7 +23,7 @@ const {
         <div class="meta">{meta}</div>
         {discussions && <div class="discussions">
             <div class="divider"></div>
-            {discussions.map(disc => <a href={disc.url}>
+            {discussions.toSorted((a, b) => a.site.localeCompare(b.site)).map(disc => <a href={disc.url}>
                 <img src={`/icons/${disc.site}.png`} alt={disc.site} />
             </a>)}
         </div>}
@@ -65,7 +65,7 @@ const {
         align-items: center;
     }
     h5 .meta {
-        opacity: 0.5;
+        color: var(--muted);
     }
     .discussions {
         display: flex;
@@ -86,7 +86,7 @@ const {
     p {
         margin: 0;
         padding-top: 10px;
-        opacity: 0.8;
+        color: var(--light-foreground);
         line-height: 1.8;
     }
 </style>
