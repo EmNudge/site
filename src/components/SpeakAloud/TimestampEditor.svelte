@@ -1,15 +1,15 @@
 <script lang="ts">
-    import { createEventDispatcher } from "svelte";
+    import { createEventDispatcher, onMount, tick } from "svelte";
 
     export let timestamps: number[];
     export let paragraphs: HTMLParagraphElement[];
     export let currentIndex: number;
 
-    const dispatch = createEventDispatcher<{ update: number[] }>();
+    const dispatch = createEventDispatcher<{ update: number[]; seek: number }>();
 
     let editableTimestamps = timestamps.map(formatTime);
     let copied = false;
-    let collapsed = false;
+    let positions: { top: number; left: number }[] = [];
 
     function formatTime(seconds: number): string {
         const mins = Math.floor(seconds / 60);
@@ -17,15 +17,58 @@
         return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
     }
 
-    function parseTime(str: string): number {
+    function parseTime(str: string): number | null {
+        if (!str || !str.includes(":")) return null;
         const [mins, secs] = str.split(":").map(Number);
-        if (isNaN(mins) || isNaN(secs)) return 0;
+        if (isNaN(mins) || isNaN(secs)) return null;
         return mins * 60 + secs;
     }
 
-    function handleInput(index: number, value: string) {
-        editableTimestamps[index] = value;
-        const newTimestamps = editableTimestamps.map(parseTime);
+    function checkInvalid(index: number, timestamps: string[]): boolean {
+        const currentValue = parseTime(timestamps[index]);
+        if (currentValue === null) return true;
+
+        const prevValue = index > 0 ? parseTime(timestamps[index - 1]) : -1;
+        const nextValue = index < timestamps.length - 1
+            ? parseTime(timestamps[index + 1])
+            : Infinity;
+
+        if (prevValue !== null && currentValue < prevValue) return true;
+        if (nextValue !== null && currentValue > nextValue) return true;
+        return false;
+    }
+
+    let invalidStates: boolean[] = [];
+    $: invalidStates = editableTimestamps.map((_, i) => checkInvalid(i, editableTimestamps));
+
+    function handleInput(index: number) {
+        const filtered = editableTimestamps[index].replace(/[^\d.:]/g, "");
+        editableTimestamps[index] = filtered;
+        editableTimestamps = editableTimestamps;
+        dispatchUpdate();
+
+        if (index === currentIndex) {
+            const time = parseTime(filtered);
+            if (time !== null) {
+                dispatch("seek", time);
+            }
+        }
+    }
+
+    function adjustTime(index: number, delta: number) {
+        const current = parseTime(editableTimestamps[index]) ?? 0;
+        const newValue = Math.max(0, current + delta);
+        editableTimestamps[index] = formatTime(newValue);
+        editableTimestamps = editableTimestamps;
+        dispatchUpdate();
+
+        if (index === currentIndex) {
+            dispatch("seek", newValue);
+        }
+    }
+
+    function dispatchUpdate() {
+        const newTimestamps = editableTimestamps.map((t) => parseTime(t) ?? 0);
         dispatch("update", newTimestamps);
     }
 
@@ -36,156 +79,101 @@
         setTimeout(() => (copied = false), 2000);
     }
 
-    function getParagraphPreview(index: number): string {
-        if (!paragraphs[index]) return "";
-        const text = paragraphs[index].textContent || "";
-        return text.slice(0, 40) + (text.length > 40 ? "..." : "");
+    function updatePositions() {
+        positions = paragraphs.map((p) => {
+            const rect = p.getBoundingClientRect();
+            return {
+                top: rect.top + window.scrollY,
+                left: rect.left + window.scrollX,
+            };
+        });
     }
 
-    $: if (timestamps) {
-        editableTimestamps = timestamps.map(formatTime);
+    onMount(() => {
+        updatePositions();
+        window.addEventListener("resize", updatePositions);
+        window.addEventListener("scroll", updatePositions);
+        return () => {
+            window.removeEventListener("resize", updatePositions);
+            window.removeEventListener("scroll", updatePositions);
+        };
+    });
+
+    $: if (paragraphs) {
+        tick().then(updatePositions);
     }
 </script>
 
-<div class="timestamp-editor" class:collapsed>
-    <div class="header">
-        <button class="collapse-btn" on:click={() => (collapsed = !collapsed)} aria-label={collapsed ? "Expand" : "Collapse"}>
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor">
-                <path d={collapsed ? "M3 5l3 3 3-3" : "M3 7l3-3 3 3"} stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-        </button>
-        <h3>Timestamp Editor</h3>
-        {#if !collapsed}
-            <button class="copy-btn" on:click={handleCopy}>
-                {copied ? "Copied!" : "Copy All"}
-            </button>
+<div class="timestamp-inputs">
+    {#each editableTimestamps as ts, i}
+        {#if positions[i]}
+            <div
+                class="input-wrapper"
+                class:active={i === currentIndex}
+                class:invalid={invalidStates[i]}
+                style="top: {positions[i].top - 10}px; left: {positions[i].left - 100}px;"
+            >
+                <button class="adj-btn" on:click={() => adjustTime(i, -1)}>-</button>
+                <input
+                    type="text"
+                    bind:value={editableTimestamps[i]}
+                    on:input={() => handleInput(i)}
+                    on:blur={() => editableTimestamps = editableTimestamps}
+                />
+                <button class="adj-btn" on:click={() => adjustTime(i, 1)}>+</button>
+            </div>
         {/if}
-    </div>
-    {#if !collapsed}
-        <div class="list">
-            {#each editableTimestamps as ts, i}
-                <div class="row" class:active={i === currentIndex}>
-                    <span class="index">{i + 1}</span>
-                    <input
-                        type="text"
-                        value={ts}
-                        on:input={(e) => handleInput(i, e.currentTarget.value)}
-                        pattern="\d{2}:\d{2}"
-                    />
-                    <span class="preview">{getParagraphPreview(i)}</span>
-                </div>
-            {/each}
-        </div>
-    {/if}
+    {/each}
 </div>
 
+<button class="copy-btn" on:click={handleCopy}>
+    {copied ? "Copied!" : "Copy"}
+</button>
+
 <style>
-    .timestamp-editor {
-        position: fixed;
-        top: 10px;
-        left: 10px;
-        width: 350px;
-        max-height: 80vh;
+    .timestamp-inputs {
+        position: absolute;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        z-index: 1000;
+    }
+
+    .input-wrapper {
+        position: absolute;
+        pointer-events: auto;
+        display: flex;
+        align-items: center;
+        gap: 2px;
+    }
+
+    .adj-btn {
         background: #1a1a2e;
         border: 1px solid #4a4a6a;
-        border-radius: 8px;
+        color: #888;
+        padding: 4px 5px;
+        border-radius: 3px;
         font-family: monospace;
-        font-size: 12px;
-        z-index: 10000;
-        display: flex;
-        flex-direction: column;
+        font-size: 9px;
+        cursor: pointer;
+        line-height: 1;
     }
 
-    .timestamp-editor.collapsed {
-        width: auto;
-    }
-
-    .timestamp-editor.collapsed .header {
-        border-bottom: none;
-        border-radius: 8px;
-    }
-
-    .header {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        padding: 8px 12px;
-        border-bottom: 1px solid #4a4a6a;
+    .adj-btn:hover {
         background: #252542;
-        border-radius: 8px 8px 0 0;
-    }
-
-    h3 {
-        margin: 0;
-        font-size: 14px;
         color: #e0e0e0;
-        flex: 1;
-    }
-
-    .collapse-btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: none;
-        border: none;
-        color: #888;
-        cursor: pointer;
-        padding: 4px;
-        border-radius: 4px;
-        transition: color 0.15s ease, background 0.15s ease;
-    }
-
-    .collapse-btn:hover {
-        color: #e0e0e0;
-        background: #3a3a5a;
-    }
-
-    .copy-btn {
-        background: #4a9eff;
-        color: white;
-        border: none;
-        padding: 4px 12px;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 12px;
-    }
-
-    .copy-btn:hover {
-        background: #3a8eef;
-    }
-
-    .list {
-        overflow-y: auto;
-        padding: 8px;
-    }
-
-    .row {
-        display: grid;
-        grid-template-columns: 24px 60px 1fr;
-        gap: 8px;
-        align-items: center;
-        padding: 4px;
-        border-radius: 4px;
-    }
-
-    .row.active {
-        background: #3a3a5a;
-    }
-
-    .index {
-        color: #888;
-        text-align: right;
     }
 
     input {
-        background: #2a2a4a;
+        width: 54px;
+        background: #1a1a2e;
         border: 1px solid #4a4a6a;
         color: #e0e0e0;
-        padding: 4px 8px;
+        padding: 4px 6px;
         border-radius: 4px;
         font-family: monospace;
-        font-size: 12px;
-        width: 100%;
+        font-size: 11px;
+        text-align: center;
     }
 
     input:focus {
@@ -193,10 +181,32 @@
         border-color: #4a9eff;
     }
 
-    .preview {
-        color: #888;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
+    .input-wrapper.active input {
+        border-color: #4a9eff;
+        background: #252542;
+    }
+
+    .input-wrapper.invalid input {
+        border-color: #ff4a4a;
+        background: #2e1a1a;
+    }
+
+    .copy-btn {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        background: #4a9eff;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 12px;
+        font-family: monospace;
+        z-index: 10000;
+    }
+
+    .copy-btn:hover {
+        background: #3a8eef;
     }
 </style>

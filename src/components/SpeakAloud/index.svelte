@@ -137,6 +137,11 @@ let totalProgress = 0;
 function handleTimestampUpdate(e: CustomEvent<number[]>) {
 	timestamps = e.detail;
 }
+
+function handleTimestampSeek(e: CustomEvent<number>) {
+	audio.currentTime = e.detail;
+	totalProgress = audio.currentTime / audio.duration;
+}
 </script>
 
 {#if audio}
@@ -178,6 +183,7 @@ function handleTimestampUpdate(e: CustomEvent<number[]>) {
             {paragraphs}
             currentIndex={paragraphIndex}
             on:update={handleTimestampUpdate}
+            on:seek={handleTimestampSeek}
         />
     {/if}
 {/if}
