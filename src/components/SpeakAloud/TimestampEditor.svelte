@@ -7,21 +7,23 @@
 
     const dispatch = createEventDispatcher<{ update: number[]; seek: number }>();
 
-    let editableTimestamps = timestamps.map(formatTime);
+    $: editableTimestamps = timestamps.map(formatTime);
     let copied = false;
     let positions: { top: number; left: number }[] = [];
 
     function formatTime(seconds: number): string {
         const mins = Math.floor(seconds / 60);
-        const secs = Math.floor(seconds % 60);
-        return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
+        const secs = seconds % 60;
+        return `${mins.toString().padStart(2, "0")}:${secs.toFixed(2).padStart(5, "0")}`;
     }
 
     function parseTime(str: string): number | null {
         if (!str || !str.includes(":")) return null;
-        const [mins, secs] = str.split(":").map(Number);
-        if (isNaN(mins) || isNaN(secs)) return null;
-        return mins * 60 + secs;
+        const [mins, secs] = str.split(":");
+        const minsNum = parseInt(mins, 10);
+        const secsNum = parseFloat(secs);
+        if (isNaN(minsNum) || isNaN(secsNum)) return null;
+        return minsNum * 60 + secsNum;
     }
 
     function checkInvalid(index: number, timestamps: string[]): boolean {
@@ -99,7 +101,7 @@
         };
     });
 
-    $: if (paragraphs) {
+    $: if (typeof window !== "undefined" && paragraphs) {
         tick().then(updatePositions);
     }
 </script>
@@ -111,16 +113,16 @@
                 class="input-wrapper"
                 class:active={i === currentIndex}
                 class:invalid={invalidStates[i]}
-                style="top: {positions[i].top - 10}px; left: {positions[i].left - 100}px;"
+                style="top: {positions[i].top - 20}px; left: {positions[i].left - 100}px;"
             >
-                <button class="adj-btn" on:click={() => adjustTime(i, -1)}>-</button>
+                <button class="adj-btn" on:click={() => adjustTime(i, -0.5)}>-</button>
                 <input
                     type="text"
                     bind:value={editableTimestamps[i]}
                     on:input={() => handleInput(i)}
                     on:blur={() => editableTimestamps = editableTimestamps}
                 />
-                <button class="adj-btn" on:click={() => adjustTime(i, 1)}>+</button>
+                <button class="adj-btn" on:click={() => adjustTime(i, 0.5)}>+</button>
             </div>
         {/if}
     {/each}
@@ -165,7 +167,7 @@
     }
 
     input {
-        width: 54px;
+        width: 68px;
         background: #1a1a2e;
         border: 1px solid #4a4a6a;
         color: #e0e0e0;

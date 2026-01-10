@@ -48,6 +48,7 @@ onMount(async () => {
 	};
 	const article = document.querySelector("article");
 	article.addEventListener("click", articleClickListener);
+	window.addEventListener("keydown", handleKeydown);
 
 	audio.addEventListener("ended", () => {
 		paragraphHighlighter.clear();
@@ -56,11 +57,13 @@ onMount(async () => {
 
 	return () => {
 		article.removeEventListener("click", articleClickListener);
+		window.removeEventListener("keydown", handleKeydown);
 	};
 });
 
 onDestroy(() => {
 	showControls = false;
+	window.removeEventListener("keydown", handleKeydown);
 	if (audio) {
 		paragraphHighlighter.clear();
 		audio.pause();
@@ -130,6 +133,29 @@ function closeAudioControls() {
 	audio.pause();
 	audio.currentTime = 0;
 	paragraphHighlighter.clear();
+}
+
+function handleKeydown(e: KeyboardEvent) {
+	if (!showControls) return;
+
+	if (e.code === "Space") {
+		e.preventDefault();
+		handleTogglePlay();
+	} else if (e.code === "ArrowLeft") {
+		e.preventDefault();
+		handleSkip({ detail: -1 } as CustomEvent<number>);
+	} else if (e.code === "ArrowRight") {
+		e.preventDefault();
+		handleSkip({ detail: 1 } as CustomEvent<number>);
+	} else if (e.code === "ArrowUp" && timestamps) {
+		e.preventDefault();
+		timestamps[paragraphIndex] = Math.max(0, timestamps[paragraphIndex] + 0.5);
+		timestamps = timestamps;
+	} else if (e.code === "ArrowDown" && timestamps) {
+		e.preventDefault();
+		timestamps[paragraphIndex] = Math.max(0, timestamps[paragraphIndex] - 0.5);
+		timestamps = timestamps;
+	}
 }
 
 let totalProgress = 0;
