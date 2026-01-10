@@ -91,13 +91,27 @@
         });
     }
 
+    function handleGlobalKeydown(e: KeyboardEvent) {
+        if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+
+        if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            adjustTime(currentIndex, 0.5);
+        } else if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            adjustTime(currentIndex, -0.5);
+        }
+    }
+
     onMount(() => {
         updatePositions();
         window.addEventListener("resize", updatePositions);
         window.addEventListener("scroll", updatePositions);
+        window.addEventListener("keydown", handleGlobalKeydown);
         return () => {
             window.removeEventListener("resize", updatePositions);
             window.removeEventListener("scroll", updatePositions);
+            window.removeEventListener("keydown", handleGlobalKeydown);
         };
     });
 
@@ -121,6 +135,10 @@
                     bind:value={editableTimestamps[i]}
                     on:input={() => handleInput(i)}
                     on:blur={() => editableTimestamps = editableTimestamps}
+                    on:keydown={(e) => {
+                        if (e.key === 'ArrowUp') { e.preventDefault(); adjustTime(i, 0.5); }
+                        if (e.key === 'ArrowDown') { e.preventDefault(); adjustTime(i, -0.5); }
+                    }}
                 />
                 <button class="adj-btn" on:click={() => adjustTime(i, 0.5)}>+</button>
             </div>

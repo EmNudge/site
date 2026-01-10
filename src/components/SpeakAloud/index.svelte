@@ -137,6 +137,7 @@ function closeAudioControls() {
 
 function handleKeydown(e: KeyboardEvent) {
 	if (!showControls) return;
+	if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
 
 	if (e.code === "Space") {
 		e.preventDefault();
@@ -147,14 +148,6 @@ function handleKeydown(e: KeyboardEvent) {
 	} else if (e.code === "ArrowRight") {
 		e.preventDefault();
 		handleSkip({ detail: 1 } as CustomEvent<number>);
-	} else if (e.code === "ArrowUp" && timestamps) {
-		e.preventDefault();
-		timestamps[paragraphIndex] = Math.max(0, timestamps[paragraphIndex] + 0.5);
-		timestamps = timestamps;
-	} else if (e.code === "ArrowDown" && timestamps) {
-		e.preventDefault();
-		timestamps[paragraphIndex] = Math.max(0, timestamps[paragraphIndex] - 0.5);
-		timestamps = timestamps;
 	}
 }
 
@@ -173,12 +166,12 @@ function handleTimestampSeek(e: CustomEvent<number>) {
 {#if audio}
     <div class="button-container">
         {#if !showControls}
-            <button on:click={() => (showControls = true)}>
+            <button class="pill" on:click={() => (showControls = true)}>
                 <span>Read This Article Aloud</span>
                 <img src="/icons/volume.svg" alt="volume" />
             </button>
         {:else}
-            <button on:click={closeAudioControls}>
+            <button class="pill" on:click={closeAudioControls}>
                 <span>Close Audio Controls</span>
                 <img src="/icons/volume.svg" alt="volume" />
             </button>
@@ -218,25 +211,31 @@ function handleTimestampSeek(e: CustomEvent<number>) {
     .button-container {
         margin-top: 15px;
     }
-    .button-container button {
-        background: var(--light-active);
-        color: var(--foreground);
-        border: none;
-        border-radius: 6px;
-        padding: 8px 12px;
+    @media (min-width: 600px) {
+        .button-container {
+            float: right;
+            margin-top: -3.5rem;
+        }
+    }
+    .pill {
+        background: none;
+        color: var(--muted);
+        border: 1px solid #fff4;
+        border-radius: 1rem;
+        padding: 0.35rem 0.75rem;
         cursor: pointer;
         display: flex;
         align-items: center;
-        gap: 8px;
-        font-size: var(--font-small);
-        transition: opacity 0.15s ease;
+        gap: 6px;
+        font-size: 0.85rem;
+        transition: 0.15s;
     }
-    .button-container button:hover {
-        opacity: 0.9;
+    .pill:hover {
+        border-color: var(--foreground);
     }
-    .button-container button img {
+    .pill img {
         height: 14px;
-        opacity: 0.8;
+        opacity: 0.6;
     }
     .secondary-controls {
         display: flex;

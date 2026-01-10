@@ -91,7 +91,7 @@ article.with-audio p:before {
 }
 
 article.with-audio p.speaking:before {
-	background: #ff01;
+	background: color-mix(in srgb, var(--active) 10%, transparent);
 }
 
 article > ol > li,
