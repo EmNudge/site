@@ -77,7 +77,7 @@ import Toc from "../components/Toc.astro";
 				</h5>
 				<h1>{title}</h1>
 				<p>{summary}</p>
-				{recording && <SpeakAloud recording={recording} isDev={import.meta.env.DEV} client:load />}
+				{recording && <SpeakAloud recording={recording} isDev={import.meta.env.DEV} client:only="svelte" />}
 			</div>
 			<article class={recording ? "with-audio" : undefined}>
 				<Toc headings={headings} />

@@ -4,7 +4,7 @@ const getTimestamps = async (baseUrl: string) => {
   const timestampsText = await fetch(baseUrl + ".timestamps").then((r) => r.text());
   return timestampsText.split(/\s+/).map((time) => {
     const [minutes, seconds] = time.split(":");
-    return Number(minutes) * 60 + Number(seconds);
+    return parseInt(minutes, 10) * 60 + parseFloat(seconds);
   });
 };
 
