@@ -1,6 +1,7 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import CommandPalette from "../components/CommandPalette/index.svelte";
 import { getSlugs } from "../data/blogs";
 
 const { title } = Astro.props;
@@ -37,12 +38,10 @@ const postItems = slugs.map(({ title, url }) => [title, url] as const);
     </main>
     <Footer />
 
-    <ninja-keys></ninja-keys>
+    <CommandPalette postItems={postItems} client:only="svelte" />
 
-    <script type="module" define:vars={{ postItems }}>
-			import { addCommandPaletteConditionally } from '/libraries/command-palette.js';
+    <script type="module">
 			import '/libraries/new-tag.js';
-			addCommandPaletteConditionally(postItems);
     </script>
   </body>
 </html>

@@ -31,7 +31,7 @@ export interface Post {
   url: string
   minuteLength: number
   recording?: string
-  discussions?: { site: string; url: string }[]
+  discussions?: { site: DiscussionSite; url: string }[]
 }
 
 type BlogPostFile = MarkdownInstance<Record<string, any> & Omit<Post, "minuteLength" | "url">>
