@@ -1,10 +1,12 @@
 ---
+import { DISCUSSION_SITES, type DiscussionSite } from "../data/blogs";
+
 interface Props {
 	url: string;
 	meta: string;
 	title: string;
 	description?: string;
-	discussions?: { site: string; url: string }[];
+	discussions?: { site: DiscussionSite; url: string }[];
 	withDivider?: boolean;
 }
 
@@ -24,7 +26,8 @@ const {
         {discussions && <div class="discussions">
             <div class="divider"></div>
             {discussions.toSorted((a, b) => a.site.localeCompare(b.site)).map(disc => <a href={disc.url}>
-                <img src={`/icons/${disc.site}.png`} alt={disc.site} />
+                <img class="icon-dark" src={DISCUSSION_SITES[disc.site].dark} alt={disc.site} />
+                <img class="icon-light" src={DISCUSSION_SITES[disc.site].light} alt={disc.site} />
             </a>)}
         </div>}
     </h5>
@@ -82,6 +85,23 @@ const {
     }
     .discussions img {
         height: 0.75rem;
+    }
+    .discussions .icon-light {
+        display: none;
+    }
+    @media (prefers-color-scheme: light) {
+        .discussions .icon-dark {
+            display: none;
+        }
+        .discussions .icon-light {
+            display: block;
+        }
+    }
+    :global(:root.light) .discussions .icon-dark {
+        display: none;
+    }
+    :global(:root.light) .discussions .icon-light {
+        display: block;
     }
     p {
         margin: 0;

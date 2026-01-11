@@ -7,6 +7,8 @@ import SpeakAloud from "../components/SpeakAloud/index.svelte";
 
 import type { MarkdownHeading } from "astro";
 import {
+	DISCUSSION_SITES,
+	type DiscussionSite,
 	getMinuteLengthFromFile,
 	getSlugs,
 	type MdOrMdxFile,
@@ -22,7 +24,7 @@ interface Props {
 		title: string;
 		summary: string;
 		recording?: string;
-		discussions?: { site: string; url: string }[];
+		discussions?: { site: DiscussionSite; url: string }[];
 	};
 	file: MdOrMdxFile | string;
 	url: string;
@@ -30,6 +32,19 @@ interface Props {
 }
 const { content, file, url, headings } = Astro.props;
 const { pubDate, title, summary, recording, discussions } = content;
+
+// Validate discussion sites at build time
+if (discussions) {
+	for (const disc of discussions) {
+		if (!(disc.site in DISCUSSION_SITES)) {
+			throw new Error(
+				`Unknown discussion site "${disc.site}" in ${url}. ` +
+				`Valid sites are: ${Object.keys(DISCUSSION_SITES).join(", ")}. ` +
+				`Add the site to DISCUSSION_SITES in src/data/blogs.ts if it's a new platform.`
+			);
+		}
+	}
+}
 const minuteLength = getMinuteLengthFromFile(file);
 const slugs = await Astro.glob("../pages/blog/*.md*").then(getSlugs);
 const postItems = slugs.map(({ title, url }) => [title, url] as const);
@@ -69,7 +84,8 @@ import Toc from "../components/Toc.astro";
 						<span class="discussions">
 							{discussions.toSorted((a, b) => a.site.localeCompare(b.site)).map(disc => (
 								<a href={disc.url} target="_blank" rel="noopener">
-									<img src={`/icons/${disc.site}.png`} alt={disc.site} />
+									<img class="icon-dark" src={DISCUSSION_SITES[disc.site].dark} alt={disc.site} />
+									<img class="icon-light" src={DISCUSSION_SITES[disc.site].light} alt={disc.site} />
 								</a>
 							))}
 						</span>
@@ -159,6 +175,23 @@ import Toc from "../components/Toc.astro";
   }
   .discussions img:hover {
     opacity: 1;
+  }
+  .discussions .icon-light {
+    display: none;
+  }
+  @media (prefers-color-scheme: light) {
+    .discussions .icon-dark {
+      display: none;
+    }
+    .discussions .icon-light {
+      display: block;
+    }
+  }
+  :global(:root.light) .discussions .icon-dark {
+    display: none;
+  }
+  :global(:root.light) .discussions .icon-light {
+    display: block;
   }
   .title-container p {
     font-size: var(--font-medium);
