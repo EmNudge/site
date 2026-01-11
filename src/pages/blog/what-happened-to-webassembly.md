@@ -93,7 +93,7 @@ You can compile many languages to Wasm.
 
 Notable among them are Rust, C, Zig, Go, Kotlin, Java, and C#. Commonly interpreted languages have even had their runtimes compiled to WebAssembly, such as Python, PHP, and Ruby. There are also many languages that solely compile to WebAssembly, such as [AssemblyScript](https://www.assemblyscript.org/), [Grain](https://grain-lang.org/), and [MoonBit](https://www.moonbitlang.com/).
 
-For many of these, it is important not to require a garbage-collector. For others, it would be helpful to include one. Wasm allows for both (with the GC option being much more recent).
+For many of these, it is important not to require a garbage-collector. For others, it would be helpful to include one. Wasm allows for both (with the GC option being much more recent).[^wasmgc]
 
 Your browser includes a Wasm “engine”, making this doubly an attractive compilation target. This means without much setup, your phone and laptop can run Wasm programs already. 
 
@@ -155,7 +155,7 @@ It seems the most common use of Wasm is bridging the language gap. Certain ecosy
 
 # Speed and size revisited
 
-Browsers run WebAssembly with roughly the same pipeline that runs JavaScript. This seemingly puts a hard limit on the performance of Wasm applications, but they will often be more or less performant due to their architecture or domain.
+Browsers run WebAssembly with roughly the same pipeline that runs JavaScript. This seemingly puts a hard limit on the performance of Wasm applications, but they will often be more or less performant due to their architecture or domainSystems like WASI allow for some standardization over APIs, but a glue layer doesn't seem likely to go away. .
 
 Using languages with richer type systems and more sophisticated optimizing compilers can produce more efficient programs. The JIT model of engines like V8 might prevent optimizations if the cost of optimizing exceeds the gains from running the optimized code. You might avoid [megamorphic functions](https://mrale.ph/blog/2015/01/11/whats-up-with-monomorphism.html) more easily by avoiding JavaScript. 
 
@@ -163,7 +163,7 @@ However, there is a cost to crossing the host-program boundary, especially if cl
 
 A small API surface also means binary bloat as system APIs are more often re-created than imported. There are standards like [WASI](https://wasi.dev/) which aim to help here. Still, there is no native string type ([yet](https://github.com/WebAssembly/stringref)).
 
-Zig seems to produce the smallest Wasm binaries among mainstream languages.
+Zig seems to produce the smallest Wasm binaries among mainstream languages.[^zig]
 
 Practical performance of Wasm in native contexts (i.e. outside of a JS engine) seems to suffer for a variety of reasons. Threading and IO of any sort incurs some cost. Memory usage is larger. Cold start is slower.
 
@@ -175,7 +175,7 @@ Clearly things are happening.
 
 The [Wasm IO YouTube channel](https://www.youtube.com/@Wasmio) has lots of talks worth watching. 
 
-In fact, standards and language development in Wasm has stirred significant controversy internally. There is a lot of desire for advancement, but standardization means decisions are hard to reverse. For many, things are moving too quickly and in the wrong direction.
+In fact, standards and language development in Wasm has stirred significant controversy internally. There is a lot of desire for advancement, but standardization means decisions are hard to reverse. For many, things are moving too quickly and in the wrong direction. [^too-quickly]
 
 There is the “more official” [W3C working group](https://www.w3.org/groups/wg/Wasm/) and then the “less official” [Bytecode Alliance](https://github.com/bytecodealliance) which works much more quickly and is centered around tooling and language development outside of Wasm directly (e.g. on [WIT](https://component-model.bytecodealliance.org/design/wit.html) and the [WebAssembly Component Model](https://component-model.bytecodealliance.org/)).
 
@@ -185,12 +185,22 @@ So why do people think nothing has happened?
 
 I figure most are under the impression that the advancement of this technology would have had a more visible impact on their work. That they would intentionally reach for and use Wasm tools. 
 
-Many seem to think there is a path to Wasm replacing JavaScript within the browser—that they might not need to include a `.js` file at all. This is very unlikely.
+Many seem to think there is a path to Wasm replacing JavaScript within the browser—that they might not need to include a `.js` file at all. This is very unlikely. [^dom]
 
 However, you can use frameworks like [Blazor](https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor) and [Leptos](https://github.com/leptos-rs/leptos) without being aware or involved in the produced JS artifacts. 
 
 Mostly, Wasm tools have been adopted and used by library authors, not application developers. The internals are opaque. This is fine, probably. 
 
-Separately, I think the community is not helped by the philosophy of purposely obfuscating teaching material around Wasm. This is a fight I lost a few times. 
+Separately, I think the community is not helped by the philosophy of purposely obfuscating teaching material around Wasm. This is a fight I lost a few times. [^teaching]
 
-For now, maybe check out [watlings](https://github.com/EmNudge/watlings). I’ll expand it at some point, surely.
+For now, maybe check out [watlings](https://github.com/EmNudge/watlings). I'll expand it at some point, surely.
+
+[^wasmgc]: WasmGC shipped in Chrome 119 and Firefox 120 (late 2023), with Safari 18.2 following in December 2024. Before then, some projects would ship their GC into the binary.
+
+[^too-quickly]: See [this comment](https://news.ycombinator.com/item?id=46553040)
+
+[^dom]: Systems like WASI allow for some standardization over APIs, but a glue layer doesn't seem likely to go away. There is no active browser vendor work to change this and the benefits to building anything here are not clear.
+
+[^zig]: Zig seems to get closest to C at baseline and surpasses C once you start aggressively optimizing (given the same effort in both languages). Among C, Zig, Tinygo, and Rust, the worst at baseline is Rust, but it surpasses Tinygo (but not C) after aggressive optimizations. Still, it lands at 3x the size of the Zig binary. See [code samples](https://gist.github.com/EmNudge/f6c94d84c68cd678d3c6f06474441b80).
+
+[^teaching]: See [this reply](https://lobste.rs/s/elj9pq/what_happened_webassembly#c_n8n5ub)

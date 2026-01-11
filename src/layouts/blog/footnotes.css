@@ -1,0 +1,71 @@
+/* Footnote references in text (superscript numbers) */
+[data-footnote-ref] {
+	font-size: 0.75em;
+	vertical-align: super;
+	text-decoration: none;
+	padding: 0 0.1em;
+}
+
+[data-footnote-ref]::before {
+	content: "[";
+}
+
+[data-footnote-ref]::after {
+	content: "]";
+}
+
+/* Footnotes section at the bottom */
+.footnotes {
+	margin-top: 3rem;
+	padding-top: 1.5rem;
+	border-top: 1px solid var(--muted);
+	font-size: 0.9em;
+}
+
+.footnotes h2 {
+	font-size: 1.2rem;
+	font-weight: 600;
+	margin-bottom: 1rem;
+	color: var(--muted);
+}
+
+.footnotes ol {
+	padding-left: 1.5rem;
+	margin: 0;
+}
+
+.footnotes li {
+	margin-bottom: 0.75rem;
+}
+
+.footnotes li:target {
+	background: var(--bg-green);
+	border-radius: 4px;
+	padding: 0.25rem 0.5rem;
+	margin-left: -0.5rem;
+}
+
+.footnotes p {
+	margin: 0;
+	display: inline;
+}
+
+/* Backref link (arrow back to reference) */
+[data-footnote-backref] {
+	margin-left: 0.25rem;
+	text-decoration: none;
+	font-family: sans-serif;
+}
+
+/* Screen reader only (for accessibility labels) */
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border: 0;
+}

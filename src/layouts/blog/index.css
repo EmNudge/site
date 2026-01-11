@@ -3,6 +3,7 @@
 @import url("./code.css");
 @import url("./code-runner.css");
 @import url("./quote.css");
+@import url("./footnotes.css");
 
 .title-container {
 	margin: 40px 0;
