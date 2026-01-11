@@ -4,6 +4,7 @@ import Footer from "../components/Footer.astro";
 
 import PictureZoom from "../components/PictureZoom.svelte";
 import SpeakAloud from "../components/SpeakAloud/index.svelte";
+import CommandPalette from "../components/CommandPalette/index.svelte";
 
 import type { MarkdownHeading } from "astro";
 import {
@@ -116,11 +117,7 @@ import Toc from "../components/Toc.astro";
 		<Footer />
 		<PictureZoom client:load />
 		<script src="../components/CodeRunner/index.ts"></script>
-		<ninja-keys></ninja-keys>
-		<script type="module" define:vars={{ postItems }}>
-			import { addCommandPaletteConditionally } from "/libraries/command-palette.js";
-			addCommandPaletteConditionally(postItems);
-		</script>
+		<CommandPalette postItems={postItems} client:only="svelte" />
 	</body>
 </html>
 
