@@ -16,7 +16,7 @@ export let isDev: boolean = false;
 
 let audio: HTMLAudioElement;
 let timestamps: number[];
-let paragraphs: HTMLParagraphElement[];
+let paragraphs: HTMLElement[];
 let paragraphHighlighter: {
 	clear(): void;
 	highlight(newIndex: number): void;
@@ -27,7 +27,7 @@ onMount(async () => {
 	const data = await getDataForRecording(recording);
 	audio = data.audio;
 	timestamps = data.timestamps;
-	paragraphs = Array.from(document.querySelectorAll("article > p"));
+	paragraphs = Array.from(document.querySelectorAll("article > p, article > blockquote"));
 	paragraphHighlighter = getParagraphHighlighter(paragraphs);
 
 	for (const [index, paragraph] of paragraphs.entries()) {
@@ -37,9 +37,11 @@ onMount(async () => {
 		const audioControls = document.querySelector(".speak-aloud-controls");
 		if (!audioControls || audioControls.classList.contains("hide")) return;
 
-		if (!(event.target instanceof HTMLParagraphElement)) return;
+		const target = event.target as HTMLElement;
+		const clickable = target.closest("article > p, article > blockquote") as HTMLElement | null;
+		if (!clickable) return;
 
-		const index = Number(event.target.dataset.index);
+		const index = Number(clickable.dataset.index);
 		if (Number.isNaN(index)) {
 			console.error("Cannot find data index");
 			return;
@@ -161,6 +163,29 @@ function handleTimestampSeek(e: CustomEvent<number>) {
 	audio.currentTime = e.detail;
 	totalProgress = audio.currentTime / audio.duration;
 }
+
+function handleTimestampDelete(e: CustomEvent<number>) {
+	const index = e.detail;
+	if (timestamps.length <= 1) return; // Don't delete the last one
+
+	// Remove the timestamp
+	timestamps = [...timestamps.slice(0, index), ...timestamps.slice(index + 1)];
+
+	// Remove the paragraph from tracking and re-index
+	const removed = paragraphs[index];
+	removed.removeAttribute("data-index");
+	paragraphs = [...paragraphs.slice(0, index), ...paragraphs.slice(index + 1)];
+
+	// Re-index remaining paragraphs
+	for (const [i, paragraph] of paragraphs.entries()) {
+		paragraph.setAttribute("data-index", i.toString());
+	}
+
+	// Adjust current index if needed
+	if (paragraphIndex >= paragraphs.length) {
+		paragraphIndex = paragraphs.length - 1;
+	}
+}
 </script>
 
 {#if audio}
@@ -203,6 +228,7 @@ function handleTimestampSeek(e: CustomEvent<number>) {
             currentIndex={paragraphIndex}
             on:update={handleTimestampUpdate}
             on:seek={handleTimestampSeek}
+            on:delete={handleTimestampDelete}
         />
     {/if}
 {/if}

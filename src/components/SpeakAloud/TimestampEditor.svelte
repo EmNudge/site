@@ -2,10 +2,10 @@
     import { createEventDispatcher, onMount, tick } from "svelte";
 
     export let timestamps: number[];
-    export let paragraphs: HTMLParagraphElement[];
+    export let paragraphs: HTMLElement[];
     export let currentIndex: number;
 
-    const dispatch = createEventDispatcher<{ update: number[]; seek: number }>();
+    const dispatch = createEventDispatcher<{ update: number[]; seek: number; delete: number }>();
 
     $: editableTimestamps = timestamps.map(formatTime);
     let copied = false;
@@ -100,6 +100,9 @@
         } else if (e.key === 'ArrowDown') {
             e.preventDefault();
             adjustTime(currentIndex, -0.5);
+        } else if (e.key === 'd' || e.key === 'D') {
+            e.preventDefault();
+            dispatch("delete", currentIndex);
         }
     }
 

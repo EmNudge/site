@@ -5,6 +5,7 @@ summary: The only skill that matters
 tags: general
 icon: technologies/languages/javascript
 layout: ../../layouts/Blog.astro
+recording: know-what-you-like
 ---
 One of the many thorns of consumerism is being told what you should buy. It's an ordeal I'm often happy to pass off to a google search with the included "site:reddit.com" substring. That way, only enthusiastic hobbyists and bots are telling me what to purchase.
 
