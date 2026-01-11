@@ -67,6 +67,9 @@ def extract_paragraphs(markdown_path: Path) -> list[str]:
 
         # Clean markdown formatting
         clean_text = stripped
+
+        # Strip blockquote prefixes (handles nested blockquotes like "> > text")
+        clean_text = re.sub(r'^(?:>\s*)+', '', clean_text)
         clean_text = re.sub(r'\*\*([^*]+)\*\*', r'\1', clean_text)  # bold
         clean_text = re.sub(r'\*([^*]+)\*', r'\1', clean_text)      # italic
         clean_text = re.sub(r'\[([^\]]+)\]\([^)]+\)', r'\1', clean_text)  # links

@@ -45,7 +45,7 @@ export const getParagraphIndex = (currentTime: number, timestamps: number[]) => 
 };
 
 export const updateParagraphHighlight = (
-  paragraphs: HTMLParagraphElement[],
+  paragraphs: HTMLElement[],
   oldIndex: number,
   newIndex: number,
 ) => {
@@ -65,7 +65,7 @@ export const setAudio = (audio: HTMLAudioElement, isPlaying: boolean) => {
   else audio.pause();
 };
 
-export const getParagraphHighlighter = (paragraphs: HTMLParagraphElement[]) => {
+export const getParagraphHighlighter = (paragraphs: HTMLElement[]) => {
   let index = -1;
 
   return {
