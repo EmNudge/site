@@ -1,6 +1,27 @@
 import type { MarkdownInstance } from "astro"
 import { readFile } from "node:fs/promises"
 
+/**
+ * Maps discussion site identifiers to their icon paths for dark and light modes.
+ * If a markdown file uses a site not listed here, the build will fail.
+ */
+export const DISCUSSION_SITES = {
+  devto: {
+    dark: "/icons/discussions/dark/devto.svg",
+    light: "/icons/discussions/light/devto.svg",
+  },
+  hackernews: {
+    dark: "/icons/discussions/dark/hackernews.png",
+    light: "/icons/discussions/light/hackernews.png",
+  },
+  lobsters: {
+    dark: "/icons/discussions/dark/lobsters.png",
+    light: "/icons/discussions/light/lobsters.png",
+  },
+} as const;
+
+export type DiscussionSite = keyof typeof DISCUSSION_SITES;
+
 export interface Post {
   draft?: true
   tags: string
