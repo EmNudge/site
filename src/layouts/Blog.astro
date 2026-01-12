@@ -49,6 +49,9 @@ if (discussions) {
 const minuteLength = getMinuteLengthFromFile(file);
 const slugs = await Astro.glob("../pages/blog/*.md*").then(getSlugs);
 const postItems = slugs.map(({ title, url }) => [title, url] as const);
+
+const noteSlugs = await Astro.glob("../pages/notes/*.md*").then(getSlugs);
+const noteItems = noteSlugs.map(({ title, url }) => [title, url] as const);
 const isNote = url.startsWith("/notes/");
 import Toc from "../components/Toc.astro";
 ---
@@ -117,7 +120,7 @@ import Toc from "../components/Toc.astro";
 		<Footer />
 		<PictureZoom client:load />
 		<script src="../components/CodeRunner/index.ts"></script>
-		<CommandPalette postItems={postItems} client:only="svelte" />
+		<CommandPalette postItems={postItems} noteItems={noteItems} client:only="svelte" />
 	</body>
 </html>
 

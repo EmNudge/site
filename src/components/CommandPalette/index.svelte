@@ -4,6 +4,7 @@ import { fade, scale } from "svelte/transition";
 import type { Command } from "./types";
 
 export let postItems: readonly (readonly [string, string])[] = [];
+export let noteItems: readonly (readonly [string, string])[] = [];
 
 let isOpen = false;
 let searchQuery = "";
@@ -13,11 +14,14 @@ let inputEl: HTMLInputElement;
 let listEl: HTMLDivElement;
 let isEnabled = false;
 
-$: commands = buildCommands(postItems);
+$: commands = buildCommands(postItems, noteItems);
 $: visibleCommands = getVisibleCommands(commands, searchQuery, currentParent);
 $: selectedIndex = Math.min(selectedIndex, Math.max(0, visibleCommands.length - 1));
 
-function buildCommands(posts: readonly (readonly [string, string])[]): Command[] {
+function buildCommands(
+  posts: readonly (readonly [string, string])[],
+  notes: readonly (readonly [string, string])[]
+): Command[] {
   const blogPosts = posts.map(([title, url]) => ({
     id: url.slice(6),
     title,
@@ -27,9 +31,19 @@ function buildCommands(posts: readonly (readonly [string, string])[]): Command[]
     },
   }));
 
+  const noteCommands = notes.map(([title, url]) => ({
+    id: `note-${url.slice(7)}`,
+    title,
+    parent: "Note",
+    handler: () => {
+      window.location.pathname = url;
+    },
+  }));
+
   const nav: Command[] = [
     { id: "Home", title: "Home", parent: "Page", handler: () => { window.location.pathname = "/"; } },
     { id: "Blog", title: "Blog", parent: "Page", handler: () => { window.location.pathname = "/blog"; } },
+    { id: "Notes", title: "Notes", parent: "Page", handler: () => { window.location.pathname = "/notes"; } },
     { id: "articles", title: "Article Bookmarks", parent: "Page", handler: () => { window.location.pathname = "/articles"; } },
     { id: "books", title: "Book Bookmarks", parent: "Page", handler: () => { window.location.pathname = "/books"; } },
     { id: "videos", title: "Video Bookmarks", parent: "Page", handler: () => { window.location.pathname = "/videos"; } },
@@ -57,6 +71,12 @@ function buildCommands(posts: readonly (readonly [string, string])[]): Command[]
       children: blogPosts.map((item) => item.id),
     },
     ...blogPosts,
+    {
+      id: "Note",
+      title: "Open Note",
+      children: noteCommands.map((item) => item.id),
+    },
+    ...noteCommands,
   ];
 }
 

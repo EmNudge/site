@@ -8,6 +8,9 @@ const { title } = Astro.props;
 
 const slugs = await Astro.glob("../pages/blog/*.md*").then(getSlugs);
 const postItems = slugs.map(({ title, url }) => [title, url] as const);
+
+const noteSlugs = await Astro.glob("../pages/notes/*.md*").then(getSlugs);
+const noteItems = noteSlugs.map(({ title, url }) => [title, url] as const);
 ---
 
 <html lang="en">
@@ -38,7 +41,7 @@ const postItems = slugs.map(({ title, url }) => [title, url] as const);
     </main>
     <Footer />
 
-    <CommandPalette postItems={postItems} client:only="svelte" />
+    <CommandPalette postItems={postItems} noteItems={noteItems} client:only="svelte" />
 
     <script type="module">
 			import '/libraries/new-tag.js';
