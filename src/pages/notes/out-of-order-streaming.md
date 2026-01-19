@@ -81,7 +81,7 @@ console.log('server on http://localhost:8080');
 
 It's fairly seamless, but not perfect. On very slow computers with more complex layouts and a larger JS bundle, there is a parse step that will stand between the content loading and being swapped.
 
-The other problem might be that it's not as easily generalizable. With some help from [LankyMoose](https://github.com/lankymoose) and [Kai](https://github.com/panthyy), here is a more comprehensive (and complicated) version
+The other problem might be that it's not as easily generalizable. With some help from [LankyMoose](https://github.com/lankymoose) and [Kai](https://github.com/bytekai), here is a more comprehensive (and complicated) version
 ## A Comprehensive Version
 
 We start with a function that defines its own placeholder element and method for replacing said content when some task finishes.
