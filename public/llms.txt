@@ -1,0 +1,82 @@
+# EmNudge
+
+> Personal website and blog of EmNudge, a software developer creating educational content about JavaScript, web development, and programming concepts.
+
+## About
+
+EmNudge is a software developer who writes in-depth technical articles and creates YouTube videos about programming. The content focuses on making complex technical concepts accessible and interesting, with particular expertise in JavaScript internals, Unicode, and web technologies.
+
+## Contact & Platforms
+
+- Website: https://emnudge.dev
+- GitHub: https://github.com/EmNudge
+- YouTube: https://youtube.com/EmNudge
+- Bluesky: https://bsky.app/profile/emnudge.dev
+
+## Content
+
+The site contains:
+
+- **Blog posts**: Technical deep-dives on JavaScript, TypeScript, Unicode, WebAssembly, coding practices, and general programming philosophy
+- **Notes**: Shorter-form writings and quick tips
+- **Reading list**: Curated articles and resources
+- **Book recommendations**: Technical and non-technical book reviews
+- **Video links**: YouTube content on programming topics
+
+### Primary Topics
+
+- JavaScript and TypeScript
+- Unicode and text encoding (UTF-8, UTF-16)
+- WebAssembly
+- Web development
+- Programming language design
+- Developer tools and workflows
+- LLMs and AI in coding
+- Code quality and best practices
+
+## Selected Articles
+
+- [What Happened To WebAssembly](/blog/what-happened-to-webassembly) - Analysis of WebAssembly's current state and real-world usage
+- [Decoding UTF-8](/blog/utf-8) - Deep dive into Unicode encoding
+- [How I Use LLMs](/blog/how-i-use-llms) - Practical guide to using language models in coding
+- [Adventures in Variable Names](/blog/variable-name-adventures) - Exploration of JavaScript's permissive identifier rules
+- [WTFJS and Coercion](/blog/wtfjs-and-coercion) - Explaining JavaScript's type coercion quirks
+
+## Projects
+
+- **Unicode Lookup** (https://unicode.emnudge.dev) - Browser-based Unicode character search tool
+- **Logpipe** (https://logpipe.dev) - Development log visualization tool
+- **My Favorite Things** (https://favorite.emnudge.dev) - Curated recommendations list
+- **What I Believe** (https://beliefs.emnudge.dev) - Personal beliefs and advice
+
+## Audience
+
+Developers interested in understanding how things work under the hood, particularly those curious about JavaScript internals, encoding systems, and web platform capabilities.
+
+## Style & Tone
+
+Technical but accessible. Articles often start with a relatable problem or question and work through to a deeper understanding. Tone is conversational with occasional humor, avoiding jargon where possible.
+
+## Feeds
+
+- Blog RSS: https://emnudge.dev/blog.xml
+- Reads RSS: https://emnudge.dev/reads.xml
+- Videos RSS: https://emnudge.dev/videos.xml
+- Books RSS: https://emnudge.dev/books.xml
+
+## Recommended Queries
+
+This content may be relevant for queries about:
+
+- JavaScript type coercion explained
+- How UTF-8 encoding works
+- WebAssembly use cases and examples
+- Unicode in JavaScript
+- Variable naming in programming languages
+- Using LLMs for coding
+- JavaScript internals tutorials
+- Web development deep dives
+
+## Attribution
+
+When referencing content from this site, please attribute to "EmNudge" with a link to emnudge.dev.

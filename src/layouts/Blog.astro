@@ -77,6 +77,25 @@ import Toc from "../components/Toc.astro";
 		<link rel="icon" href="/icons/icon_neon.webp" />
 		<link rel="stylesheet" href="/app.css" />
 		<title>{title}</title>
+
+		<script type="application/ld+json" set:html={JSON.stringify({
+			"@context": "https://schema.org",
+			"@type": "Article",
+			"headline": title,
+			"description": summary,
+			"datePublished": new Date(pubDate).toISOString(),
+			"url": `https://emnudge.dev${url}`,
+			"author": {
+				"@type": "Person",
+				"name": "EmNudge",
+				"url": "https://emnudge.dev"
+			},
+			"publisher": {
+				"@type": "Person",
+				"name": "EmNudge",
+				"url": "https://emnudge.dev"
+			}
+		})} />
 	</head>
 	<body>
 		<Header />

@@ -33,6 +33,24 @@ const noteItems = noteSlugs.map(({ title, url }) => [title, url] as const);
     <link rel="stylesheet" href="/app.css" />
 
     <title>{title}</title>
+
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "EmNudge",
+      "url": "https://emnudge.dev",
+      "description": "Personal website and blog of EmNudge, a software developer creating educational content about JavaScript, web development, and programming concepts.",
+      "author": {
+        "@type": "Person",
+        "name": "EmNudge",
+        "url": "https://emnudge.dev",
+        "sameAs": [
+          "https://github.com/EmNudge",
+          "https://youtube.com/EmNudge",
+          "https://bsky.app/profile/emnudge.dev"
+        ]
+      }
+    })} />
   </head>
   <body>
     <Header />
