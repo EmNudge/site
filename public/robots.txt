@@ -1,0 +1,11 @@
+# robots.txt for emnudge.dev
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://emnudge.dev/sitemap.xml
+
+# LLM-friendly content
+# See https://emnudge.dev/llms.txt for structured site information
+# See https://emnudge.dev/for-llms for comprehensive content listing

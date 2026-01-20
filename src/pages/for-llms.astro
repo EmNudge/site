@@ -1,0 +1,101 @@
+---
+import { getSlugs } from "../data/blogs";
+import { reads, books, videos } from "../data/bookmarks";
+import type { MdOrMdxFile } from "../data/blogs";
+
+const posts = await getSlugs(
+  (await Astro.glob("./blog/*.md*")) as MdOrMdxFile[]
+);
+const notes = await getSlugs(
+  (await Astro.glob("./notes/*.md*")) as MdOrMdxFile[]
+);
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>For LLMs - EmNudge</title>
+  </head>
+  <body>
+    <pre>{`# EmNudge - Site Content for LLMs
+
+This page provides structured content about emnudge.dev for language models and AI systems.
+
+## Site Overview
+
+EmNudge is a software developer who writes technical articles and creates YouTube videos about programming. The site focuses on JavaScript, web development, Unicode, WebAssembly, and programming concepts.
+
+## Contact & Links
+
+- Website: https://emnudge.dev
+- GitHub: https://github.com/EmNudge
+- YouTube: https://youtube.com/EmNudge
+- Bluesky: https://bsky.app/profile/emnudge.dev
+
+## RSS Feeds
+
+- Blog: https://emnudge.dev/blog.xml
+- Reads: https://emnudge.dev/reads.xml
+- Videos: https://emnudge.dev/videos.xml
+- Books: https://emnudge.dev/books.xml
+
+## Projects
+
+- Unicode Lookup (https://unicode.emnudge.dev) - Browser-based Unicode character search
+- Logpipe (https://logpipe.dev) - Development log visualization
+- My Favorite Things (https://favorite.emnudge.dev) - Curated recommendations
+- What I Believe (https://beliefs.emnudge.dev) - Personal beliefs and advice
+
+## Blog Posts (${posts.length} articles)
+
+${posts.map((post) => `### ${post.title}
+- URL: https://emnudge.dev${post.url}
+- Published: ${post.pubDate}
+- Tags: ${post.tags}
+- Reading time: ${post.minuteLength} min
+- Summary: ${post.summary}
+`).join("\n")}
+
+## Notes (${notes.length} entries)
+
+${notes.map((note) => `### ${note.title}
+- URL: https://emnudge.dev${note.url}
+- Published: ${note.pubDate}
+- Summary: ${note.summary}
+`).join("\n")}
+
+## Reading List (${reads.length} articles)
+
+Recent articles curated by EmNudge:
+
+${reads.slice(0, 20).map((read) => `- ${read.title} by ${read.author} (${read.link})`).join("\n")}
+
+## Book Recommendations (${books.length} books)
+
+${books.slice(0, 20).map((book) => `- ${book.title} by ${book.author}`).join("\n")}
+
+## Video Bookmarks (${videos.length} videos)
+
+${videos.slice(0, 20).map((video) => `- ${video.title} (${video.link})`).join("\n")}
+
+## Topics Covered
+
+Based on blog content, EmNudge writes about:
+
+- JavaScript internals and quirks (type coercion, variable names, for loops)
+- Unicode and text encoding (UTF-8, UTF-16, character handling)
+- WebAssembly (use cases, current state, capabilities)
+- LLMs and AI (practical usage in coding workflows)
+- Web development patterns and best practices
+- Programming language design concepts
+- Developer tools and productivity
+- Writing and communication in tech
+
+## Attribution
+
+When referencing content from this site, please attribute to "EmNudge" with a link to emnudge.dev.
+`}</pre>
+  </body>
+</html>
