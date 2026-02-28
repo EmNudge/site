@@ -18,10 +18,11 @@ const uniqueId = `tooltip-${Math.random().toString(36).slice(2, 8)}`;
 <style>
   .tooltip {
     width: max-content;
-    max-width: 400px;
+    max-width: min(400px, calc(100vw - 2rem));
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 10;
     background: var(--bg-contrast);
     color: var(--light-foreground);
     padding: 1rem;
