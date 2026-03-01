@@ -43,7 +43,7 @@ body {
 		--background: white;
 		--light-bg: #0001;
 		--bg-green: #e8f8fa;
-		--bg-contrast: #0001;
+		--bg-contrast: #e8e8e8;
 		--bg-light-transparent: #eee5;
 		--box-shadow-light-only: 2px 2px 3px #00000038;
 	}
@@ -67,7 +67,7 @@ body {
 	--background: white;
 	--light-bg: #0001;
 	--bg-green: #e8f8fa;
-	--bg-contrast: #0001;
+	--bg-contrast: #e8e8e8;
 	--bg-light-transparent: #eee5;
 	--box-shadow-light-only: 2px 2px 3px #00000038;
 }
