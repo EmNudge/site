@@ -18,7 +18,11 @@ import {
 import "./blog/index.css";
 import Tooltip from "../components/Tooltip/Tooltip.astro";
 import { formatDate } from "../utils/formatDate";
-import { getDocumentAtUri, getKindFromUrl } from "../data/standard-site";
+import {
+	getDocumentAtUri,
+	getKindFromUrl,
+	getPublicationAtUri,
+} from "../data/standard-site";
 
 interface Props {
 	content: {
@@ -80,10 +84,16 @@ import Toc from "../components/Toc.astro";
 		<link rel="icon" href="/icons/icon_neon.webp" />
 		<link rel="stylesheet" href="/app.css" />
 		{standardSiteKind && standardSiteSlug && (
-			<link
-				rel="site.standard.document"
-				href={getDocumentAtUri(standardSiteKind, standardSiteSlug)}
-			/>
+			<>
+				<link
+					rel="site.standard.document"
+					href={getDocumentAtUri(standardSiteKind, standardSiteSlug)}
+				/>
+				<link
+					rel="site.standard.publication"
+					href={getPublicationAtUri(standardSiteKind)}
+				/>
+			</>
 		)}
 		<title>{title}</title>
 

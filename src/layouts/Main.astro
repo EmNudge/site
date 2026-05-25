@@ -3,8 +3,16 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import CommandPalette from "../components/CommandPalette/index.svelte";
 import { getSlugs } from "../data/blogs";
+import { getPublicationAtUri } from "../data/standard-site";
 
 const { title } = Astro.props;
+
+const pathname = Astro.url.pathname;
+const standardSitePubKind = pathname.startsWith("/blog")
+  ? "blog"
+  : pathname.startsWith("/notes")
+    ? "notes"
+    : null;
 
 const slugs = await Astro.glob("../pages/blog/*.md*").then(getSlugs);
 const postItems = slugs.map(({ title, url }) => [title, url] as const);
@@ -31,6 +39,12 @@ const noteItems = noteSlugs.map(({ title, url }) => [title, url] as const);
     />
     <link rel="icon" href="/icons/icon_neon.webp" />
     <link rel="stylesheet" href="/app.css" />
+    {standardSitePubKind && (
+      <link
+        rel="site.standard.publication"
+        href={getPublicationAtUri(standardSitePubKind)}
+      />
+    )}
 
     <title>{title}</title>
 
