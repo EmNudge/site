@@ -36,8 +36,8 @@ tagsContainer.addEventListener("click", (e) => {
 
   const posts = document.querySelectorAll(itemSelector);
   for (const postStub of posts) {
-    const showPost = activeTag 
-      ? postStub.dataset.tags.split(/\s*,\s*/).includes(activeTag) 
+    const showPost = activeTag
+      ? postStub.dataset.tags.split(/\s*,\s*/).includes(activeTag)
       : true;
 
     if (showPost) {
@@ -58,7 +58,6 @@ tagsContainer.addEventListener("click", (e) => {
 <style>
   .tags {
     display: flex;
-    justify-content: center;
     gap: 1rem;
     margin-top: -2rem;
     margin-bottom: 1rem;
