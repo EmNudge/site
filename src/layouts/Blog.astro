@@ -18,6 +18,7 @@ import {
 import "./blog/index.css";
 import Tooltip from "../components/Tooltip/Tooltip.astro";
 import { formatDate } from "../utils/formatDate";
+import { getDocumentAtUri, getKindFromUrl } from "../data/standard-site";
 
 interface Props {
 	content: {
@@ -53,6 +54,8 @@ const postItems = slugs.map(({ title, url }) => [title, url] as const);
 const noteSlugs = await Astro.glob("../pages/notes/*.md*").then(getSlugs);
 const noteItems = noteSlugs.map(({ title, url }) => [title, url] as const);
 const isNote = url.startsWith("/notes/");
+const standardSiteKind = getKindFromUrl(url);
+const standardSiteSlug = url.split("/").filter(Boolean).pop();
 import Toc from "../components/Toc.astro";
 ---
 <html lang="en">
@@ -76,6 +79,12 @@ import Toc from "../components/Toc.astro";
 		/>
 		<link rel="icon" href="/icons/icon_neon.webp" />
 		<link rel="stylesheet" href="/app.css" />
+		{standardSiteKind && standardSiteSlug && (
+			<link
+				rel="site.standard.document"
+				href={getDocumentAtUri(standardSiteKind, standardSiteSlug)}
+			/>
+		)}
 		<title>{title}</title>
 
 		<script type="application/ld+json" set:html={JSON.stringify({
