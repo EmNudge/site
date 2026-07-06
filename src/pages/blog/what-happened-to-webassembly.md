@@ -123,7 +123,7 @@ WebAssembly maintains a minimal attack surface by treating all external interact
 
 It is such that you can ensure process-like isolation within a single process. Cloudflare takes advantage of this aspect within V8 to run untrusted code very efficiently [using V8 isolates](https://blog.cloudflare.com/mitigating-spectre-and-other-security-threats-the-cloudflare-workers-security-model/). This means significant efficiency gains without significant security trade-offs. 
 
-Wasm programs can start 100x faster if you can avoid spinning up a separate process. Fermyon, a company in the Wasm hosting space, advertises [sub-millisecond spinup times](https://www.fermyon.com/serverless-guide/speed-and-execution-time).
+Wasm programs can start 100x faster if you can avoid spinning up a separate process. Fermyon, a company in the Wasm hosting space, advertises [sub-millisecond spinup times](https://web.archive.org/web/20260110034101/https://www.fermyon.com/serverless-guide/speed-and-execution-time).
 
 In these cases, the performance is a direct result of what the security guarantees enable.
 
