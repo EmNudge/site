@@ -158,6 +158,102 @@ import Toc from "../components/Toc.astro";
 		<Footer />
 		<PictureZoom client:load />
 		<script src="../components/CodeRunner/index.ts"></script>
+		<script type="module" is:inline>
+			const diagrams = [...document.querySelectorAll("pre.mermaid")];
+			if (diagrams.length) {
+				const sources = new Map(diagrams.map((el) => [el, el.textContent]));
+
+				// beautiful-mermaid only understands these diagram types, and it
+				// draws multi-series xychart bars side by side (no overlap), so
+				// xycharts stay on stock mermaid where bars stack.
+				const bmSupported =
+					/^\s*(graph|flowchart|stateDiagram|sequenceDiagram|classDiagram|erDiagram)\b/;
+				let bmDiagrams = diagrams.filter((el) => bmSupported.test(sources.get(el)));
+				let mermaidDiagrams = diagrams.filter((el) => !bmSupported.test(sources.get(el)));
+
+				let bm = null;
+				if (bmDiagrams.length) {
+					try {
+						bm = await import("https://esm.sh/beautiful-mermaid");
+					} catch {
+						mermaidDiagrams = mermaidDiagrams.concat(bmDiagrams);
+						bmDiagrams = [];
+					}
+				}
+				const mermaid = mermaidDiagrams.length
+					? (await import("https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs")).default
+					: null;
+
+				async function render() {
+					const rootStyles = getComputedStyle(document.documentElement);
+					const cssVar = (name, fallback) =>
+						rootStyles.getPropertyValue(name).trim() || fallback;
+					// Match whatever theme the page CSS actually resolved to,
+					// covering the .light class, media queries, and defaults.
+					const isLight = cssVar("--background", "#131619").startsWith("w");
+
+					for (const el of bmDiagrams) {
+						el.innerHTML = await bm.renderMermaidSVGAsync(sources.get(el), {
+							bg: cssVar("--background", "#131619"),
+							fg: cssVar("--foreground", "#ffffff"),
+							accent: "#4fc1f1",
+							muted: cssVar("--muted", "#888888"),
+						});
+					}
+
+					if (mermaid) {
+						for (const el of mermaidDiagrams) {
+							el.textContent = sources.get(el);
+							el.removeAttribute("data-processed");
+						}
+						mermaid.initialize({
+							startOnLoad: false,
+							theme: isLight ? "default" : "dark",
+							themeVariables: {
+								fontFamily: "Arial, sans-serif",
+								background: "transparent",
+								pie1: "#4fc1f1",
+								pie2: "#7bd88f",
+								pie3: "#e5b567",
+								pie4: "#c586c0",
+								pieOuterStrokeWidth: "0px",
+								pieStrokeColor: isLight ? "#ffffff" : "#131619",
+								quadrant1Fill: isLight ? "#f2f7fb" : "#1b2129",
+								quadrant2Fill: isLight ? "#eaf2f8" : "#161b22",
+								quadrant3Fill: isLight ? "#f2f7fb" : "#1b2129",
+								quadrant4Fill: isLight ? "#eaf2f8" : "#161b22",
+								quadrantPointFill: "#4fc1f1",
+								quadrantPointTextFill: isLight ? "#555555" : "#aaaaaa",
+								quadrantXAxisTextFill: isLight ? "#555555" : "#aaaaaa",
+								quadrantYAxisTextFill: isLight ? "#555555" : "#aaaaaa",
+								quadrantInternalBorderStrokeFill: isLight ? "#d5dee8" : "#333c46",
+								quadrantExternalBorderStrokeFill: isLight ? "#c3cfdb" : "#3d4750",
+							},
+						});
+						await mermaid.run({ nodes: mermaidDiagrams });
+						// mermaid draws a small (1-3px) rect even for zero-value bars,
+						// which shows up as a colored sliver at the base of stacked bars
+						for (const el of mermaidDiagrams) {
+							for (const rect of el.querySelectorAll("svg rect")) {
+								const height = parseFloat(rect.getAttribute("height"));
+								if (height > 0 && height < 4) rect.remove();
+							}
+						}
+					}
+				}
+
+				await render();
+
+				// Re-render when the site theme toggles or the OS scheme flips
+				new MutationObserver(() => render()).observe(document.documentElement, {
+					attributes: true,
+					attributeFilter: ["class"],
+				});
+				window
+					.matchMedia("(prefers-color-scheme: light)")
+					.addEventListener("change", () => render());
+			}
+		</script>
 		<CommandPalette postItems={postItems} noteItems={noteItems} client:only="svelte" />
 	</body>
 </html>
@@ -234,6 +330,20 @@ import Toc from "../components/Toc.astro";
   .title-container p {
     font-size: var(--font-medium);
     margin-top: 0.5rem;
+  }
+
+  article :global(pre.mermaid) {
+    display: flex;
+    justify-content: center;
+    background: none;
+    border: none;
+    margin: 3rem 0;
+    color: inherit;
+  }
+  article :global(pre.mermaid svg) {
+    max-width: 100%;
+    height: auto;
+    overflow: visible;
   }
 
   .end-note-container {
