@@ -31,6 +31,15 @@ const noteItems = noteSlugs.map(({ title, url }) => [title, url] as const);
     <meta name="keywords" content="EmNudge" />
     <meta name="color-scheme" content="dark light" />
 
+    <script is:inline>
+      // Re-apply an explicit theme override the user set against their system
+      // preference. No stored value means we follow the system (handled in CSS).
+      const theme = localStorage.getItem("theme");
+      if (theme === "light" || theme === "dark") {
+        document.documentElement.classList.add(theme);
+      }
+    </script>
+
     <link
       rel="alternate"
       type="application/rss+xml"

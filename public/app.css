@@ -33,8 +33,10 @@ body {
 	margin: 0;
 }
 
+/* System light preference, unless the user has explicitly forced dark
+   (the .dark override must win over the media query). */
 @media (prefers-color-scheme: light) {
-	:root {
+	:root:not(.dark) {
 		--active: #ff7b3a;
 		--light-active: #ffdac8;
 		--foreground: #222;
@@ -47,13 +49,13 @@ body {
 		--bg-light-transparent: #eee5;
 		--box-shadow-light-only: 2px 2px 3px #00000038;
 	}
-	body {
+	:root:not(.dark) body {
 		background: linear-gradient(to bottom right, white, #f8f9fb);
 	}
-	img.dark-mode {
+	:root:not(.dark) img.dark-mode {
 		filter: invert(1);
 	}
-	::selection {
+	:root:not(.dark) ::selection {
 		background: #ffb7b7;
 	}
 }

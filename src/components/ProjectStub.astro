@@ -55,7 +55,7 @@ const { url, icon, name, description } = Astro.props;
     box-shadow: 0 0 10px 0 #0001;
   }
   @media (prefers-color-scheme: light) {
-    .project:hover {
+    html:not(.dark) .project:hover {
       border-color: #0004;
       box-shadow: 0 0 10px 0 #0001;
     }
