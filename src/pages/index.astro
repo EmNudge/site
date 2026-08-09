@@ -126,7 +126,7 @@ const videos = await getVideos();
   }
 
   @media (prefers-color-scheme: light) {
-    .newest-blog {
+    :root:not(.dark) .newest-blog {
       --highlight: #ffdbbd
     }
   }

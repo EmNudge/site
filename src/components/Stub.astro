@@ -90,10 +90,10 @@ const {
         display: none;
     }
     @media (prefers-color-scheme: light) {
-        .discussions .icon-dark {
+        :global(:root:not(.dark)) .discussions .icon-dark {
             display: none;
         }
-        .discussions .icon-light {
+        :global(:root:not(.dark)) .discussions .icon-light {
             display: block;
         }
     }

@@ -54,9 +54,27 @@ function buildCommands(
       id: "Theme",
       title: "Toggle Theme",
       handler: () => {
-        document.documentElement.classList.toggle("light");
-        const isLight = document.documentElement.classList.contains("light");
-        localStorage.setItem("theme", isLight ? "light" : "dark");
+        // Respect the system theme unless the user picks against it. Toggling
+        // flips to the opposite of what's shown; if that lands back on the
+        // system preference, the override is cleared so we follow the system.
+        const root = document.documentElement;
+        const system = window.matchMedia("(prefers-color-scheme: dark)").matches
+          ? "dark"
+          : "light";
+        const current = root.classList.contains("light")
+          ? "light"
+          : root.classList.contains("dark")
+            ? "dark"
+            : system;
+        const target = current === "dark" ? "light" : "dark";
+
+        root.classList.remove("light", "dark");
+        if (target === system) {
+          localStorage.removeItem("theme");
+        } else {
+          root.classList.add(target);
+          localStorage.setItem("theme", target);
+        }
       },
     },
     {
@@ -414,25 +432,25 @@ onDestroy(() => {
 
   /* Light mode styles */
   @media (prefers-color-scheme: light) {
-    .palette {
+    :global(:root:not(.dark)) .palette {
       background: rgba(255, 255, 255, 0.95);
       border: 1px solid #ddd;
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
     }
-    .search-input {
+    :global(:root:not(.dark)) .search-input {
       border-bottom-color: #eee;
     }
-    .back-button {
+    :global(:root:not(.dark)) .back-button {
       border-bottom-color: #eee;
     }
-    .command-item:hover,
-    .command-item.selected {
+    :global(:root:not(.dark)) .command-item:hover,
+    :global(:root:not(.dark)) .command-item.selected {
       background: #f5f5f5;
     }
-    .footer {
+    :global(:root:not(.dark)) .footer {
       border-top-color: #eee;
     }
-    kbd {
+    :global(:root:not(.dark)) kbd {
       background: #f0f0f0;
       border: 1px solid #ddd;
     }

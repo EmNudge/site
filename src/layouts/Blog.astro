@@ -70,9 +70,12 @@ import Toc from "../components/Toc.astro";
 		<meta name="author" content="EmNudge" />
 		<meta name="keywords" content="EmNudge" />
 		<meta name="color-scheme" content="dark light" />
-		<script>
-			if (localStorage.getItem("theme") === "light") {
-				document.documentElement.classList.add("light");
+		<script is:inline>
+			// Re-apply an explicit theme override the user set against their system
+			// preference. No stored value means we follow the system (handled in CSS).
+			const theme = localStorage.getItem("theme");
+			if (theme === "light" || theme === "dark") {
+				document.documentElement.classList.add(theme);
 			}
 		</script>
 		<link
@@ -314,10 +317,10 @@ import Toc from "../components/Toc.astro";
     display: none;
   }
   @media (prefers-color-scheme: light) {
-    .discussions .icon-dark {
+    :global(:root:not(.dark)) .discussions .icon-dark {
       display: none;
     }
-    .discussions .icon-light {
+    :global(:root:not(.dark)) .discussions .icon-light {
       display: block;
     }
   }
