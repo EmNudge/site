@@ -150,7 +150,12 @@ async function loadPosts(kind) {
       summary: sanitizeString(fm.summary, MAX_SUMMARY),
       tags: sanitizeTags(fm.tags),
       publishedAt: toIsoDate(fm.pubDate),
-      path: `/${kind}/${slug}`,
+      // `path` is relative to the publication url (https://emnudge.dev/${kind}),
+      // NOT the domain root — consumers reconstruct the article URL as
+      // publication.url + path, so including the `/${kind}` prefix here doubles
+      // it (…/notes/notes/…) and breaks Bluesky's ownership check. Trailing
+      // slash matches our canonical URLs so the reconstructed URL is exact.
+      path: `/${slug}/`,
     });
   }
   return posts;
