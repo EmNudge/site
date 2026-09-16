@@ -2,6 +2,7 @@
 import { readFile, writeFile, mkdir, readdir } from "node:fs/promises";
 import { join, dirname, basename, extname } from "node:path";
 import { fileURLToPath } from "node:url";
+import { genTid, isTid } from "./tid.mjs";
 
 const STANDARD_SITE_DID = "did:plc:tgatoi47bb7xrxexwk7ogx73";
 const PDS_URL = "https://bsky.social";
@@ -28,8 +29,17 @@ const getPublicationAtUri = (rkey) =>
 const HANDLE = process.env.BLUESKY_HANDLE;
 const APP_PASSWORD = process.env.BLUESKY_APP_PASSWORD;
 const DRY_RUN = process.env.DRY_RUN === "1";
+// Publish-only by default: rkeys are minted at authoring time (new-post.sh ->
+// scripts/mint-rkey.mjs) and committed, so the built site and the PDS records
+// always reference the same TID. MINT=1 is a local escape hatch to backfill
+// missing rkeys and rewrite the map/well-known (then commit the result).
+const MINT = process.env.MINT === "1";
+// CHECK=1 validates that every post has a committed rkey (and rkeys are unique)
+// without any network access — used by CI to catch a post added without minting
+// before it reaches main. Never publishes.
+const CHECK = process.env.CHECK === "1";
 
-if (!DRY_RUN && (!HANDLE || !APP_PASSWORD)) {
+if (!DRY_RUN && !CHECK && (!HANDLE || !APP_PASSWORD)) {
   console.error("Missing BLUESKY_HANDLE or BLUESKY_APP_PASSWORD env vars");
   process.exit(1);
 }
@@ -51,33 +61,6 @@ const MAX_TITLE = 300;
 const MAX_SUMMARY = 1000;
 const MAX_TAGS = 16;
 const TAG_RE = /^[a-z0-9-]{1,32}$/i;
-
-// ---- TID generation ---------------------------------------------------------
-// standard.site lexicons declare `key: tid`, so record keys must be valid TIDs
-// (13 chars, base32-sortable). Slug rkeys fail validation and never render as
-// enhanced Bluesky cards, so we mint a TID per record and persist the mapping.
-const S32 = "234567abcdefghijklmnopqrstuvwxyz";
-const TID_RE = /^[234567abcdefghij][234567a-z]{12}$/;
-
-function s32encode(n) {
-  let s = "";
-  while (n > 0n) {
-    s = S32[Number(n % 32n)] + s;
-    n = n / 32n;
-  }
-  return s.padStart(13, "2");
-}
-
-let lastTidMicros = 0;
-const clockid = Math.floor(Math.random() * 1024);
-function genTid() {
-  let micros = Date.now() * 1000;
-  if (micros <= lastTidMicros) micros = lastTidMicros + 1;
-  lastTidMicros = micros;
-  return s32encode((BigInt(micros) << 10n) | BigInt(clockid));
-}
-
-const isTid = (rkey) => typeof rkey === "string" && TID_RE.test(rkey);
 
 // ---- frontmatter parsing ----------------------------------------------------
 function parseFrontmatter(text) {
@@ -191,11 +174,15 @@ async function writeRkeys(map) {
   await writeFile(RKEYS_PATH, JSON.stringify(map, null, 2) + "\n");
 }
 
-// Reuse an existing TID for a stable key, otherwise mint a new one. Anything
-// that isn't already a valid TID (e.g. legacy slug rkeys) is replaced.
-function resolveRkey(previous, key) {
+// Reuse the committed TID for a stable key. If none exists, mint one only under
+// MINT=1 (local backfill); otherwise record it as missing so a publish-only run
+// fails loudly instead of publishing a record the deployed site won't reference.
+function resolveRkey(previous, key, missing) {
   const existing = previous[key];
-  return isTid(existing) ? existing : genTid();
+  if (isTid(existing)) return existing;
+  if (MINT) return genTid();
+  missing.push(key);
+  return null;
 }
 
 // ---- PDS access -------------------------------------------------------------
@@ -287,7 +274,7 @@ async function writeWellKnown(kind, rkey) {
 }
 
 async function main() {
-  const session = DRY_RUN
+  const session = DRY_RUN || CHECK
     ? { did: STANDARD_SITE_DID, accessJwt: "" }
     : await createSession();
   if (session.did !== STANDARD_SITE_DID) {
@@ -297,14 +284,64 @@ async function main() {
   }
 
   const previous = await loadRkeys();
+  const all = (await Promise.all([loadPosts("blog"), loadPosts("notes")])).flat();
+
+  // Resolve every rkey up front so a publish-only run can bail before touching
+  // the PDS if any post lacks a committed rkey.
+  const missing = [];
   const nextMap = { publications: {}, documents: {} };
+  for (const kind of ["blog", "notes"]) {
+    nextMap.publications[kind] = resolveRkey(previous.publications, kind, missing);
+  }
+  for (const post of all) {
+    const mapKey = `${post.kind}/${post.slug}`;
+    nextMap.documents[mapKey] = resolveRkey(previous.documents, mapKey, missing);
+  }
+
+  if (missing.length) {
+    throw new Error(
+      `No committed rkey for:\n  ${missing.join("\n  ")}\n` +
+        `Mint one with: node scripts/mint-rkey.mjs <blog|notes> <slug>\n` +
+        `(new posts get this automatically via new-post.sh). Commit the updated ` +
+        `${RKEYS_PATH}, then re-run. Or run once with MINT=1 to backfill all.`,
+    );
+  }
+
+  // Guard against two rkeys colliding (would clobber records on publish).
+  const values = [
+    ...Object.values(nextMap.publications),
+    ...Object.values(nextMap.documents),
+  ];
+  const dupes = [...new Set(values.filter((v, i) => values.indexOf(v) !== i))];
+  if (dupes.length) {
+    throw new Error(`Duplicate rkeys in ${RKEYS_PATH}: ${dupes.join(", ")}`);
+  }
+
+  if (CHECK) {
+    // Stale map entries (post deleted but rkey left behind) don't break anything
+    // — the sync prunes the orphaned record — so surface them without failing.
+    const currentKeys = new Set(all.map((p) => `${p.kind}/${p.slug}`));
+    const orphans = Object.keys(previous.documents).filter((k) => !currentKeys.has(k));
+    if (orphans.length) {
+      console.warn(`⚠ map entries with no matching post: ${orphans.join(", ")}`);
+    }
+    console.log(`✓ ${all.length} posts all have a valid, unique rkey`);
+    return;
+  }
+
+  // MINT rewrites the committed source (map + well-known) so the local run can
+  // commit it. A publish-only run leaves those files untouched.
+  if (MINT) {
+    await writeRkeys(nextMap);
+    console.log(`wrote ${RKEYS_PATH}`);
+  }
+
   const intendedPublications = new Set();
   const intendedDocuments = new Set();
 
   for (const kind of ["blog", "notes"]) {
     const pub = PUBLICATIONS[kind];
-    const rkey = resolveRkey(previous.publications, kind);
-    nextMap.publications[kind] = rkey;
+    const rkey = nextMap.publications[kind];
     intendedPublications.add(rkey);
     await putRecord(session, PUBLICATION_COLLECTION, rkey, {
       $type: PUBLICATION_COLLECTION,
@@ -312,17 +349,13 @@ async function main() {
       name: pub.name,
       description: pub.description,
     });
-    await writeWellKnown(kind, rkey);
+    if (MINT) await writeWellKnown(kind, rkey);
     console.log(`✓ publication ${getPublicationAtUri(rkey)} (${kind})`);
   }
 
-  const all = (await Promise.all([loadPosts("blog"), loadPosts("notes")])).flat();
   console.log(`syncing ${all.length} documents`);
-
   for (const post of all) {
-    const mapKey = `${post.kind}/${post.slug}`;
-    const rkey = resolveRkey(previous.documents, mapKey);
-    nextMap.documents[mapKey] = rkey;
+    const rkey = nextMap.documents[`${post.kind}/${post.slug}`];
     intendedDocuments.add(rkey);
     await putRecord(session, DOCUMENT_COLLECTION, rkey, {
       $type: DOCUMENT_COLLECTION,
@@ -335,9 +368,6 @@ async function main() {
     });
     console.log(`✓ ${post.kind}/${post.slug} -> ${rkey}`);
   }
-
-  await writeRkeys(nextMap);
-  console.log(`wrote ${RKEYS_PATH}`);
 
   await pruneStale(session, DOCUMENT_COLLECTION, intendedDocuments);
   await pruneStale(session, PUBLICATION_COLLECTION, intendedPublications);

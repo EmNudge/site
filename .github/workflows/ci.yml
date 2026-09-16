@@ -47,5 +47,10 @@ jobs:
       - name: Typecheck
         run: pnpm run typecheck
 
+      - name: Check standard.site rkeys
+        run: node scripts/sync-standard-site.mjs
+        env:
+          CHECK: "1"
+
       - name: Build
         run: pnpm run build
