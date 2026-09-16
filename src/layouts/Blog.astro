@@ -60,6 +60,13 @@ const noteItems = noteSlugs.map(({ title, url }) => [title, url] as const);
 const isNote = url.startsWith("/notes/");
 const standardSiteKind = getKindFromUrl(url);
 const standardSiteSlug = url.split("/").filter(Boolean).pop();
+const standardSiteDocUri =
+	standardSiteKind && standardSiteSlug
+		? getDocumentAtUri(standardSiteKind, standardSiteSlug)
+		: null;
+const standardSitePubUri = standardSiteKind
+	? getPublicationAtUri(standardSiteKind)
+	: null;
 import Toc from "../components/Toc.astro";
 ---
 <html lang="en">
@@ -86,17 +93,11 @@ import Toc from "../components/Toc.astro";
 		/>
 		<link rel="icon" href="/icons/icon_neon.webp" />
 		<link rel="stylesheet" href="/app.css" />
-		{standardSiteKind && standardSiteSlug && (
-			<>
-				<link
-					rel="site.standard.document"
-					href={getDocumentAtUri(standardSiteKind, standardSiteSlug)}
-				/>
-				<link
-					rel="site.standard.publication"
-					href={getPublicationAtUri(standardSiteKind)}
-				/>
-			</>
+		{standardSiteDocUri && (
+			<link rel="site.standard.document" href={standardSiteDocUri} />
+		)}
+		{standardSitePubUri && (
+			<link rel="site.standard.publication" href={standardSitePubUri} />
 		)}
 		<title>{title}</title>
 
