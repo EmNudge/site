@@ -1,6 +1,7 @@
 ---
 pubDate: May 25, 2026
 title: "I rub a rock on my armpits each morning"
+summary: a salt crystal instead of deodorant
 tags: life
 layout: ../../layouts/Blog.astro
 ---
