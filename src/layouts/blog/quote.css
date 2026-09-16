@@ -1,6 +1,6 @@
 blockquote {
 	position: relative;
-	border: 1px solid #41818d;
+	border: 1px solid var(--quote-border);
 	background: var(--bg-green);
 	border-radius: 4px;
 	padding: 1rem 2rem;

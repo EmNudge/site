@@ -2,7 +2,7 @@ details,
 .admonition {
 	background: var(--light-bg);
 	border-radius: 4px;
-	border: 1px solid #7e5eff;
+	border: 1px solid light-dark(#b4c4b7, #7e5eff);
 	overflow: hidden;
 }
 .admonition {

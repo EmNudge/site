@@ -29,7 +29,7 @@ article h4 {
 	font-weight: 800;
 
 	text-decoration: underline;
-	text-decoration-color: coral;
+	text-decoration-color: light-dark(#9eafa0, coral);
 	text-decoration-thickness: 4px;
 	transform: scale(1.2) skewX(-10deg) translate(27px, -7px);
 }

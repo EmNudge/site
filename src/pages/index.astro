@@ -107,32 +107,25 @@ const videos = await getVideos();
 <style>
   .newest-blog {
     --highlight: #a2f4ff42;
-    background: linear-gradient(
+    background: var(--featured-background, linear-gradient(
       to right,
       transparent,
       var(--highlight),
       var(--highlight),
       transparent
-    );
-    margin: 0 -4rem;
-    padding: 0 4rem;
+    ));
+    margin: var(--featured-margin, 0 -4rem);
+    padding: var(--featured-padding, 0 4rem);
+    border-radius: var(--featured-radius, 0);
     box-sizing: border-box;
   }
   @media screen and (max-width: 1000px) {
     .newest-blog {
-      margin: 0 calc(51% - 50vw);
-      padding: 0 calc(50vw - 50%);
+      margin: var(--featured-margin, 0 calc(51% - 50vw));
+      padding: var(--featured-padding, 0 calc(50vw - 50%));
     }
   }
 
-  @media (prefers-color-scheme: light) {
-    :root:not(.dark) .newest-blog {
-      --highlight: #ffdbbd
-    }
-  }
-  :root.light .newest-blog {
-    --highlight: #ffdbbd
-  }
   .videos {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -144,7 +137,7 @@ const videos = await getVideos();
     }
   }
   .video {
-    color: var(--forground);
+    color: var(--foreground);
     box-sizing: border-box;
     display: block;
     position: relative;
@@ -169,23 +162,24 @@ const videos = await getVideos();
   }
   .video .screen {
     position: relative;
-    background: #1a1a2e;
+    background: light-dark(#d5d8ce, #1a1a2e);
     padding: 8px;
     border-radius: 6px;
-    box-shadow:
+    box-shadow: var(--media-shadow,
       0 0 0 3px #333,
       0 0 0 5px #1a1a1a,
-      6px 8px 16px rgba(0, 0, 0, 0.4);
+      6px 8px 16px rgba(0, 0, 0, 0.4));
     overflow: hidden;
   }
   .video:nth-child(odd) .screen {
-    transform: rotate(-1.5deg);
+    transform: var(--thumbnail-transform, rotate(-1.5deg));
   }
   .video:nth-child(even) .screen {
-    transform: rotate(1.5deg);
+    transform: var(--thumbnail-transform, rotate(1.5deg));
   }
   .video .screen::before {
     content: '';
+    opacity: var(--media-overlay, 1);
     position: absolute;
     top: 4px;
     left: 4px;
@@ -208,6 +202,7 @@ const videos = await getVideos();
     left: 8px;
     right: 8px;
     bottom: 8px;
+    opacity: var(--media-overlay, 1);
     background: repeating-linear-gradient(
       0deg,
       rgba(0, 0, 0, 0.12) 0px,

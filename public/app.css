@@ -1,19 +1,26 @@
-:root,
-:root.dark {
+/* Light and dark share semantic tokens; explicit overrides beat system preference. */
+:root {
+	color-scheme: dark;
 	font-family:
 		Arial, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu,
 		Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-	--active: #81f0ff;
-	--light-active: #31616a;
-	--foreground: white;
-	--light-foreground: #dedede;
-	--muted: #888;
-	--bg-green: #193337;
-	--background: #131619;
-	--bg-contrast: #222;
-	--light-bg: #fff1;
-	--bg-light-transparent: #2225;
-	--box-shadow-light-only: none;
+	--active: light-dark(#28665f, #81f0ff);
+	--light-active: light-dark(#d9e3dc, #31616a);
+	--foreground: light-dark(#292e2b, white);
+	--light-foreground: light-dark(#454d47, #dedede);
+	--muted: light-dark(#5e675f, #888);
+	--bg-green: light-dark(#ebefe6, #193337);
+	--background: light-dark(#f5f4ef, #131619);
+	--bg-contrast: light-dark(#e1e7df, #222);
+	--light-bg: light-dark(#d5d8ce, #fff1);
+	--bg-light-transparent: light-dark(#eeefe9, #2225);
+	--box-shadow-light-only: 0 2px 4px light-dark(#292e2b18, transparent);
+	--page-gradient: linear-gradient(to bottom right, #04040e, #060616, black, #03041d);
+	--image-invert: 0;
+	--selection: light-dark(#cadbd0, #31616a);
+	--strong: light-dark(#292e2b, salmon);
+	--ui-border: light-dark(#c7cdc1, #ffffff29);
+	--quote-border: light-dark(#b4c4b7, #41818d);
 	--font-small: 14px;
 	--font-medium: 18px;
 	--font-large: 24px;
@@ -21,67 +28,43 @@
 	font-size: var(--font-medium);
 }
 
+/* Only non-color treatments need overrides; all colors resolve above. */
+@media (prefers-color-scheme: light) {
+	:root:not(.dark) {
+		color-scheme: light;
+		--page-gradient: none;
+		--image-invert: 1;
+		--featured-background: #e9efea;
+		--featured-radius: 8px;
+		--featured-margin: 0 -1rem;
+		--featured-padding: 0 1rem;
+		--thumbnail-transform: none;
+		--media-shadow: 0 0 0 1px #c7cdc1;
+		--media-overlay: 0;
+		--project-radius: 8px;
+	}
+}
+:root.light {
+	color-scheme: light;
+	--page-gradient: none;
+	--image-invert: 1;
+	--featured-background: #e9efea;
+	--featured-radius: 8px;
+	--featured-margin: 0 -1rem;
+	--featured-padding: 0 1rem;
+	--thumbnail-transform: none;
+	--media-shadow: 0 0 0 1px #c7cdc1;
+	--media-overlay: 0;
+	--project-radius: 8px;
+}
 body {
-	background: linear-gradient(
-		to bottom right,
-		#04040e,
-		#060616,
-		black,
-		#03041d
-	);
+	background: var(--page-gradient), var(--background);
 	color: var(--foreground);
 	margin: 0;
 }
-
-/* System light preference, unless the user has explicitly forced dark
-   (the .dark override must win over the media query). */
-@media (prefers-color-scheme: light) {
-	:root:not(.dark) {
-		--active: #ff7b3a;
-		--light-active: #ffdac8;
-		--foreground: #222;
-		--light-foreground: #222;
-		--muted: #777;
-		--background: white;
-		--light-bg: #0001;
-		--bg-green: #e8f8fa;
-		--bg-contrast: #e8e8e8;
-		--bg-light-transparent: #eee5;
-		--box-shadow-light-only: 2px 2px 3px #00000038;
-	}
-	:root:not(.dark) body {
-		background: linear-gradient(to bottom right, white, #f8f9fb);
-	}
-	:root:not(.dark) img.dark-mode {
-		filter: invert(1);
-	}
-	:root:not(.dark) ::selection {
-		background: #ffb7b7;
-	}
-}
-/* copy of everything above */
-:root.light {
-	--active: #ff7b3a;
-	--light-active: #ffdac8;
-	--foreground: #222;
-	--light-foreground: #555;
-	--muted: #777;
-	--background: white;
-	--light-bg: #0001;
-	--bg-green: #e8f8fa;
-	--bg-contrast: #e8e8e8;
-	--bg-light-transparent: #eee5;
-	--box-shadow-light-only: 2px 2px 3px #00000038;
-}
-:root.light body {
-	background: linear-gradient(to bottom right, white, #f8f9fb);
-}
-:root.light img.dark-mode {
-	filter: invert(1);
-}
-:root.light ::selection {
-	background: #ffb7b7;
-}
+img.dark-mode { filter: invert(var(--image-invert)); }
+::selection { background: var(--selection); }
+:focus-visible { outline: 2px solid var(--active); outline-offset: 4px; }
 
 main {
 	max-width: 800px;

@@ -433,49 +433,49 @@ onDestroy(() => {
   /* Light mode styles */
   @media (prefers-color-scheme: light) {
     :global(:root:not(.dark)) .palette {
-      background: rgba(255, 255, 255, 0.95);
-      border: 1px solid #ddd;
+      background: var(--background);
+      border: 1px solid var(--ui-border);
       box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
     }
     :global(:root:not(.dark)) .search-input {
-      border-bottom-color: #eee;
+      border-bottom-color: var(--light-bg);
     }
     :global(:root:not(.dark)) .back-button {
-      border-bottom-color: #eee;
+      border-bottom-color: var(--light-bg);
     }
     :global(:root:not(.dark)) .command-item:hover,
     :global(:root:not(.dark)) .command-item.selected {
-      background: #f5f5f5;
+      background: var(--bg-contrast);
     }
     :global(:root:not(.dark)) .footer {
-      border-top-color: #eee;
+      border-top-color: var(--light-bg);
     }
     :global(:root:not(.dark)) kbd {
-      background: #f0f0f0;
-      border: 1px solid #ddd;
+      background: var(--bg-light-transparent);
+      border: 1px solid var(--ui-border);
     }
   }
 
   :global(:root.light) .palette {
-    background: rgba(255, 255, 255, 0.95);
-    border: 1px solid #ddd;
+    background: var(--background);
+    border: 1px solid var(--ui-border);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.15);
   }
   :global(:root.light) .search-input {
-    border-bottom-color: #eee;
+    border-bottom-color: var(--light-bg);
   }
   :global(:root.light) .back-button {
-    border-bottom-color: #eee;
+    border-bottom-color: var(--light-bg);
   }
   :global(:root.light) .command-item:hover,
   :global(:root.light) .command-item.selected {
-    background: #f5f5f5;
+    background: var(--bg-contrast);
   }
   :global(:root.light) .footer {
-    border-top-color: #eee;
+    border-top-color: var(--light-bg);
   }
   :global(:root.light) kbd {
-    background: #f0f0f0;
-    border: 1px solid #ddd;
+    background: var(--bg-light-transparent);
+    border: 1px solid var(--ui-border);
   }
 </style>

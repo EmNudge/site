@@ -41,7 +41,7 @@ const { url, icon, name, description } = Astro.props;
   .project {
     border: 1px solid var(--light-bg);
     background: var(--bg-light-transparent);
-    border-radius: 20px;
+    border-radius: var(--project-radius, 20px);
     padding: 1.5rem 2rem;
     transition: 0.15s;
   }

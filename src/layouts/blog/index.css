@@ -101,7 +101,7 @@ article > ul > li {
 }
 
 article strong {
-	color: salmon;
+	color: var(--strong);
 }
 
 .expressive-code {
