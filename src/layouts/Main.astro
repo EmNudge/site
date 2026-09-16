@@ -13,6 +13,9 @@ const standardSitePubKind = pathname.startsWith("/blog")
   : pathname.startsWith("/notes")
     ? "notes"
     : null;
+const standardSitePubUri = standardSitePubKind
+  ? getPublicationAtUri(standardSitePubKind)
+  : null;
 
 const slugs = await Astro.glob("../pages/blog/*.md*").then(getSlugs);
 const postItems = slugs.map(({ title, url }) => [title, url] as const);
@@ -48,11 +51,8 @@ const noteItems = noteSlugs.map(({ title, url }) => [title, url] as const);
     />
     <link rel="icon" href="/icons/icon_neon.webp" />
     <link rel="stylesheet" href="/app.css" />
-    {standardSitePubKind && (
-      <link
-        rel="site.standard.publication"
-        href={getPublicationAtUri(standardSitePubKind)}
-      />
+    {standardSitePubUri && (
+      <link rel="site.standard.publication" href={standardSitePubUri} />
     )}
 
     <title>{title}</title>
