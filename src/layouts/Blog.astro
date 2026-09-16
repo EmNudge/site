@@ -73,7 +73,9 @@ const ogImage =
 	standardSiteKind && standardSiteSlug
 		? `${siteBase}/og/${standardSiteKind}/${standardSiteSlug}.png`
 		: `${siteBase}/og/site.png`;
-const canonicalUrl = `${siteBase}${url}`;
+// Match the served canonical (the site 308-redirects to a trailing slash) so
+// og:url lines up with the standard.site document path for Bluesky's card.
+const canonicalUrl = `${siteBase}${url.endsWith("/") ? url : `${url}/`}`;
 import Toc from "../components/Toc.astro";
 ---
 <html lang="en">
