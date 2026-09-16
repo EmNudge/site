@@ -3,14 +3,14 @@ pubDate: Sep 16, 2026
 title: "For an audience of one"
 tags: general
 layout: ../../layouts/Blog.astro
-description: doing things for yourself
+summary: doing things for yourself
 ---
 
 I find lots of value in doing creative things. There's a real draw to it too. That is, on top of the benefits of producing it, I find it fun.
 
-I've had a few posts on the hackernews front page. An article of mine was read by [The Primagen](https://www.youtube.com/watch?v=zi0ZspvoLuo) which on its own has 100k views. A [YouTube video](https://www.youtube.com/watch?v=uTJoJtNYcaQ) of my own has over 60k views. Altogether, my content has assuredly reached north of 500k people. That's a lot.
+I've had a few posts on the hackernews front page. An article of mine was read by [ThePrimeagen](https://www.youtube.com/watch?v=zi0ZspvoLuo) which on its own has 100k views. A [YouTube video](https://www.youtube.com/watch?v=uTJoJtNYcaQ) of my own has over 60k views. Altogether, my content has assuredly reached north of 500k people. That's a lot.
 
-Yet, lots of my content gets very little attention. My social medias have very few engaged followers. My notes are read by very few people. Some of my videos has low viewer counts. 
+Yet, lots of my content gets very little attention. My social media accounts have very few engaged followers. My notes are read by very few people. Some of my videos have low viewer counts.
 
 If my goal was to become a niche micro celebrity, I'm failing terribly. I'm failing in a way that's clearly to do with my own lack of effort. 
 

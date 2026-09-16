@@ -47,6 +47,9 @@ jobs:
       - name: Typecheck
         run: pnpm run typecheck
 
+      - name: Check post frontmatter
+        run: node scripts/check-frontmatter.mjs
+
       - name: Check standard.site rkeys
         run: node scripts/sync-standard-site.mjs
         env:
