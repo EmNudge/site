@@ -72,3 +72,8 @@ fi
 } > "$FILE_PATH"
 
 echo "Created $FILE_PATH"
+
+# Mint a TID rkey for standard.site and commit it to the map, so the built page
+# and the published ATProto record reference the same id.
+if [[ "$TYPE" == "note" ]]; then KIND="notes"; else KIND="blog"; fi
+node scripts/mint-rkey.mjs "$KIND" "$SLUG"

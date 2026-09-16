@@ -1,6 +1,14 @@
 name: Sync standard.site
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - "src/pages/blog/**"
+      - "src/pages/notes/**"
+      - "scripts/standard-site-rkeys.json"
+      - "scripts/sync-standard-site.mjs"
   workflow_dispatch:
     inputs:
       dry_run:
