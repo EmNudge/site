@@ -1,0 +1,7 @@
+# The standard.site verification files are extensionless, so Cloudflare Pages
+# serves them as application/octet-stream by default. Bluesky's card service
+# (cardyb) only treats the well-known as valid when it's a text content type
+# (Bluesky's own reference serves text/plain), so force it here — otherwise
+# posts to emnudge.dev links render as plain cards instead of standard.site ones.
+/.well-known/site.standard.publication/*
+  Content-Type: text/plain; charset=utf-8
