@@ -67,6 +67,13 @@ const standardSiteDocUri =
 const standardSitePubUri = standardSiteKind
 	? getPublicationAtUri(standardSiteKind)
 	: null;
+import { SITE } from "../data/env";
+const siteBase = SITE ?? "https://emnudge.dev";
+const ogImage =
+	standardSiteKind && standardSiteSlug
+		? `${siteBase}/og/${standardSiteKind}/${standardSiteSlug}.png`
+		: `${siteBase}/og/site.png`;
+const canonicalUrl = `${siteBase}${url}`;
 import Toc from "../components/Toc.astro";
 ---
 <html lang="en">
@@ -77,6 +84,19 @@ import Toc from "../components/Toc.astro";
 		<meta name="author" content="EmNudge" />
 		<meta name="keywords" content="EmNudge" />
 		<meta name="color-scheme" content="dark light" />
+
+		<meta property="og:type" content="article" />
+		<meta property="og:site_name" content="EmNudge" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={summary} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:image" content={ogImage} />
+		<meta property="og:image:width" content="1200" />
+		<meta property="og:image:height" content="630" />
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={summary} />
+		<meta name="twitter:image" content={ogImage} />
 		<script is:inline>
 			// Re-apply an explicit theme override the user set against their system
 			// preference. No stored value means we follow the system (handled in CSS).

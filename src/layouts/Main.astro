@@ -4,8 +4,14 @@ import Footer from "../components/Footer.astro";
 import CommandPalette from "../components/CommandPalette/index.svelte";
 import { getSlugs } from "../data/blogs";
 import { getPublicationAtUri } from "../data/standard-site";
+import { SITE } from "../data/env";
 
 const { title } = Astro.props;
+
+const siteBase = SITE ?? "https://emnudge.dev";
+const ogImage = `${siteBase}/og/site.png`;
+const canonicalUrl = `${siteBase}${Astro.url.pathname}`;
+const siteDescription = "Personal website for EmNudge";
 
 const pathname = Astro.url.pathname;
 const standardSitePubKind = pathname.startsWith("/blog")
@@ -29,10 +35,23 @@ const noteItems = noteSlugs.map(({ title, url }) => [title, url] as const);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta name="description" content="Personal website for EmNudge" />
+    <meta name="description" content={siteDescription} />
     <meta name="author" content="EmNudge" />
     <meta name="keywords" content="EmNudge" />
     <meta name="color-scheme" content="dark light" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="EmNudge" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={siteDescription} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={siteDescription} />
+    <meta name="twitter:image" content={ogImage} />
 
     <script is:inline>
       // Re-apply an explicit theme override the user set against their system
