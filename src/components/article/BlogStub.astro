@@ -77,11 +77,16 @@ img {
 }
 .tag {
     padding: 0 5px;
-    border: 2px solid #000a;
+    border: 2px solid light-dark(#aeb7a8, #000a);
     border-radius: 25%;
-    background-color: white;
-    box-shadow: 2px 3px 3px black;
+    background-color: light-dark(#eae9e1, white);
+    box-shadow: 2px 3px 3px light-dark(transparent, black);
     font-weight: bold;
     user-select: none;
+}
+@media (max-width: 500px) {
+    .article-stub-container { grid-template-columns: 68px 1fr; gap: 16px; }
+    .article-stub-container.disable-image { grid-template-columns: 1fr; }
+    img { width: 100%; height: auto; box-sizing: border-box; }
 }
 </style>

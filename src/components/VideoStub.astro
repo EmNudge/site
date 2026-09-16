@@ -60,18 +60,19 @@ const isCode = tags.includes("code");
 }
 .screen {
     position: relative;
-    background: #1a1a2e;
+    background: light-dark(#d5d8ce, #1a1a2e);
     padding: 6px;
     border-radius: 4px;
-    transform: rotate(-2deg);
-    box-shadow:
+    transform: var(--thumbnail-transform, rotate(-2deg));
+    box-shadow: var(--media-shadow,
         0 0 0 2px #333,
         0 0 0 4px #1a1a1a,
-        4px 6px 12px rgba(0, 0, 0, 0.4);
+        4px 6px 12px rgba(0, 0, 0, 0.4));
     overflow: hidden;
 }
 .screen::before {
     content: '';
+    opacity: var(--media-overlay, 1);
     position: absolute;
     top: 2px;
     left: 2px;
@@ -96,6 +97,7 @@ img {
     left: 6px;
     right: 6px;
     bottom: 6px;
+    opacity: var(--media-overlay, 1);
     background: repeating-linear-gradient(
         0deg,
         rgba(0, 0, 0, 0.15) 0px,
