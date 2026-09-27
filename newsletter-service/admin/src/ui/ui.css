@@ -1,0 +1,109 @@
+/* ===== Design tokens ===== */
+:root {
+  color-scheme: light dark;
+
+  /* palette */
+  --bg: light-dark(#f5f4ef, #131619);
+  --surface: light-dark(#ffffff, #1b1f23);
+  --surface-2: light-dark(#f1f1ea, #23282e);
+  --border: light-dark(#e3e5dc, #2c3238);
+  --border-strong: light-dark(#cdd0c6, #3a424a);
+  --fg: light-dark(#1f2421, #e7e9e6);
+  --fg-muted: light-dark(#5e675f, #949d95);
+  --fg-subtle: light-dark(#8b917f, #6f776f);
+  --accent: light-dark(#28665f, #81f0ff);
+  --accent-fg: light-dark(#ffffff, #0c1417);
+
+  /* semantic status (text + tint bg) */
+  --ok: light-dark(#1f7a4d, #58d295);
+  --ok-bg: light-dark(#e5f2ea, #17281f);
+  --warn: light-dark(#8a6200, #e2b444);
+  --warn-bg: light-dark(#f6ecd4, #2a2414);
+  --danger: light-dark(#a5324f, #f0839b);
+  --danger-bg: light-dark(#f7e2e7, #2b1820);
+  --neutral: light-dark(#6b736c, #9aa39b);
+  --neutral-bg: light-dark(#ebede6, #262b31);
+
+  /* spacing */
+  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 24px; --sp-6: 32px; --sp-7: 48px;
+
+  /* radius */
+  --r-sm: 6px; --r-md: 10px; --r-lg: 14px; --r-pill: 999px;
+
+  /* type */
+  --fs-xs: 12px; --fs-sm: 13px; --fs-base: 14px; --fs-md: 16px; --fs-lg: 20px; --fs-xl: 28px; --fs-2xl: 34px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+
+  --shadow-sm: 0 1px 2px light-dark(#1f24210f, #00000040);
+}
+
+/* ===== Layout helpers ===== */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); align-items: start; }
+@media (max-width: 820px) { .grid-2 { grid-template-columns: 1fr; } }
+.row-between { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3); }
+
+/* ===== Button ===== */
+.ui-btn { display: inline-flex; align-items: center; justify-content: center; gap: 6px; font: inherit; font-weight: 500; border-radius: var(--r-sm); border: 1px solid transparent; cursor: pointer; transition: background 0.12s, border-color 0.12s, filter 0.12s; white-space: nowrap; }
+.ui-btn:disabled { opacity: 0.5; cursor: default; }
+.ui-btn--md { padding: 8px 14px; font-size: var(--fs-base); }
+.ui-btn--sm { padding: 5px 11px; font-size: var(--fs-sm); }
+.ui-btn--primary { background: var(--accent); color: var(--accent-fg); }
+.ui-btn--primary:not(:disabled):hover { filter: brightness(1.06); }
+.ui-btn--secondary { background: var(--surface); color: var(--fg); border-color: var(--border-strong); }
+.ui-btn--secondary:not(:disabled):hover { background: var(--surface-2); }
+.ui-btn--ghost { background: transparent; color: var(--fg); }
+.ui-btn--ghost:not(:disabled):hover { background: var(--surface-2); }
+
+/* ===== Card ===== */
+.ui-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); }
+.ui-card--pad { padding: var(--sp-4); }
+
+/* ===== Metric ===== */
+.ui-metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--sp-3); }
+.ui-metric { background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); padding: var(--sp-4); display: flex; flex-direction: column; }
+.ui-metric__value { font-size: var(--fs-xl); font-weight: 650; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.ui-metric__label { font-size: var(--fs-xs); color: var(--fg-muted); margin-top: 6px; }
+.ui-metric__hint { font-size: var(--fs-xs); color: var(--fg-subtle); margin-top: 3px; }
+.ui-metric--primary { background: var(--accent); color: var(--accent-fg); border-color: transparent; }
+.ui-metric--primary .ui-metric__label, .ui-metric--primary .ui-metric__hint { color: var(--accent-fg); opacity: 0.82; }
+
+/* ===== Section ===== */
+.ui-section { margin-top: var(--sp-6); }
+.ui-section__head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--sp-3); margin-bottom: var(--sp-3); }
+.ui-section__title { font-size: var(--fs-md); font-weight: 600; margin: 0; }
+.ui-section__desc { font-size: var(--fs-sm); color: var(--fg-muted); margin: 2px 0 0; }
+
+/* ===== Table ===== */
+.ui-table-wrap { border: 1px solid var(--border); border-radius: var(--r-md); overflow: hidden; background: var(--surface); }
+.ui-table { width: 100%; border-collapse: collapse; }
+.ui-table th, .ui-table td { text-align: left; padding: 10px 14px; font-size: var(--fs-base); border-bottom: 1px solid var(--border); }
+.ui-table th { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.04em; color: var(--fg-muted); font-weight: 600; background: var(--surface-2); }
+.ui-table tbody tr:last-child td { border-bottom: none; }
+.ui-table tbody tr:hover td { background: var(--surface-2); }
+.ui-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+.ui-table__empty { padding: 18px 14px; color: var(--fg-muted); font-size: var(--fs-sm); text-align: center; }
+
+/* ===== Badge ===== */
+.ui-badge { display: inline-block; padding: 2px 9px; border-radius: var(--r-pill); font-size: var(--fs-xs); font-weight: 500; }
+.ui-badge--ok { color: var(--ok); background: var(--ok-bg); }
+.ui-badge--warn { color: var(--warn); background: var(--warn-bg); }
+.ui-badge--danger { color: var(--danger); background: var(--danger-bg); }
+.ui-badge--neutral { color: var(--neutral); background: var(--neutral-bg); }
+
+/* ===== Field / inputs ===== */
+.ui-field { display: block; margin-bottom: var(--sp-4); }
+.ui-field__label { display: block; font-size: var(--fs-sm); color: var(--fg-muted); margin-bottom: 5px; }
+.ui-field__hint { color: var(--fg-subtle); }
+.ui-input, .ui-select, .ui-textarea { width: 100%; font: inherit; font-size: var(--fs-base); padding: 8px 11px; border: 1px solid var(--border-strong); border-radius: var(--r-sm); background: var(--surface); color: var(--fg); }
+.ui-input:focus, .ui-select:focus, .ui-textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
+.ui-textarea { resize: vertical; min-height: 64px; line-height: 1.5; }
+
+/* ===== Segmented control ===== */
+.ui-seg { display: inline-flex; background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 2px; gap: 2px; }
+.ui-seg button { font: inherit; font-size: var(--fs-sm); padding: 5px 12px; border: none; border-radius: calc(var(--r-sm) - 1px); background: transparent; color: var(--fg-muted); cursor: pointer; }
+.ui-seg button:hover { color: var(--fg); }
+.ui-seg button[aria-pressed="true"] { background: var(--surface); color: var(--fg); box-shadow: var(--shadow-sm); }
+
+/* ===== Progress ===== */
+.ui-progress { height: 6px; background: var(--surface-2); border-radius: var(--r-pill); overflow: hidden; }
+.ui-progress > div { height: 100%; background: var(--accent); transition: width 0.2s ease; }

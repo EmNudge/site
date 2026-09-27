@@ -1,0 +1,41 @@
+# Cloudflare Tunnel carrying newsletter.emnudge.dev to the service on 127.0.0.1:8787.
+#
+# A unit of its own rather than `cloudflared service install <token>`: that command
+# writes /etc/systemd/system/cloudflared.service and would clobber any tunnel the
+# VPS already runs.
+#
+# Install:
+#   sudo install -d -m700 /etc/cloudflared-newsletter
+#   sudo sh -c 'umask 077; cat > /etc/cloudflared-newsletter/token'   # paste the tunnel token, then Ctrl-D
+#   sudo cp deploy/cloudflared-newsletter.service /etc/systemd/system/
+#   sudo systemctl daemon-reload && sudo systemctl enable --now cloudflared-newsletter
+# Check it:  journalctl -u cloudflared-newsletter -n 20   (look for "Registered tunnel connection")
+
+[Unit]
+Description=Cloudflare Tunnel for the newsletter service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=notify
+# systemd hands the root-only token file to an unprivileged, throwaway user.
+LoadCredential=token:/etc/cloudflared-newsletter/token
+ExecStart=/usr/bin/cloudflared --no-autoupdate tunnel run --token-file ${CREDENTIALS_DIRECTORY}/token
+Restart=on-failure
+RestartSec=5s
+TimeoutStartSec=0
+
+# ---- Hardening ----
+DynamicUser=true
+NoNewPrivileges=true
+CapabilityBoundingSet=
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectControlGroups=true
+
+[Install]
+WantedBy=multi-user.target

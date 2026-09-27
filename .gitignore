@@ -12,6 +12,7 @@ yarn-error.log*
 # environment variables
 .env
 .env.production
+.env.newsletter
 
 # macOS-specific files
 .DS_Store

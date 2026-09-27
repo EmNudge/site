@@ -1,0 +1,229 @@
+---
+import MainLayout from "../../layouts/Main.astro";
+import { NEWSLETTER_URL } from "../../data/env";
+---
+
+<MainLayout title="Unsubscribe">
+  <div class="result" data-unsub>
+    <h1 class="headline">Unsubscribing…</h1>
+    <p class="detail"></p>
+    <button class="resubscribe" hidden>Resubscribe</button>
+
+    <div class="feedback" hidden>
+      <p class="fb-q">Mind sharing why you left? <span class="muted">(optional)</span></p>
+      <div class="reasons">
+        <button type="button" class="chip" data-reason="Too many emails">Too many emails</button>
+        <button type="button" class="chip" data-reason="Not relevant">Not relevant to me</button>
+        <button type="button" class="chip" data-reason="Never subscribed">I never subscribed</button>
+        <button type="button" class="chip" data-reason="Other">Other</button>
+      </div>
+      <textarea class="fb-note" rows="2" placeholder="Anything else? (optional)"></textarea>
+      <div>
+        <button class="fb-send">Send feedback</button>
+      </div>
+      <p class="fb-thanks" hidden>Thanks for the feedback 🙏</p>
+    </div>
+
+    <p class="back"><a href="/">← Back to the site</a></p>
+  </div>
+</MainLayout>
+
+<script define:vars={{ newsletterUrl: NEWSLETTER_URL }}>
+  const root = document.querySelector("[data-unsub]");
+  const headline = root.querySelector(".headline");
+  const detail = root.querySelector(".detail");
+  const resubBtn = root.querySelector(".resubscribe");
+  const feedback = root.querySelector(".feedback");
+
+  const LIST_LABEL = { blog: "the blog", notes: "notes" };
+  const label = (list) => LIST_LABEL[list] ?? "this list";
+
+  const params = new URLSearchParams(location.search);
+  const isPreview = params.has("preview");
+  const token = params.get("t");
+
+  const fail = (msg) => {
+    headline.textContent = "Couldn't unsubscribe";
+    detail.textContent = msg;
+    resubBtn.hidden = true;
+    feedback.hidden = true;
+  };
+
+  const showUnsubscribed = (list) => {
+    headline.textContent = "You're unsubscribed";
+    detail.textContent = `You won't get any more emails about ${label(list)}. Sorry to see you go!`;
+    resubBtn.hidden = false;
+    feedback.hidden = false;
+  };
+
+  if (isPreview) {
+    showUnsubscribed("notes");
+  } else if (!token) {
+    fail("This unsubscribe link is missing its token. Try the link from your email again.");
+  } else {
+    // Auto-unsubscribe on load.
+    fetch(`${newsletterUrl}/unsubscribe`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ t: token }),
+    })
+      .then(async (res) => {
+        if (res.ok) {
+          const { list } = await res.json().catch(() => ({}));
+          showUnsubscribed(list);
+        } else if (res.status === 404 || res.status === 410) {
+          fail("This link is invalid or you're already unsubscribed.");
+        } else {
+          fail("Something went wrong on our end. Please try again later.");
+        }
+      })
+      .catch(() => fail("Could not reach the server. Please try again later."));
+  }
+
+  // One-click undo — restores the subscription without another confirmation email.
+  resubBtn.addEventListener("click", async () => {
+    if (isPreview) {
+      headline.textContent = "You're resubscribed 🎉";
+      detail.textContent = "Welcome back — you'll keep getting notes in your inbox.";
+      resubBtn.hidden = true;
+      feedback.hidden = true;
+      return;
+    }
+    resubBtn.disabled = true;
+    try {
+      const res = await fetch(`${newsletterUrl}/resubscribe`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ t: token }),
+      });
+      if (res.ok) {
+        const { list } = await res.json().catch(() => ({}));
+        headline.textContent = "You're resubscribed 🎉";
+        detail.textContent = `Welcome back — you'll keep getting ${label(list)} in your inbox.`;
+        resubBtn.hidden = true;
+        feedback.hidden = true;
+      } else {
+        detail.textContent = "Couldn't resubscribe. Please try again later.";
+        resubBtn.disabled = false;
+      }
+    } catch {
+      detail.textContent = "Could not reach the server. Please try again later.";
+      resubBtn.disabled = false;
+    }
+  });
+
+  // Optional feedback: single-select reason chips + a free-text note.
+  let selectedReason = "";
+  for (const chip of feedback.querySelectorAll(".chip")) {
+    chip.addEventListener("click", () => {
+      selectedReason = selectedReason === chip.dataset.reason ? "" : chip.dataset.reason;
+      feedback.querySelectorAll(".chip").forEach((c) => c.classList.toggle("selected", c === chip && selectedReason));
+    });
+  }
+
+  feedback.querySelector(".fb-send").addEventListener("click", async () => {
+    const note = feedback.querySelector(".fb-note").value.trim();
+    if (!selectedReason && !note) return; // nothing to send
+    if (!isPreview) {
+      try {
+        await fetch(`${newsletterUrl}/unsubscribe-reason`, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ t: token, reason: selectedReason, note }),
+        });
+      } catch {
+        /* best-effort; feedback is optional */
+      }
+    }
+    feedback.querySelector(".reasons").hidden = true;
+    feedback.querySelector(".fb-note").hidden = true;
+    feedback.querySelector(".fb-send").hidden = true;
+    feedback.querySelector(".fb-q").hidden = true;
+    feedback.querySelector(".fb-thanks").hidden = false;
+  });
+</script>
+
+<style>
+  .result {
+    max-width: 600px;
+    margin: 120px auto;
+    text-align: center;
+  }
+  .detail {
+    color: var(--muted);
+    margin-top: 12px;
+  }
+  .resubscribe {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: 1px solid var(--ui-border);
+    border-radius: 6px;
+    background: var(--active);
+    color: var(--background);
+    font-size: var(--font-medium);
+    cursor: pointer;
+  }
+  .resubscribe:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+
+  .feedback {
+    margin: 40px auto 0;
+    padding-top: 28px;
+    border-top: 1px solid var(--light-bg);
+    max-width: 440px;
+  }
+  .fb-q {
+    margin: 0 0 14px;
+    font-size: var(--font-medium);
+  }
+  .reasons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 12px;
+  }
+  .chip {
+    padding: 7px 14px;
+    border: 1px solid var(--ui-border);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--foreground);
+    font-size: var(--font-small);
+    cursor: pointer;
+  }
+  .chip.selected {
+    background: var(--active);
+    color: var(--background);
+    border-color: var(--active);
+  }
+  .fb-note {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid var(--ui-border);
+    border-radius: 6px;
+    background: var(--background);
+    color: var(--foreground);
+    font: inherit;
+    font-size: var(--font-small);
+    resize: vertical;
+    margin-bottom: 12px;
+  }
+  .fb-send {
+    padding: 8px 18px;
+    border: 1px solid var(--ui-border);
+    border-radius: 6px;
+    background: var(--bg-contrast);
+    color: var(--foreground);
+    font-size: var(--font-small);
+    cursor: pointer;
+  }
+  .fb-thanks {
+    color: var(--muted);
+  }
+  .back {
+    margin-top: 32px;
+  }
+</style>

@@ -2,5 +2,6 @@
 	"extends": "astro/tsconfigs/base",
 	"compilerOptions": {
 		"target": "ESNext"
-	}
+	},
+	"exclude": ["newsletter-service", "dist", ".astro"]
 }
