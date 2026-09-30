@@ -1,0 +1,261 @@
+---
+import { NEWSLETTER_URL, TURNSTILE_SITE_KEY } from "../data/env";
+
+interface Props {
+  // Which list to precheck. Omit to precheck both.
+  defaultList?: "blog" | "notes";
+}
+const { defaultList } = Astro.props;
+
+const blogChecked = defaultList !== "notes";
+const notesChecked = defaultList !== "blog";
+---
+
+<section id="subscribe" class="newsletter" data-newsletter>
+  <h2>Subscribe by email</h2>
+
+  <form class="signup" novalidate>
+    <div class="lists">
+      <label>
+        <input type="checkbox" name="list" value="blog" checked={blogChecked} />
+        Blog
+      </label>
+      <label>
+        <input type="checkbox" name="list" value="notes" checked={notesChecked} />
+        Notes
+      </label>
+    </div>
+
+    <div class="row">
+      <input
+        type="email"
+        name="email"
+        required
+        autocomplete="email"
+        placeholder="you@example.com"
+        aria-label="Email address"
+      />
+      <button type="submit">Subscribe</button>
+    </div>
+
+    {/* Honeypot: real users never fill this; bots often do. Hidden from view + a11y tree. */}
+    <input
+      type="text"
+      name="website"
+      class="hp"
+      tabindex="-1"
+      autocomplete="off"
+      aria-hidden="true"
+    />
+
+    {TURNSTILE_SITE_KEY && (
+      <div class="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-appearance="interaction-only"></div>
+    )}
+
+    <p class="status" role="status" aria-live="polite"></p>
+  </form>
+</section>
+
+{TURNSTILE_SITE_KEY && (
+  <script is:inline async src="https://challenges.cloudflare.com/turnstile/v0/api.js"></script>
+)}
+
+<script define:vars={{ newsletterUrl: NEWSLETTER_URL }}>
+  for (const root of document.querySelectorAll("[data-newsletter]")) {
+    const form = root.querySelector("form.signup");
+    const status = root.querySelector(".status");
+    const button = root.querySelector("button[type=submit]");
+
+    const setStatus = (msg, kind) => {
+      status.textContent = msg;
+      status.dataset.kind = kind ?? "";
+    };
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      // Honeypot tripped — pretend success, send nothing.
+      if (form.website.value.trim() !== "") {
+        setStatus("Thanks! Check your inbox to confirm.", "ok");
+        return;
+      }
+
+      const email = form.email.value.trim();
+      const lists = [...form.querySelectorAll("input[name=list]:checked")].map((c) => c.value);
+      const turnstileToken = form.querySelector("[name=cf-turnstile-response]")?.value ?? "";
+
+      if (!email || !email.includes("@")) {
+        setStatus("Please enter a valid email address.", "err");
+        return;
+      }
+      if (lists.length === 0) {
+        setStatus("Pick at least one list.", "err");
+        return;
+      }
+
+      button.disabled = true;
+      setStatus("Subscribing…", "");
+
+      try {
+        const res = await fetch(`${newsletterUrl}/subscribe`, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({ email, lists, turnstileToken, website: "" }),
+        });
+
+        const data = await res.json().catch(() => ({}));
+
+        if (res.ok && data.delayed) {
+          form.reset();
+          setStatus("Almost there — we'll email you a confirmation link. It may take a few hours to arrive.", "ok");
+        } else if (res.ok) {
+          form.reset();
+          setStatus("Almost there — check your inbox to confirm your subscription.", "ok");
+        } else if (data.error === "invalid email domain") {
+          setStatus("That email's domain can't receive mail. Check it for a typo.", "err");
+        } else if (res.status === 429) {
+          setStatus("Too many attempts. Please try again in a bit.", "err");
+        } else {
+          setStatus("Something went wrong. Please try again later.", "err");
+        }
+      } catch {
+        setStatus("Could not reach the server. Please try again later.", "err");
+      } finally {
+        button.disabled = false;
+      }
+    });
+  }
+</script>
+
+<style>
+  /* Registered so the conic-gradient angle can animate smoothly. */
+  @property --nl-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+  }
+
+  .newsletter {
+    max-width: 520px;
+    margin: 50px auto 0;
+    padding: 24px;
+    border: 1px solid transparent;
+    border-radius: 14px;
+    /* Layered backgrounds: a soft accent glow on the interior (padding-box), and an
+       animated conic "shimmer" that sweeps a bright arc around the border (border-box). */
+    background:
+      radial-gradient(
+          135% 130% at 50% -20%,
+          color-mix(in srgb, var(--active) 9%, var(--bg-green)),
+          var(--bg-green) 55%
+        )
+        padding-box,
+      conic-gradient(
+          from var(--nl-angle),
+          var(--ui-border) 0turn,
+          color-mix(in srgb, var(--active) 70%, var(--ui-border)) 0.12turn,
+          var(--ui-border) 0.32turn,
+          var(--ui-border) 1turn
+        )
+        border-box;
+    box-shadow: 0 10px 30px light-dark(#28665f14, #00000047);
+    text-align: center;
+    scroll-margin-top: 40px;
+    animation: nl-shimmer 6s linear infinite;
+    transition: box-shadow 0.25s ease;
+  }
+  @keyframes nl-shimmer {
+    to {
+      --nl-angle: 1turn;
+    }
+  }
+  /* Brighten the ring + lift the card while interacting with the form. */
+  .newsletter:hover,
+  .newsletter:focus-within {
+    box-shadow:
+      0 12px 36px light-dark(#28665f26, #00000059),
+      0 0 0 1px color-mix(in srgb, var(--active) 28%, transparent);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .newsletter {
+      animation: none;
+    }
+  }
+  h2 {
+    margin: 0 0 18px;
+    font-size: var(--font-large);
+  }
+  .lists {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-bottom: 14px;
+  }
+  .lists label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+  }
+  .row {
+    display: flex;
+    gap: 8px;
+  }
+  input[type="email"] {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid var(--ui-border);
+    border-radius: 6px;
+    background: var(--background);
+    color: var(--foreground);
+    font-size: var(--font-medium);
+  }
+  /* Override the site-wide focus ring (outline-offset: 4px) that leaves a gap. */
+  input[type="email"]:focus-visible {
+    outline: none;
+    border-color: var(--active);
+    box-shadow: 0 0 0 2px var(--light-active);
+  }
+  button {
+    padding: 10px 18px;
+    border: none;
+    border-radius: 6px;
+    background: var(--active);
+    color: var(--background);
+    font-size: var(--font-medium);
+    cursor: pointer;
+  }
+  button:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+  .cf-turnstile {
+    margin-top: 14px;
+    display: flex;
+    justify-content: center;
+  }
+  .hp {
+    position: absolute;
+    left: -9999px;
+    width: 1px;
+    height: 1px;
+    opacity: 0;
+  }
+  .status {
+    margin: 12px 0 0;
+    min-height: 1.2em;
+    font-size: var(--font-small);
+  }
+  .status[data-kind="ok"] {
+    color: var(--active);
+  }
+  .status[data-kind="err"] {
+    color: var(--strong);
+  }
+
+  @media screen and (max-width: 500px) {
+    .row {
+      flex-direction: column;
+    }
+  }
+</style>

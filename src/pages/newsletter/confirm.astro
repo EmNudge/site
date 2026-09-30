@@ -1,0 +1,98 @@
+---
+import MainLayout from "../../layouts/Main.astro";
+import { NEWSLETTER_URL } from "../../data/env";
+---
+
+<MainLayout title="Confirm subscription">
+  <div class="result" data-confirm>
+    <h1 class="headline">Confirm your subscription</h1>
+    <p class="detail"></p>
+    <button class="confirm" hidden>Confirm subscription</button>
+    <p class="back"><a href="/">← Back to the site</a></p>
+  </div>
+</MainLayout>
+
+<script define:vars={{ newsletterUrl: NEWSLETTER_URL }}>
+  const root = document.querySelector("[data-confirm]");
+  const headline = root.querySelector(".headline");
+  const detail = root.querySelector(".detail");
+  const confirmBtn = root.querySelector(".confirm");
+
+  const params = new URLSearchParams(location.search);
+  const isPreview = params.has("preview");
+  const token = params.get("t");
+
+  const showConfirmed = () => {
+    headline.textContent = "You're subscribed 🎉";
+    detail.textContent = "Thanks for confirming. New posts will land in your inbox.";
+    confirmBtn.hidden = true;
+  };
+
+  const fail = (msg) => {
+    headline.textContent = "Couldn't confirm";
+    detail.textContent = msg;
+    confirmBtn.hidden = true;
+  };
+
+  if (isPreview) {
+    showConfirmed();
+  } else if (!token) {
+    fail("Open the confirmation link from your email to finish subscribing.");
+  } else {
+    // Confirming takes a click: mail scanners and link prefetchers open the links
+    // in an email, and merely loading this page must not subscribe anyone.
+    detail.textContent = "One click and new posts will land in your inbox.";
+    confirmBtn.hidden = false;
+  }
+
+  confirmBtn.addEventListener("click", async () => {
+    confirmBtn.disabled = true;
+    try {
+      const res = await fetch(`${newsletterUrl}/confirm`, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({ t: token }),
+      });
+      if (res.ok) {
+        showConfirmed();
+      } else if (res.status === 404) {
+        fail("This link is invalid or has expired. Subscribe again to get a new one.");
+      } else {
+        confirmBtn.disabled = false;
+        detail.textContent = "Something went wrong on our end. Please try again later.";
+      }
+    } catch {
+      confirmBtn.disabled = false;
+      detail.textContent = "Could not reach the server. Please try again later.";
+    }
+  });
+</script>
+
+<style>
+  .result {
+    max-width: 600px;
+    margin: 120px auto;
+    text-align: center;
+  }
+  .detail {
+    color: var(--muted);
+    margin-top: 12px;
+  }
+  .confirm {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: 1px solid var(--ui-border);
+    border-radius: 6px;
+    background: var(--active);
+    color: var(--background);
+    font-size: var(--font-medium);
+    cursor: pointer;
+  }
+  .confirm:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+  .back {
+    margin-top: 32px;
+  }
+</style>

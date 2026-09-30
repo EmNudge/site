@@ -5,6 +5,7 @@ import { getSlugs } from "../../data/blogs";
 import type { MdOrMdxFile } from "../../data/blogs";
 import Tags from "../../components/Tags.astro";
 import BlogStub from "../../components/article/BlogStub.astro";
+import NewsletterSignup from "../../components/NewsletterSignup.astro";
 
 const posts = (await Astro.glob("./*.md*")) as MdOrMdxFile[];
 const postSlugs = await getSlugs(posts);
@@ -28,6 +29,7 @@ export async function getStaticPaths({ paginate }) {
 <MainLayout title="Blog">
   <div class="header">
     <h1>Blog</h1>
+    <a href="#subscribe" class="subscribe-top">Subscribe</a>
     <a href="/blog.xml" class="feed-link" rel="external">
       <img src="/icons/rss-feed-icon.png" alt="rss feed" />
     </a>
@@ -45,8 +47,10 @@ export async function getStaticPaths({ paginate }) {
     }
   </div>
 
+  <NewsletterSignup defaultList="blog" />
+
   <p class="feed">
-    Subscribe to <a href="/blog.xml" rel="external"
+    Prefer RSS? Subscribe to <a href="/blog.xml" rel="external"
       >my rss feed <img src="/icons/rss-feed-icon.png" alt="rss icon" /></a>
   </p>
 </MainLayout>
@@ -60,6 +64,18 @@ export async function getStaticPaths({ paginate }) {
   }
   h1 {
     margin: 0;
+  }
+  .subscribe-top {
+    font-size: var(--font-small);
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: var(--active);
+    color: var(--background);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .subscribe-top:hover {
+    opacity: 0.9;
   }
   .feed-link {
     display: flex;

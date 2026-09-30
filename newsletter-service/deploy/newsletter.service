@@ -1,0 +1,62 @@
+# systemd unit for the newsletter service (Rust binary).
+# Install:
+#   # build on the VPS (or copy a prebuilt binary):
+#   cargo build --release            # produces target/release/newsletter-service
+#   sudo install -Dm755 target/release/newsletter-service /opt/newsletter-service/newsletter-service
+#   sudo cp deploy/newsletter.service /etc/systemd/system/newsletter.service
+#   (edit User/paths below to match your VPS)
+#   sudo systemctl daemon-reload && sudo systemctl enable --now newsletter
+
+[Unit]
+Description=Newsletter subscription service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=newsletter
+Group=newsletter
+WorkingDirectory=/opt/newsletter-service
+# Loads CF_EMAIL_TOKEN, ADMIN_TOKEN, etc. Keep this file mode 600 (chmod 600 .env).
+EnvironmentFile=/opt/newsletter-service/.env
+# The compiled binary. WorkingDirectory must contain admin/dist/ (the built UI)
+# and the data/ dir for the SQLite database (DB_PATH).
+ExecStart=/opt/newsletter-service/newsletter-service
+Restart=on-failure
+RestartSec=3
+# Give in-flight requests a moment to drain on stop/reload (graceful shutdown).
+TimeoutStopSec=15
+
+# ---- Hardening / sandboxing ----
+# The service needs: outbound TCP (Cloudflare/Turnstile/DNS), to bind its port,
+# and to read/write only its own data dir. Everything else is locked down.
+NoNewPrivileges=true
+# No Linux capabilities are needed (port defaults to 8787, >1024).
+CapabilityBoundingSet=
+AmbientCapabilities=
+# Read-only view of the whole filesystem except the writable paths below.
+ProtectSystem=strict
+ReadWritePaths=/opt/newsletter-service/data
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+ProtectKernelTunables=true
+ProtectKernelModules=true
+ProtectKernelLogs=true
+ProtectControlGroups=true
+ProtectClock=true
+ProtectHostname=true
+ProtectProc=invisible
+RestrictAddressFamilies=AF_INET AF_INET6 AF_UNIX
+RestrictNamespaces=true
+RestrictRealtime=true
+RestrictSUIDSGID=true
+LockPersonality=true
+MemoryDenyWriteExecute=true
+SystemCallArchitectures=native
+SystemCallFilter=@system-service
+SystemCallErrorNumber=EPERM
+UMask=0077
+
+[Install]
+WantedBy=multi-user.target

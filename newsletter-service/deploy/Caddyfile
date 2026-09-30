@@ -1,0 +1,26 @@
+# ALTERNATIVE to Cloudflare Tunnel (the recommended setup — see the README): serve
+# newsletter.emnudge.dev straight from the VPS with the DNS record NOT proxied
+# (grey cloud), and set CLIENT_IP_HEADER=x-forwarded-for in the service's .env.
+#
+# Reverse-proxy for newsletter.emnudge.dev -> the service on 127.0.0.1:8787.
+# Caddy provisions and renews TLS automatically (Let's Encrypt).
+#
+# SECURITY — X-Forwarded-For: the service reads the *rightmost* XFF entry (the one
+# a trusted proxy appends) for all per-IP guards (rate limits, per-IP caps,
+# admin brute-force throttle). Caddy's reverse_proxy APPENDS the real client IP to
+# whatever the client sent, so a client can prefill bogus leftmost entries — that's
+# why the service ignores them. To be doubly safe we also OVERWRITE the header here
+# with only the real remote host, so the service sees exactly one trustworthy value.
+# Do NOT remove `header_up X-Forwarded-For {remote_host}`: without it, a client can
+# still influence the header (the service's rightmost-read defends against this, but
+# defense in depth matters for the guard the whole service depends on).
+#
+# Install (one option): append this block to /etc/caddy/Caddyfile (or drop it in
+# a file that your Caddyfile imports), then:
+#   sudo systemctl reload caddy
+
+newsletter.emnudge.dev {
+	reverse_proxy 127.0.0.1:8787 {
+		header_up X-Forwarded-For {remote_host}
+	}
+}

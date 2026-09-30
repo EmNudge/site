@@ -17,6 +17,7 @@ import {
 
 import "./blog/index.css";
 import Tooltip from "../components/Tooltip/Tooltip.astro";
+import NewsletterSignup from "../components/NewsletterSignup.astro";
 import { formatDate } from "../utils/formatDate";
 import {
 	getDocumentAtUri,
@@ -180,6 +181,7 @@ import Toc from "../components/Toc.astro";
 					</div>
 				)}
 			</article>
+			<NewsletterSignup defaultList={isNote ? "notes" : "blog"} />
 		</main>
 		<Footer />
 		<PictureZoom client:load />

@@ -1,0 +1,12 @@
+# Rust build output
+/target/
+
+# Admin UI (React) deps + build — built on deploy, served by the binary
+node_modules/
+dist/
+
+# Runtime data + secrets
+data/
+.env
+*.log
+.DS_Store

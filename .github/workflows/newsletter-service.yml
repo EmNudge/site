@@ -1,0 +1,72 @@
+name: newsletter-service
+
+# Build, lint, and vulnerability-scan the Rust newsletter service.
+on:
+  pull_request:
+    branches:
+      - "**"
+    paths:
+      - "newsletter-service/**"
+      - ".github/workflows/newsletter-service.yml"
+  push:
+    branches:
+      - main
+    paths:
+      - "newsletter-service/**"
+      - ".github/workflows/newsletter-service.yml"
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    working-directory: newsletter-service
+
+jobs:
+  build:
+    name: fmt, clippy, build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Toolchain (rustup is preinstalled on the runner)
+        run: rustup component add rustfmt clippy
+
+      - name: Cache cargo
+        uses: actions/cache@1bd1e32a3bdc45362d1e726936510720a7c30a57 # v4.2.0
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            newsletter-service/target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('newsletter-service/Cargo.lock') }}
+
+      - name: Format check
+        run: cargo fmt --all -- --check
+
+      - name: Clippy (deny warnings)
+        run: cargo clippy --all-targets -- -D warnings
+
+      - name: Build
+        run: cargo build --locked
+
+      - name: Test
+        run: cargo test --locked
+
+  audit:
+    name: cargo audit (RUSTSEC advisories)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+
+      - name: Install cargo-audit
+        run: cargo install cargo-audit --locked
+
+      - name: Audit dependencies
+        run: cargo audit
