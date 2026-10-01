@@ -19,23 +19,33 @@ button { font: inherit; cursor: pointer; }
 .sign-out button { width: 100%; text-align: left; padding: 9px 12px; border: none; border-radius: var(--r-sm); background: transparent; color: var(--fg-muted); }
 .sign-out button:hover { background: var(--surface-2); color: var(--fg); }
 .main { margin-left: 220px; padding: var(--sp-6) var(--sp-6) var(--sp-7); max-width: 1180px; }
+/* Phone header: brand + sign-out on one line, tabs on a full-width row under it.
+   All four on one line overflows the viewport and pushes sign-out off-screen. */
 @media (max-width: 720px) {
-  .sidebar { position: static; width: auto; flex-direction: row; align-items: center; gap: var(--sp-4); border-right: none; border-bottom: 1px solid var(--border); padding: var(--sp-3) var(--sp-4); }
-  .side-nav { flex-direction: row; }
-  .sign-out { margin-top: 0; margin-left: auto; }
+  .sidebar { position: static; width: auto; flex-direction: row; flex-wrap: wrap; align-items: center; gap: var(--sp-2) var(--sp-3); border-right: none; border-bottom: 1px solid var(--border); padding: var(--sp-3) var(--sp-4); }
+  .brand { order: 1; padding: 0; }
+  .sign-out { order: 2; margin-top: 0; margin-left: auto; }
+  .sign-out button { padding: 6px 10px; }
+  .side-nav { order: 3; flex-basis: 100%; flex-direction: row; gap: var(--sp-2); }
+  .side-nav button { flex: 1; text-align: center; padding: 10px 12px; }
   .main { margin-left: 0; padding: var(--sp-4); }
 }
+@media (max-width: 400px) { .main { padding: var(--sp-3); } }
 
 /* ===== dashboard bits (structure only; visuals come from ui.css) ===== */
-.toolbar { display: flex; justify-content: flex-end; align-items: center; gap: var(--sp-2); margin-bottom: var(--sp-3); }
+.toolbar { display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: var(--sp-2); margin-bottom: var(--sp-3); }
 .metric-groups { display: flex; flex-direction: column; gap: var(--sp-5); }
 .metric-group__label { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-muted); margin: 0 0 var(--sp-2); }
 .controls { display: flex; flex-wrap: wrap; gap: var(--sp-2); margin-bottom: var(--sp-3); }
 .controls .search { flex: 1; min-width: 200px; }
+@media (max-width: 560px) {
+  .controls .search { flex-basis: 100%; }
+  .controls .ui-select { flex: 1 1 0; min-width: 0; }
+}
 .reasons-list .row { display: flex; justify-content: space-between; gap: var(--sp-3); padding: 10px var(--sp-1); border-bottom: 1px solid var(--border); font-size: var(--fs-base); }
 .reasons-list .row:last-child { border-bottom: none; }
 .reasons-list .count { font-variant-numeric: tabular-nums; color: var(--fg-muted); }
-.pager { display: flex; align-items: center; gap: var(--sp-3); margin-top: var(--sp-3); }
+.pager { display: flex; flex-wrap: wrap; align-items: center; gap: var(--sp-3); margin-top: var(--sp-3); }
 
 /* ===== templates ===== */
 .templates .layout { display: grid; grid-template-columns: 300px 1fr; gap: var(--sp-5); align-items: start; }
@@ -51,10 +61,19 @@ button { font: inherit; cursor: pointer; }
 .send-bar { display: flex; align-items: center; gap: var(--sp-3); flex-wrap: wrap; margin-bottom: var(--sp-3); }
 .send-bar .send-info { font-size: var(--fs-base); }
 .send-bar .ui-progress { flex-basis: 100%; }
+.send-bar .test-to { width: 220px; }
 .subject { padding: 12px 14px; border: 1px solid var(--border); border-radius: var(--r-sm); background: var(--surface); margin-bottom: var(--sp-3); }
 .subject .l { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.05em; color: var(--fg-muted); }
 .subject .v { font-size: var(--fs-md); font-weight: 600; margin-top: 2px; }
 .view-tabs { margin-bottom: var(--sp-3); }
 .templates iframe { width: 100%; height: 620px; border: 1px solid var(--border); border-radius: var(--r-md); background: #fff; }
 .templates pre { margin: 0; padding: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--r-md); white-space: pre-wrap; word-break: break-word; font-size: var(--fs-sm); max-height: 620px; overflow: auto; }
+@media (max-width: 720px) {
+  .templates .panel { padding: var(--sp-3); }
+  .templates iframe { height: 70vh; min-height: 380px; }
+  .templates pre { max-height: 70vh; }
+}
+@media (max-width: 560px) {
+  .send-bar .send-info, .send-bar .test-to, .send-bar .ui-btn { flex: 1 1 100%; width: auto; }
+}
 .note { font-size: var(--fs-xs); color: var(--fg-muted); margin-top: var(--sp-3); }

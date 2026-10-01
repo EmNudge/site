@@ -185,7 +185,7 @@ export function Templates({ config }: { config: AdminConfig }) {
               </div>
               <Button variant="primary" disabled={sending || testing} onClick={doSend}>Send newsletter</Button>
               {sending && <Button disabled={!jobId} onClick={doCancel}>Cancel send</Button>}
-              <Input type="email" placeholder="you@example.com" style={{ width: 220 }} value={testTo} onChange={(e) => setTestTo(e.target.value)} />
+              <Input className="test-to" type="email" placeholder="you@example.com" value={testTo} onChange={(e) => setTestTo(e.target.value)} />
               <Button disabled={sending || testing} onClick={doTestSend}>Send test</Button>
               <span className="muted">{sendStatus}</span>
               {pct != null && <Progress pct={pct} />}

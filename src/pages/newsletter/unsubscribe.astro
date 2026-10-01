@@ -201,6 +201,8 @@ import { NEWSLETTER_URL } from "../../data/env";
   }
   .fb-note {
     width: 100%;
+    /* Without this the padding + border push the textarea past the viewport. */
+    box-sizing: border-box;
     padding: 10px 12px;
     border: 1px solid var(--ui-border);
     border-radius: 6px;
@@ -225,5 +227,21 @@ import { NEWSLETTER_URL } from "../../data/env";
   }
   .back {
     margin-top: 32px;
+  }
+
+  @media screen and (max-width: 500px) {
+    .result {
+      margin: 56px auto 72px;
+    }
+    .feedback {
+      margin-top: 32px;
+      padding-top: 24px;
+    }
+    .chip {
+      padding: 10px 16px;
+    }
+    .fb-send {
+      padding: 11px 18px;
+    }
   }
 </style>
