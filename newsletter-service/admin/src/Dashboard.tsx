@@ -27,7 +27,7 @@ const byListCols: Column<ListRow>[] = [
 const sentCols: Column<SentRow>[] = [
   { key: "slug", header: "Post" },
   { key: "list", header: "List" },
-  { key: "sent_at", header: "Sent", render: (r) => fmtDate(r.sent_at) },
+  { key: "sent_at", header: "Sent", secondary: true, render: (r) => fmtDate(r.sent_at) },
   { key: "recipients", header: "Recipients", align: "right" },
 ];
 
@@ -104,8 +104,8 @@ export function Dashboard() {
     { key: "email", header: "Email" },
     { key: "list", header: "List" },
     { key: "status", header: "Status", render: (r) => <StatusBadge status={r.status} /> },
-    { key: "created_at", header: "Signed up", render: (r) => fmtDate(r.created_at) },
-    { key: "confirmed_at", header: "Confirmed", render: (r) => fmtDate(r.confirmed_at) },
+    { key: "created_at", header: "Signed up", secondary: true, render: (r) => fmtDate(r.created_at) },
+    { key: "confirmed_at", header: "Confirmed", secondary: true, render: (r) => fmtDate(r.confirmed_at) },
     { key: "actions", header: "", align: "right", render: (r) => <Button variant="ghost" size="sm" onClick={() => deleteSubscriber(r.email)}>Delete</Button> },
   ];
 

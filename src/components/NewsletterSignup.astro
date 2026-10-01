@@ -195,7 +195,13 @@ const notesChecked = defaultList !== "blog";
     display: inline-flex;
     align-items: center;
     gap: 6px;
+    padding: 6px 2px;
     cursor: pointer;
+  }
+  .lists input[type="checkbox"] {
+    width: 1.1em;
+    height: 1.1em;
+    accent-color: var(--active);
   }
   .row {
     display: flex;
@@ -203,6 +209,10 @@ const notesChecked = defaultList !== "blog";
   }
   input[type="email"] {
     flex: 1;
+    /* Flex items default to min-width:auto, so a long placeholder can push the
+       button off the card on narrow screens. */
+    min-width: 0;
+    box-sizing: border-box;
     padding: 10px 12px;
     border: 1px solid var(--ui-border);
     border-radius: 6px;
@@ -254,8 +264,25 @@ const notesChecked = defaultList !== "blog";
   }
 
   @media screen and (max-width: 500px) {
+    /* Reclaim the horizontal padding — on a phone it costs the form real width. */
+    .newsletter {
+      margin-top: 36px;
+      padding: 20px 16px;
+    }
+    h2 {
+      margin-bottom: 14px;
+      font-size: 21px;
+    }
+    .lists {
+      gap: 24px;
+      margin-bottom: 10px;
+    }
     .row {
       flex-direction: column;
+      gap: 10px;
+    }
+    button {
+      padding: 12px 18px;
     }
   }
 </style>

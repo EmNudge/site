@@ -4,8 +4,13 @@ export interface Column<T> {
   key: string;
   header: ReactNode;
   align?: "right";
+  /** Dropped on narrow screens, where the table would otherwise have to scroll. */
+  secondary?: boolean;
   render?: (row: T) => ReactNode;
 }
+
+const cellClass = <T,>(c: Column<T>) =>
+  [c.align === "right" && "num", c.secondary && "secondary"].filter(Boolean).join(" ") || undefined;
 
 export function DataTable<T>({
   columns,
@@ -26,7 +31,7 @@ export function DataTable<T>({
         <thead>
           <tr>
             {columns.map((c) => (
-              <th key={c.key} className={c.align === "right" ? "num" : undefined}>
+              <th key={c.key} className={cellClass(c)}>
                 {c.header}
               </th>
             ))}
@@ -49,7 +54,7 @@ export function DataTable<T>({
             rows.map((row, i) => (
               <tr key={getKey ? getKey(row, i) : i}>
                 {columns.map((c) => (
-                  <td key={c.key} className={c.align === "right" ? "num" : undefined}>
+                  <td key={c.key} className={cellClass(c)}>
                     {c.render ? c.render(row) : (row as Record<string, ReactNode>)[c.key]}
                   </td>
                 ))}

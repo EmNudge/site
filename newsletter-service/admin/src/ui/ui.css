@@ -38,7 +38,9 @@
 }
 
 /* ===== Layout helpers ===== */
+/* min-width:0 — a grid item defaults to min-content, which lets a wide table push the whole page sideways. */
 .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); align-items: start; }
+.grid-2 > * { min-width: 0; }
 @media (max-width: 820px) { .grid-2 { grid-template-columns: 1fr; } }
 .row-between { display: flex; align-items: center; justify-content: space-between; gap: var(--sp-3); }
 
@@ -47,6 +49,7 @@
 .ui-btn:disabled { opacity: 0.5; cursor: default; }
 .ui-btn--md { padding: 8px 14px; font-size: var(--fs-base); }
 .ui-btn--sm { padding: 5px 11px; font-size: var(--fs-sm); }
+@media (max-width: 560px) { .ui-btn--sm { padding: 8px 12px; } }
 .ui-btn--primary { background: var(--accent); color: var(--accent-fg); }
 .ui-btn--primary:not(:disabled):hover { filter: brightness(1.06); }
 .ui-btn--secondary { background: var(--surface); color: var(--fg); border-color: var(--border-strong); }
@@ -66,15 +69,22 @@
 .ui-metric__hint { font-size: var(--fs-xs); color: var(--fg-subtle); margin-top: 3px; }
 .ui-metric--primary { background: var(--accent); color: var(--accent-fg); border-color: transparent; }
 .ui-metric--primary .ui-metric__label, .ui-metric--primary .ui-metric__hint { color: var(--accent-fg); opacity: 0.82; }
+/* Keep two metrics per row down to 320px instead of dropping to one tall column. */
+@media (max-width: 440px) {
+  .ui-metric-grid { grid-template-columns: repeat(auto-fit, minmax(128px, 1fr)); gap: var(--sp-2); }
+  .ui-metric { padding: var(--sp-3); }
+  .ui-metric__value { font-size: var(--fs-lg); }
+}
 
 /* ===== Section ===== */
 .ui-section { margin-top: var(--sp-6); }
-.ui-section__head { display: flex; align-items: baseline; justify-content: space-between; gap: var(--sp-3); margin-bottom: var(--sp-3); }
+.ui-section__head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--sp-3); margin-bottom: var(--sp-3); }
 .ui-section__title { font-size: var(--fs-md); font-weight: 600; margin: 0; }
 .ui-section__desc { font-size: var(--fs-sm); color: var(--fg-muted); margin: 2px 0 0; }
 
 /* ===== Table ===== */
-.ui-table-wrap { border: 1px solid var(--border); border-radius: var(--r-md); overflow: hidden; background: var(--surface); }
+/* overflow-x rather than hidden: on a phone the wider tables must stay reachable by scrolling, not get clipped. */
+.ui-table-wrap { border: 1px solid var(--border); border-radius: var(--r-md); overflow-x: auto; background: var(--surface); }
 .ui-table { width: 100%; border-collapse: collapse; }
 .ui-table th, .ui-table td { text-align: left; padding: 10px 14px; font-size: var(--fs-base); border-bottom: 1px solid var(--border); }
 .ui-table th { font-size: var(--fs-xs); text-transform: uppercase; letter-spacing: 0.04em; color: var(--fg-muted); font-weight: 600; background: var(--surface-2); }
@@ -82,9 +92,26 @@
 .ui-table tbody tr:hover td { background: var(--surface-2); }
 .ui-table .num { text-align: right; font-variant-numeric: tabular-nums; }
 .ui-table__empty { padding: 18px 14px; color: var(--fg-muted); font-size: var(--fs-sm); text-align: center; }
+/* Columns the table can do without on a narrow screen (dates, etc). */
+@media (max-width: 560px) {
+  .ui-table th.secondary, .ui-table td.secondary { display: none; }
+  .ui-table th, .ui-table td { padding: 9px 10px; font-size: var(--fs-sm); white-space: nowrap; }
+  /* Edge shadows, so it reads as scrollable rather than cut off. */
+  .ui-table-wrap {
+    background-image:
+      linear-gradient(to right, var(--surface), transparent),
+      linear-gradient(to left, var(--surface), transparent),
+      linear-gradient(to right, light-dark(#00000020, #00000066), transparent),
+      linear-gradient(to left, light-dark(#00000020, #00000066), transparent);
+    background-position: 0 0, 100% 0, 0 0, 100% 0;
+    background-repeat: no-repeat;
+    background-size: 22px 100%, 22px 100%, 9px 100%, 9px 100%;
+    background-attachment: local, local, scroll, scroll;
+  }
+}
 
 /* ===== Badge ===== */
-.ui-badge { display: inline-block; padding: 2px 9px; border-radius: var(--r-pill); font-size: var(--fs-xs); font-weight: 500; }
+.ui-badge { display: inline-block; padding: 2px 9px; border-radius: var(--r-pill); font-size: var(--fs-xs); font-weight: 500; white-space: nowrap; }
 .ui-badge--ok { color: var(--ok); background: var(--ok-bg); }
 .ui-badge--warn { color: var(--warn); background: var(--warn-bg); }
 .ui-badge--danger { color: var(--danger); background: var(--danger-bg); }
@@ -97,6 +124,10 @@
 .ui-input, .ui-select, .ui-textarea { width: 100%; font: inherit; font-size: var(--fs-base); padding: 8px 11px; border: 1px solid var(--border-strong); border-radius: var(--r-sm); background: var(--surface); color: var(--fg); }
 .ui-input:focus, .ui-select:focus, .ui-textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; border-color: var(--accent); }
 .ui-textarea { resize: vertical; min-height: 64px; line-height: 1.5; }
+/* iOS zooms the whole page in when a focused field is under 16px. */
+@media (max-width: 560px) {
+  .ui-input, .ui-select, .ui-textarea { font-size: 16px; }
+}
 
 /* ===== Segmented control ===== */
 .ui-seg { display: inline-flex; background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--r-sm); padding: 2px; gap: 2px; }

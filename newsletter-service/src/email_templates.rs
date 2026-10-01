@@ -121,12 +121,26 @@ fn shell(
   .content hr {{ border:none; border-top:1px solid #e3e3e0; margin:28px 0; }}
   .content blockquote {{ margin:24px 0; background:#f3f3f1; border-radius:12px; padding:2px 24px; color:#6b7280; }}
   .content pre {{ background:#f3f3f1; border-radius:8px; padding:14px 16px; overflow:auto; font-size:14px; line-height:1.5; }}
-  .content code {{ background:#f3f3f1; border-radius:4px; padding:1px 5px; font-size:0.9em; }}
+  .content code {{ background:#f3f3f1; border-radius:4px; padding:1px 5px; font-size:0.9em; overflow-wrap:anywhere; }}
   .content pre code {{ background:none; padding:0; }}
   .button {{ display:inline-block; background:#28665f; color:#ffffff !important; text-decoration:none; padding:12px 24px; border-radius:8px; font-weight:600; }}
   .footer {{ margin-top:30px; text-align:center; font-size:13px; color:#8a8a8a; }}
   .footer a {{ color:#8a8a8a; }}
   .fallback {{ font-size:13px; color:#8a8a8a; word-break:break-all; }}
+  /* Phones: the desktop padding costs ~110px of a 390px screen, which leaves the
+     measure too narrow to read. Clients that ignore this still get the desktop rules. */
+  @media only screen and (max-width: 520px) {{
+    .container {{ padding:28px 14px 44px; }}
+    .title {{ font-size:26px; margin-bottom:14px; }}
+    .byline {{ font-size:12px; margin-bottom:26px; }}
+    .forward {{ text-align:center; font-size:14px; }}
+    .content {{ padding:4px 18px; font-size:17px; }}
+    .content p {{ margin:16px 0; }}
+    .content blockquote {{ padding:2px 16px; margin:20px 0; }}
+    .content pre {{ padding:12px; font-size:13px; }}
+    .content ul,.content ol {{ padding-left:20px; }}
+    .button {{ display:block; text-align:center; }}
+  }}
 </style>
 </head>
 <body style="margin:0;padding:0;background:#f4f4f2;">
