@@ -11,7 +11,10 @@
     "lint": "oxlint --ignore-pattern '*.astro'",
     "format": "oxfmt --write src public/libraries astro.config.mjs",
     "format:check": "oxfmt --check src public/libraries astro.config.mjs",
-    "typecheck": "astro check"
+    "typecheck": "astro check",
+    "test": "vitest run",
+    "narration:align": "tsx scripts/narration/align.ts",
+    "narration:check": "tsx scripts/narration/check.ts"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
@@ -34,7 +37,12 @@
     "vite": "^5.2.8"
   },
   "devDependencies": {
+    "@types/jsdom": "^21.1.7",
+    "jsdom": "^24.1.3",
+    "linkedom": "^0.18.14",
     "oxfmt": "^0.21.0",
-    "oxlint": "^1.0.0"
+    "oxlint": "^1.0.0",
+    "tsx": "^4.23.15",
+    "vitest": "^1.6.1"
   }
 }

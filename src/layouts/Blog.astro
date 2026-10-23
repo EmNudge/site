@@ -164,7 +164,7 @@ import Toc from "../components/Toc.astro";
 				<p>{summary}</p>
 				{recording && <SpeakAloud recording={recording} isDev={import.meta.env.DEV} client:only="svelte" />}
 			</div>
-			<article class={recording ? "with-audio" : undefined}>
+			<article class={recording ? "with-audio" : undefined} data-recording={recording}>
 				<Toc headings={headings} />
 				<slot />
 				{isNote && (

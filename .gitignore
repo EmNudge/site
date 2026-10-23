@@ -21,3 +21,6 @@ yarn-error.log*
 .vscode
 
 .astro
+
+# local narration audio/model cache
+.cache/narration
