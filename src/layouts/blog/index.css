@@ -80,7 +80,8 @@ article img {
 	box-sizing: border-box;
 }
 
-article.with-audio p:before {
+article.with-audio p:before,
+article.with-audio blockquote:before {
 	content: "";
 	position: absolute;
 	top: -10px;
@@ -91,8 +92,18 @@ article.with-audio p:before {
 	transition: 0.25s;
 }
 
-article.with-audio p.speaking:before {
+article.with-audio[data-narration-mode="paragraph"] p.speaking:before,
+article.with-audio[data-narration-mode="paragraph"] blockquote.speaking:before {
 	background: color-mix(in srgb, var(--active) 10%, transparent);
+}
+
+article.with-audio ::highlight(speak-sentence) {
+	background: color-mix(in srgb, var(--active) 22%, transparent);
+}
+
+article.with-audio ::highlight(speak-word) {
+	background: color-mix(in srgb, var(--active) 48%, transparent);
+	color: var(--foreground);
 }
 
 article > ol > li,
