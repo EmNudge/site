@@ -2,7 +2,7 @@
 pubDate: Nov 8, 2026
 title: "The future is not flat"
 tags: general
-summary: The is not just today, but more
+summary: The future is not just today, but more
 layout: ../../layouts/Blog.astro
 ---
 
